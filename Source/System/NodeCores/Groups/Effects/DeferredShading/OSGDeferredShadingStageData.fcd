@@ -64,6 +64,15 @@
      >
   </Field>
   <Field
+     name="shadingPhotometricMaps"
+     category="pointer"
+     type="TextureObjChunk"
+     cardinality="multi"
+     visibility="external"
+     access="public"
+     >
+  </Field>
+  <Field
      name="lightChunks"
      category="pointer"
      type="DSLightChunk"

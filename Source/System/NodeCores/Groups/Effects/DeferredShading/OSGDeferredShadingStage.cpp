@@ -634,10 +634,16 @@ void DeferredShadingStage::scheduleGBufferPass(RenderAction *ract)
     {
         (*lIt)->callLightEngineEnter(ract);
 
-        ShaderProgramChunk    *spc   = data->getShadingProgramChunks(1+i);
-        State                 *state = data->getShadingStates       (1+i);
+        ShaderProgramChunk    *spc   = data->getShadingProgramChunks (1+i);
+        State                 *state = data->getShadingStates        (1+i);
+        TextureObjChunk       *phm   = data->getShadingPhotometricMap(1+i);
         ShaderShadowMapEngine *sme   = dynamic_cast<ShaderShadowMapEngine *>(
             (*lIt)->getLightEngine());
+
+	if (phm) {
+		Int32 phmTexUnit = 4;
+		state->addChunk( phm, phmTexUnit );
+	}
 
         if(sme != NULL)
         {

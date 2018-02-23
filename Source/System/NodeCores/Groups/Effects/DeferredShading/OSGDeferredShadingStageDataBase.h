@@ -69,6 +69,7 @@
 #include "OSGBackgroundFields.h"        // GBufferBackground type
 #include "OSGStateFields.h"             // ShadingStates type
 #include "OSGShaderProgramChunkFields.h" // ShadingProgramChunks type
+#include "OSGTextureObjChunkFields.h"   // TextureObjChunks type
 #include "OSGDSLightChunkFields.h"      // LightChunks type
 #include "OSGBlendChunkFields.h"        // BlendChunk type
 
@@ -104,6 +105,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
         ShadingTargetFieldId = GBufferBackgroundFieldId + 1,
         ShadingStatesFieldId = ShadingTargetFieldId + 1,
         ShadingProgramChunksFieldId = ShadingStatesFieldId + 1,
+        TextureObjChunksFieldId = ShadingProgramChunksFieldId + 1,
         LightChunksFieldId = ShadingProgramChunksFieldId + 1,
         BlendChunkFieldId = LightChunksFieldId + 1,
         NextFieldId = BlendChunkFieldId + 1
@@ -119,6 +121,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
         (TypeTraits<BitVector>::One << ShadingStatesFieldId);
     static const OSG::BitVector ShadingProgramChunksFieldMask =
         (TypeTraits<BitVector>::One << ShadingProgramChunksFieldId);
+    static const OSG::BitVector TextureObjChunksFieldMask =
+        (TypeTraits<BitVector>::One << TextureObjChunksFieldId);
     static const OSG::BitVector LightChunksFieldMask =
         (TypeTraits<BitVector>::One << LightChunksFieldId);
     static const OSG::BitVector BlendChunkFieldMask =
@@ -131,6 +135,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
     typedef SFUnrecFrameBufferObjectPtr SFShadingTargetType;
     typedef MFUnrecStatePtr   MFShadingStatesType;
     typedef MFUnrecShaderProgramChunkPtr MFShadingProgramChunksType;
+    typedef MFUnrecTextureObjChunkPtr MFUnrecTextureObjChunksType;
     typedef MFUnrecDSLightChunkPtr MFLightChunksType;
     typedef SFUnrecBlendChunkPtr SFBlendChunkType;
 
@@ -167,6 +172,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
                   MFUnrecStatePtr     *editMFShadingStates  (void);
             const MFUnrecShaderProgramChunkPtr *getMFShadingProgramChunks(void) const;
                   MFUnrecShaderProgramChunkPtr *editMFShadingProgramChunks(void);
+            const MFUnrecTextureObjChunkPtr *getMFShadingPhotometricMaps(void) const;
+                  MFUnrecTextureObjChunkPtr *editMFShadingPhotometricMaps(void);
             const MFUnrecDSLightChunkPtr *getMFLightChunks    (void) const;
                   MFUnrecDSLightChunkPtr *editMFLightChunks    (void);
             const SFUnrecBlendChunkPtr *getSFBlendChunk     (void) const;
@@ -182,6 +189,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
                   State * getShadingStates  (const UInt32 index) const;
 
                   ShaderProgramChunk * getShadingProgramChunks(const UInt32 index) const;
+
+                  TextureObjChunk * getShadingPhotometricMap(const UInt32 index) const;
 
                   DSLightChunk * getLightChunks    (const UInt32 index) const;
 
@@ -218,6 +227,12 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
     void removeFromShadingProgramChunks (UInt32               uiIndex );
     void removeObjFromShadingProgramChunks(ShaderProgramChunk * const value   );
     void clearShadingProgramChunks            (void                         );
+
+    void pushToShadingPhotometricMaps           (TextureObjChunk * const value   );
+    void assignShadingPhotometricMaps          (const MFUnrecTextureObjChunkPtr &value);
+    void removeFromShadingPhotometricMaps (UInt32               uiIndex );
+    void removeObjFromShadingPhotometricMaps(TextureObjChunk * const value   );
+    void clearShadingPhotometricMaps            (void                         );
 
     void pushToLightChunks           (DSLightChunk * const value   );
     void assignLightChunks          (const MFUnrecDSLightChunkPtr &value);
@@ -283,6 +298,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
     SFUnrecFrameBufferObjectPtr _sfShadingTarget;
     MFUnrecStatePtr   _mfShadingStates;
     MFUnrecShaderProgramChunkPtr _mfShadingProgramChunks;
+    MFUnrecTextureObjChunkPtr _mfShadingPhotometricMap;
     MFUnrecDSLightChunkPtr _mfLightChunks;
     SFUnrecBlendChunkPtr _sfBlendChunk;
 

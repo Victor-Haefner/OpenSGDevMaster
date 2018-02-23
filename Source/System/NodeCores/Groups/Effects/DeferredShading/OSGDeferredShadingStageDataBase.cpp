@@ -66,6 +66,7 @@
 #include "OSGBackground.h"              // GBufferBackground Class
 #include "OSGState.h"                   // ShadingStates Class
 #include "OSGShaderProgramChunk.h"      // ShadingProgramChunks Class
+#include "OSGTextureObjChunk.h"         // TextureObjChunks Class
 #include "OSGDSLightChunk.h"            // LightChunks Class
 #include "OSGBlendChunk.h"              // BlendChunk Class
 
@@ -465,6 +466,23 @@ ShaderProgramChunk * DeferredShadingStageDataBase::getShadingProgramChunks(const
     return _mfShadingProgramChunks[index];
 }
 
+//! Get the DeferredShadingStageData::_mfShadingPhotometricMap field.
+const MFUnrecTextureObjChunkPtr *DeferredShadingStageDataBase::getMFShadingPhotometricMaps(void) const
+{
+    return &_mfShadingPhotometricMap;
+}
+
+MFUnrecTextureObjChunkPtr *DeferredShadingStageDataBase::editMFShadingPhotometricMaps(void)
+{
+    editMField(TextureObjChunksFieldMask, _mfShadingPhotometricMap);
+
+    return &_mfShadingPhotometricMap;
+}
+TextureObjChunk * DeferredShadingStageDataBase::getShadingPhotometricMap(const UInt32 index) const
+{
+    return _mfShadingPhotometricMap[index];
+}
+
 //! Get the DeferredShadingStageData::_mfLightChunks field.
 const MFUnrecDSLightChunkPtr *DeferredShadingStageDataBase::getMFLightChunks(void) const
 {
@@ -618,6 +636,59 @@ void DeferredShadingStageDataBase::clearShadingProgramChunks(void)
     _mfShadingProgramChunks.clear();
 }
 
+void DeferredShadingStageDataBase::pushToShadingPhotometricMaps(TextureObjChunk * const value)
+{
+    editMField(TextureObjChunksFieldMask, _mfShadingPhotometricMap);
+
+    _mfShadingPhotometricMap.push_back(value);
+}
+
+void DeferredShadingStageDataBase::assignShadingPhotometricMaps(const MFUnrecTextureObjChunkPtr &value)
+{
+    MFUnrecTextureObjChunkPtr::const_iterator elemIt  =
+        value.begin();
+    MFUnrecTextureObjChunkPtr::const_iterator elemEnd =
+        value.end  ();
+
+    static_cast<DeferredShadingStageData *>(this)->clearShadingPhotometricMaps();
+
+    while(elemIt != elemEnd)
+    {
+        this->pushToShadingPhotometricMaps(*elemIt);
+
+        ++elemIt;
+    }
+}
+
+void DeferredShadingStageDataBase::removeFromShadingPhotometricMaps(UInt32 uiIndex)
+{
+    if(uiIndex < _mfShadingPhotometricMap.size())
+    {
+        editMField(TextureObjChunksFieldMask, _mfShadingPhotometricMap);
+
+        _mfShadingPhotometricMap.erase(uiIndex);
+    }
+}
+
+void DeferredShadingStageDataBase::removeObjFromShadingPhotometricMaps(TextureObjChunk * const value)
+{
+    Int32 iElemIdx = _mfShadingPhotometricMap.findIndex(value);
+
+    if(iElemIdx != -1)
+    {
+        editMField(TextureObjChunksFieldMask, _mfShadingPhotometricMap);
+
+        _mfShadingPhotometricMap.erase(iElemIdx);
+    }
+}
+void DeferredShadingStageDataBase::clearShadingPhotometricMaps(void)
+{
+    editMField(TextureObjChunksFieldMask, _mfShadingPhotometricMap);
+
+
+    _mfShadingPhotometricMap.clear();
+}
+
 void DeferredShadingStageDataBase::pushToLightChunks(DSLightChunk * const value)
 {
     editMField(LightChunksFieldMask, _mfLightChunks);
@@ -699,6 +770,10 @@ SizeT DeferredShadingStageDataBase::getBinSize(ConstFieldMaskArg whichField)
     {
         returnValue += _mfShadingProgramChunks.getBinSize();
     }
+    if(FieldBits::NoField != (TextureObjChunksFieldMask & whichField))
+    {
+        returnValue += _mfShadingPhotometricMap.getBinSize();
+    }
     if(FieldBits::NoField != (LightChunksFieldMask & whichField))
     {
         returnValue += _mfLightChunks.getBinSize();
@@ -735,6 +810,10 @@ void DeferredShadingStageDataBase::copyToBin(BinaryDataHandler &pMem,
     if(FieldBits::NoField != (ShadingProgramChunksFieldMask & whichField))
     {
         _mfShadingProgramChunks.copyToBin(pMem);
+    }
+    if(FieldBits::NoField != (TextureObjChunksFieldMask & whichField))
+    {
+        _mfShadingPhotometricMap.copyToBin(pMem);
     }
     if(FieldBits::NoField != (LightChunksFieldMask & whichField))
     {
@@ -775,6 +854,11 @@ void DeferredShadingStageDataBase::copyFromBin(BinaryDataHandler &pMem,
     {
         editMField(ShadingProgramChunksFieldMask, _mfShadingProgramChunks);
         _mfShadingProgramChunks.copyFromBin(pMem);
+    }
+    if(FieldBits::NoField != (TextureObjChunksFieldMask & whichField))
+    {
+        editMField(TextureObjChunksFieldMask, _mfShadingPhotometricMap);
+        _mfShadingPhotometricMap.copyFromBin(pMem);
     }
     if(FieldBits::NoField != (LightChunksFieldMask & whichField))
     {
@@ -916,6 +1000,7 @@ DeferredShadingStageDataBase::DeferredShadingStageDataBase(void) :
     _sfShadingTarget          (NULL),
     _mfShadingStates          (),
     _mfShadingProgramChunks   (),
+    _mfShadingPhotometricMap  (),
     _mfLightChunks            (),
     _sfBlendChunk             (NULL)
 {
@@ -928,6 +1013,7 @@ DeferredShadingStageDataBase::DeferredShadingStageDataBase(const DeferredShading
     _sfShadingTarget          (NULL),
     _mfShadingStates          (),
     _mfShadingProgramChunks   (),
+    _mfShadingPhotometricMap  (),
     _mfLightChunks            (),
     _sfBlendChunk             (NULL)
 {
@@ -976,6 +1062,18 @@ void DeferredShadingStageDataBase::onCreate(const DeferredShadingStageData *sour
             pThis->pushToShadingProgramChunks(*ShadingProgramChunksIt);
 
             ++ShadingProgramChunksIt;
+        }
+
+        MFUnrecTextureObjChunkPtr::const_iterator TextureObjChunksIt  =
+            source->_mfShadingPhotometricMap.begin();
+        MFUnrecTextureObjChunkPtr::const_iterator TextureObjChunksEnd =
+            source->_mfShadingPhotometricMap.end  ();
+
+        while(TextureObjChunksIt != TextureObjChunksEnd)
+        {
+            pThis->pushToShadingPhotometricMaps(*TextureObjChunksIt);
+
+            ++TextureObjChunksIt;
         }
 
         MFUnrecDSLightChunkPtr::const_iterator LightChunksIt  =
