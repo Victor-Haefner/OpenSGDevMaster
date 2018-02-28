@@ -135,7 +135,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageDataBase : public StageDat
     typedef SFUnrecFrameBufferObjectPtr SFShadingTargetType;
     typedef MFUnrecStatePtr   MFShadingStatesType;
     typedef MFUnrecShaderProgramChunkPtr MFShadingProgramChunksType;
-    typedef MFUnrecTextureObjChunkPtr MFUnrecTextureObjChunksType;
+    typedef MFUnrecTextureObjChunkPtr MFPhotometricMapType;
     typedef MFUnrecDSLightChunkPtr MFLightChunksType;
     typedef SFUnrecBlendChunkPtr SFBlendChunkType;
 

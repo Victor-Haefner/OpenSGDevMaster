@@ -172,6 +172,7 @@ Action::ResultE DeferredShadingStage::renderEnter(Action *action)
 
     DSStageData *data = ract->getData<DSStageData *>(_iDataSlotId);
 
+
     if(data == NULL)
     {
         DSStageDataUnrecPtr newData = createStageData();
@@ -181,6 +182,7 @@ Action::ResultE DeferredShadingStage::renderEnter(Action *action)
     }
 
     updateStageData(data, target, parentPart);
+	updatePhotometricUniforms(data, parentPart);
 
     this->beginPartitionGroup(ract);
     {
@@ -275,6 +277,21 @@ TextureBufferTransitPtr DeferredShadingStage::createGBuffer(
     return buf;
 }
 
+void DeferredShadingStage::updatePhotometricUniforms(DSStageData* data, RenderPartition* part) {
+    Vec3f lUp = Vec3f(0,1,0); // TODO: get from light beacon and also pass the dir vector
+
+	Camera* cam = this->getCamera();
+	Matrix m = cam->getViewingVal( part->getViewportWidth (), part->getViewportHeight() );
+	m.mult(lUp, lUp);
+
+	DSStageData::MFShadingProgramChunksType::const_iterator spcIt = data->editMFShadingProgramChunks()->begin();
+	DSStageData::MFShadingProgramChunksType::const_iterator spcEnd = data->editMFShadingProgramChunks()->end  ();
+	for (UInt32 progIdx = 1; spcIt != spcEnd; ++spcIt, ++progIdx) {
+		if (*spcIt == NULL) continue;
+		(*spcIt)->getFragmentShader(0)->updateUniformVariable( "lightUp", lUp );
+	}
+}
+
 void DeferredShadingStage::updateStageData(
     DSStageData         *data,
     FrameBufferObject   *shadingTarget,
@@ -358,9 +375,10 @@ void DeferredShadingStage::updateStageData(
 
     if((_changeCache & LightsFieldMask) != 0)
     {
-        data->editMFLightChunks         ()->resize(    lightCount, NULL);
-        data->editMFShadingStates       ()->resize(1 + lightCount, NULL);
-        data->editMFShadingProgramChunks()->resize(1 + lightCount, NULL);
+        data->editMFLightChunks           ()->resize(    lightCount, NULL);
+        data->editMFShadingStates         ()->resize(1 + lightCount, NULL);
+        data->editMFShadingProgramChunks  ()->resize(1 + lightCount, NULL);
+        data->editMFShadingPhotometricMaps()->resize(    lightCount, NULL);
     }
 
     // update shading states
@@ -370,6 +388,7 @@ void DeferredShadingStage::updateStageData(
                         LightProgramsFieldMask  |
                         LightsFieldMask          )) != 0)
     {
+
         // copy ambient and light programs
         DSStageData::MFShadingProgramChunksType::const_iterator spcIt  =
             data->editMFShadingProgramChunks()->begin();
@@ -391,15 +410,21 @@ void DeferredShadingStage::updateStageData(
             (*spcIt)->clearGeometryShaders();
             (*spcIt)->clearFragmentShaders();
 
+            Vec3f lUp = Vec3f(0,1,0);
+            if (progIdx > 0) {
+                Camera* cam = this->getCamera();
+                Matrix m = cam->getViewingVal(targetWidth, targetHeight);
+                m.mult(lUp, lUp);
+            }
+
             if(progIdx == 0 && getAmbientProgram() != NULL)
             {
                 // ambient program
                 copyProgramChunk(*spcIt, getAmbientProgram());
 
                 // TODO: there must be a better way to add this uniform
-                (*spcIt)->getFragmentShader(0)->addUniformVariable(
-                    "vpOffset", Vec2f(targetLeft,
-                                      targetBottom));
+                (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
+                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
             }
             else
             {
@@ -409,18 +434,16 @@ void DeferredShadingStage::updateStageData(
                     copyProgramChunk(*spcIt, getLightPrograms(0));
 
                     // TODO: there must be a better way to add this uniform
-                    (*spcIt)->getFragmentShader(0)->addUniformVariable(
-                        "vpOffset", Vec2f(targetLeft,
-                                          targetBottom));
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
                 }
                 else if(_mfLightPrograms.size() == _mfLights.size())
                 {
                     copyProgramChunk(*spcIt, getLightPrograms(progIdx - 1));
 
                     // TODO: there must be a better way to add this uniform
-                    (*spcIt)->getFragmentShader(0)->addUniformVariable(
-                        "vpOffset", Vec2f(targetLeft,
-                                          targetBottom));
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
                 }
                 else
                 {
@@ -447,6 +470,37 @@ void DeferredShadingStage::updateStageData(
             }
 
             updateLightChunk(*lcIt, getLights(lightIdx));
+        }
+
+        // create photometric map chunks
+        DSStageData::MFPhotometricMapType::const_iterator pmIt  =
+            data->editMFShadingPhotometricMaps()->begin();
+        DSStageData::MFPhotometricMapType::const_iterator pmEnd =
+            data->editMFShadingPhotometricMaps()->end  ();
+
+        for(UInt32 pmIdx = 0; pmIt != pmEnd; ++pmIt, ++pmIdx)
+        {
+            if(*pmIt == NULL)
+            {
+                TextureObjChunkUnrecPtr newPM = TextureObjChunk::createLocal();
+                data->editMFShadingPhotometricMaps()->replace(pmIdx, newPM);
+            }
+
+            // photometric maps
+            if(_mfPhotometricMaps.size() == 1)
+            {
+                copyPhotometricMap(*pmIt, getPhotometricMaps(0));
+            }
+            else if(_mfPhotometricMaps.size() == _mfLights.size())
+            {
+                copyPhotometricMap(*pmIt, getPhotometricMaps(pmIdx));
+            }
+            else
+            {
+                SWARNING << "DeferredShadingStage::updateStageData: "
+		         << "Number of Lights and Photometric Maps "
+		         << "inconsistent." << std::endl;
+            }
         }
 
         // populate shading states
@@ -613,6 +667,17 @@ void DeferredShadingStage::copyProgramChunk(
     }
 }
 
+void DeferredShadingStage::copyPhotometricMap(
+    TextureObjChunk *pmDest, TextureObjChunk *pmSource)
+{
+    if (!pmSource) { std::cout << " AAAAAAAA src " << pmSource << std::endl; return; }
+    Image* img = pmSource->getImage();
+    //std::cout << "DeferredShadingStage::copyPhotometricMap img " << img << " src " << pmSource << " dest " << pmDest << std::endl;
+    if (img && pmDest) {
+		pmDest->setImage( img );
+		pmDest->setInternalFormat( pmSource->getInternalFormat() );
+	}
+}
 
 void DeferredShadingStage::scheduleGBufferPass(RenderAction *ract)
 {
@@ -636,13 +701,12 @@ void DeferredShadingStage::scheduleGBufferPass(RenderAction *ract)
 
         ShaderProgramChunk    *spc   = data->getShadingProgramChunks (1+i);
         State                 *state = data->getShadingStates        (1+i);
-        TextureObjChunk       *phm   = data->getShadingPhotometricMap(1+i);
+        TextureObjChunk       *phm   = data->getShadingPhotometricMap(i);
         ShaderShadowMapEngine *sme   = dynamic_cast<ShaderShadowMapEngine *>(
             (*lIt)->getLightEngine());
 
-	if (phm) {
-		Int32 phmTexUnit = 4;
-		state->addChunk( phm, phmTexUnit );
+	if (phm && state) {
+		state->addChunk( phm, 4 );
 	}
 
         if(sme != NULL)

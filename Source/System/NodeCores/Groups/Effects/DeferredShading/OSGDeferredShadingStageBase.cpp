@@ -63,6 +63,7 @@
 
 
 #include "OSGShaderProgramChunk.h"      // GBufferProgram Class
+#include "OSGTextureObjChunk.h"         // PhotometricMap Class
 #include "OSGLight.h"                   // Lights Class
 
 #include "OSGDeferredShadingStageBase.h"
@@ -434,6 +435,24 @@ ShaderProgramChunk * DeferredShadingStageBase::getLightPrograms(const UInt32 ind
     return _mfLightPrograms[index];
 }
 
+//! Get the DeferredShadingStage::_mfPhotometricMaps field.
+const MFUnrecTextureObjChunkPtr *DeferredShadingStageBase::getMFPhotometricMaps(void) const
+{
+    return &_mfPhotometricMaps;
+}
+
+MFUnrecTextureObjChunkPtr *DeferredShadingStageBase::editMFPhotometricMaps  (void)
+{
+    editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
+
+    return &_mfPhotometricMaps;
+}
+TextureObjChunk * DeferredShadingStageBase::getPhotometricMaps(const UInt32 index) const
+{
+    if (index >= 0 && index < _mfPhotometricMaps.size()) return _mfPhotometricMaps[index];
+    return 0;
+}
+
 //! Get the DeferredShadingStage::_mfLights field.
 const MFUnrecLightPtr *DeferredShadingStageBase::getMFLights(void) const
 {
@@ -451,7 +470,7 @@ Light * DeferredShadingStageBase::getLights(const UInt32 index) const
     return _mfLights[index];
 }
 
-
+// _mfLightPrograms management
 
 void DeferredShadingStageBase::pushToLightPrograms(ShaderProgramChunk * const value)
 {
@@ -505,6 +524,63 @@ void DeferredShadingStageBase::clearLightPrograms(void)
 
     _mfLightPrograms.clear();
 }
+
+// _mfPhotometricMaps management
+
+void DeferredShadingStageBase::pushToPhotometricMaps(TextureObjChunk * const value)
+{
+    editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
+
+    _mfPhotometricMaps.push_back(value);
+}
+
+void DeferredShadingStageBase::assignPhotometricMaps(const MFUnrecTextureObjChunkPtr &value)
+{
+    MFUnrecTextureObjChunkPtr::const_iterator elemIt  =
+        value.begin();
+    MFUnrecTextureObjChunkPtr::const_iterator elemEnd =
+        value.end  ();
+
+    static_cast<DeferredShadingStage *>(this)->clearPhotometricMaps();
+
+    while(elemIt != elemEnd)
+    {
+        this->pushToPhotometricMaps(*elemIt);
+
+        ++elemIt;
+    }
+}
+
+void DeferredShadingStageBase::removeFromPhotometricMaps(UInt32 uiIndex)
+{
+    if(uiIndex < _mfPhotometricMaps.size())
+    {
+        editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
+
+        _mfPhotometricMaps.erase(uiIndex);
+    }
+}
+
+void DeferredShadingStageBase::removeObjFromPhotometricMaps(TextureObjChunk * const value)
+{
+    Int32 iElemIdx = _mfPhotometricMaps.findIndex(value);
+
+    if(iElemIdx != -1)
+    {
+        editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
+
+        _mfPhotometricMaps.erase(iElemIdx);
+    }
+}
+void DeferredShadingStageBase::clearPhotometricMaps(void)
+{
+    editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
+
+
+    _mfPhotometricMaps.clear();
+}
+
+// _mfLights management
 
 void DeferredShadingStageBase::pushToLights(Light * const value)
 {

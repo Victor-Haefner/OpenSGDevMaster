@@ -143,6 +143,9 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStage :
     void copyProgramChunk(ShaderProgramChunk *spcDest,
                           ShaderProgramChunk *spcSource     );
 
+    void copyPhotometricMap(TextureObjChunk *pmDest,
+                            TextureObjChunk *pmSource     );
+
     void setupGBufferPartition(RenderPartition  *part,
                                RenderAction     *ract,
                                DSStageData      *data );
@@ -164,6 +167,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStage :
 
     // prohibit default functions (move to 'public' if you need one)
     void operator =(const DeferredShadingStage &source);
+    void updatePhotometricUniforms(DSStageData* data, RenderPartition* p);
 
     BitVector _changeCache;
     bool      _targetSizeChanged;

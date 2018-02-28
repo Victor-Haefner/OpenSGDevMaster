@@ -65,10 +65,11 @@
 
 #include "OSGSimpleStage.h" // Parent
 
-#include "OSGBaseFields.h"              // PixelFormats type
+#include "OSGBaseFields.h"               // PixelFormats type
 #include "OSGShaderProgramChunkFields.h" // GBufferProgram type
-#include "OSGLightFields.h"             // Lights type
-
+#include "OSGTextureObjChunkFields.h"    // PhotometricMap type
+#include "OSGLightFields.h"              // Lights type
+ 
 #include "OSGDeferredShadingStageFields.h"
 
 OSG_BEGIN_NAMESPACE
@@ -101,6 +102,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
         GBufferProgramFieldId = PixelTypesFieldId + 1,
         AmbientProgramFieldId = GBufferProgramFieldId + 1,
         LightProgramsFieldId = AmbientProgramFieldId + 1,
+        PhotometricMapsFieldId = LightProgramsFieldId + 1,
         LightsFieldId = LightProgramsFieldId + 1,
         NextFieldId = LightsFieldId + 1
     };
@@ -115,6 +117,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
         (TypeTraits<BitVector>::One << AmbientProgramFieldId);
     static const OSG::BitVector LightProgramsFieldMask =
         (TypeTraits<BitVector>::One << LightProgramsFieldId);
+    static const OSG::BitVector PhotometricMapsFieldMask =
+        (TypeTraits<BitVector>::One << PhotometricMapsFieldId);
     static const OSG::BitVector LightsFieldMask =
         (TypeTraits<BitVector>::One << LightsFieldId);
     static const OSG::BitVector NextFieldMask =
@@ -125,6 +129,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
     typedef SFUnrecShaderProgramChunkPtr SFGBufferProgramType;
     typedef SFUnrecShaderProgramChunkPtr SFAmbientProgramType;
     typedef MFUnrecShaderProgramChunkPtr MFLightProgramsType;
+    typedef MFUnrecTextureObjChunkPtr MFPhotometricMapsType;
     typedef MFUnrecLightPtr   MFLightsType;
 
     /*---------------------------------------------------------------------*/
@@ -162,6 +167,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
                   SFUnrecShaderProgramChunkPtr *editSFAmbientProgram (void);
             const MFUnrecShaderProgramChunkPtr *getMFLightPrograms  (void) const;
                   MFUnrecShaderProgramChunkPtr *editMFLightPrograms  (void);
+            const MFUnrecTextureObjChunkPtr *getMFPhotometricMaps  (void) const;
+                  MFUnrecTextureObjChunkPtr *editMFPhotometricMaps  (void);
             const MFUnrecLightPtr     *getMFLights         (void) const;
                   MFUnrecLightPtr     *editMFLights         (void);
 
@@ -177,6 +184,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
                   ShaderProgramChunk * getAmbientProgram (void) const;
 
                   ShaderProgramChunk * getLightPrograms  (const UInt32 index) const;
+
+                  TextureObjChunk * getPhotometricMaps  (const UInt32 index) const;
 
                   Light * getLights         (const UInt32 index) const;
 
@@ -203,6 +212,12 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
     void removeFromLightPrograms (UInt32               uiIndex );
     void removeObjFromLightPrograms(ShaderProgramChunk * const value   );
     void clearLightPrograms            (void                         );
+
+    void pushToPhotometricMaps           (TextureObjChunk * const value   );
+    void assignPhotometricMaps          (const MFUnrecTextureObjChunkPtr &value);
+    void removeFromPhotometricMaps (UInt32               uiIndex );
+    void removeObjFromPhotometricMaps(TextureObjChunk * const value   );
+    void clearPhotometricMaps            (void                         );
 
     void pushToLights              (Light * const value   );
     void assignLights             (const MFUnrecLightPtr   &value);
@@ -268,6 +283,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
     SFUnrecShaderProgramChunkPtr _sfGBufferProgram;
     SFUnrecShaderProgramChunkPtr _sfAmbientProgram;
     MFUnrecShaderProgramChunkPtr _mfLightPrograms;
+    MFUnrecTextureObjChunkPtr _mfPhotometricMaps;
     MFUnrecLightPtr   _mfLights;
 
     /*! \}                                                                 */

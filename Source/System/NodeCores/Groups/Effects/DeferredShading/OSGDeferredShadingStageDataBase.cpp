@@ -480,6 +480,7 @@ MFUnrecTextureObjChunkPtr *DeferredShadingStageDataBase::editMFShadingPhotometri
 }
 TextureObjChunk * DeferredShadingStageDataBase::getShadingPhotometricMap(const UInt32 index) const
 {
+    if (index < 0 || index >= _mfShadingPhotometricMap.size()) return 0;
     return _mfShadingPhotometricMap[index];
 }
 
