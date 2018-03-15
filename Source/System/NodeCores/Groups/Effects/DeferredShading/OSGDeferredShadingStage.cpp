@@ -278,17 +278,33 @@ TextureBufferTransitPtr DeferredShadingStage::createGBuffer(
 }
 
 void DeferredShadingStage::updatePhotometricUniforms(DSStageData* data, RenderPartition* part) {
-    Vec3f lUp = Vec3f(0,1,0); // TODO: get from light beacon and also pass the dir vector
-
 	Camera* cam = this->getCamera();
 	Matrix m = cam->getViewingVal( part->getViewportWidth (), part->getViewportHeight() );
-	m.mult(lUp, lUp);
 
 	DSStageData::MFShadingProgramChunksType::const_iterator spcIt = data->editMFShadingProgramChunks()->begin();
 	DSStageData::MFShadingProgramChunksType::const_iterator spcEnd = data->editMFShadingProgramChunks()->end  ();
-	for (UInt32 progIdx = 1; spcIt != spcEnd; ++spcIt, ++progIdx) {
+	for (UInt32 progIdx = 0; spcIt != spcEnd; spcIt++, progIdx++) {
 		if (*spcIt == NULL) continue;
+		UInt32 lightIdx = progIdx-1;
+		if (lightIdx >= _mfLights.size()) continue;
+
+		Vec3f lUp = Vec3f(0,1,0);
+		Vec3f lDir = Vec3f(0,0,-1);
+
+		Light* light = _mfLights[lightIdx];
+		Node* beacon = light->getBeacon();
+		if (beacon) {
+			Transform* t = dynamic_cast<Transform*>(beacon->getCore());
+			if (t) {
+				t->getMatrix().mult(lUp, lUp);
+				t->getMatrix().mult(lDir, lDir);
+			}				
+		}
+	    m.mult(lUp, lUp);
+	    m.mult(lDir, lDir);
+
 		(*spcIt)->getFragmentShader(0)->updateUniformVariable( "lightUp", lUp );
+		(*spcIt)->getFragmentShader(0)->updateUniformVariable( "lightDir", lDir );
 	}
 }
 
@@ -411,10 +427,21 @@ void DeferredShadingStage::updateStageData(
             (*spcIt)->clearFragmentShaders();
 
             Vec3f lUp = Vec3f(0,1,0);
+            Vec3f lDir = Vec3f(0,0,-1);
             if (progIdx > 0) {
+				Light* light = _mfLights[progIdx-1];
+				Node* beacon = light->getBeacon();
+				if (beacon) {
+					Transform* t = dynamic_cast<Transform*>(beacon->getCore());
+					if (t) {
+						t->getMatrix().mult(lUp, lUp);
+						t->getMatrix().mult(lDir, lDir);
+					}				
+				}
                 Camera* cam = this->getCamera();
                 Matrix m = cam->getViewingVal(targetWidth, targetHeight);
                 m.mult(lUp, lUp);
+                m.mult(lDir, lDir);
             }
 
             if(progIdx == 0 && getAmbientProgram() != NULL)
@@ -425,6 +452,7 @@ void DeferredShadingStage::updateStageData(
                 // TODO: there must be a better way to add this uniform
                 (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
                 (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
+                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", lDir );
             }
             else
             {
@@ -436,6 +464,7 @@ void DeferredShadingStage::updateStageData(
                     // TODO: there must be a better way to add this uniform
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
+                	(*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", lDir );
                 }
                 else if(_mfLightPrograms.size() == _mfLights.size())
                 {
@@ -444,6 +473,7 @@ void DeferredShadingStage::updateStageData(
                     // TODO: there must be a better way to add this uniform
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
+                	(*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", lDir );
                 }
                 else
                 {

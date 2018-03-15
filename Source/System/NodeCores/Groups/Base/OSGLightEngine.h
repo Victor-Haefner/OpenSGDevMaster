@@ -67,7 +67,8 @@ class OSG_SYSTEM_DLLMAPPING LightEngine : public LightEngineBase
     {
         Directional,
         Point,
-        Spot
+        Spot,
+        Photometric
     };
 
     /*---------------------------------------------------------------------*/
