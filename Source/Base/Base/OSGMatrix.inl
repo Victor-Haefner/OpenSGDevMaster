@@ -1530,7 +1530,7 @@ inline void
 template <class ValueTypeT>
 inline void
     TransformationMatrix<ValueTypeT>::multFull(
-        const PointType3f &pntIn, PointType3f  &pntOut) const
+        const PointType3f &pntIn, PointType3f  &pntOut, bool warn) const
 {
     ValueType w = _matrix[0][3] * pntIn[0] +
                   _matrix[1][3] * pntIn[1] +
@@ -1539,7 +1539,7 @@ inline void
                   
     if(w == TypeTraits<ValueType>::getZeroElement())
     {
-        FWARNING(("TransformationMatrix<>::multFull(Pnt3, Pnt3): w == 0.0\n"));
+        if (warn) FWARNING(("TransformationMatrix<>::multFull(Pnt3, Pnt3): w == 0.0\n"));
     
         pntOut.setValues(
             (_matrix[0][0] * pntIn[0] +

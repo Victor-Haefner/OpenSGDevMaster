@@ -989,7 +989,8 @@ bool TrapezoidalShadowMapEngine::calcTrapezoidalTransform(
     // obtain post proj. light space eye position
     Pnt3f eyePos;
     matEyeToWorld.mult    (eyePos, eyePos);
-    matLightFull .multFull(eyePos, eyePos);
+    //std::cout << " TrapezoidalShadowMapEngine::calcTrapezoidalTransform " << eyePos << " a " << matLightFull[0][3] << " b " << matLightFull[1][3] << " c " << matLightFull[2][3] << " d " << matLightFull[3][3] << " " << std::endl;
+    matLightFull .multFull(eyePos, eyePos, false);
 
     // intersect eye and light frusta, get vertices and center of intersection
     std::vector<Pnt3f> intVerts;
@@ -1005,8 +1006,9 @@ bool TrapezoidalShadowMapEngine::calcTrapezoidalTransform(
     std::vector<Pnt3f>::iterator ivIt  = intVerts.begin();
     std::vector<Pnt3f>::iterator ivEnd = intVerts.end  ();
 
-    for(; ivIt != ivEnd; ++ivIt)
+    for(; ivIt != ivEnd; ++ivIt) {
         matLightFull.multFull(*ivIt, *ivIt);
+    }
     
     Pnt2f eyePos2D   (eyePos   [0], eyePos   [1]);
     Pnt2f intCenter2D(intCenter[0], intCenter[1]);

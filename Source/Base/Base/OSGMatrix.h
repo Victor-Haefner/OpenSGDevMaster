@@ -310,7 +310,7 @@ class TransformationMatrix
     /*! \{                                                                 */
     
     void mult        (const PointType    &pntIn, PointType    &pntOut) const;
-    void multFull    (const PointType3f  &pntIn, PointType3f  &pntOut) const;
+    void multFull    (const PointType3f  &pntIn, PointType3f  &pntOut, bool warn = true) const;
     void mult        (const PointType3f  &pntIn, PointType3f  &pntOut) const;
     
     void mult        (const VectorType   &vecIn, VectorType   &vecOut) const;
