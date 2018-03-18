@@ -290,21 +290,25 @@ void DeferredShadingStage::updatePhotometricUniforms(DSStageData* data, RenderPa
 
 		Vec3f lUp = Vec3f(0,1,0);
 		Vec3f lDir = Vec3f(0,0,-1);
+		Pnt3f lPos = Pnt3f(0,0,0);
 
-		Light* light = _mfLights[lightIdx];
+		Light* light = getLights(lightIdx);
 		Node* beacon = light->getBeacon();
 		if (beacon) {
 			Transform* t = dynamic_cast<Transform*>(beacon->getCore());
 			if (t) {
 				t->getMatrix().mult(lUp, lUp);
 				t->getMatrix().mult(lDir, lDir);
+				t->getMatrix().mult(lPos, lPos);
 			}				
 		}
-	    m.mult(lUp, lUp);
-	    m.mult(lDir, lDir);
+		m.mult(lUp, lUp);
+		m.mult(lDir, lDir);
+		m.mult(lPos, lPos);
 
 		(*spcIt)->getFragmentShader(0)->updateUniformVariable( "lightUp", lUp );
 		(*spcIt)->getFragmentShader(0)->updateUniformVariable( "lightDir", lDir );
+		(*spcIt)->getFragmentShader(0)->updateUniformVariable( "lightPos", lPos );
 	}
 }
 
@@ -435,6 +439,7 @@ void DeferredShadingStage::updateStageData(
                 (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
                 (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", Vec3f(0,1,0) );
                 (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", Vec3f(0,0,-1) );
+                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightPos", Pnt3f(0,0,0) );
             }
             else
             {
@@ -447,6 +452,7 @@ void DeferredShadingStage::updateStageData(
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", Vec3f(0,1,0) );
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", Vec3f(0,0,-1) );
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightPos", Pnt3f(0,0,0) );
                 }
                 else if(_mfLightPrograms.size() == _mfLights.size())
                 {
@@ -456,6 +462,7 @@ void DeferredShadingStage::updateStageData(
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", Vec3f(0,1,0) );
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", Vec3f(0,0,-1) );
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightPos", Pnt3f(0,0,0) );
                 }
                 else
                 {

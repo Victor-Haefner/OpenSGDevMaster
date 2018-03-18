@@ -136,8 +136,14 @@ void DeferredShadingStageBase::execSync (      DeferredShadingStageBase *pFrom,
     if(FieldBits::NoField != (AmbientProgramFieldMask & whichField))
         _sfAmbientProgram.syncWith(pFrom->_sfAmbientProgram);
 
-    if(FieldBits::NoField != (LightProgramsFieldMask & whichField))
+    if(FieldBits::NoField != (PhotometricMapsFieldMask & whichField))
         _mfLightPrograms.syncWith(pFrom->_mfLightPrograms,
+                                syncMode,
+                                uiSyncInfo,
+                                oOffsets);
+
+    if(FieldBits::NoField != (LightProgramsFieldMask & whichField))
+        _mfPhotometricMaps.syncWith(pFrom->_mfPhotometricMaps,
                                 syncMode,
                                 uiSyncInfo,
                                 oOffsets);

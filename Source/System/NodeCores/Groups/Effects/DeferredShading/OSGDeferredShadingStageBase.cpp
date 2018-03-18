@@ -108,6 +108,10 @@ OSG_BEGIN_NAMESPACE
     is used for all lights otherwise there must be a program for each light.
 */
 
+/*! \var TextureObjChunk * DeferredShadingStageBase::_mfPhotometricMaps
+    Photometric map for each light.
+*/
+
 /*! \var Light *         DeferredShadingStageBase::_mfLights
     
 */
@@ -432,7 +436,8 @@ MFUnrecShaderProgramChunkPtr *DeferredShadingStageBase::editMFLightPrograms  (vo
 }
 ShaderProgramChunk * DeferredShadingStageBase::getLightPrograms(const UInt32 index) const
 {
-    return _mfLightPrograms[index];
+    if (index >= 0 && index < _mfLightPrograms.size()) return _mfLightPrograms[index];
+    return 0;
 }
 
 //! Get the DeferredShadingStage::_mfPhotometricMaps field.
@@ -663,6 +668,10 @@ SizeT DeferredShadingStageBase::getBinSize(ConstFieldMaskArg whichField)
     {
         returnValue += _mfLightPrograms.getBinSize();
     }
+    if(FieldBits::NoField != (PhotometricMapsFieldMask & whichField))
+    {
+        returnValue += _mfPhotometricMaps.getBinSize();
+    }
     if(FieldBits::NoField != (LightsFieldMask & whichField))
     {
         returnValue += _mfLights.getBinSize();
@@ -695,6 +704,10 @@ void DeferredShadingStageBase::copyToBin(BinaryDataHandler &pMem,
     if(FieldBits::NoField != (LightProgramsFieldMask & whichField))
     {
         _mfLightPrograms.copyToBin(pMem);
+    }
+    if(FieldBits::NoField != (PhotometricMapsFieldMask & whichField))
+    {
+        _mfPhotometricMaps.copyToBin(pMem);
     }
     if(FieldBits::NoField != (LightsFieldMask & whichField))
     {
@@ -731,6 +744,11 @@ void DeferredShadingStageBase::copyFromBin(BinaryDataHandler &pMem,
     {
         editMField(LightProgramsFieldMask, _mfLightPrograms);
         _mfLightPrograms.copyFromBin(pMem);
+    }
+    if(FieldBits::NoField != (PhotometricMapsFieldMask & whichField))
+    {
+        editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
+        _mfPhotometricMaps.copyFromBin(pMem);
     }
     if(FieldBits::NoField != (LightsFieldMask & whichField))
     {
@@ -867,6 +885,7 @@ DeferredShadingStageBase::DeferredShadingStageBase(void) :
     _sfGBufferProgram         (NULL),
     _sfAmbientProgram         (NULL),
     _mfLightPrograms          (),
+    _mfPhotometricMaps        (),
     _mfLights                 ()
 {
 }
@@ -878,6 +897,7 @@ DeferredShadingStageBase::DeferredShadingStageBase(const DeferredShadingStageBas
     _sfGBufferProgram         (NULL),
     _sfAmbientProgram         (NULL),
     _mfLightPrograms          (),
+    _mfPhotometricMaps        (),
     _mfLights                 ()
 {
 }
@@ -911,6 +931,14 @@ void DeferredShadingStageBase::onCreate(const DeferredShadingStage *source)
             pThis->pushToLightPrograms(*LightProgramsIt);
 
             ++LightProgramsIt;
+        }
+
+        MFUnrecTextureObjChunkPtr::const_iterator PhotometricMapsIt  = source->_mfPhotometricMaps.begin();
+        MFUnrecTextureObjChunkPtr::const_iterator PhotometricMapsEnd = source->_mfPhotometricMaps.end  ();
+
+        while(PhotometricMapsIt != PhotometricMapsEnd) {
+            pThis->pushToPhotometricMaps(*PhotometricMapsIt);
+            ++PhotometricMapsIt;
         }
 
         MFUnrecLightPtr::const_iterator LightsIt  =
@@ -1066,6 +1094,43 @@ EditFieldHandlePtr DeferredShadingStageBase::editHandleLightPrograms  (void)
                     static_cast<DeferredShadingStage *>(this)));
 
     editMField(LightProgramsFieldMask, _mfLightPrograms);
+
+    return returnValue;
+}
+
+GetFieldHandlePtr DeferredShadingStageBase::getHandlePhotometricMaps   (void) const
+{
+    MFUnrecTextureObjChunkPtr::GetHandlePtr returnValue(
+        new  MFUnrecTextureObjChunkPtr::GetHandle(
+             &_mfPhotometricMaps,
+             this->getType().getFieldDesc(PhotometricMapsFieldId),
+             const_cast<DeferredShadingStageBase *>(this)));
+
+    return returnValue;
+}
+
+EditFieldHandlePtr DeferredShadingStageBase::editHandlePhotometricMaps  (void)
+{
+    MFUnrecTextureObjChunkPtr::EditHandlePtr returnValue(
+        new  MFUnrecTextureObjChunkPtr::EditHandle(
+             &_mfPhotometricMaps,
+             this->getType().getFieldDesc(PhotometricMapsFieldId),
+             this));
+
+    returnValue->setAddMethod(
+        boost::bind(&DeferredShadingStage::pushToPhotometricMaps,
+                    static_cast<DeferredShadingStage *>(this), _1));
+    returnValue->setRemoveMethod(
+        boost::bind(&DeferredShadingStage::removeFromPhotometricMaps,
+                    static_cast<DeferredShadingStage *>(this), _1));
+    returnValue->setRemoveObjMethod(
+        boost::bind(&DeferredShadingStage::removeObjFromPhotometricMaps,
+                    static_cast<DeferredShadingStage *>(this), _1));
+    returnValue->setClearMethod(
+        boost::bind(&DeferredShadingStage::clearPhotometricMaps,
+                    static_cast<DeferredShadingStage *>(this)));
+
+    editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
 
     return returnValue;
 }

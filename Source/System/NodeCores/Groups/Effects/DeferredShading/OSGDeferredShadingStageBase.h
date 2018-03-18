@@ -323,6 +323,8 @@ class OSG_EFFECTGROUPS_DLLMAPPING DeferredShadingStageBase : public SimpleStage
      EditFieldHandlePtr editHandleAmbientProgram (void);
      GetFieldHandlePtr  getHandleLightPrograms   (void) const;
      EditFieldHandlePtr editHandleLightPrograms  (void);
+     GetFieldHandlePtr  getHandlePhotometricMaps   (void) const;
+     EditFieldHandlePtr editHandlePhotometricMaps  (void);
      GetFieldHandlePtr  getHandleLights          (void) const;
      EditFieldHandlePtr editHandleLights         (void);
 
