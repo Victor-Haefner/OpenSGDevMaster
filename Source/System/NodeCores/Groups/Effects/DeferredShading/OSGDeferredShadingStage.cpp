@@ -503,34 +503,15 @@ void DeferredShadingStage::updateStageData(
         }
 
         // create photometric map chunks
-        DSStageData::MFPhotometricMapType::const_iterator pmIt  =
-            data->editMFShadingPhotometricMaps()->begin();
-        DSStageData::MFPhotometricMapType::const_iterator pmEnd =
-            data->editMFShadingPhotometricMaps()->end  ();
+        DSStageData::MFPhotometricMapType::const_iterator pmIt = data->editMFShadingPhotometricMaps()->begin();
+        DSStageData::MFPhotometricMapType::const_iterator pmEnd = data->editMFShadingPhotometricMaps()->end();
 
-        for(UInt32 pmIdx = 0; pmIt != pmEnd; ++pmIt, ++pmIdx)
-        {
-            if(*pmIt == NULL)
-            {
+        for(UInt32 pmIdx = 0; pmIt != pmEnd; ++pmIt, ++pmIdx) {
+            if (*pmIt == NULL)  {
                 TextureObjChunkUnrecPtr newPM = TextureObjChunk::createLocal();
                 data->editMFShadingPhotometricMaps()->replace(pmIdx, newPM);
             }
-
-            // photometric maps
-            if(_mfPhotometricMaps.size() == 1)
-            {
-                copyPhotometricMap(*pmIt, getPhotometricMaps(0));
-            }
-            else if(_mfPhotometricMaps.size() == _mfLights.size())
-            {
-                copyPhotometricMap(*pmIt, getPhotometricMaps(pmIdx));
-            }
-            else
-            {
-                SWARNING << "DeferredShadingStage::updateStageData: "
-		         << "Number of Lights and Photometric Maps "
-		         << "inconsistent." << std::endl;
-            }
+            copyPhotometricMap(*pmIt, getPhotometricMaps(pmIdx));
         }
 
         // populate shading states
@@ -700,7 +681,7 @@ void DeferredShadingStage::copyProgramChunk(
 void DeferredShadingStage::copyPhotometricMap(
     TextureObjChunk *pmDest, TextureObjChunk *pmSource)
 {
-    if (!pmSource) { std::cout << " AAAAAAAA src " << pmSource << std::endl; return; }
+    if (!pmSource) { std::cout << "DeferredShadingStage::copyPhotometricMap: source is null " << pmSource << std::endl; return; }
     Image* img = pmSource->getImage();
     //std::cout << "DeferredShadingStage::copyPhotometricMap img " << img << " src " << pmSource << " dest " << pmDest << std::endl;
     if (img && pmDest) {
