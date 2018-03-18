@@ -426,24 +426,6 @@ void DeferredShadingStage::updateStageData(
             (*spcIt)->clearGeometryShaders();
             (*spcIt)->clearFragmentShaders();
 
-            Vec3f lUp = Vec3f(0,1,0);
-            Vec3f lDir = Vec3f(0,0,-1);
-            if (progIdx > 0) {
-				Light* light = _mfLights[progIdx-1];
-				Node* beacon = light->getBeacon();
-				if (beacon) {
-					Transform* t = dynamic_cast<Transform*>(beacon->getCore());
-					if (t) {
-						t->getMatrix().mult(lUp, lUp);
-						t->getMatrix().mult(lDir, lDir);
-					}				
-				}
-                Camera* cam = this->getCamera();
-                Matrix m = cam->getViewingVal(targetWidth, targetHeight);
-                m.mult(lUp, lUp);
-                m.mult(lDir, lDir);
-            }
-
             if(progIdx == 0 && getAmbientProgram() != NULL)
             {
                 // ambient program
@@ -451,8 +433,8 @@ void DeferredShadingStage::updateStageData(
 
                 // TODO: there must be a better way to add this uniform
                 (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
-                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
-                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", lDir );
+                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", Vec3f(0,1,0) );
+                (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", Vec3f(0,0,-1) );
             }
             else
             {
@@ -463,8 +445,8 @@ void DeferredShadingStage::updateStageData(
 
                     // TODO: there must be a better way to add this uniform
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
-                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
-                	(*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", lDir );
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", Vec3f(0,1,0) );
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", Vec3f(0,0,-1) );
                 }
                 else if(_mfLightPrograms.size() == _mfLights.size())
                 {
@@ -472,8 +454,8 @@ void DeferredShadingStage::updateStageData(
 
                     // TODO: there must be a better way to add this uniform
                     (*spcIt)->getFragmentShader(0)->addUniformVariable( "vpOffset", Vec2f(targetLeft, targetBottom));
-                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", lUp );
-                	(*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", lDir );
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightUp", Vec3f(0,1,0) );
+                    (*spcIt)->getFragmentShader(0)->addUniformVariable( "lightDir", Vec3f(0,0,-1) );
                 }
                 else
                 {
@@ -678,16 +660,14 @@ void DeferredShadingStage::copyProgramChunk(
     }
 }
 
-void DeferredShadingStage::copyPhotometricMap(
-    TextureObjChunk *pmDest, TextureObjChunk *pmSource)
-{
+void DeferredShadingStage::copyPhotometricMap( TextureObjChunk *pmDest, TextureObjChunk *pmSource) {
     if (!pmSource) { std::cout << "DeferredShadingStage::copyPhotometricMap: source is null " << pmSource << std::endl; return; }
     Image* img = pmSource->getImage();
     //std::cout << "DeferredShadingStage::copyPhotometricMap img " << img << " src " << pmSource << " dest " << pmDest << std::endl;
     if (img && pmDest) {
-		pmDest->setImage( img );
-		pmDest->setInternalFormat( pmSource->getInternalFormat() );
-	}
+        pmDest->setImage( img );
+        pmDest->setInternalFormat( pmSource->getInternalFormat() );
+    }
 }
 
 void DeferredShadingStage::scheduleGBufferPass(RenderAction *ract)
