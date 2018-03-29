@@ -674,6 +674,8 @@ void DeferredShadingStage::copyPhotometricMap( TextureObjChunk *pmDest, TextureO
     if (img && pmDest) {
         pmDest->setImage( img );
         pmDest->setInternalFormat( pmSource->getInternalFormat() );
+	//pmDest->setWrapS(GL_CLAMP_TO_EDGE);
+	pmDest->setWrapT(GL_CLAMP_TO_EDGE);
     }
 }
 
