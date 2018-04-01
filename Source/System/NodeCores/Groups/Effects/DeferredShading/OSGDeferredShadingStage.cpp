@@ -295,12 +295,10 @@ void DeferredShadingStage::updatePhotometricUniforms(DSStageData* data, RenderPa
 		Light* light = getLights(lightIdx);
 		Node* beacon = light->getBeacon();
 		if (beacon) {
-			Transform* t = dynamic_cast<Transform*>(beacon->getCore());
-			if (t) {
-				t->getMatrix().mult(lUp, lUp);
-				t->getMatrix().mult(lDir, lDir);
-				t->getMatrix().mult(lPos, lPos);
-			}				
+			Matrix b = beacon->getToWorld();
+			b.mult(lUp, lUp);
+			b.mult(lDir, lDir);
+			b.mult(lPos, lPos);
 		}
 		m.mult(lUp, lUp);
 		m.mult(lDir, lDir);
