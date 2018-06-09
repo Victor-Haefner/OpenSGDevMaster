@@ -2,3 +2,4 @@
 CMakeCacheInitial.txt
 Support/CMakeCacheInitial.txt
 Bindings/Python/module
+build
