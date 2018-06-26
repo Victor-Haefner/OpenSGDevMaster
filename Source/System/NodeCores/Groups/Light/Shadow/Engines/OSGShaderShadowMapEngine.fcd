@@ -71,4 +71,14 @@
     Far clipping plane value to use when rendering the shadow map.
     Only used when not 0.f.
   </Field>
+  <Field
+     name="shadowVolume"
+     type="BoxVolume"
+     cardinality="single"
+     visibility="external"
+     access="public"
+     >
+    Volume to use when rendering the shadow map.
+    Only used when not 0.f.
+  </Field>
 </FieldContainer>

@@ -100,7 +100,8 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
         ForceTextureUnitFieldId = ShadowFragmentProgramFieldId + 1,
         ShadowNearFieldId = ForceTextureUnitFieldId + 1,
         ShadowFarFieldId = ShadowNearFieldId + 1,
-        NextFieldId = ShadowFarFieldId + 1
+        ShadowVolumeFieldId = ShadowFarFieldId + 1,
+        NextFieldId = ShadowVolumeFieldId + 1
     };
 
     static const OSG::BitVector ShadowVertexProgramFieldMask =
@@ -113,6 +114,8 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
         (TypeTraits<BitVector>::One << ShadowNearFieldId);
     static const OSG::BitVector ShadowFarFieldMask =
         (TypeTraits<BitVector>::One << ShadowFarFieldId);
+    static const OSG::BitVector ShadowVolumeFieldMask =
+        (TypeTraits<BitVector>::One << ShadowVolumeFieldId);
     static const OSG::BitVector NextFieldMask =
         (TypeTraits<BitVector>::One << NextFieldId);
         
@@ -121,6 +124,7 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
     typedef SFInt32           SFForceTextureUnitType;
     typedef SFReal32          SFShadowNearType;
     typedef SFReal32          SFShadowFarType;
+    typedef SFBoxVolume       SFShadowVolumeType;
 
     /*---------------------------------------------------------------------*/
     /*! \name                    Class Get                                 */
@@ -159,6 +163,9 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
                   SFReal32            *editSFShadowFar      (void);
             const SFReal32            *getSFShadowFar       (void) const;
 
+                  SFBoxVolume         *editSFShadowVolume      (void);
+            const SFBoxVolume         *getSFShadowVolume       (void) const;
+
 
                   ShaderProgram * getShadowVertexProgram(void) const;
 
@@ -173,6 +180,9 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
                   Real32              &editShadowFar      (void);
                   Real32               getShadowFar       (void) const;
 
+                  BoxVolume           &editShadowVolume      (void);
+                  BoxVolume            getShadowVolume       (void) const;
+
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
     /*! \name                    Field Set                                 */
@@ -183,6 +193,7 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
             void setForceTextureUnit(const Int32 value);
             void setShadowNear     (const Real32 value);
             void setShadowFar      (const Real32 value);
+            void setShadowVolume   (const BoxVolume value);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -252,6 +263,7 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
     SFInt32           _sfForceTextureUnit;
     SFReal32          _sfShadowNear;
     SFReal32          _sfShadowFar;
+    SFBoxVolume       _sfShadowVolume;
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -290,6 +302,8 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngineBase : public ShadowMapEngine
      EditFieldHandlePtr editHandleShadowNear     (void);
      GetFieldHandlePtr  getHandleShadowFar       (void) const;
      EditFieldHandlePtr editHandleShadowFar      (void);
+     GetFieldHandlePtr  getHandleShadowVolume       (void) const;
+     EditFieldHandlePtr editHandleShadowVolume      (void);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/

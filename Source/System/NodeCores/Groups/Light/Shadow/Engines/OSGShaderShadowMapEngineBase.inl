@@ -149,6 +149,31 @@ void ShaderShadowMapEngineBase::setShadowFar(const Real32 value)
 
     _sfShadowFar.setValue(value);
 }
+//! Get the value of the ShaderShadowMapEngine::_sfShadowVolume field.
+
+inline
+BoxVolume &ShaderShadowMapEngineBase::editShadowVolume(void)
+{
+    editSField(ShadowVolumeFieldMask);
+
+    return _sfShadowVolume.getValue();
+}
+
+//! Get the value of the ShaderShadowMapEngine::_sfShadowVolume field.
+inline
+      BoxVolume  ShaderShadowMapEngineBase::getShadowVolume(void) const
+{
+    return _sfShadowVolume.getValue();
+}
+
+//! Set the value of the ShaderShadowMapEngine::_sfShadowVolume field.
+inline
+void ShaderShadowMapEngineBase::setShadowVolume(const BoxVolume value)
+{
+    editSField(ShadowVolumeFieldMask);
+
+    _sfShadowVolume.setValue(value);
+}
 
 
 #ifdef OSG_MT_CPTR_ASPECT
@@ -175,6 +200,9 @@ void ShaderShadowMapEngineBase::execSync (      ShaderShadowMapEngineBase *pFrom
 
     if(FieldBits::NoField != (ShadowFarFieldMask & whichField))
         _sfShadowFar.syncWith(pFrom->_sfShadowFar);
+
+    if(FieldBits::NoField != (ShadowVolumeFieldMask & whichField))
+        _sfShadowVolume.syncWith(pFrom->_sfShadowVolume);
 }
 #endif
 

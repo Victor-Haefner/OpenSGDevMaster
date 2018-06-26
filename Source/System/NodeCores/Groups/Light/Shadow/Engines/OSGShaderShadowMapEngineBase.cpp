@@ -109,6 +109,11 @@ OSG_BEGIN_NAMESPACE
     Only used when not 0.f.
 */
 
+/*! \var BoxVolume       ShaderShadowMapEngineBase::_sfShadowVolume
+    Volume to use when rendering the shadow map.
+    Only used when not 0.f.
+*/
+
 
 /***************************************************************************\
  *                      FieldType/FieldTrait Instantiation                 *
@@ -204,6 +209,19 @@ void ShaderShadowMapEngineBase::classDescInserter(TypeObject &oType)
         (Field::SFDefaultFlags | Field::FStdAccess),
         static_cast<FieldEditMethodSig>(&ShaderShadowMapEngine::editHandleShadowFar),
         static_cast<FieldGetMethodSig >(&ShaderShadowMapEngine::getHandleShadowFar));
+
+    oType.addInitialDesc(pDesc);
+
+    pDesc = new SFBoxVolume::Description(
+        SFBoxVolume::getClassType(),
+        "shadowVolume",
+        "Volume used when rendering the shadow map.\n"
+        "Only used when not 0.f.\n",
+        ShadowVolumeFieldId, ShadowVolumeFieldMask,
+        false,
+        (Field::SFDefaultFlags | Field::FStdAccess),
+        static_cast<FieldEditMethodSig>(&ShaderShadowMapEngine::editHandleShadowVolume),
+        static_cast<FieldGetMethodSig >(&ShaderShadowMapEngine::getHandleShadowVolume));
 
     oType.addInitialDesc(pDesc);
 }
@@ -412,6 +430,19 @@ const SFReal32 *ShaderShadowMapEngineBase::getSFShadowFar(void) const
 }
 
 
+SFBoxVolume *ShaderShadowMapEngineBase::editSFShadowVolume(void)
+{
+    editSField(ShadowVolumeFieldMask);
+
+    return &_sfShadowVolume;
+}
+
+const SFBoxVolume *ShaderShadowMapEngineBase::getSFShadowVolume(void) const
+{
+    return &_sfShadowVolume;
+}
+
+
 
 
 
@@ -442,6 +473,10 @@ SizeT ShaderShadowMapEngineBase::getBinSize(ConstFieldMaskArg whichField)
     {
         returnValue += _sfShadowFar.getBinSize();
     }
+    if(FieldBits::NoField != (ShadowVolumeFieldMask & whichField))
+    {
+        returnValue += _sfShadowVolume.getBinSize();
+    }
 
     return returnValue;
 }
@@ -470,6 +505,10 @@ void ShaderShadowMapEngineBase::copyToBin(BinaryDataHandler &pMem,
     if(FieldBits::NoField != (ShadowFarFieldMask & whichField))
     {
         _sfShadowFar.copyToBin(pMem);
+    }
+    if(FieldBits::NoField != (ShadowVolumeFieldMask & whichField))
+    {
+        _sfShadowVolume.copyToBin(pMem);
     }
 }
 
@@ -502,6 +541,11 @@ void ShaderShadowMapEngineBase::copyFromBin(BinaryDataHandler &pMem,
     {
         editSField(ShadowFarFieldMask);
         _sfShadowFar.copyFromBin(pMem);
+    }
+    if(FieldBits::NoField != (ShadowVolumeFieldMask & whichField))
+    {
+        editSField(ShadowVolumeFieldMask);
+        _sfShadowVolume.copyFromBin(pMem);
     }
 }
 
@@ -632,7 +676,8 @@ ShaderShadowMapEngineBase::ShaderShadowMapEngineBase(void) :
     _sfShadowFragmentProgram  (NULL),
     _sfForceTextureUnit       (Int32(-1)),
     _sfShadowNear             (Real32(0.f)),
-    _sfShadowFar              (Real32(0.f))
+    _sfShadowFar              (Real32(0.f)),
+    _sfShadowVolume           ()
 {
 }
 
@@ -642,7 +687,8 @@ ShaderShadowMapEngineBase::ShaderShadowMapEngineBase(const ShaderShadowMapEngine
     _sfShadowFragmentProgram  (NULL),
     _sfForceTextureUnit       (source._sfForceTextureUnit       ),
     _sfShadowNear             (source._sfShadowNear             ),
-    _sfShadowFar              (source._sfShadowFar              )
+    _sfShadowFar              (source._sfShadowFar              ),
+    _sfShadowVolume           (source._sfShadowVolume           )
 {
 }
 
@@ -794,6 +840,31 @@ EditFieldHandlePtr ShaderShadowMapEngineBase::editHandleShadowFar      (void)
 
 
     editSField(ShadowFarFieldMask);
+
+    return returnValue;
+}
+
+GetFieldHandlePtr ShaderShadowMapEngineBase::getHandleShadowVolume       (void) const
+{
+    SFBoxVolume::GetHandlePtr returnValue(
+        new  SFBoxVolume::GetHandle(
+             &_sfShadowVolume,
+             this->getType().getFieldDesc(ShadowVolumeFieldId),
+             const_cast<ShaderShadowMapEngineBase *>(this)));
+
+    return returnValue;
+}
+
+EditFieldHandlePtr ShaderShadowMapEngineBase::editHandleShadowVolume      (void)
+{
+    SFBoxVolume::EditHandlePtr returnValue(
+        new  SFBoxVolume::EditHandle(
+             &_sfShadowVolume,
+             this->getType().getFieldDesc(ShadowVolumeFieldId),
+             this));
+
+
+    editSField(ShadowVolumeFieldMask);
 
     return returnValue;
 }
