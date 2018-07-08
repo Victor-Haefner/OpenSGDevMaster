@@ -196,9 +196,9 @@ const std::string ShaderShadowMapEngine::_dirFPCode(
     "    plcPos = 0.5 + 0.5 * plcPos;\n"
     "\n"
 
-    "    if (plcPos.x > 1 || plcPos.x < -1) return vec4(1,1,1,1);\n"
-    "    if (plcPos.y > 1 || plcPos.y < -1) return vec4(1,1,1,1);\n"
-    "    if (plcPos.z > 1 || plcPos.z < -1) return vec4(1,1,1,1);\n"
+    "    if (plcPos.x >= 1 || plcPos.x <= 0) return vec4(1,1,1,1);\n"
+    "    if (plcPos.y >= 1 || plcPos.y <= 0) return vec4(1,1,1,1);\n"
+    "    if (plcPos.z >= 1 || plcPos.z <= 0) return vec4(1,1,1,1);\n"
     "    return shadow2D(SSME_texShadow, plcPos.xyz);\n"
     "}\n");
 
@@ -478,6 +478,9 @@ void ShaderShadowMapEngine::handleDirectionalLightEnter(
                                  dirL,            matEyeToWorld );
 
     BoxVolume sceneBB = getShadowVolume();
+    Vec3f lP = Vec3f(matWorldToLight[3]);
+    sceneBB.editMax() += lP;
+    sceneBB.editMin() += lP;
 
     // place light camera outside the scene bounding box:
     //  - project camera frustum and scene bounding box into a
