@@ -154,7 +154,8 @@ class OSG_GROUP_DLLMAPPING ShaderShadowMapEngine :
                                      RenderAction     *ract,
                                      SSMEngineData    *data   );
 
-    void calcDirectionalLightMatrices(      Matrix           &matWorldToLight,
+    void calcDirectionalLightMatrices(      Matrix           &matWorldToBeacon,
+                                            Matrix           &matWorldToLight,
                                             Matrix           &matEyeToLight,
                                       const DirectionalLight *dirL, 
                                       const Matrix           &matEyeToWorld   );

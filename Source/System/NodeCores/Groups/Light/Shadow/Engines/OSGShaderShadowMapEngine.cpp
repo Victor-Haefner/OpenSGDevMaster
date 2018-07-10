@@ -471,14 +471,15 @@ void ShaderShadowMapEngine::handleDirectionalLightEnter(
     FrustumVolume    camFrust   = parentPart->getFrustum        ();
 
     Matrix matEyeToWorld  (parentPart->getCameraToWorld());
+    Matrix matWorldToBeacon;
     Matrix matWorldToLight;
     Matrix matEyeToLight;
 
-    calcDirectionalLightMatrices(matWorldToLight, matEyeToLight,
+    calcDirectionalLightMatrices(matWorldToBeacon, matWorldToLight, matEyeToLight,
                                  dirL,            matEyeToWorld );
 
     BoxVolume sceneBB = getShadowVolume();
-    Vec3f lP = Vec3f(matWorldToLight[3]);
+    Vec3f lP = Vec3f(matWorldToBeacon[3]);
     sceneBB.editMax() += lP;
     sceneBB.editMin() += lP;
 
@@ -742,21 +743,22 @@ void ShaderShadowMapEngine::handleSpotLightEnter(
     \a dirL and inverse viewing matrix \a matEyeToWorld.
 */
 void ShaderShadowMapEngine::calcDirectionalLightMatrices(
+          Matrix           &matWorldToBeacon,
           Matrix           &matWorldToLight,
           Matrix           &matEyeToLight,
     const DirectionalLight *dirL,
     const Matrix           &matEyeToWorld)
 {
     if(dirL->getBeacon() != NULL)
-        dirL->getBeacon()->getToWorld(matWorldToLight);
+        dirL->getBeacon()->getToWorld(matWorldToBeacon);
 
     Quaternion rotLightDir  (Vec3f(0.f, 0.f, 1.f), dirL->getDirection());
     Matrix     matLightDir;
     matLightDir.setRotate(rotLightDir);
     
+    matWorldToLight = matWorldToBeacon;
     matWorldToLight.mult  (matLightDir);
     matWorldToLight.invert(           );
-
     matEyeToLight = matWorldToLight;
     matEyeToLight.mult(matEyeToWorld);
 }
