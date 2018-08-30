@@ -646,7 +646,7 @@ void ClusterWindow::doFrameInit(bool reinitExtFuctions)
     {
         if(_firstFrame)
         {
-            setFrameCount(0);
+            if (allowFrameCounting) setFrameCount(0);
 
             // send sync
 
@@ -678,7 +678,7 @@ void ClusterWindow::doFrameInit(bool reinitExtFuctions)
         }
         else
         {
-            setFrameCount(getFrameCount() + 1);
+            if (allowFrameCounting) setFrameCount(getFrameCount() + 1);
             clientPreSync();
 
             commitChanges();

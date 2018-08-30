@@ -282,6 +282,8 @@ class OSG_CLUSTER_DLLMAPPING ClusterWindowBase : public Window
             void setFrameCount     (const UInt32 value);
             void setComposer       (ImageComposer * const value);
 
+            void setFrameCounting(bool b);
+
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
     /*! \name                Ptr Field Set                                 */
@@ -359,6 +361,8 @@ class OSG_CLUSTER_DLLMAPPING ClusterWindowBase : public Window
     SFUInt32          _sfFrameCount;
     SFUnrecImageComposerPtr _sfComposer;
     MFString          _mfAutostart;
+
+    bool allowFrameCounting = true;
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/

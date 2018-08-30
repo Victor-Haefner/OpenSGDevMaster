@@ -1504,6 +1504,7 @@ EditFieldHandlePtr ClusterWindowBase::editHandleAutostart      (void)
     return returnValue;
 }
 
+void ClusterWindowBase::setFrameCounting(bool b) { allowFrameCounting = b; }
 
 #ifdef OSG_MT_CPTR_ASPECT
 void ClusterWindowBase::execSyncV(      FieldContainer    &oFrom,
