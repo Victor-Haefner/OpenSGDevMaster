@@ -360,10 +360,11 @@ void DeferredShadingStage::updateStageData(
     UInt32 lightCount  =        getMFLights      ()->size32();
     UInt32 bufferCount = osgMin(getMFPixelFormats()->size32(),
                                 getMFPixelTypes  ()->size32() );
+    int N = gBufferTarget->getMFColorAttachments()->size();
 
     // buffers changed - remove them here, recreate below
     if((_changeCache & (PixelFormatsFieldMask |
-                        PixelTypesFieldMask    )) != 0)
+                        PixelTypesFieldMask    )) != 0 || N != bufferCount)
     {
         gBufferTarget->editMFColorAttachments()->clear (                    );
         gBufferTarget->editMFColorAttachments()->resize(bufferCount, NULL   );
@@ -373,8 +374,7 @@ void DeferredShadingStage::updateStageData(
 
     for(UInt32 i = 0; i < bufferCount; ++i)
     {
-        TextureBuffer *buf =
-            dynamic_cast<TextureBuffer *>(gBufferTarget->getColorAttachments(i));
+        TextureBuffer* buf = dynamic_cast<TextureBuffer *>(gBufferTarget->getColorAttachments(i));
 
         if(buf == NULL)
         {
