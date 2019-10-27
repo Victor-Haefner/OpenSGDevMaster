@@ -126,6 +126,14 @@
 # define PDP_ENDIAN     __PDP_ENDIAN
 # define BYTE_ORDER     __BYTE_ORDER
 #endif
+#elif defined(__EMSCRIPTEN__)
+#include <endian.h>
+#ifndef __USE_BSD
+# define LITTLE_ENDIAN  __LITTLE_ENDIAN
+# define BIG_ENDIAN     __BIG_ENDIAN
+# define PDP_ENDIAN     __PDP_ENDIAN
+# define BYTE_ORDER     __BYTE_ORDER
+#endif
 #elif defined(WIN32) // HACK until I find a better solution
 #define LITTLE_ENDIAN 1234
 #define BIG_ENDIAN 4321
@@ -308,6 +316,38 @@
 # endif // defined(__sgi) && !defined(__GNUC__)
 
 
+
+/*-------------------------------------------------------------------------*/
+/*                              WebAssembly                                */
+
+# if defined(__EMSCRIPTEN__)
+
+/*! \brief streams in std namespace
+ */
+
+# define OSG_LINUX_TYPES
+
+# define OSG_HAS_ATANF2
+
+# define OSG_HAS_FLOATMATH
+
+/*! \brief Use the math functions from the std:: namespace
+ *  \ingroup GrpBaseDefines
+    The std:: namespace has a set of overloaded functions for many
+    math operations, up to and including long double versions.
+ */
+
+# define OSG_USE_STDMATH
+
+# define OSG_USE_GLX
+
+# define OSG_USE_PTHREADS
+
+# define OSG_LINUX_GCC
+
+# define OSG_FOUND_OS
+ 
+# endif // defined(__EMSCRIPTEN__)
 
 
 /*-------------------------------------------------------------------------*/

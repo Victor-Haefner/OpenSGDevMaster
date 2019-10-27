@@ -891,6 +891,11 @@ IF(NOT OSG_BUILD_DEPENDEND)
         OSG_ADD_OPT(OSG_RT_LIB)
     ENDIF(UNIX)
 
+    IF(WASM)
+	SET(OSG_THREAD_LIB "~/.emscripten_cache/wasm-obj/libpthread-mt.a")
+	SET(OSG_DL_LIB "~/.emscripten_cache/wasm-obj/libdlmalloc-mt.a")
+    ENDIF(WASM)
+
     IF(APPLE)
         FIND_LIBRARY(OSG_APPLICATIONSERVICES_FRAMEWORK NAMES ApplicationServices)
         FIND_LIBRARY(OSG_CORESERVICES_FRAMEWORK NAMES CoreServices)
