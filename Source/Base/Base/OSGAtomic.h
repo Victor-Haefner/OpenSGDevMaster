@@ -44,7 +44,12 @@
 #if !defined(WIN32)
 #include <boost/version.hpp>
 
-#if BOOST_VERSION < 103900
+#if __EMSCRIPTEN__
+//#include <boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp>
+//#include <boost/smart_ptr/detail/sp_counted_base_cw_x86.hpp>
+//#include <boost/smart_ptr/detail/atomic_count_gcc_x86.hpp>
+#include <boost/smart_ptr/detail/sp_counted_base_spin.hpp>
+#elif BOOST_VERSION < 103900
 #include <boost/detail/sp_counted_base.hpp>
 #else
 #include <boost/smart_ptr/detail/sp_counted_base.hpp>

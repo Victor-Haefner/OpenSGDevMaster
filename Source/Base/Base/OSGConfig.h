@@ -346,6 +346,8 @@
 # define OSG_LINUX_GCC
 
 # define OSG_FOUND_OS
+
+# define BOOST_SP_USE_SPINLOCK
  
 # endif // defined(__EMSCRIPTEN__)
 
