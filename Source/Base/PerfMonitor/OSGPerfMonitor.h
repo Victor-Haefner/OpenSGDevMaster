@@ -70,7 +70,7 @@ typedef boost::shared_ptr<NestedSampleInfo> NestedSampleInfoPtr;
 class OSG_BASE_DLLMAPPING NestedSampleInfo
 {
   public:
-#ifdef OSG_STL_HAS_HASH_MAP
+#if defined(OSG_STL_HAS_HASH_MAP) && !defined(__EMSCRIPTEN__)
 #if !defined(WIN32) && !defined(_LIBCPP_VERSION)
     /*! \nohierarchy */
     struct string_hash
@@ -88,6 +88,7 @@ class OSG_BASE_DLLMAPPING NestedSampleInfo
 #else
     typedef std::map<std::string, NestedSampleInfoPtr> subsample_map_t;
 #endif
+
     typedef std::deque<Real32>  sample_list_t;
     typedef std::vector<Real32> sample_vector_t;
 

@@ -50,14 +50,14 @@ OSG_BEGIN_NAMESPACE
 
 
 #if defined(__sgi) || defined(__linux) || defined(__APPLE__) || \
-    defined(__sun) || defined(__hpux)
+    defined(__sun) || defined(__hpux) || defined(__EMSCRIPTEN__)
 
 #if defined(__sgi)
 #pragma set woff 1375
 #endif
 
-#if defined(__linux) || defined(__hpux) || defined(__APPLE__) || defined(__sun)
-#    if defined(__GNUC__)
+#if defined(__linux) || defined(__hpux) || defined(__APPLE__) || defined(__sun) || defined(__EMSCRIPTEN__)
+#    if defined(__GNUC__) || defined(__EMSCRIPTEN__)
 #        if __GNUC__ >= 3
 #            define OSG_STL_ALLOCATOR_DEFAULT(TP) = std::allocator<TP>
 #        endif
