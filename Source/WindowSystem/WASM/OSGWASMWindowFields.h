@@ -48,14 +48,14 @@
 \*****************************************************************************/
 
 
-#ifndef _OSGXWINDOWFIELDS_H_
-#define _OSGXWINDOWFIELDS_H_
+#ifndef _OSGWASMWINDOWFIELDS_H_
+#define _OSGWASMWINDOWFIELDS_H_
 #ifdef __sgi
 #pragma once
 #endif
 
 #include "OSGConfig.h"
-#include "OSGWindowXDef.h"
+#include "OSGWindowWASMDef.h"
 
 #include "OSGFieldContainerFields.h"
 #include "OSGPointerSField.h"
@@ -65,15 +65,15 @@
 OSG_BEGIN_NAMESPACE
 
 
-class XWindow;
+class WASMWindow;
 
-OSG_GEN_CONTAINERPTR(XWindow);
-/*! \ingroup GrpWindowXFieldTraits
-    \ingroup GrpLibOSGWindowX
+OSG_GEN_CONTAINERPTR(WASMWindow);
+/*! \ingroup GrpWindowWASMFieldTraits
+    \ingroup GrpLibOSGWindowWASM
  */
 template <>
-struct FieldTraits<XWindow *, nsOSG> :
-    public FieldTraitsFCPtrBase<XWindow *, nsOSG>
+struct FieldTraits<WASMWindow *, nsOSG> :
+    public FieldTraitsFCPtrBase<WASMWindow *, nsOSG>
 {
   private:
 
@@ -81,11 +81,11 @@ struct FieldTraits<XWindow *, nsOSG> :
 
   public:
 
-    typedef FieldTraits<XWindow *, nsOSG>  Self;
+    typedef FieldTraits<WASMWindow *, nsOSG>  Self;
 
     enum                        { Convertible = NotConvertible };
 
-    static OSG_WINDOWX_DLLMAPPING DataType &getType(void);
+    static OSG_WINDOWWASM_DLLMAPPING DataType &getType(void);
 
     template<typename RefCountPolicy> inline
     static const Char8    *getSName     (void);
@@ -96,120 +96,120 @@ struct FieldTraits<XWindow *, nsOSG> :
 };
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getSName<RecordedRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getSName<RecordedRefCountPolicy>(void)
 {
-    return "SFRecXWindowPtr"; 
+    return "SFRecWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getSName<UnrecordedRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getSName<UnrecordedRefCountPolicy>(void)
 {
-    return "SFUnrecXWindowPtr"; 
+    return "SFUnrecWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getSName<WeakRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getSName<WeakRefCountPolicy>(void)
 {
-    return "SFWeakXWindowPtr"; 
+    return "SFWeakWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getSName<NoRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getSName<NoRefCountPolicy>(void)
 {
-    return "SFUnrefdXWindowPtr"; 
+    return "SFUnrefdWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getMName<RecordedRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getMName<RecordedRefCountPolicy>(void)
 {
-    return "MFRecXWindowPtr"; 
+    return "MFRecWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getMName<UnrecordedRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getMName<UnrecordedRefCountPolicy>(void)
 {
-    return "MFUnrecXWindowPtr"; 
+    return "MFUnrecWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getMName<WeakRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getMName<WeakRefCountPolicy>(void)
 {
-    return "MFWeakXWindowPtr"; 
+    return "MFWeakWASMWindowPtr"; 
 }
 
 template<> inline
-const Char8 *FieldTraits<XWindow *, nsOSG>::getMName<NoRefCountPolicy>(void)
+const Char8 *FieldTraits<WASMWindow *, nsOSG>::getMName<NoRefCountPolicy>(void)
 {
-    return "MFUnrefdXWindowPtr"; 
+    return "MFUnrefdWASMWindowPtr"; 
 }
 
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-/*! \ingroup GrpWindowXFieldSFields */
-typedef PointerSField<XWindow *,
-                      RecordedRefCountPolicy, nsOSG  > SFRecXWindowPtr;
-/*! \ingroup GrpWindowXFieldSFields */
-typedef PointerSField<XWindow *,
-                      UnrecordedRefCountPolicy, nsOSG> SFUnrecXWindowPtr;
-/*! \ingroup GrpWindowXFieldSFields */
-typedef PointerSField<XWindow *,
-                      WeakRefCountPolicy, nsOSG      > SFWeakXWindowPtr;
-/*! \ingroup GrpWindowXFieldSFields */
-typedef PointerSField<XWindow *,
-                      NoRefCountPolicy, nsOSG        > SFUncountedXWindowPtr;
+/*! \ingroup GrpWindowWASMFieldSFields */
+typedef PointerSField<WASMWindow *,
+                      RecordedRefCountPolicy, nsOSG  > SFRecWASMWindowPtr;
+/*! \ingroup GrpWindowWASMFieldSFields */
+typedef PointerSField<WASMWindow *,
+                      UnrecordedRefCountPolicy, nsOSG> SFUnrecWASMWindowPtr;
+/*! \ingroup GrpWindowWASMFieldSFields */
+typedef PointerSField<WASMWindow *,
+                      WeakRefCountPolicy, nsOSG      > SFWeakWASMWindowPtr;
+/*! \ingroup GrpWindowWASMFieldSFields */
+typedef PointerSField<WASMWindow *,
+                      NoRefCountPolicy, nsOSG        > SFUncountedWASMWindowPtr;
 
 
-/*! \ingroup GrpWindowXFieldMFields */
-typedef PointerMField<XWindow *,
-                      RecordedRefCountPolicy, nsOSG  > MFRecXWindowPtr;
-/*! \ingroup GrpWindowXFieldMFields */
-typedef PointerMField<XWindow *,
-                      UnrecordedRefCountPolicy, nsOSG> MFUnrecXWindowPtr;
-/*! \ingroup GrpWindowXFieldMFields */
-typedef PointerMField<XWindow *,
-                      WeakRefCountPolicy, nsOSG      > MFWeakXWindowPtr;
-/*! \ingroup GrpWindowXFieldMFields */
-typedef PointerMField<XWindow *,
-                      NoRefCountPolicy, nsOSG        > MFUncountedXWindowPtr;
+/*! \ingroup GrpWindowWASMFieldMFields */
+typedef PointerMField<WASMWindow *,
+                      RecordedRefCountPolicy, nsOSG  > MFRecWASMWindowPtr;
+/*! \ingroup GrpWindowWASMFieldMFields */
+typedef PointerMField<WASMWindow *,
+                      UnrecordedRefCountPolicy, nsOSG> MFUnrecWASMWindowPtr;
+/*! \ingroup GrpWindowWASMFieldMFields */
+typedef PointerMField<WASMWindow *,
+                      WeakRefCountPolicy, nsOSG      > MFWeakWASMWindowPtr;
+/*! \ingroup GrpWindowWASMFieldMFields */
+typedef PointerMField<WASMWindow *,
+                      NoRefCountPolicy, nsOSG        > MFUncountedWASMWindowPtr;
 
 
 
 
 #else // these are the doxygen hacks
 
-/*! \ingroup GrpWindowXFieldSFields \ingroup GrpLibOSGWindowX */
-struct SFRecXWindowPtr : 
-    public PointerSField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldSFields \ingroup GrpLibOSGWindowWASM */
+struct SFRecWASMWindowPtr : 
+    public PointerSField<WASMWindow *,
                          RecordedRefCountPolicy> {};
-/*! \ingroup GrpWindowXFieldSFields \ingroup GrpLibOSGWindowX */
-struct SFUnrecXWindowPtr : 
-    public PointerSField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldSFields \ingroup GrpLibOSGWindowWASM */
+struct SFUnrecWASMWindowPtr : 
+    public PointerSField<WASMWindow *,
                          UnrecordedRefCountPolicy> {};
-/*! \ingroup GrpWindowXFieldSFields \ingroup GrpLibOSGWindowX */
-struct SFWeakXWindowPtr :
-    public PointerSField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldSFields \ingroup GrpLibOSGWindowWASM */
+struct SFWeakWASMWindowPtr :
+    public PointerSField<WASMWindow *,
                          WeakRefCountPolicy> {};
-/*! \ingroup GrpWindowXFieldSFields \ingroup GrpLibOSGWindowX */
-struct SFUncountedXWindowPtr :
-    public PointerSField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldSFields \ingroup GrpLibOSGWindowWASM */
+struct SFUncountedWASMWindowPtr :
+    public PointerSField<WASMWindow *,
                          NoRefCountPolicy> {};
 
 
-/*! \ingroup GrpWindowXFieldMFields \ingroup GrpLibOSGWindowX */
-struct MFRecXWindowPtr :
-    public PointerMField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldMFields \ingroup GrpLibOSGWindowWASM */
+struct MFRecWASMWindowPtr :
+    public PointerMField<WASMWindow *,
                          RecordedRefCountPolicy  > {};
-/*! \ingroup GrpWindowXFieldMFields \ingroup GrpLibOSGWindowX */
-struct MFUnrecXWindowPtr :
-    public PointerMField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldMFields \ingroup GrpLibOSGWindowWASM */
+struct MFUnrecWASMWindowPtr :
+    public PointerMField<WASMWindow *,
                          UnrecordedRefCountPolicy> {};
-/*! \ingroup GrpWindowXFieldMFields \ingroup GrpLibOSGWindowX */
-struct MFWeakXWindowPtr :
-    public PointerMField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldMFields \ingroup GrpLibOSGWindowWASM */
+struct MFWeakWASMWindowPtr :
+    public PointerMField<WASMWindow *,
                          WeakRefCountPolicy      > {};
-/*! \ingroup GrpWindowXFieldMFields \ingroup GrpLibOSGWindowX */
-struct MFUncountedXWindowPtr :
-    public PointerMField<XWindow *,
+/*! \ingroup GrpWindowWASMFieldMFields \ingroup GrpLibOSGWindowWASM */
+struct MFUncountedWASMWindowPtr :
+    public PointerMField<WASMWindow *,
                          NoRefCountPolicy        > {};
 
 
@@ -218,4 +218,4 @@ struct MFUncountedXWindowPtr :
 
 OSG_END_NAMESPACE
 
-#endif /* _OSGXWINDOWFIELDS_H_ */
+#endif /* _OSGWASMWINDOWFIELDS_H_ */

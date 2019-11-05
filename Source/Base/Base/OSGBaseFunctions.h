@@ -80,6 +80,7 @@
 #endif
 #include <cmath>
 
+//#if defined(OSG_STL_HAS_HASH_MAP) && !defined(__EMSCRIPTEN__)
 #ifdef OSG_STL_HAS_HASH_MAP
 #    ifdef OSG_USE_HASH_COMPARE
 #        ifdef OSG_HASH_MAP_AS_EXT

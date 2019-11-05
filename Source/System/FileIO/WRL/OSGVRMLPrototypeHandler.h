@@ -146,7 +146,7 @@ class VRMLNodePrototypeHandler : public BaseT
     };
 # endif
 
-# ifdef OSG_STL_HAS_HASH_MAP
+# if defined(OSG_STL_HAS_HASH_MAP) && !defined(__EMSCRIPTEN__)
 # ifdef OSG_USE_HASH_COMPARE
     typedef
         OSG_STDEXTENSION_NAMESPACE::hash_map<

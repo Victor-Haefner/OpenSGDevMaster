@@ -2,31 +2,31 @@
 
 using namespace OSG;
 
-/*! \defgroup GrpLibOSGWindowX libOSGWindowX
+/*! \defgroup GrpLibOSGWindowWASM libOSGWindowWASM
     \ingroup GrpByLib
  */
 
-/*! \defgroup GrpWindowX OpenSG Window X Library
+/*! \defgroup GrpWindowWASM OpenSG Window X Library
 
     \brief Contains Window X classes
 
-    See \ref PageWindowX for details.
+    See \ref PageWindowWASM for details.
  */
 
 //*******************************************************************
 // X
 //*******************************************************************
 
-/*! \defgroup GrpWindowXObj Window
-    \ingroup GrpWindowX
+/*! \defgroup GrpWindowWASMObj Window
+    \ingroup GrpWindowWASM
  */
 
-/*! \defgroup GrpWindowXFieldTraits Field Traits
-    \ingroup GrpWindowX
+/*! \defgroup GrpWindowWASMFieldTraits Field Traits
+    \ingroup GrpWindowWASM
  */
-/*! \defgroup GrpWindowXFieldSFields Single-Field
-    \ingroup GrpWindowX
+/*! \defgroup GrpWindowWASMFieldSFields Single-Field
+    \ingroup GrpWindowWASM
  */
-/*! \defgroup GrpWindowXFieldMFields Multi-Fields
-    \ingroup GrpWindowX
+/*! \defgroup GrpWindowWASMFieldMFields Multi-Fields
+    \ingroup GrpWindowWASM
  */

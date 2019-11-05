@@ -37,8 +37,8 @@
 \*---------------------------------------------------------------------------*/
 
 
-#ifndef _OSGWINDOWXDEF_H_
-#define _OSGWINDOWXDEF_H_
+#ifndef _OSGWINDOWWASMDEF_H_
+#define _OSGWINDOWWASMDEF_H_
 #ifdef __sgi
 #pragma once
 #endif
@@ -48,16 +48,16 @@
 //---------------------------------------------------------------------------
 
 #if defined(WIN32)
-#   ifdef OSG_COMPILEWINDOWXLIB
-#       define OSG_WINDOWX_DLLMAPPING     __declspec(dllexport)
-#       define OSG_WINDOWX_DLLTMPLMAPPING __declspec(dllexport)
+#   ifdef OSG_COMPILEWINDOWWASMLIB
+#       define OSG_WINDOWWASM_DLLMAPPING     __declspec(dllexport)
+#       define OSG_WINDOWWASM_DLLTMPLMAPPING __declspec(dllexport)
 #   else
-#       define OSG_WINDOWX_DLLMAPPING     __declspec(dllimport)
-#       define OSG_WINDOWX_DLLTMPLMAPPING __declspec(dllimport)
+#       define OSG_WINDOWWASM_DLLMAPPING     __declspec(dllimport)
+#       define OSG_WINDOWWASM_DLLTMPLMAPPING __declspec(dllimport)
 #   endif
 #else
-#define OSG_WINDOWX_DLLMAPPING
-#define OSG_WINDOWX_DLLTMPLMAPPING
+#define OSG_WINDOWWASM_DLLMAPPING
+#define OSG_WINDOWWASM_DLLTMPLMAPPING
 #endif
 
-#endif /* _OSGWINDOWXDEF_H_ */
+#endif /* _OSGWINDOWWASMDEF_H_ */

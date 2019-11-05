@@ -36,27 +36,27 @@
  *                                                                           *
 \*---------------------------------------------------------------------------*/
 
-#ifndef _OSGXWINDOW_H_
-#define _OSGXWINDOW_H_
+#ifndef _OSGWASMWINDOW_H_
+#define _OSGWASMWINDOW_H_
 #ifdef __sgi
 #pragma once
 #endif
 
-#include "OSGXWindowBase.h"
+#include "OSGWASMWindowBase.h"
 
 OSG_BEGIN_NAMESPACE
 
-/*! \brief X Window class. See \ref PageWindowX for a description. 
-    \ingroup GrpWindowXObj
-    \ingroup GrpLibOSGWindowX
+/*! \brief X Window class. See \ref PageWindowWASM for a description. 
+    \ingroup GrpWindowWASMObj
+    \ingroup GrpLibOSGWindowWASM
     \includebasedoc
  */
 
-class OSG_WINDOWX_DLLMAPPING XWindow : public XWindowBase
+class OSG_WINDOWWASM_DLLMAPPING WASMWindow : public WASMWindowBase
 {
   public:
 
-    typedef XWindowBase                           Inherited;
+    typedef WASMWindowBase                           Inherited;
 
     /*---------------------------------------------------------------------*/
     /*! \name                      Sync                                    */
@@ -92,21 +92,21 @@ class OSG_WINDOWX_DLLMAPPING XWindow : public XWindowBase
 
   protected:
 
-    // Variables should all be in XWindowBase.
+    // Variables should all be in WASMWindowBase.
 
     /*---------------------------------------------------------------------*/
     /*! \name                  Constructors                                */
     /*! \{                                                                 */
 
-    XWindow(void);
-    XWindow(const XWindow &source);
+    WASMWindow(void);
+    WASMWindow(const WASMWindow &source);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
     /*! \name                   Destructors                                */
     /*! \{                                                                 */
 
-    virtual ~XWindow(void); 
+    virtual ~WASMWindow(void); 
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -146,15 +146,15 @@ class OSG_WINDOWX_DLLMAPPING XWindow : public XWindowBase
   private:
 
     friend class FieldContainer;
-    friend class XWindowBase;
+    friend class WASMWindowBase;
 
     // prohibit default functions (move to 'public' if you need one)
-    void operator =(const XWindow &source);
+    void operator =(const WASMWindow &source);
 };
 
 OSG_END_NAMESPACE
 
-#include "OSGXWindow.inl"
-#include "OSGXWindowBase.inl"
+#include "OSGWASMWindow.inl"
+#include "OSGWASMWindowBase.inl"
 
-#endif /* _OSGXWINDOW_H_ */
+#endif /* _OSGWASMWINDOW_H_ */

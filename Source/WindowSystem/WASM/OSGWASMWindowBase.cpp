@@ -45,7 +45,7 @@
  **           regenerated, which can become necessary at any time.          **
  **                                                                         **
  **     Do not change this file, changes should be done in the derived      **
- **     class XWindow!
+ **     class WASMWindow!
  **                                                                         **
  *****************************************************************************
 \*****************************************************************************/
@@ -63,8 +63,8 @@
 
 
 
-#include "OSGXWindowBase.h"
-#include "OSGXWindow.h"
+#include "OSGWASMWindowBase.h"
+#include "OSGWASMWindow.h"
 
 #include <boost/bind.hpp>
 
@@ -74,27 +74,27 @@ OSG_BEGIN_NAMESPACE
  *                            Description                                  *
 \***************************************************************************/
 
-/*! \class OSG::XWindow
-    The class for X-based windows. See \ref PageWindowX for a description.
+/*! \class OSG::WASMWindow
+    The class for X-based windows. See \ref PageWindowWASM for a description.
  */
 
 /***************************************************************************\
  *                        Field Documentation                              *
 \***************************************************************************/
 
-/*! \var DisplayP        XWindowBase::_sfDisplay
+/*! \var DisplayP        WASMWindowBase::_sfDisplay
     
 */
 
-/*! \var X11Window       XWindowBase::_sfWindow
+/*! \var X11Window       WASMWindowBase::_sfWindow
     
 */
 
-/*! \var GLXContext      XWindowBase::_sfContext
+/*! \var GLXContext      WASMWindowBase::_sfContext
     
 */
 
-/*! \var Int32           XWindowBase::_sfFbConfigId
+/*! \var Int32           WASMWindowBase::_sfFbConfigId
     
 */
 
@@ -104,28 +104,28 @@ OSG_BEGIN_NAMESPACE
 \***************************************************************************/
 
 #if !defined(OSG_DO_DOC) || defined(OSG_DOC_DEV)
-PointerType FieldTraits<XWindow *, nsOSG>::_type(
-    "XWindowPtr", 
+PointerType FieldTraits<WASMWindow *, nsOSG>::_type(
+    "WASMWindowPtr", 
     "WindowPtr", 
-    XWindow::getClassType(),
+    WASMWindow::getClassType(),
     nsOSG);
 #endif
 
-OSG_FIELDTRAITS_GETTYPE_NS(XWindow *, nsOSG)
+OSG_FIELDTRAITS_GETTYPE_NS(WASMWindow *, nsOSG)
 
 OSG_EXPORT_PTR_SFIELD_FULL(PointerSField,
-                           XWindow *,
+                           WASMWindow *,
                            nsOSG)
 
 OSG_EXPORT_PTR_MFIELD_FULL(PointerMField,
-                           XWindow *,
+                           WASMWindow *,
                            nsOSG)
 
 /***************************************************************************\
  *                         Field Description                               *
 \***************************************************************************/
 
-void XWindowBase::classDescInserter(TypeObject &oType)
+void WASMWindowBase::classDescInserter(TypeObject &oType)
 {
     FieldDescriptionBase *pDesc = NULL;
 
@@ -137,8 +137,8 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         DisplayFieldId, DisplayFieldMask,
         true,
         (Field::FClusterLocal),
-        static_cast<FieldEditMethodSig>(&XWindow::editHandleDisplay),
-        static_cast<FieldGetMethodSig >(&XWindow::getHandleDisplay));
+        static_cast<FieldEditMethodSig>(&WASMWindow::editHandleDisplay),
+        static_cast<FieldGetMethodSig >(&WASMWindow::getHandleDisplay));
 
     oType.addInitialDesc(pDesc);
 
@@ -149,8 +149,8 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         WindowFieldId, WindowFieldMask,
         true,
         (Field::FClusterLocal),
-        static_cast<FieldEditMethodSig>(&XWindow::editHandleWindow),
-        static_cast<FieldGetMethodSig >(&XWindow::getHandleWindow));
+        static_cast<FieldEditMethodSig>(&WASMWindow::editHandleWindow),
+        static_cast<FieldGetMethodSig >(&WASMWindow::getHandleWindow));
 
     oType.addInitialDesc(pDesc);
 
@@ -161,8 +161,8 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         ContextFieldId, ContextFieldMask,
         true,
         (Field::FClusterLocal),
-        static_cast<FieldEditMethodSig>(&XWindow::editHandleContext),
-        static_cast<FieldGetMethodSig >(&XWindow::getHandleContext));
+        static_cast<FieldEditMethodSig>(&WASMWindow::editHandleContext),
+        static_cast<FieldGetMethodSig >(&WASMWindow::getHandleContext));
 
     oType.addInitialDesc(pDesc);
 
@@ -173,44 +173,44 @@ void XWindowBase::classDescInserter(TypeObject &oType)
         FbConfigIdFieldId, FbConfigIdFieldMask,
         true,
         (Field::FClusterLocal),
-        static_cast<FieldEditMethodSig>(&XWindow::editHandleFbConfigId),
-        static_cast<FieldGetMethodSig >(&XWindow::getHandleFbConfigId));
+        static_cast<FieldEditMethodSig>(&WASMWindow::editHandleFbConfigId),
+        static_cast<FieldGetMethodSig >(&WASMWindow::getHandleFbConfigId));
 
     oType.addInitialDesc(pDesc);
 }
 
 
-XWindowBase::TypeObject XWindowBase::_type(
-    XWindowBase::getClassname(),
+WASMWindowBase::TypeObject WASMWindowBase::_type(
+    WASMWindowBase::getClassname(),
     Inherited::getClassname(),
     "NULL",
     nsOSG, //Namespace
-    reinterpret_cast<PrototypeCreateF>(&XWindowBase::createEmptyLocal),
-    reinterpret_cast<InitContainerF>(&XWindow::initMethod),
-    reinterpret_cast<ExitContainerF>(&XWindow::exitMethod),
-    reinterpret_cast<InitalInsertDescFunc>(&XWindow::classDescInserter),
+    reinterpret_cast<PrototypeCreateF>(&WASMWindowBase::createEmptyLocal),
+    reinterpret_cast<InitContainerF>(&WASMWindow::initMethod),
+    reinterpret_cast<ExitContainerF>(&WASMWindow::exitMethod),
+    reinterpret_cast<InitalInsertDescFunc>(&WASMWindow::classDescInserter),
     false,
     0,
     "<?xml version=\"1.0\"?>\n"
     "\n"
     "<FieldContainer\n"
-    "    name=\"XWindow\"\n"
+    "    name=\"WASMWindow\"\n"
     "    parent=\"Window\"\n"
-    "    library=\"WindowX\"\n"
+    "    library=\"WindowWASM\"\n"
     "    pointerfieldtypes=\"both\"\n"
     "    structure=\"concrete\"\n"
     "    systemcomponent=\"true\"\n"
     "    parentsystemcomponent=\"true\"\n"
-    "    docGroupBase=\"GrpWindowX\"\n"
+    "    docGroupBase=\"GrpWindowWASM\"\n"
     "    >\n"
-    "    The class for X-based windows. See \\ref PageWindowX for a description.\n"
+    "    The class for X-based windows. See \\ref PageWindowWASM for a description.\n"
     "    <Field\n"
     "        name=\"display\"\n"
     "        type=\"DisplayP\"\n"
     "        cardinality=\"single\"\n"
     "        visibility=\"internal\"\n"
     "        defaultValue=\"NULL\"\n"
-    "        fieldHeader=\"OSGXWindowDataFields.h\"\n"
+    "        fieldHeader=\"OSGWASMWindowDataFields.h\"\n"
     "        access=\"public\"\n"
     "        fieldFlags=\"FClusterLocal\"\n"
     "        >\n"
@@ -221,7 +221,7 @@ XWindowBase::TypeObject XWindowBase::_type(
     "        cardinality=\"single\"\n"
     "        visibility=\"internal\"\n"
     "        defaultValue=\"NULL\"\n"
-    "        fieldHeader=\"OSGXWindowDataFields.h\"\n"
+    "        fieldHeader=\"OSGWASMWindowDataFields.h\"\n"
     "        access=\"public\"\n"
     "        fieldFlags=\"FClusterLocal\"\n"
     "        >\n"
@@ -232,7 +232,7 @@ XWindowBase::TypeObject XWindowBase::_type(
     "        cardinality=\"single\"\n"
     "        visibility=\"internal\"\n"
     "        defaultValue=\"NULL\"\n"
-    "        fieldHeader=\"OSGXWindowDataFields.h\"\n"
+    "        fieldHeader=\"OSGWASMWindowDataFields.h\"\n"
     "        access=\"public\"\n"
     "        fieldFlags=\"FClusterLocal\"\n"
     "        >\n"
@@ -248,76 +248,76 @@ XWindowBase::TypeObject XWindowBase::_type(
     "        >\n"
     "    </Field>\n"
     "</FieldContainer>\n",
-    "The class for X-based windows. See \\ref PageWindowX for a description.\n"
+    "The class for X-based windows. See \\ref PageWindowWASM for a description.\n"
     );
 
 /*------------------------------ get -----------------------------------*/
 
-FieldContainerType &XWindowBase::getType(void)
+FieldContainerType &WASMWindowBase::getType(void)
 {
     return _type;
 }
 
-const FieldContainerType &XWindowBase::getType(void) const
+const FieldContainerType &WASMWindowBase::getType(void) const
 {
     return _type;
 }
 
-UInt32 XWindowBase::getContainerSize(void) const
+UInt32 WASMWindowBase::getContainerSize(void) const
 {
-    return sizeof(XWindow);
+    return sizeof(WASMWindow);
 }
 
 /*------------------------- decorator get ------------------------------*/
 
 
-SFDisplayP *XWindowBase::editSFDisplay(void)
+SFDisplayP *WASMWindowBase::editSFDisplay(void)
 {
     editSField(DisplayFieldMask);
 
     return &_sfDisplay;
 }
 
-const SFDisplayP *XWindowBase::getSFDisplay(void) const
+const SFDisplayP *WASMWindowBase::getSFDisplay(void) const
 {
     return &_sfDisplay;
 }
 
 
-SFX11Window *XWindowBase::editSFWindow(void)
+SFX11Window *WASMWindowBase::editSFWindow(void)
 {
     editSField(WindowFieldMask);
 
     return &_sfWindow;
 }
 
-const SFX11Window *XWindowBase::getSFWindow(void) const
+const SFX11Window *WASMWindowBase::getSFWindow(void) const
 {
     return &_sfWindow;
 }
 
 
-SFGLXContext *XWindowBase::editSFContext(void)
+SFGLXContext *WASMWindowBase::editSFContext(void)
 {
     editSField(ContextFieldMask);
 
     return &_sfContext;
 }
 
-const SFGLXContext *XWindowBase::getSFContext(void) const
+const SFGLXContext *WASMWindowBase::getSFContext(void) const
 {
     return &_sfContext;
 }
 
 
-SFInt32 *XWindowBase::editSFFbConfigId(void)
+SFInt32 *WASMWindowBase::editSFFbConfigId(void)
 {
     editSField(FbConfigIdFieldMask);
 
     return &_sfFbConfigId;
 }
 
-const SFInt32 *XWindowBase::getSFFbConfigId(void) const
+const SFInt32 *WASMWindowBase::getSFFbConfigId(void) const
 {
     return &_sfFbConfigId;
 }
@@ -329,7 +329,7 @@ const SFInt32 *XWindowBase::getSFFbConfigId(void) const
 
 /*------------------------------ access -----------------------------------*/
 
-SizeT XWindowBase::getBinSize(ConstFieldMaskArg whichField)
+SizeT WASMWindowBase::getBinSize(ConstFieldMaskArg whichField)
 {
     SizeT returnValue = Inherited::getBinSize(whichField);
 
@@ -353,7 +353,7 @@ SizeT XWindowBase::getBinSize(ConstFieldMaskArg whichField)
     return returnValue;
 }
 
-void XWindowBase::copyToBin(BinaryDataHandler &pMem,
+void WASMWindowBase::copyToBin(BinaryDataHandler &pMem,
                                   ConstFieldMaskArg  whichField)
 {
     Inherited::copyToBin(pMem, whichField);
@@ -376,7 +376,7 @@ void XWindowBase::copyToBin(BinaryDataHandler &pMem,
     }
 }
 
-void XWindowBase::copyFromBin(BinaryDataHandler &pMem,
+void WASMWindowBase::copyFromBin(BinaryDataHandler &pMem,
                                     ConstFieldMaskArg  whichField)
 {
     Inherited::copyFromBin(pMem, whichField);
@@ -404,58 +404,58 @@ void XWindowBase::copyFromBin(BinaryDataHandler &pMem,
 }
 
 //! create a new instance of the class
-XWindowTransitPtr XWindowBase::createLocal(BitVector bFlags)
+WASMWindowTransitPtr WASMWindowBase::createLocal(BitVector bFlags)
 {
-    XWindowTransitPtr fc;
+    WASMWindowTransitPtr fc;
 
     if(getClassType().getPrototype() != NULL)
     {
         FieldContainerTransitPtr tmpPtr =
             getClassType().getPrototype()-> shallowCopyLocal(bFlags);
 
-        fc = dynamic_pointer_cast<XWindow>(tmpPtr);
+        fc = dynamic_pointer_cast<WASMWindow>(tmpPtr);
     }
 
     return fc;
 }
 
 //! create a new instance of the class, copy the container flags
-XWindowTransitPtr XWindowBase::createDependent(BitVector bFlags)
+WASMWindowTransitPtr WASMWindowBase::createDependent(BitVector bFlags)
 {
-    XWindowTransitPtr fc;
+    WASMWindowTransitPtr fc;
 
     if(getClassType().getPrototype() != NULL)
     {
         FieldContainerTransitPtr tmpPtr =
             getClassType().getPrototype()-> shallowCopyDependent(bFlags);
 
-        fc = dynamic_pointer_cast<XWindow>(tmpPtr);
+        fc = dynamic_pointer_cast<WASMWindow>(tmpPtr);
     }
 
     return fc;
 }
 
 //! create a new instance of the class
-XWindowTransitPtr XWindowBase::create(void)
+WASMWindowTransitPtr WASMWindowBase::create(void)
 {
-    XWindowTransitPtr fc;
+    WASMWindowTransitPtr fc;
 
     if(getClassType().getPrototype() != NULL)
     {
         FieldContainerTransitPtr tmpPtr =
             getClassType().getPrototype()-> shallowCopy();
 
-        fc = dynamic_pointer_cast<XWindow>(tmpPtr);
+        fc = dynamic_pointer_cast<WASMWindow>(tmpPtr);
     }
 
     return fc;
 }
 
-XWindow *XWindowBase::createEmptyLocal(BitVector bFlags)
+WASMWindow *WASMWindowBase::createEmptyLocal(BitVector bFlags)
 {
-    XWindow *returnValue;
+    WASMWindow *returnValue;
 
-    newPtr<XWindow>(returnValue, bFlags);
+    newPtr<WASMWindow>(returnValue, bFlags);
 
     returnValue->_pFieldFlags->_bNamespaceMask &= ~bFlags;
 
@@ -463,11 +463,11 @@ XWindow *XWindowBase::createEmptyLocal(BitVector bFlags)
 }
 
 //! create an empty new instance of the class, do not copy the prototype
-XWindow *XWindowBase::createEmpty(void)
+WASMWindow *WASMWindowBase::createEmpty(void)
 {
-    XWindow *returnValue;
+    WASMWindow *returnValue;
 
-    newPtr<XWindow>(returnValue, Thread::getCurrentLocalFlags());
+    newPtr<WASMWindow>(returnValue, Thread::getCurrentLocalFlags());
 
     returnValue->_pFieldFlags->_bNamespaceMask &=
         ~Thread::getCurrentLocalFlags();
@@ -476,12 +476,12 @@ XWindow *XWindowBase::createEmpty(void)
 }
 
 
-FieldContainerTransitPtr XWindowBase::shallowCopyLocal(
+FieldContainerTransitPtr WASMWindowBase::shallowCopyLocal(
     BitVector bFlags) const
 {
-    XWindow *tmpPtr;
+    WASMWindow *tmpPtr;
 
-    newPtr(tmpPtr, dynamic_cast<const XWindow *>(this), bFlags);
+    newPtr(tmpPtr, dynamic_cast<const WASMWindow *>(this), bFlags);
 
     FieldContainerTransitPtr returnValue(tmpPtr);
 
@@ -490,12 +490,12 @@ FieldContainerTransitPtr XWindowBase::shallowCopyLocal(
     return returnValue;
 }
 
-FieldContainerTransitPtr XWindowBase::shallowCopyDependent(
+FieldContainerTransitPtr WASMWindowBase::shallowCopyDependent(
     BitVector bFlags) const
 {
-    XWindow *tmpPtr;
+    WASMWindow *tmpPtr;
 
-    newPtr(tmpPtr, dynamic_cast<const XWindow *>(this), ~bFlags);
+    newPtr(tmpPtr, dynamic_cast<const WASMWindow *>(this), ~bFlags);
 
     FieldContainerTransitPtr returnValue(tmpPtr);
 
@@ -504,12 +504,12 @@ FieldContainerTransitPtr XWindowBase::shallowCopyDependent(
     return returnValue;
 }
 
-FieldContainerTransitPtr XWindowBase::shallowCopy(void) const
+FieldContainerTransitPtr WASMWindowBase::shallowCopy(void) const
 {
-    XWindow *tmpPtr;
+    WASMWindow *tmpPtr;
 
     newPtr(tmpPtr,
-           dynamic_cast<const XWindow *>(this),
+           dynamic_cast<const WASMWindow *>(this),
            Thread::getCurrentLocalFlags());
 
     tmpPtr->_pFieldFlags->_bNamespaceMask &= ~Thread::getCurrentLocalFlags();
@@ -524,7 +524,7 @@ FieldContainerTransitPtr XWindowBase::shallowCopy(void) const
 
 /*------------------------- constructors ----------------------------------*/
 
-XWindowBase::XWindowBase(void) :
+WASMWindowBase::WASMWindowBase(void) :
     Inherited(),
     _sfDisplay                (DisplayP(NULL)),
     _sfWindow                 (X11Window(NULL)),
@@ -533,7 +533,7 @@ XWindowBase::XWindowBase(void) :
 {
 }
 
-XWindowBase::XWindowBase(const XWindowBase &source) :
+WASMWindowBase::WASMWindowBase(const WASMWindowBase &source) :
     Inherited(source),
     _sfDisplay                (source._sfDisplay                ),
     _sfWindow                 (source._sfWindow                 ),
@@ -545,23 +545,23 @@ XWindowBase::XWindowBase(const XWindowBase &source) :
 
 /*-------------------------- destructors ----------------------------------*/
 
-XWindowBase::~XWindowBase(void)
+WASMWindowBase::~WASMWindowBase(void)
 {
 }
 
 
-GetFieldHandlePtr XWindowBase::getHandleDisplay         (void) const
+GetFieldHandlePtr WASMWindowBase::getHandleDisplay         (void) const
 {
     SFDisplayP::GetHandlePtr returnValue(
         new  SFDisplayP::GetHandle(
              &_sfDisplay,
              this->getType().getFieldDesc(DisplayFieldId),
-             const_cast<XWindowBase *>(this)));
+             const_cast<WASMWindowBase *>(this)));
 
     return returnValue;
 }
 
-EditFieldHandlePtr XWindowBase::editHandleDisplay        (void)
+EditFieldHandlePtr WASMWindowBase::editHandleDisplay        (void)
 {
     SFDisplayP::EditHandlePtr returnValue(
         new  SFDisplayP::EditHandle(
@@ -575,18 +575,18 @@ EditFieldHandlePtr XWindowBase::editHandleDisplay        (void)
     return returnValue;
 }
 
-GetFieldHandlePtr XWindowBase::getHandleWindow          (void) const
+GetFieldHandlePtr WASMWindowBase::getHandleWindow          (void) const
 {
     SFX11Window::GetHandlePtr returnValue(
         new  SFX11Window::GetHandle(
              &_sfWindow,
              this->getType().getFieldDesc(WindowFieldId),
-             const_cast<XWindowBase *>(this)));
+             const_cast<WASMWindowBase *>(this)));
 
     return returnValue;
 }
 
-EditFieldHandlePtr XWindowBase::editHandleWindow         (void)
+EditFieldHandlePtr WASMWindowBase::editHandleWindow         (void)
 {
     SFX11Window::EditHandlePtr returnValue(
         new  SFX11Window::EditHandle(
@@ -600,18 +600,18 @@ EditFieldHandlePtr XWindowBase::editHandleWindow         (void)
     return returnValue;
 }
 
-GetFieldHandlePtr XWindowBase::getHandleContext         (void) const
+GetFieldHandlePtr WASMWindowBase::getHandleContext         (void) const
 {
     SFGLXContext::GetHandlePtr returnValue(
         new  SFGLXContext::GetHandle(
              &_sfContext,
              this->getType().getFieldDesc(ContextFieldId),
-             const_cast<XWindowBase *>(this)));
+             const_cast<WASMWindowBase *>(this)));
 
     return returnValue;
 }
 
-EditFieldHandlePtr XWindowBase::editHandleContext        (void)
+EditFieldHandlePtr WASMWindowBase::editHandleContext        (void)
 {
     SFGLXContext::EditHandlePtr returnValue(
         new  SFGLXContext::EditHandle(
@@ -625,18 +625,18 @@ EditFieldHandlePtr XWindowBase::editHandleContext        (void)
     return returnValue;
 }
 
-GetFieldHandlePtr XWindowBase::getHandleFbConfigId      (void) const
+GetFieldHandlePtr WASMWindowBase::getHandleFbConfigId      (void) const
 {
     SFInt32::GetHandlePtr returnValue(
         new  SFInt32::GetHandle(
              &_sfFbConfigId,
              this->getType().getFieldDesc(FbConfigIdFieldId),
-             const_cast<XWindowBase *>(this)));
+             const_cast<WASMWindowBase *>(this)));
 
     return returnValue;
 }
 
-EditFieldHandlePtr XWindowBase::editHandleFbConfigId     (void)
+EditFieldHandlePtr WASMWindowBase::editHandleFbConfigId     (void)
 {
     SFInt32::EditHandlePtr returnValue(
         new  SFInt32::EditHandle(
@@ -652,15 +652,15 @@ EditFieldHandlePtr XWindowBase::editHandleFbConfigId     (void)
 
 
 #ifdef OSG_MT_CPTR_ASPECT
-void XWindowBase::execSyncV(      FieldContainer    &oFrom,
+void WASMWindowBase::execSyncV(      FieldContainer    &oFrom,
                                         ConstFieldMaskArg  whichField,
                                         AspectOffsetStore &oOffsets,
                                         ConstFieldMaskArg  syncMode,
                                   const UInt32             uiSyncInfo)
 {
-    XWindow *pThis = static_cast<XWindow *>(this);
+    WASMWindow *pThis = static_cast<WASMWindow *>(this);
 
-    pThis->execSync(static_cast<XWindow *>(&oFrom),
+    pThis->execSync(static_cast<WASMWindow *>(&oFrom),
                     whichField,
                     oOffsets,
                     syncMode,
@@ -670,20 +670,20 @@ void XWindowBase::execSyncV(      FieldContainer    &oFrom,
 
 
 #ifdef OSG_MT_CPTR_ASPECT
-FieldContainer *XWindowBase::createAspectCopy(
+FieldContainer *WASMWindowBase::createAspectCopy(
     const FieldContainer *pRefAspect) const
 {
-    XWindow *returnValue;
+    WASMWindow *returnValue;
 
     newAspectCopy(returnValue,
-                  dynamic_cast<const XWindow *>(pRefAspect),
-                  dynamic_cast<const XWindow *>(this));
+                  dynamic_cast<const WASMWindow *>(pRefAspect),
+                  dynamic_cast<const WASMWindow *>(this));
 
     return returnValue;
 }
 #endif
 
-void XWindowBase::resolveLinks(void)
+void WASMWindowBase::resolveLinks(void)
 {
     Inherited::resolveLinks();
 

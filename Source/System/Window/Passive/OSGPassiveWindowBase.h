@@ -63,9 +63,7 @@
 
 //#include "OSGBaseTypes.h"
 
-#ifndef __EMSCRIPTEN__
 #include "OSGNativeWindow.h" // Parent
-#endif
 
 
 #include "OSGPassiveWindowFields.h"

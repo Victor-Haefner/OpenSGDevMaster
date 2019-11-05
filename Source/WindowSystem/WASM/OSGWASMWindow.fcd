@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 
 <FieldContainer
-    name="XWindow"
+    name="WASMWindow"
     parent="Window"
-    library="WindowX"
+    library="WindowWASM"
     pointerfieldtypes="both"
     structure="concrete"
     systemcomponent="true"
     parentsystemcomponent="true"
-    docGroupBase="GrpWindowX"
+    docGroupBase="GrpWindowWASM"
     >
-    The class for X-based windows. See \ref PageWindowX for a description.
+    The class for X-based windows. See \ref PageWindowWASM for a description.
     <Field
         name="display"
         type="DisplayP"
         cardinality="single"
         visibility="internal"
         defaultValue="NULL"
-        fieldHeader="OSGXWindowDataFields.h"
+        fieldHeader="OSGWASMWindowDataFields.h"
         access="public"
         fieldFlags="FClusterLocal"
         >
@@ -28,7 +28,7 @@
         cardinality="single"
         visibility="internal"
         defaultValue="NULL"
-        fieldHeader="OSGXWindowDataFields.h"
+        fieldHeader="OSGWASMWindowDataFields.h"
         access="public"
         fieldFlags="FClusterLocal"
         >
@@ -39,7 +39,7 @@
         cardinality="single"
         visibility="internal"
         defaultValue="NULL"
-        fieldHeader="OSGXWindowDataFields.h"
+        fieldHeader="OSGWASMWindowDataFields.h"
         access="public"
         fieldFlags="FClusterLocal"
         >

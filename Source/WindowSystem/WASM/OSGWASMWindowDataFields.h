@@ -36,8 +36,8 @@
  *                                                                           *
 \*---------------------------------------------------------------------------*/
 
-#ifndef _OSGXWINDOWDATAFIELDS_H_
-#define _OSGXWINDOWDATAFIELDS_H_
+#ifndef _OSGWASMWINDOWDATAFIELDS_H_
+#define _OSGWASMWINDOWDATAFIELDS_H_
 #ifdef __sgi
 #pragma once
 #endif
@@ -47,24 +47,24 @@ typedef struct _XDisplay        Display;
 
 #include "OSGConfig.h"
 
-#include "OSGWindowXDef.h"
+#include "OSGWindowWASMDef.h"
 
 #include "OSGBaseTypes.h"
 #include "OSGFieldTraits.h"
 
 OSG_BEGIN_NAMESPACE
 
-/*! \ingroup GrpWindowXFieldTraits
+/*! \ingroup GrpWindowWASMFieldTraits
  */
 
 typedef ::Display     *DisplayP;
 
-/*! \ingroup GrpWindowXFieldTraits
+/*! \ingroup GrpWindowWASMFieldTraits
  */
 typedef unsigned long  X11Window;
 
-/*! \ingroup GrpWindowXFieldTraits
-    \ingroup GrpLibOSGWindowX
+/*! \ingroup GrpWindowWASMFieldTraits
+    \ingroup GrpLibOSGWindowWASM
  */
 
 template <>
@@ -100,8 +100,8 @@ struct FieldTraits<DisplayP, 2> :
 
 #if ( !defined(__GNUC__) || !defined(__linux) || ( !defined(__ia64) && !defined(__x86_64) && !defined(_ARCH_PPC64)) ) && (!defined(_MIPS_SZPTR) || _MIPS_SZPTR != 64)
 
-/*! \ingroup GrpWindowXFieldTraits
-    \ingroup GrpLibOSGWindowX
+/*! \ingroup GrpWindowWASMFieldTraits
+    \ingroup GrpLibOSGWindowWASM
  */
 
 template <>
@@ -135,8 +135,8 @@ struct FieldTraits<X11Window, 2> :
 };
 #endif
 
-/*! \ingroup GrpWindowXFieldTraits
-    \ingroup GrpLibOSGWindowX
+/*! \ingroup GrpWindowWASMFieldTraits
+    \ingroup GrpLibOSGWindowWASM
  */
 
 template <>
@@ -170,64 +170,64 @@ struct FieldTraits<GLXContext, 2> :
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 typedef SField<DisplayP, 2> SFDisplayP;
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 typedef MField<DisplayP, 2> MFDisplayP;
 
 #if ( !defined(__GNUC__) || !defined(__linux) || ( !defined(__ia64) && !defined(__x86_64) && !defined(_ARCH_PPC64)) ) && (!defined(_MIPS_SZPTR) || _MIPS_SZPTR != 64)
 
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 typedef SField<X11Window, 2> SFX11Window;
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 typedef MField<X11Window, 2> MFX11Window;
 
 #else
 
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 typedef SField<UInt64> SFX11Window;
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 typedef MField<UInt64> MFX11Window;
 
 #endif
 
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 typedef SField<GLXContext, 2> SFGLXContext;
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 typedef MField<GLXContext, 2> MFGLXContext;
 #else // doxygen hacks
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 struct SFDisplayP : public SField<DisplayP, 2> {};
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 struct MFDisplayP : public MField<DisplayP, 2> {};
 
 #if ( !defined(__GNUC__) || !defined(__linux) || ( !defined(__ia64) && !defined(__x86_64) && !defined(_ARCH_PPC64)) ) && (!defined(_MIPS_SZPTR) || _MIPS_SZPTR != 64)
 
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 struct SFX11Window : public SField<X11Window, 2> {};
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 struct MFX11Window : public MField<X11Window, 2> {};
 
 #else
 
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 struct SFX11Window : public SField<UInt64> {};
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 struct MFX11Window : public MField<UInt64> {};
 
 #endif
 
-/*! \ingroup GrpWindowXFieldSFields */
+/*! \ingroup GrpWindowWASMFieldSFields */
 struct SFGLXContext : public SField<GLXContext, 2> {};
 
-/*! \ingroup GrpWindowXFieldMFields */
+/*! \ingroup GrpWindowWASMFieldMFields */
 struct MFGLXContext : public MField<GLXContext, 2> {};
 #endif
 
@@ -235,5 +235,5 @@ struct MFGLXContext : public MField<GLXContext, 2> {};
 
 OSG_END_NAMESPACE
 
-#endif /* _OSGXWINDOWDATAFIELDS_H_ */
+#endif /* _OSGWASMWINDOWDATAFIELDS_H_ */
 

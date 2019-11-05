@@ -12,7 +12,7 @@
 // General OpenSG configuration, needed everywhere
 #include "OSGConfig.h"
 
-#include "OSGXWindow.h"
+#include "OSGWASMWindow.h"
 #include "OSGPassiveWindow.h"
 
 // A little helper to simplify scene management and interaction
@@ -34,7 +34,7 @@
 
 
 OSG::SimpleSceneManager  *mgr;
-OSG::XWindowRecPtr        xwin;
+OSG::WASMWindowRecPtr        wasmwin;
 OSG::PassiveWindowRecPtr  pwin;
 
 OSG::NodeRecPtr scene = NULL;
@@ -72,7 +72,7 @@ void doDraw(void)
     FNOTICE(("doDraw:start Draw buf %d\n", curBuf));
     rentravact->drawBuffer(curBuf);
     FNOTICE(("doDraw:finished Draw buf %d\n", curBuf));
-    xwin->swap();
+    wasmwin->swap();
     pwin->frameExit();
     FNOTICE(("doDraw:swapped buf %d\n", curBuf));
     
@@ -95,8 +95,8 @@ void draw(void* data)
 {
     // need my own Display connection
     Display *dpy = XOpenDisplay(NULL);
-    xwin->setDisplay(dpy);
-    xwin->init();
+    wasmwin->setDisplay(dpy);
+    wasmwin->init();
     
     while(!doExit)
     {
@@ -137,8 +137,8 @@ void cull(void* data)
     {
         // need my own Display connection
         Display *dpy = XOpenDisplay(NULL);
-        xwin->setDisplay(dpy);
-        xwin->init();
+        wasmwin->setDisplay(dpy);
+        wasmwin->init();
     }
     else
     {
@@ -242,7 +242,7 @@ int wait_for_map_notify(Display *, XEvent *event, char *arg)
 #define ScreenOfDisplay(dpy, scr)(&(reinterpret_cast<_XPrivDisplay>(dpy))->screens[scr])
 #endif
 
-Display *openWindow(XWindow *xwin, char **argv, int &argc)
+Display *openWindow(WASMWindow *wasmwin, char **argv, int &argc)
 {
     static int dblBuf[] = {GLX_RGBA, GLX_DEPTH_SIZE, 16, GLX_DOUBLEBUFFER, 
                            None};
@@ -311,10 +311,10 @@ Display *openWindow(XWindow *xwin, char **argv, int &argc)
                           CWBorderPixel | CWColormap | CWEventMask, 
                           &swa );
                             
-    XSetStandardProperties(dpy, hwin, "testWindowX", "testWindowX", None, argv, argc, NULL);
+    XSetStandardProperties(dpy, hwin, "testWindowWASM", "testWindowWASM", None, argv, argc, NULL);
     
-    xwin->setDisplay ( dpy );
-    xwin->setWindow ( hwin );    
+    wasmwin->setDisplay ( dpy );
+    wasmwin->setWindow ( hwin );    
         
     XMapWindow(dpy, hwin);
     XIfEvent(dpy, &event, wait_for_map_notify, reinterpret_cast<char *>(hwin));
@@ -399,8 +399,8 @@ int main (int argc, char **argv)
 
 
     // X init   
-    xwin = XWindow::create();
-    Display *dpy = openWindow(xwin, argv, argc);
+    wasmwin = WASMWindow::create();
+    Display *dpy = openWindow(wasmwin, argv, argc);
 
     // create the SimpleSceneManager helper
     mgr = new SimpleSceneManager;
@@ -456,7 +456,7 @@ int main (int argc, char **argv)
     }
     else
     {
-        xwin->init();
+        wasmwin->init();
     }
     
     // main loop ( event dispatching )
@@ -493,7 +493,7 @@ int main (int argc, char **argv)
 
                             delete mgr;
 
-                            xwin  = NULL;
+                            wasmwin  = NULL;
                             pwin  = NULL;
                             scene = NULL;
 

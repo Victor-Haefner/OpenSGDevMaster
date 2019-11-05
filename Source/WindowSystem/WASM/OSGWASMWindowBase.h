@@ -45,39 +45,39 @@
  **           regenerated, which can become necessary at any time.          **
  **                                                                         **
  **     Do not change this file, changes should be done in the derived      **
- **     class XWindow
+ **     class WASMWindow
  **                                                                         **
  *****************************************************************************
 \*****************************************************************************/
 
 
-#ifndef _OSGXWINDOWBASE_H_
-#define _OSGXWINDOWBASE_H_
+#ifndef _OSGWASMWINDOWBASE_H_
+#define _OSGWASMWINDOWBASE_H_
 #ifdef __sgi
 #pragma once
 #endif
 
 
 #include "OSGConfig.h"
-#include "OSGWindowXDef.h"
+#include "OSGWindowWASMDef.h"
 
 //#include "OSGBaseTypes.h"
 
 #include "OSGWindow.h" // Parent
 
-#include "OSGXWindowDataFields.h"       // Display type
+#include "OSGWASMWindowDataFields.h"       // Display type
 #include "OSGSysFields.h"               // FbConfigId type
 
-#include "OSGXWindowFields.h"
+#include "OSGWASMWindowFields.h"
 
 OSG_BEGIN_NAMESPACE
 
 
-class XWindow;
+class WASMWindow;
 
-//! \brief XWindow Base Class.
+//! \brief WASMWindow Base Class.
 
-class OSG_WINDOWX_DLLMAPPING XWindowBase : public Window
+class OSG_WINDOWWASM_DLLMAPPING WASMWindowBase : public Window
 {
   public:
 
@@ -87,7 +87,7 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public Window
     typedef Inherited::TypeObject TypeObject;
     typedef TypeObject::InitPhase InitPhase;
 
-    OSG_GEN_INTERNALPTR(XWindow);
+    OSG_GEN_INTERNALPTR(WASMWindow);
 
     /*==========================  PUBLIC  =================================*/
 
@@ -199,16 +199,16 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public Window
     /*! \name                   Construction                               */
     /*! \{                                                                 */
 
-    static  XWindowTransitPtr  create          (void);
-    static  XWindow           *createEmpty     (void);
+    static  WASMWindowTransitPtr  create          (void);
+    static  WASMWindow           *createEmpty     (void);
 
-    static  XWindowTransitPtr  createLocal     (
+    static  WASMWindowTransitPtr  createLocal     (
                                                BitVector bFlags = FCLocal::All);
 
-    static  XWindow            *createEmptyLocal(
+    static  WASMWindow            *createEmptyLocal(
                                               BitVector bFlags = FCLocal::All);
 
-    static  XWindowTransitPtr  createDependent  (BitVector bFlags);
+    static  WASMWindowTransitPtr  createDependent  (BitVector bFlags);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -245,15 +245,15 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public Window
     /*! \name                   Constructors                               */
     /*! \{                                                                 */
 
-    XWindowBase(void);
-    XWindowBase(const XWindowBase &source);
+    WASMWindowBase(void);
+    WASMWindowBase(const WASMWindowBase &source);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
     /*! \name                   Destructors                                */
     /*! \{                                                                 */
 
-    virtual ~XWindowBase(void);
+    virtual ~WASMWindowBase(void);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -287,7 +287,7 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public Window
                                  ConstFieldMaskArg  syncMode  ,
                            const UInt32             uiSyncInfo);
 
-            void execSync (      XWindowBase *pFrom,
+            void execSync (      WASMWindowBase *pFrom,
                                  ConstFieldMaskArg  whichField,
                                  AspectOffsetStore &oOffsets,
                                  ConstFieldMaskArg  syncMode  ,
@@ -327,11 +327,11 @@ class OSG_WINDOWX_DLLMAPPING XWindowBase : public Window
     /*---------------------------------------------------------------------*/
 
     // prohibit default functions (move to 'public' if you need one)
-    void operator =(const XWindowBase &source);
+    void operator =(const WASMWindowBase &source);
 };
 
-typedef XWindowBase *XWindowBaseP;
+typedef WASMWindowBase *WASMWindowBaseP;
 
 OSG_END_NAMESPACE
 
-#endif /* _OSGXWINDOWBASE_H_ */
+#endif /* _OSGWASMWINDOWBASE_H_ */

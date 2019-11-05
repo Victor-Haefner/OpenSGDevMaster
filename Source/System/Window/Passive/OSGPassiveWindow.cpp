@@ -49,7 +49,7 @@
 #include "OSGRenderActionBase.h"
 #include "OSGRenderActionTask.h"
 
-#ifdef OSG_USE_GLX
+#if defined(OSG_USE_GLX) && !defined(__EMSCRIPTEN__)
 # if defined(OSG_USE_OGL3_PROTOS) || defined(OSG_USE_OGL4_PROTOS)
 //#  include <GL3/glx3.h>
 #  include <GLArb/glxarb.h>
@@ -136,6 +136,7 @@ void PassiveWindow::init(GLInitFunctor oFunc)
 #elif defined(__APPLE__) && !OSG_APPLE_IOS
     Inherited::setContext(cocoaWrapperCurrentContext());
 #elif defined(__APPLE__) && OSG_APPLE_IOS
+#elif defined(__EMSCRIPTEN__)
 #else
     Inherited::setDisplay(glXGetCurrentDisplay ());
     Inherited::setContext(glXGetCurrentContext ());

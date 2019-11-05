@@ -45,52 +45,51 @@
 
 #include "OSGConfig.h"
 
-#define OSG_COMPILEWINDOWXINST
+#define OSG_COMPILEWINDOWWASMINST
 
 #include "OSGGLU.h"
 #include "OSGGLEXT.h"
 #include "OSGGLFuncProtos.h"
-#include "OSGGLXFuncProtos.h"
 
-#include "OSGXWindow.h"
+#include "OSGWASMWindow.h"
 
 
 OSG_USING_NAMESPACE
 
 // Documentation for this class is emited in the
-// OSGXWindowBase.cpp file.
-// To modify it, please change the .fcd file (OSGXWindow.fcd) and
+// OSGWASMWindowBase.cpp file.
+// To modify it, please change the .fcd file (OSGWASMWindow.fcd) and
 // regenerate the base file.
 
 /*----------------------- constructors & destructors ----------------------*/
 
 //! Constructor
-XWindow::XWindow(void) :
+WASMWindow::WASMWindow(void) :
     Inherited()
 {
 }
 
 //! Copy Constructor
-XWindow::XWindow(const XWindow &source) :
+WASMWindow::WASMWindow(const WASMWindow &source) :
     Inherited(source)
 {
 }
 
 //! Destructor
-XWindow::~XWindow(void)
+WASMWindow::~WASMWindow(void)
 {
 }
 
 /*----------------------------- class specific ----------------------------*/
 
 //! initialize the static features of the class, e.g. action callbacks
-void XWindow::initMethod(InitPhase ePhase)
+void WASMWindow::initMethod(InitPhase ePhase)
 {
     Inherited::initMethod(ePhase);
 }
 
 //! react to field changes
-void XWindow::changed(ConstFieldMaskArg whichField, 
+void WASMWindow::changed(ConstFieldMaskArg whichField, 
                       UInt32            origin,
                       BitVector         details)
 {
@@ -98,10 +97,10 @@ void XWindow::changed(ConstFieldMaskArg whichField,
 }
 
 //! output the instance for debug purposes
-void XWindow::dump(      UInt32    , 
+void WASMWindow::dump(      UInt32    , 
                    const BitVector ) const
 {
-    SLOG << "Dump XWindow NI" << std::endl;
+    SLOG << "Dump WASMWindow NI" << std::endl;
 }
 
 #ifdef OSG_DEBUG_OLD_C_CASTS
@@ -119,10 +118,9 @@ void XWindow::dump(      UInt32    ,
 #define DefaultScreen(dpy) 	((_XPrivDisplay(dpy))->default_screen)
 #endif
 
-void XWindow::classicInit(void)
+void WASMWindow::classicInit(void)
 {
-    XVisualInfo       *vi, visInfo;
-    XWindowAttributes winAttr;
+    /*WASMWindowAttributes winAttr;
 
     XGetWindowAttributes(getDisplay(), getWindow(), &winAttr);
 
@@ -158,14 +156,14 @@ void XWindow::classicInit(void)
     // create the new context
     this->setContext(glXCreateContext(getDisplay(), vi, None, GL_TRUE));
         
-    XFree(vi);
+    XFree(vi);*/
 }
 
 /*! Init the window: create the context and setup the OpenGL.
 */
-void XWindow::init(GLInitFunctor oFunc)
+void WASMWindow::init(GLInitFunctor oFunc)
 {  
-    if(_sfFbConfigId.getValue() == -1)
+    /*if(_sfFbConfigId.getValue() == -1)
     {
         classicInit();
     }
@@ -248,47 +246,47 @@ void XWindow::init(GLInitFunctor oFunc)
         {
             classicInit();
         }
-    }
+    }*/
 
     Inherited::init(oFunc);
 }
     
-void XWindow::terminate(void)
+void WASMWindow::terminate(void)
 {
     Inherited::doTerminate();
 
-    if(getDisplay() != NULL && getContext() != NULL)
+    /*if(getDisplay() != NULL && getContext() != NULL)
     {
         this->doDeactivate();
 
         glXDestroyContext(getDisplay(), getContext());
 
         setContext(NULL);
-    }
+    }*/
 }
 
 // activate the window: bind the OGL context    
-void XWindow::doActivate(void)
+void WASMWindow::doActivate(void)
 {
-    Bool res;
+    /*Bool res;
 
 #ifdef OSG_DEBUG
     if(getDisplay() == NULL)
     {
-        SWARNING << "XWindow::doActivate: Display is NULL, can not activate context."
+        SWARNING << "WASMWindow::doActivate: Display is NULL, can not activate context."
                  << std::endl;
     }
 
     if(getWindow() == 0)
     {
-        SWARNING << "XWindow::doActivate: Window is NULL, can not activate "
+        SWARNING << "WASMWindow::doActivate: Window is NULL, can not activate "
                  << "context."
                  << std::endl;
     }
 
     if(getContext() == NULL)
     {
-        SWARNING << "XWindow::doActivate: Context is NULL, can not activate "
+        SWARNING << "WASMWindow::doActivate: Context is NULL, can not activate "
                  << "context."
                  << std::endl;
     }
@@ -298,32 +296,33 @@ void XWindow::doActivate(void)
     
     if(res != True)
     {
-        FWARNING(("XWindow::activate: makeCurrent failed!\n"));
-        glErr("XWindow::activate");
-        glErr("XWindow::activate");
-        glErr("XWindow::activate");
-    }
+        FWARNING(("WASMWindow::activate: makeCurrent failed!\n"));
+        glErr("WASMWindow::activate");
+        glErr("WASMWindow::activate");
+        glErr("WASMWindow::activate");
+    }*/
 }
     
 // activate the window: bind the OGL context    
-void XWindow::doDeactivate(void)
+void WASMWindow::doDeactivate(void)
 {
-    glXMakeCurrent(getDisplay(), None, NULL);
+    //glXMakeCurrent(getDisplay(), None, NULL);
 }
     
 // swap front and back buffers  
-bool XWindow::doSwap(void)
+bool WASMWindow::doSwap(void)
 {
-    glXSwapBuffers(getDisplay(), getWindow());
+    //glXSwapBuffers(getDisplay(), getWindow());
     return true;
 }
 
-bool XWindow::hasContext(void)
+bool WASMWindow::hasContext(void)
 {
-    return (this->getContext() != NULL);
+    //return (this->getContext() != NULL);
+    return true;
 }
 
-void XWindow::onDestroy(UInt32 uiContainerId)
+void WASMWindow::onDestroy(UInt32 uiContainerId)
 {
     Inherited::onDestroy(uiContainerId);
 }

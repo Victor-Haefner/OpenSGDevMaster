@@ -50,7 +50,7 @@
 */
 static bool versionAdder(void)
 {
-    OSG::addLibraryVersion("OSGWindowX",    
+    OSG::addLibraryVersion("OSGWindowWASM",    
                            OSG_VERSION_STRING,
                            SVN_REVISION );
     return true;

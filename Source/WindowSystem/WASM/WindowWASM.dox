@@ -5,9 +5,9 @@ using namespace OSG;
 /*! 
 
    \if separate
-     \page PageWindowX Window X Documentation
+     \page PageWindowWASM Window X Documentation
    \else
-     \page PageWindowX Window X
+     \page PageWindowWASM Window X
    \endif
 
  */
