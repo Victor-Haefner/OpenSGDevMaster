@@ -36,6 +36,10 @@
  *                                                                           *
 \*---------------------------------------------------------------------------*/
 
+#ifdef __EMSCRIPTEN__
+# define BOOST_SP_USE_SPINLOCK
+#endif
+
 #include "OSGOFDatabase.h"
 
 #include "OSGNode.h"

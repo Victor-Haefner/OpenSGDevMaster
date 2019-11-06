@@ -105,7 +105,7 @@ struct Face {
 };
 
 static PlyProperty vert_props[] = { /* list of property information for a vertex */
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__EMSCRIPTEN__)
   {"x", PLY_FLOAT, PLY_FLOAT, offsetof(Vertex,x), 0, 0, 0, 0},
   {"y", PLY_FLOAT, PLY_FLOAT, offsetof(Vertex,y), 0, 0, 0, 0},
   {"z", PLY_FLOAT, PLY_FLOAT, offsetof(Vertex,z), 0, 0, 0, 0},
@@ -123,7 +123,7 @@ static PlyProperty vert_props[] = { /* list of property information for a vertex
 };
 
 static PlyProperty face_props[] = { /* list of property information for a vertex */
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__EMSCRIPTEN__)
   {"vertex_indices", PLY_INT, PLY_INT, offsetof(Face,verts),
                      1, PLY_UCHAR, PLY_UCHAR, offsetof(Face,nverts)}
 #else

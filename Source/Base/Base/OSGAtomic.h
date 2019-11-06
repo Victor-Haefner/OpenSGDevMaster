@@ -44,6 +44,10 @@
 #if !defined(WIN32)
 #include <boost/version.hpp>
 
+#ifdef __EMSCRIPTEN__
+# define BOOST_SP_USE_SPINLOCK
+#endif
+
 #if BOOST_VERSION < 103900
 #include <boost/detail/sp_counted_base.hpp>
 #else

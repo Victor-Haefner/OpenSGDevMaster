@@ -44,10 +44,12 @@
 #include <cstdio>
 #include <sstream>
 
+
+#include "OSGConfig.h"
+
 #include <boost/format.hpp>
 #include <boost/assign/list_of.hpp>
 
-#include "OSGConfig.h"
 #include "OSGViewport.h"
 
 #include "OSGPerfMonitorForeground.h"
