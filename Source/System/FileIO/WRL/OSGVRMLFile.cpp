@@ -45,7 +45,13 @@
 
 #include <iostream>
 
-#include "OSGVRMLFile.h"
+#if defined(OSG_STL_HAS_HASH_MAP) && defined(__EMSCRIPTEN__)
+#  undef OSG_STL_HAS_HASH_MAP
+#  include "OSGVRMLFile.h"
+#  define OSG_STL_HAS_HASH_MAP
+#else
+#  include "OSGVRMLFile.h"
+#endif
 
 #include "OSGFieldType.h"
 #include "OSGMathMFields.h"

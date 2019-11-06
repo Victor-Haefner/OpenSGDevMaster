@@ -127,14 +127,14 @@ class VRMLNodePrototypeHandler : public BaseT
 
     typedef BaseT Inherited;
 
-#if defined(_LIBCPP_VERSION)
+#if defined(_LIBCPP_VERSION) && !defined(__EMSCRIPTEN__)
     typedef
         OSG_STDEXTENSION_NAMESPACE::hash_map<
               std::string,
               VRMLNodeHelper *> NameHelperMap;
 
 #else
-# if !defined(WIN32) 
+# if !defined(WIN32) && !defined(__EMSCRIPTEN__)
     /*! \nohierarchy
      */
     struct string_hash

@@ -44,6 +44,7 @@
 
 #include "OSGConfig.h"
 
+
 #ifdef __GNUC__
 
 //#  if __GNUC__ >= 4 || __GNUC_MINOR__ >= 3
@@ -84,8 +85,8 @@
 
 #else
 
-//#  if defined(OSG_STL_HAS_HASH_MAP) && !defined(__EMSCRIPTEN__)
-#  ifdef OSG_STL_HAS_HASH_MAP
+#  if defined(OSG_STL_HAS_HASH_MAP) && !defined(__EMSCRIPTEN__)
+//#  ifdef OSG_STL_HAS_HASH_MAP
 #    ifdef OSG_HASH_MAP_AS_EXT
 #      include <ext/hash_set>
 #      include <ext/hash_map>
