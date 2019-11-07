@@ -67,7 +67,7 @@
 OSG_BEGIN_NAMESPACE
 
 #if defined(__sgi) || defined(__linux) || defined(__APPLE__) || \
-    defined(__sun) || defined(__hpux)
+    defined(__sun) || defined(__hpux) || defined(__EMSCRIPTEN__)
 
 template <class Tp, class Alloc> inline
 MFieldVector<Tp, Alloc>::MFieldVector(const allocator_type& __a) :
