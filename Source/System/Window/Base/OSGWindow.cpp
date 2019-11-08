@@ -1726,6 +1726,7 @@ OSG::Window::GLExtensionFunction OSG::Window::getFunctionByName(
     
     static void (*(*__GetProcAddress)(const GLubyte *))(void) = NULL; 
 
+#ifndef __EMSCRIPTEN__
     static void *libHandle = NULL; 
     std::string  libHandleName;
 
@@ -1746,7 +1747,8 @@ OSG::Window::GLExtensionFunction OSG::Window::getFunctionByName(
             FDEBUG(("Opened lib %s for GL extension handling.\n", 
                     libHandleName.c_str()));
         }
-    } 
+    }
+#endif
 
     if(__GetProcAddress == NULL) 
     { 
@@ -1799,7 +1801,7 @@ OSG::Window::GLExtensionFunction OSG::Window::getFunctionByName(
                 {
                     // Couldn't find it linked to the executable. Try to open
                     // libGL.so directly.
-
+#ifndef __EMSCRIPTEN__
                     dlclose(libHandle);
 
                     libHandle = dlopen("libGL.so", RTLD_NOW | RTLD_GLOBAL); 
@@ -1813,6 +1815,7 @@ OSG::Window::GLExtensionFunction OSG::Window::getFunctionByName(
                     {
                         FPINFO((" Using libGL.so directly.\n"));
                     }
+#endif
                    
                     __GetProcAddress = 
 #if __GNUC__ < 4

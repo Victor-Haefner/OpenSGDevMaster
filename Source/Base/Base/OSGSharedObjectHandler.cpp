@@ -167,16 +167,20 @@ bool SharedObject::open()
     }
 
 #ifndef WIN32
+#ifndef __EMSCRIPTEN__
 #ifdef OSG_DLOPEN_LAZY
     _pHandle = dlopen(libName, RTLD_LAZY);
 #else
     _pHandle = dlopen(libName, RTLD_NOW);
 #endif
+#endif
 
     if(_pHandle == NULL)
     {
+#ifndef __EMSCRIPTEN__
         SFATAL << "SharedObject::open: Could not open shared object '"
                << _szName << "':  " << dlerror() << std::endl;
+#endif
     }
 #else
     if(libName != NULL)
@@ -224,7 +228,7 @@ AnonSymbolHandle SharedObject::getSymbol(const TChar *szSymbolName)
 #endif
     }
 
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__EMSCRIPTEN__)
     if(returnValue == NULL)
         fprintf(stderr, "%s\n", dlerror()); // Why not using log? !!! DR
 #else

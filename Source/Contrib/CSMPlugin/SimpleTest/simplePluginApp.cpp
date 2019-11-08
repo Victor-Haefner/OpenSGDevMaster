@@ -50,6 +50,7 @@ void doit(int argc, char **argv)
 #else
 void doit(int argc, char **argv)
 {
+#ifndef __EMSCRIPTEN__
     void *pHandle = dlopen("bin/libOSGContribCSMSimplePlugin.so", 
                            (RTLD_LAZY | RTLD_GLOBAL));
 
@@ -85,6 +86,7 @@ void doit(int argc, char **argv)
     {
         fprintf(stderr, "Could not open plugin so\n");
     }
+#endif
 }
 #endif
 
