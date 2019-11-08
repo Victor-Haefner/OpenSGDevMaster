@@ -104,6 +104,7 @@ extern OSG_BASE_DLLMAPPING GLErrorFunctor GLErrorCallback;
 
 OSG_END_NAMESPACE
 
+
 #if defined(OSG_DEBUG)
 #define glErr(text)                                    \
 {                                                      \

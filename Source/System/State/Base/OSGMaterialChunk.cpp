@@ -48,6 +48,12 @@
 #include "OSGGL.h"
 #include "OSGGLU.h"
 
+#ifdef __EMSCRIPTEN__
+//#define GL_GLEXT_PROTOTYPES
+//#include <GL/glext.h>
+GLAPI void APIENTRY glVertexAttrib4fv (GLuint index, const GLfloat *v);
+#endif
+
 #include "OSGMaterialChunk.h"
 #include "OSGShaderAttribute.h"
 #include "OSGDrawEnv.h"
@@ -234,6 +240,7 @@ void MaterialChunk::activate(DrawEnv *pEnv, UInt32)
 {
 	glErr("material:activate:precheck");
 
+#ifndef __EMSCRIPTEN__
 #if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
     GLenum target;
 
@@ -323,6 +330,7 @@ void MaterialChunk::activate(DrawEnv *pEnv, UInt32)
 
 //    OSG_ASSERT(false);
 #endif
+#endif
 
 	glErr("material:activate:postcheck");
 }
@@ -333,6 +341,7 @@ void MaterialChunk::changeFrom(DrawEnv    *pEnv,
 {
 	glErr("material:changed:precheck");
 
+#ifndef __EMSCRIPTEN__
 #if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
     MaterialChunk const *old = dynamic_cast<MaterialChunk const*>(old_chunk);
 
@@ -450,6 +459,7 @@ void MaterialChunk::changeFrom(DrawEnv    *pEnv,
     glVertexAttrib4fv( ShaderConstants::Attribute3Index,
                       _sfDiffuse.getValue().getValuesRGBA());
 //    OSG_ASSERT(false);
+#endif
 #endif
 
 	glErr("material:changed:postcheck");

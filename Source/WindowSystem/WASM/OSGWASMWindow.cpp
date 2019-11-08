@@ -53,6 +53,11 @@
 
 #include "OSGWASMWindow.h"
 
+#if defined(__EMSCRIPTEN__)
+GLAPI const GLubyte * GLAPIENTRY gluErrorString(GLenum eError) {
+    return reinterpret_cast<const GLubyte *> ("");
+}
+#endif
 
 OSG_USING_NAMESPACE
 

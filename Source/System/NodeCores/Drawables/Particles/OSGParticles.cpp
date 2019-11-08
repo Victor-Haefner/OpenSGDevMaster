@@ -1098,7 +1098,9 @@ struct NormalTraitGeneric : public ParticleTraits
 
     static inline void normal(dataType &data, UInt32 )
     {
+#ifndef __EMSCRIPTEN__
         glNormal3fv(static_cast<GLfloat *>(data.n.getValues()));
+#endif
     }
 };
 
@@ -1163,7 +1165,9 @@ struct NormalTraitGeneric3f : public ParticleTraits
 
     static inline void normal(dataType &data, UInt32 )
     {
+#ifndef __EMSCRIPTEN__
         glNormal3fv(static_cast<const GLfloat *>(data.n->getValues()));
+#endif
     }
 };
 
@@ -1898,7 +1902,9 @@ struct GeoTraitArrow : public ParticleTraits
         dz*=s[2];
         dx*=s[0];
 
+#ifndef __EMSCRIPTEN__
         glNormal3fv(static_cast<GLfloat *>(dy.getValues()));
+#endif
 
         glBegin(GL_TRIANGLE_FAN);
 
@@ -1966,7 +1972,9 @@ struct GeoTraitRectangle : public ParticleTraits
     {
         dx *= s[0] * .5f;
 
+#ifndef __EMSCRIPTEN__
         glNormal3fv(static_cast<GLfloat *>(dy.getValues()));
+#endif
 
         glVertex3f( p[0] - dx[0],
                     p[1] - dx[1],

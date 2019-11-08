@@ -339,8 +339,6 @@
 
 # define OSG_USE_STDMATH
 
-# define OSG_USE_GLX
-
 # define OSG_USE_PTHREADS
 
 # define OSG_LINUX_GCC

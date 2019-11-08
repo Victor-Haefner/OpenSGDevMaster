@@ -135,6 +135,12 @@ void GLUTWindow::init(GLInitFunctor oFunc)
     Inherited::setHwnd (WindowFromDC(Inherited::getHdc()));
 #elif defined(__APPLE__)
     Inherited::setContext(cocoaWrapperCurrentContext());
+#elif defined(__EMSCRIPTEN__)
+    //glutSetWindow(getGlutId());
+
+    //Inherited::setHdc  (wglGetCurrentDC     ());
+    //Inherited::setHglrc(wglGetCurrentContext());
+    //Inherited::setHwnd (WindowFromDC(Inherited::getHdc()));
 #else
     glutSetWindow(getGlutId());
 
@@ -151,8 +157,9 @@ void GLUTWindow::activate(void)
 {
     if((_sfDrawMode.getValue() & PartitionDrawMask) == SequentialPartitionDraw)
     {
-        if(glutGetWindow() != getGlutId())
-            glutSetWindow(getGlutId());
+#ifndef __EMSCRIPTEN__
+        if(glutGetWindow() != getGlutId()) glutSetWindow(getGlutId());
+#endif
 
         Inherited::doActivate();
     }

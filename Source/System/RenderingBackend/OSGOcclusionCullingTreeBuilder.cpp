@@ -581,7 +581,7 @@ void OcclusionCullingTreeBuilder::drawTestNode(OCRenderTreeNode    *pNode,
                                                DrawEnv             &denv,
                                                RenderPartitionBase *part)
 {
-
+#ifndef __EMSCRIPTEN__
     //std::cout << "Front: " << _currSample << " Back: " << _currSampleBack << std::endl;
     while(_testPendingNodes.size() == _numTestSamples - 1)
     {
@@ -665,6 +665,7 @@ void OcclusionCullingTreeBuilder::drawTestNode(OCRenderTreeNode    *pNode,
 
     osgGlEndQuery(GL_SAMPLES_PASSED_ARB);
     _testPendingNodes.push(pNode);
+#endif
 }
 
 void OcclusionCullingTreeBuilder::drawNode(OCRenderTreeNode   *pNode,
