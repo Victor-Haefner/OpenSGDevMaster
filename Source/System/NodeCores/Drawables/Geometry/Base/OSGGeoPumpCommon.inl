@@ -43,6 +43,7 @@
 //  Includes
 //---------------------------------------------------------------------------
 
+
 #if !defined(OSG_DO_DOC) || defined(OSG_DOC_DEV)
 
 namespace
@@ -323,7 +324,7 @@ namespace
     const UInt16 TexCoordsPumpSlot = 3;
 
 
-#if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
+#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__) || defined(OSG_CHECK_COREONLY)
     pumpFunc pumpFuncs[4][numFormats][4] = {
         { // Positions
             { NULL, NULL, NULL, NULL },                     // GL_BYTE

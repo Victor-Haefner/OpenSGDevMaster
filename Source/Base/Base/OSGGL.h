@@ -54,6 +54,10 @@
 #  include <OpenGLES/ES2/gl.h>
 # else
 #  include <GLES2/gl2.h>
+#  if defined(__EMSCRIPTEN__)
+#    define GL_INDEX_LOGIC_OP 0xffff
+#    define GL_TEXTURE_INTERNAL_FORMAT 0xffff
+#  endif
 # endif
 
 #else

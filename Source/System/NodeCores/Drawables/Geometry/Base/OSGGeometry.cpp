@@ -833,7 +833,7 @@ void Geometry::drawPrimitives(DrawEnv *pEnv, UInt32 uiNumInstances)
                  GeoPumpGroup::NonIndexed    )) == 0x0000)) // ||
 //       (prop &   GeoPumpGroup::AllVAOMask     ) != GeoPumpGroup::AllVAOMask)
     {
-#if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
+#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__) || defined(OSG_CHECK_COREONLY)
         if(getDlistCache() == true)
         {
             Int32 glid;
@@ -877,7 +877,7 @@ void Geometry::drawPrimitives(DrawEnv *pEnv, UInt32 uiNumInstances)
             (prop &   GeoPumpGroup::AllVAOMask) != GeoPumpGroup::AllVAOMask)
     {
 #if (!defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)) &&  \
-    !defined(__APPLE__)
+    !defined(__APPLE__) && !defined(__EMSCRIPTEN__)
         if(getDlistCache() == true && uiNumInstances == 1)
         {
             Int32 glid;
@@ -987,7 +987,7 @@ void Geometry::drawPrimitives(DrawEnv *pEnv, UInt32 uiNumInstances)
                                      pWin);
 
 #if (!defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)) && \
-    !defined(__APPLE__)
+    !defined(__APPLE__) && !defined(__EMSCRIPTEN__)
                 if(getDlistCache() == true && uiNumInstances == 1 &&
                    pWin->hasVAODListProblems() == false)
                 {

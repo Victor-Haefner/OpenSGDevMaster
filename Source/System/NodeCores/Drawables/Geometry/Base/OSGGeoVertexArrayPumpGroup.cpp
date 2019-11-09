@@ -149,7 +149,7 @@ namespace
         return retVal;
     }
 
-#if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
+#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__) || defined(OSG_CHECK_COREONLY)
     // handle vertex attrib with global value
     void globalAttrib(PumpData &info, UInt16 slot, UInt16 pumpSlot)
     {

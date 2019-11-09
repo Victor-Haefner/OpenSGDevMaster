@@ -43,11 +43,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <OSGConfig.h>
-
-#include <OSGBaseFunctions.h>
-
+#include "OSGConfig.h"
+#include "OSGBaseFunctions.h"
 #include "OSGFresnelMaterial.h"
+
+#ifdef __EMSCRIPTEN__
+#define GL_CLAMP GL_CLAMP_TO_EDGE
+#define GL_SPHERE_MAP 0x2402
+#endif
 
 OSG_BEGIN_NAMESPACE
 

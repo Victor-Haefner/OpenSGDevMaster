@@ -1022,7 +1022,7 @@ void RenderPartition::setupExecution(bool bUpdateGlobalViewport)
     // We always push so stages with callbacks can modify the values
     // as needed
 
-#ifndef OSG_OGL_COREONLY
+#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__)
     if(bUpdateGlobalViewport == false)
         glPushAttrib(GL_VIEWPORT_BIT | GL_SCISSOR_BIT);
 #endif
@@ -1056,7 +1056,7 @@ void RenderPartition::setupExecution(bool bUpdateGlobalViewport)
         glDisable(GL_SCISSOR_TEST);
     }
 
-#ifndef OSG_OGL_COREONLY
+#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__)
     if(bUpdateGlobalViewport == true)
         glPushAttrib(GL_VIEWPORT_BIT | GL_SCISSOR_BIT);
 
@@ -1230,7 +1230,7 @@ void RenderPartition::doExecution(bool bRestoreViewport)
     // We always push/pop so stages with callback can modify the values
     // as needed
 
-#ifndef OSG_OGL_COREONLY
+#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__)
     glPopAttrib();
 #endif
 

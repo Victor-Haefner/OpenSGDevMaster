@@ -48,12 +48,6 @@
 #include "OSGGL.h"
 #include "OSGGLU.h"
 
-#ifdef __EMSCRIPTEN__
-//#define GL_GLEXT_PROTOTYPES
-//#include <GL/glext.h>
-GLAPI void APIENTRY glVertexAttrib4fv (GLuint index, const GLfloat *v);
-#endif
-
 #include "OSGMaterialChunk.h"
 #include "OSGShaderAttribute.h"
 #include "OSGDrawEnv.h"

@@ -214,7 +214,7 @@ void GeoVectorProperty::activate(DrawEnv *pEnv, UInt32 slot)
                                  pWin);
         
         osgGlEnableVertexAttribArray(slot);
-  
+
         OSGGETGLFUNCBYID_GL3_ES( glVertexAttribDivisor,
                                  osgGlVertexAttribDivisor,
                                 _funcVertexAttribDivisorARB,

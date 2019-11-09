@@ -486,11 +486,13 @@ double RenderNode::runFaceBench(float w, int size)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glFinish();
         t -= getSystemTime();
+#ifndef __EMSCRIPTEN__
         for(int y = 0; y < vh; y += size)
         {
             glCallList(dList);
             glTranslatef(0, GLfloat(size), 0);
         }
+#endif
 
         glFinish();
         t += getSystemTime();
@@ -556,7 +558,9 @@ double RenderNode::runRasterBench(void)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glFinish();
         t -= getSystemTime();
+#ifndef __EMSCRIPTEN__
         glCallList(dList);
+#endif
         glFinish();
         t += getSystemTime();
         c++;
