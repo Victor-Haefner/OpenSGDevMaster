@@ -125,8 +125,8 @@ class OSG_BASE_DLLMAPPING PointerSFieldBase : public Field
     /*! \name Members                                                      */
     /*! \{                                                                 */
     
-    static FieldType  _fieldType;
-
+    static FieldType* _fieldType;
+    static void initFieldType();
            StoredType _fieldValue;
     
     /*! \}                                                                 */

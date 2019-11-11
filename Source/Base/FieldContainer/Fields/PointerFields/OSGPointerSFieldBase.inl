@@ -49,6 +49,7 @@ PointerSFieldBase::PointerSFieldBase(void) :
      Inherited (    ),
     _fieldValue(NULL)
 {
+	initFieldType();
 }
 
 /*-------------------------------------------------------------------------*/

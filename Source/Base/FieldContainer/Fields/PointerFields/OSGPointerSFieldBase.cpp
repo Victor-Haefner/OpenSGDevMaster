@@ -40,17 +40,31 @@
 
 OSG_BEGIN_NAMESPACE
 
-FieldType PointerSFieldBase::_fieldType(
+FieldType* PointerSFieldBase::_fieldType = 0;
+
+void PointerSFieldBase::initFieldType() {
+	if (!_fieldType) {
+		_fieldType = new FieldType(
+			"FieldContainerPtrSFieldBase",
+			"Field",                    
+			SFieldTraits::getType (),   
+			FieldType::SingleField,
+			FieldType::PtrField);
+	}
+}
+
+// Warning: static member definition not called when compiling with emscripten
+/*FieldType PointerSFieldBase::_fieldType(
     "FieldContainerPtrSFieldBase",
     "Field",                    
     SFieldTraits::getType (),   
     FieldType::SingleField,
-    FieldType::PtrField);
+    FieldType::PtrField);*/
 
 
 const FieldType &PointerSFieldBase::getClassType(void)
 {
-    return _fieldType;
+    return *_fieldType;
 }
 
 OSG_END_NAMESPACE

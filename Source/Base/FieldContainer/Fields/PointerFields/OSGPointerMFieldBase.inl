@@ -224,6 +224,7 @@ PointerMFieldBase::PointerMFieldBase(void) :
      Inherited(),
     _ptrStore ()
 {
+	initFieldType();
 }
 
 /*-------------------------------------------------------------------------*/
