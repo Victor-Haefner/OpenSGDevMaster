@@ -51,6 +51,9 @@
 
 #include "OSGGLUTWindow.h"
 
+#ifdef __EMSCRIPTEN__
+#  undef GL_ARB_shader_objects
+#endif
 #include "OSGGLUT.h"
 
 #include "OSGViewport.h"

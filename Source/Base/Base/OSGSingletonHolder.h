@@ -68,7 +68,7 @@ class SingletonHolder
     /*! \name                      access                                  */
     /*! \{                                                                 */
 
-    static SingletonT *the    (void);
+    static SingletonT *the    (bool destroy = false);
     static bool        destroy(void);
 
     /*! \}                                                                 */
@@ -76,18 +76,12 @@ class SingletonHolder
 
   protected:
 
-    /*---------------------------------------------------------------------*/
-    /*! \name                      Member                                  */
-    /*! \{                                                                 */
-
-    static SingletonT *_the;
-
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
     /*! \name                   Constructors                               */
     /*! \{                                                                 */
 
-    static void init(void);
+    static SingletonT* init(void);
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -106,12 +100,12 @@ class SingletonHolder
 };
 
 template<class SingletonT> inline
-SingletonT *SingletonHolder<SingletonT>::the(void)        
-{                                                         
-    if(_the == NULL)                                      
-    {                                                     
-        init();
-    }                                                     
+SingletonT *SingletonHolder<SingletonT>::the(bool destroy)        
+{      
+    static SingletonT *_the = NULL;
+
+    if (destroy) _the = NULL;                                                 
+    else if(_the == NULL) _the = init();                    
                                                           
     return _the;                                          
 }                                                         

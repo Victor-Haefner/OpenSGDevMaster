@@ -50,7 +50,7 @@ OSG_BEGIN_NAMESPACE
 
 OSG_SINGLETON_INST(GLDefineMapperBase, addPostFactoryExitFunction)
 
-template class SingletonHolder<GLDefineMapperBase>;
+//template class SingletonHolder<GLDefineMapperBase>;
 
 
 GLenum GLDefineMapperBase::fromString(const Char8  *sval) const
