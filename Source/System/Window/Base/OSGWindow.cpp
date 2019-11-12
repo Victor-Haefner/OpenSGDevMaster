@@ -58,6 +58,10 @@
 # endif
 #endif
 
+#if defined(__EMSCRIPTEN__)
+#include <EGL/egl.h>
+#endif
+
 #if defined(OSG_EMBEDDED) && defined(WIN32)
 #include <gles/egl.h>
 #endif
@@ -1708,6 +1712,10 @@ OSG::Window::GLExtensionFunction OSG::Window::getFunctionByName(
         if(symbol != 0)
             retval = GLExtensionFunction(NSAddressOfSymbol(symbol));
     }
+#elif defined(__EMSCRIPTEN__)
+
+    retval = (void(__cdecl*)(void)) eglGetProcAddress(s);
+
 #elif defined(OSG_EMBEDDED) && defined(WIN32)
 
     retval = (void(__cdecl*)(void)) eglGetProcAddress(s);
