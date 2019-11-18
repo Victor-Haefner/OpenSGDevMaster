@@ -1515,8 +1515,10 @@ void OSG::Window::doFrameInit(bool reinitExtFuctions)
         GLExtensionFunction func = NULL;
         
         // XXX: I think this should be "and".  And what is "ext"?
+#ifndef __EMSCRIPTEN__
         if(ext == -1 || _availExtensions[ext] == true || _glVersion >= ver)
-        {
+#endif
+	{
             func = getFunctionByName(s);
             if (NULL != func)
             {
