@@ -182,7 +182,7 @@ void PolygonChunk::activate(DrawEnv *pEnv, UInt32)
         glEnable(GL_POLYGON_OFFSET_FILL);
 #endif
 
-#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__)
+#if !defined(OSG_OGL_COREONLY)
 // stipple
 
     if(_mfStipple.size() == 32)
@@ -306,7 +306,7 @@ void PolygonChunk::changeFrom(DrawEnv *pEnv, StateChunk *old_chunk, UInt32)
     }
 #endif
 
-#if !defined(OSG_OGL_COREONLY) && !defined(__EMSCRIPTEN__)
+#if !defined(OSG_OGL_COREONLY)
 // stipple
 
     if(_mfStipple.getValues() != old->_mfStipple.getValues())
