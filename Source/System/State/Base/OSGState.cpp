@@ -119,7 +119,7 @@ State::State(void) :
     _uiDefaultSortKey  (0                             ),
     _uiSortKey         (0                             ),
     _uiKeyGen          (0                             ),
-#if defined(OSG_OGL_COREONLY)
+#if defined(OSG_OGL_COREONLY) && !defined __EMSCRIPTEN__
     _uiCoreGLChunkLimit(LightChunk::getStaticClassId())
 #else
     _uiCoreGLChunkLimit(4096                          ) // Arbitrary high value
@@ -132,7 +132,7 @@ State::State(const State &source) :
     _uiDefaultSortKey  (                             0),
     _uiSortKey         (                             0),
     _uiKeyGen          (                             0),
-#if defined(OSG_OGL_COREONLY)
+#if defined(OSG_OGL_COREONLY) && !defined __EMSCRIPTEN__
     _uiCoreGLChunkLimit(LightChunk::getStaticClassId())
 #else
     _uiCoreGLChunkLimit(4096                          ) // Arbitrary high value

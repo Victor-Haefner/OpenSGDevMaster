@@ -1007,7 +1007,11 @@
 #define osg OSG
 #endif
 
+#ifndef __EMSCRIPTEN__
 #define OSG_ASSERT(expr) assert(expr)
+#else
+#define OSG_ASSERT(expr) ;
+#endif
 
 //#define OSG_DBG_MEM
 //#define OSG_DBG_LCK

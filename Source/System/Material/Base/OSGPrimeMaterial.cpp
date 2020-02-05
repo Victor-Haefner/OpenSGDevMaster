@@ -93,7 +93,7 @@ PrimeMaterial::PrimeMaterial(void) :
      Inherited(    ),
     _pState   (NULL)
 {
-#if defined(OSG_OGL_COREONLY)
+#if defined(OSG_OGL_COREONLY) && !defined __EMSCRIPTEN__
     _sfCoreGLChunkLimit.setValue(LightChunk::getStaticClassId());
 #else
     _sfCoreGLChunkLimit.setValue(4096                          );
