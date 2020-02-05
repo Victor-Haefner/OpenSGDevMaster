@@ -305,7 +305,6 @@ void DrawEnv::activateState(State         *pNewState,
                 {
                     deactivate(_pActiveState);
                 }
-
                 pFullChunk->activate(this, pNewState, pNewStateOverride);
 
                 ++_uiNumStateChanges;
@@ -433,9 +432,20 @@ void DrawEnv::activate(State         *pState,
     UInt32                    cind   = osgMin(State::SkipNumChunks, 
                                               pState->getMFChunks()->size32());
 
-    UInt32 const              climit = pState->getCoreGLChunkLimit();
+    UInt32 const              climit = pState->getCoreGLChunkLimit(); 
 
     OSG_SKIP_IT    (cIt, cind);
+
+// TODO: hack, no idea how this index juggling is supposed to work..
+//  this hack was added to enable face culling (PolygonChunk)
+#ifdef __EMSCRIPTEN__
+    for(cind = 0; (cIt != cEnd) ; ++cIt, ++cind) {
+	if(*cIt != NULL && (*cIt)->getIgnore() == false)
+            {
+                (*cIt)->activate(this, 0);
+            }
+    }
+#endif
 
     for(; (cIt != cEnd) && (cind < climit); ++cIt, ++cind)
     {
