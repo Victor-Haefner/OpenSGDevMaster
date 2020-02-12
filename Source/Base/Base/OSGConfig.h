@@ -346,6 +346,13 @@
 # define OSG_FOUND_OS
 
 # define BOOST_SP_USE_SPINLOCK
+
+// libjpeg port defines
+# define JCONFIG_INCLUDED
+# define HAVE_PROTOTYPES
+# define HAVE_UNSIGNED_CHAR
+# define FALSE	0
+# define TRUE	1
  
 # endif // defined(__EMSCRIPTEN__)
 
