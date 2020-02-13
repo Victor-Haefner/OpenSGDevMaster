@@ -848,6 +848,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                     glErr("TextureObjChunk::activate generate_mipmaps");
                     needMipmaps = false; // automagic does it
                 }
+#ifndef __EMSCRIPTEN__ // dont use gluBuild?DMipmaps!
                 else
                 {
                     // Nope, try to use gluBuild?DMipmaps
@@ -988,6 +989,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                         defined = true;
                     } // data
                 } // need to use gluBuildMipmaps?
+#endif
             } // got them from the image already?
         } // need mipmaps?
 
@@ -1757,16 +1759,18 @@ void TextureObjChunk::activate(DrawEnv *pEnv, UInt32 idx)
         return;
     }
 
-    if(activateTexture(win, idx))
+    if(activateTexture(win, idx)) {
         return; // trying to access too many textures
+    }
 
     win->validateGLObject(getGLId(), pEnv);
 
     Image  *img    = getImage();
     GLenum  target = getTarget();
 
-    if(img == NULL || ! img->getDimension()) // no image ?
+    if(img == NULL || ! img->getDimension()) {// no image ?
         return;
+    }
 
     glErr("TextureObjChunk::activate precheck");
 
@@ -1832,7 +1836,9 @@ void TextureObjChunk::activate(DrawEnv *pEnv, UInt32 idx)
 
     if(idx < static_cast<UInt32>(ntexunits))
     {
+#ifndef __EMSCRIPTEN__
         glEnable(target);
+#endif
     }
 
     glErr("TextureObjChunk::activate");
@@ -2131,7 +2137,9 @@ void TextureObjChunk::deactivate(DrawEnv *pEnv, UInt32 idx)
         target = GL_TEXTURE_CUBE_MAP_ARB;
     }
 
+#ifndef __EMSCRIPTEN__
     glDisable(target);
+#endif
 
     pEnv->setActiveTexTarget(idx, GL_NONE);
 

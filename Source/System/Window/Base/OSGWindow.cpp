@@ -1550,7 +1550,6 @@ void OSG::Window::doFrameInit(bool reinitExtFuctions)
         for(; cIt != cEnd; ++cIt)
         {
             Vec2f val(unknownConstant, unknownConstant);
-
             glGetFloatv(*cIt, static_cast<GLfloat *>(val.getValues()));
             _availConstants[*cIt] = val;
 

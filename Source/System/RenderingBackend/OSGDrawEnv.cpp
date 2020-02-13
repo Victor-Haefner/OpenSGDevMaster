@@ -436,6 +436,15 @@ void DrawEnv::activate(State         *pState,
 
     OSG_SKIP_IT    (cIt, cind);
 
+    // for debugging ther state chunks
+    /*std::cout << "DrawEnv::activate " << climit << " " << pState->getMFChunks()->size32() << " " << std::endl;
+    MFUnrecStateChunkPtr::const_iterator c2It  = pState->getMFChunks()->begin();
+    MFUnrecStateChunkPtr::const_iterator c2End = pState->getMFChunks()->end  (); 
+    for (int I = 0; (cIt != cEnd) ; ++cIt, ++I) {
+	if (*cIt != NULL) std::cout << " " << I << " " << (*cIt)->getTypeName() << " ignore? " << (*cIt)->getIgnore();
+    }
+    std::cout << std::endl;*/
+
     for(; (cIt != cEnd) && (cind < climit); ++cIt, ++cind)
     {
         if(overIt != pOverride->end() && overIt->first == cind)

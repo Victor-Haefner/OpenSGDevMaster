@@ -112,7 +112,7 @@ OSG_END_NAMESPACE
                                                        \
     while((glerr = glGetError()) != GL_NO_ERROR)       \
     {                                                  \
-        FWARNING(("(%s,%d): %s failed: %s (%#x)\n",    \
+        FWARNING(("(%s,%d): %s failed: %s (gl err: %#x)\n",    \
                   __FILE__, __LINE__,                  \
                   (text),                              \
                   gluErrorString(glerr),               \
