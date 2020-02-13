@@ -103,6 +103,8 @@ class OSG_IMGFILEIO_DLLMAPPING JPGImageFileType : public ImageFileType
 
     virtual std::string determineMimetypeFromStream(std::istream &is);
 
+    static const JPGImageFileType &the(void);
+
     /*! \}                                                                 */
     /*=========================  PROTECTED  ===============================*/
 

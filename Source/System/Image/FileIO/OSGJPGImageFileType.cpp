@@ -293,7 +293,7 @@ static boolean jpeg_mem_fill_input_buffer(
     j_decompress_ptr OSG_CHECK_ARG(cinfo))
 {
     SFATAL << "Missing data. Given data block to small." << std::endl;
-    return false;
+    return FALSE;
 }
 
 /* */
@@ -309,7 +309,7 @@ static boolean jpeg_mem_resync_to_restart(
     j_decompress_ptr OSG_CHECK_ARG(cinfo  ),
     int              OSG_CHECK_ARG(desired))
 {
-    return false;
+    return FALSE;
 }
 
 /* */
@@ -329,7 +329,7 @@ static boolean jpeg_mem_empty_output_buffer(
     j_compress_ptr OSG_CHECK_ARG(cinfo))
 {
     SFATAL << "Not enough space left in buffer." << std::endl;
-    return false;
+    return FALSE;
 }
 
 /* */
@@ -375,6 +375,11 @@ JPGImageFileType JPGImageFileType:: _the("image/jpeg",
                                          suffixArray, sizeof(suffixArray),
                                          (OSG_READ_SUPPORTED | 
                                           OSG_WRITE_SUPPORTED));
+
+const JPGImageFileType &JPGImageFileType::the(void) 
+{
+    return _the; 
+}
 
 void JPGImageFileType::setQuality(UInt32 cl)
 {
