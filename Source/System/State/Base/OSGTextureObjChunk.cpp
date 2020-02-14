@@ -522,7 +522,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
 #endif
 
         // 3D texture functions
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
         OSGGETGLFUNCBYID_GL3( glTexImage3D,
                               osgGlTexImage3D,
                              _funcTexImage3D,
@@ -550,9 +550,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                                     _funcTexSubImage3DExt,
                                      win);
         }
-#endif
 
-#ifndef OSG_OGL_ES2
         // Compressed texture functions
         OSGGETGLFUNCBYID_GL3   ( glCompressedTexImage1D,
                                  osgGlCompressedTexImage1D,
@@ -571,7 +569,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                                  osgGlCompressedTexSubImage2D,
                                 _funcCompressedTexSubImage2D,
                                  win);
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
         OSGGETGLFUNCBYID_GL3   ( glCompressedTexImage3D,
                                  osgGlCompressedTexImage3D,
                                 _funcCompressedTexImage3D,
@@ -757,7 +755,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                             case GL_TEXTURE_3D:
                             case GL_TEXTURE_2D_ARRAY:
                             case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                                 osgGlCompressedTexImage3D(
                                     imgtarget,
                                     i - baseLevel,
@@ -814,7 +812,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                             case GL_TEXTURE_3D:
                             case GL_TEXTURE_2D_ARRAY:
                             case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                                 osgGlTexImage3D(imgtarget,
                                                 i - baseLevel,
                                                 internalFormat,
@@ -1140,7 +1138,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                            case GL_TEXTURE_3D:
                            case GL_TEXTURE_2D_ARRAY:
                            case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                                osgGlCompressedTexImage3D(imgtarget, 0,
                                                          internalFormat,
                                                          osgNextPower2(width),
@@ -1211,7 +1209,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                            case GL_TEXTURE_3D:
                            case GL_TEXTURE_2D_ARRAY:
                            case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                                osgGlTexImage3D(imgtarget,
                                                0,
                                                internalFormat,
@@ -1291,7 +1289,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                         case GL_TEXTURE_3D:
                         case GL_TEXTURE_2D_ARRAY:
                         case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                             osgGlCompressedTexImage3D(imgtarget, 0,
                                                       internalFormat,
                                                       width, height, depth,
@@ -1340,7 +1338,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                         case GL_TEXTURE_3D:
                         case GL_TEXTURE_2D_ARRAY:
                         case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                             osgGlTexImage3D(imgtarget, 0, internalFormat,
                                             width, height, depth,
                                             getBorderWidth(),
@@ -1373,15 +1371,13 @@ void TextureObjChunk::handleTexture(Window                  *win,
     }
     else if(mode == Window::needrefresh)
     {
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
         // 3D texture functions
         OSGGETGLFUNCBYID_GL3( glTexSubImage3D,
                               osgGlTexSubImage3D,
                              _funcTexSubImage3D,
                               win);
-#endif
 
-#ifndef OSG_OGL_ES2
         // Compressed texture functions
         OSGGETGLFUNCBYID_GL3   ( glCompressedTexSubImage1D,
                                  osgGlCompressedTexSubImage1D,
@@ -1392,7 +1388,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                                  osgGlCompressedTexSubImage2D,
                                 _funcCompressedTexSubImage2D,
                                  win);
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
         OSGGETGLFUNCBYID_GL3   ( glCompressedTexSubImage3D,
                                  osgGlCompressedTexSubImage3D,
                                 _funcCompressedTexSubImage3D,
@@ -1502,7 +1498,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                     case GL_TEXTURE_3D:
                     case GL_TEXTURE_2D_ARRAY:
                     case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                         osgGlCompressedTexSubImage3D(imgtarget, 0,
                                                      ix, iy, iz,
                                                      w, h, d,
@@ -1550,7 +1546,7 @@ void TextureObjChunk::handleTexture(Window                  *win,
                     case GL_TEXTURE_3D:
                     case GL_TEXTURE_2D_ARRAY:
                     case GL_TEXTURE_CUBE_MAP_ARRAY:
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
                         osgGlTexSubImage3D(imgtarget, 0,  ix, iy, iz,
                                            w, h, d,
                                            externalFormat, type,
@@ -1859,7 +1855,7 @@ void TextureObjChunk::activate(DrawEnv *pEnv, UInt32 idx)
 
     if(idx < static_cast<UInt32>(ntexunits))
     {
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
         glEnable(target);
 #endif
     }
@@ -2058,7 +2054,7 @@ void TextureObjChunk::changeFrom(DrawEnv    *pEnv,
     {
         if(target != oldtarget)
         {
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
             glEnable(target);
 #endif
         }
@@ -2162,7 +2158,7 @@ void TextureObjChunk::deactivate(DrawEnv *pEnv, UInt32 idx)
         target = GL_TEXTURE_CUBE_MAP_ARB;
     }
 
-#ifndef __EMSCRIPTEN__
+#ifndef OSG_OGL_ES2
     glDisable(target);
 #endif
 
