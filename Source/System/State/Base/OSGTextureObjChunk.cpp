@@ -2058,7 +2058,9 @@ void TextureObjChunk::changeFrom(DrawEnv    *pEnv,
     {
         if(target != oldtarget)
         {
+#ifndef __EMSCRIPTEN__
             glEnable(target);
+#endif
         }
     }
 
