@@ -234,8 +234,7 @@ void MaterialChunk::activate(DrawEnv *pEnv, UInt32)
 {
 	glErr("material:activate:precheck");
 
-#ifndef __EMSCRIPTEN__
-#if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
+#if (!defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)) && !defined(__EMSCRIPTEN__)
     GLenum target;
 
     pEnv->incNumChunkChanges();
@@ -324,7 +323,6 @@ void MaterialChunk::activate(DrawEnv *pEnv, UInt32)
 
 //    OSG_ASSERT(false);
 #endif
-#endif
 
 	glErr("material:activate:postcheck");
 }
@@ -335,8 +333,7 @@ void MaterialChunk::changeFrom(DrawEnv    *pEnv,
 {
 	glErr("material:changed:precheck");
 
-#ifndef __EMSCRIPTEN__
-#if !defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)
+#if (!defined(OSG_OGL_COREONLY) || defined(OSG_CHECK_COREONLY)) && !defined(__EMSCRIPTEN__)
     MaterialChunk const *old = dynamic_cast<MaterialChunk const*>(old_chunk);
 
     // change from me to me?
@@ -453,7 +450,6 @@ void MaterialChunk::changeFrom(DrawEnv    *pEnv,
     glVertexAttrib4fv( ShaderConstants::Attribute3Index,
                       _sfDiffuse.getValue().getValuesRGBA());
 //    OSG_ASSERT(false);
-#endif
 #endif
 
 	glErr("material:changed:postcheck");

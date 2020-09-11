@@ -110,6 +110,7 @@ class OSG_FILEIO_DLLMAPPING OSBNodeElement : public OSBCommonElement
 
     /*---------------------------------------------------------------------*/
 
+  public:
     static OSBElementRegistrationHelper<OSBNodeElement> _regHelper;
 };
 
