@@ -95,7 +95,7 @@ class PointerSFieldCommon : public PointerSFieldBase
     /*! \}                                                                 */
     /*=========================  PROTECTED  ===============================*/
 
-  protected:
+  public:
 
     /*---------------------------------------------------------------------*/
     /*! \name Constructors                                                 */

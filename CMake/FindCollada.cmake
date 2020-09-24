@@ -118,11 +118,11 @@ FIND_LIBRARY(COLLADA_LIBRARY_DEBUG
 ELSE()
 # locate libraries
 FIND_LIBRARY(COLLADA_LIBRARY_RELEASE
-    NAMES collada_dom collada14dom libcollada14dom21
+    NAMES collada_dom collada14dom libcollada14dom21 collada-dom2.5-dp-vc140-mt
     PATHS ${__COLLADA_LIBRARY_SEARCH_DIRS})
 
 FIND_LIBRARY(COLLADA_LIBRARY_DEBUG
-    NAMES collada_dom-d collada14dom-d libcollada14dom21-d
+    NAMES collada_dom-d collada14dom-d libcollada14dom21-d collada-dom2.5-dp-vc140-mt-d
     PATHS ${__COLLADA_LIBRARY_SEARCH_DIRS})
 ENDIF()
 

@@ -78,7 +78,7 @@ class SimpleAttachment : public Attachment
     
      /*=========================  PROTECTED  ===============================*/
 
-  protected:
+  public:
 
     typedef Inherited::TypeObject TypeObject;
     typedef TypeObject::InitPhase InitPhase;
@@ -227,7 +227,7 @@ class SimpleAttachment : public Attachment
     /*! \}                                                                 */
     /*==========================  PRIVATE  ================================*/
 
-  protected:
+  public:
     
     /*---------------------------------------------------------------------*/
     /*! \name                  Type information                            */
