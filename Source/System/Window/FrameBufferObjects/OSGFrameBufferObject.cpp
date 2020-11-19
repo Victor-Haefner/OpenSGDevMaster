@@ -139,6 +139,8 @@ UInt32 FrameBufferObject::_uiFuncDrawBuffers              =
 UInt32 FrameBufferObject::_uiFuncBlitFramebuffer          =
     Window::invalidFunctionID;
 
+GLint  FrameBufferObject::outerFBO         				  = 0;
+	
 // Documentation for this class is emited in the
 // OSGFrameBufferObjectBase.cpp file.
 // To modify it, please change the .fcd file (OSGFrameBufferObject.fcd) and
@@ -606,8 +608,8 @@ void FrameBufferObject::activate(DrawEnv *pEnv,
                             _uiFuncBindFramebuffer,
                              win);
 
-    osgGlBindFramebuffer(GL_FRAMEBUFFER, 
-                         win->getGLObjectId(glId));
+	//glGetIntegerv(GL_FRAMEBUFFER_BINDING, &outerFBO);
+    osgGlBindFramebuffer(GL_FRAMEBUFFER, win->getGLObjectId(glId));
 
     pEnv->setActiveFBO(glId);
 
@@ -677,10 +679,8 @@ void FrameBufferObject::deactivate (DrawEnv *pEnv)
 //        GLbitfield bufferMask = GL_COLOR_BUFFER_BIT;
         glDisable(GL_MULTISAMPLE);
 
-        osgGlBindFramebuffer(GL_READ_FRAMEBUFFER, 
-                             win->getGLObjectId(getMultiSampleGLId()));
-        osgGlBindFramebuffer(GL_DRAW_FRAMEBUFFER, 
-                             win->getGLObjectId(getGLId           ()));
+        osgGlBindFramebuffer(GL_READ_FRAMEBUFFER, win->getGLObjectId(getMultiSampleGLId()));
+        osgGlBindFramebuffer(GL_DRAW_FRAMEBUFFER, win->getGLObjectId(getGLId()));
 
         osgGlBlitFramebuffer(0, 0, getWidth(), getHeight(),
                               0, 0, getWidth(), getHeight(),
@@ -737,9 +737,9 @@ void FrameBufferObject::deactivate (DrawEnv *pEnv)
         }
     }
 
-    osgGlBindFramebuffer(GL_FRAMEBUFFER, 0);
+    osgGlBindFramebuffer(GL_FRAMEBUFFER, outerFBO);
 
-    pEnv->setActiveFBO(0);
+    pEnv->setActiveFBO(outerFBO);
     
     if(_sfPostProcessOnDeactivate.getValue() == true)
     {
@@ -800,6 +800,7 @@ UInt32 FrameBufferObject::handleGL(DrawEnv                 *pEnv,
                                 _uiFuncFramebufferRenderbuffer,
                                  win);
 
+		//glGetIntegerv(GL_FRAMEBUFFER_BINDING, &outerFBO);
         osgGlBindFramebuffer(GL_FRAMEBUFFER, uiFBOId);
 
         MFUnrecFrameBufferAttachmentPtr::const_iterator attIt  = 
@@ -977,6 +978,7 @@ UInt32 FrameBufferObject::handleMultiSampleGL(
                                 _uiFuncFramebufferRenderbuffer,
                                  win);
 
+		//glGetIntegerv(GL_FRAMEBUFFER_BINDING, &outerFBO);
         osgGlBindFramebuffer(GL_FRAMEBUFFER, uiFBOId);
 
         MFUnrecFrameBufferAttachmentPtr::const_iterator attIt  = 
@@ -1133,8 +1135,8 @@ void FrameBufferObject::activateFBOById(DrawEnv *pEnv, UInt32 uiOSGId)
 
     win->validateGLObject(uiOSGId, pEnv);
 
-    osgGlBindFramebuffer(GL_FRAMEBUFFER, 
-                         win->getGLObjectId(uiOSGId));
+	//glGetIntegerv(GL_FRAMEBUFFER_BINDING, &outerFBO);
+    osgGlBindFramebuffer(GL_FRAMEBUFFER, win->getGLObjectId(uiOSGId));
 
     pEnv->setActiveFBO(uiOSGId);
 }
@@ -1155,10 +1157,9 @@ void FrameBufferObject::deactivateFBOById(DrawEnv *pEnv)
                             _uiFuncBindFramebuffer,
                              win);
 
-    osgGlBindFramebuffer(GL_FRAMEBUFFER, 
-                         0             );
+    osgGlBindFramebuffer(GL_FRAMEBUFFER, outerFBO);
 
-    pEnv->setActiveFBO(0);
+    pEnv->setActiveFBO(outerFBO);
 
     if(pEnv ==  NULL)
         return;

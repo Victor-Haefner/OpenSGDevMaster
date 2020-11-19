@@ -65,6 +65,7 @@ class OSG_SYSTEM_DLLMAPPING FrameBufferObject :
     /*==========================  PUBLIC  =================================*/
 
   public:
+	static GLint outerFBO; 
 
     typedef FrameBufferObjectBase                           Inherited;
 
