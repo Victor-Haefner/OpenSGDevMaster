@@ -127,9 +127,12 @@ ColladaGlobal::read(std::istream &is, const std::string &fileName)
     _docPath = fileName;
 
     _dae = new DAE;
+	std::cout << " ColladaGlobal - open " << fileName << std::endl;
     _dae->open(fileName.c_str());
 
+	std::cout << " ColladaGlobal - do read" << std::endl;
     rootN = doRead();
+	std::cout << "  done" << std::endl;
 
     _docPath. clear();
     _dae    ->clear();
