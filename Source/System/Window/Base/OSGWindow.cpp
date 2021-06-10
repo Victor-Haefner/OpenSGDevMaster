@@ -1558,7 +1558,9 @@ void OSG::Window::doFrameInit(bool reinitExtFuctions)
                     *cIt, val[0], val[1]));
         }
 
+#ifndef __EMSCRIPTEN__
         glGetError();
+#endif
     }
 
     _pTravValidator->incEventCounter();
@@ -1659,6 +1661,7 @@ void OSG::Window::doFrameExit(void)
             testGLErrors = false;
     }
  
+#ifndef __EMSCRIPTEN__
     if(testGLErrors && this->hasContext() == true)
     {
         GLenum glerr;
@@ -1676,6 +1679,7 @@ void OSG::Window::doFrameExit(void)
 #endif
         }
     }
+#endif
     
 }
 
