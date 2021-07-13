@@ -88,6 +88,7 @@ OSG_BEGIN_NAMESPACE
 
 UInt32 Image::_formatDic[][2] =
 {
+    { OSG_R_PF,      1 },
     { OSG_A_PF,      1 },
     { OSG_I_PF,      1 },
     { OSG_L_PF,      1 },
@@ -202,6 +203,9 @@ void Image::dump(      UInt32    ,
 
     switch(getPixelFormat())
     {
+        case OSG_R_PF:
+            pfStr = "RED";
+            break;
         case OSG_A_PF:
             pfStr = "ALPHA";
             break;

@@ -137,7 +137,9 @@ class OSG_SYSTEM_DLLMAPPING Image : public ImageBase
         OSG_BGR_INTEGER_PF             = GL_BGR_INTEGER_EXT,
         OSG_BGRA_INTEGER_PF            = GL_BGRA_INTEGER_EXT,
         OSG_LUMINANCE_INTEGER_PF       = GL_LUMINANCE_INTEGER_EXT,
-        OSG_LUMINANCE_ALPHA_INTEGER_PF = GL_LUMINANCE_ALPHA_INTEGER_EXT
+        OSG_LUMINANCE_ALPHA_INTEGER_PF = GL_LUMINANCE_ALPHA_INTEGER_EXT,
+
+        OSG_R_PF                       = GL_RED    // important for webassembly (webgl2)
     };
 
     enum Type 
