@@ -680,12 +680,12 @@ void TextureObjChunk::handleTexture(Window                  *win,
                             getMinFilter() == GL_NEAREST_MIPMAP_LINEAR  ||
                             getMinFilter() == GL_LINEAR_MIPMAP_LINEAR   ;
 
-/*#ifdef __EMSCRIPTEN__  // Deprecated? seams deprecated since the switch to webgl2
+#ifdef __EMSCRIPTEN__  // Deprecated? seams deprecated since the switch to webgl2
         if (needMipmaps) { // TODO no mipmaps?
             needMipmaps = false;
             glTexParameteri(paramtarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         }
-#endif*/
+#endif
 
         determineFormats(internalFormat, externalFormat);
 
