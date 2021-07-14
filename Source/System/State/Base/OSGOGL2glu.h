@@ -19,8 +19,11 @@
 #define B(rgba)	(((rgba) & 0x00ff0000) >>16)
 #define A(rgba)	(((rgba) & 0xff000000) >>24)
 
+#define GLfloat float
 #define GLubyte unsigned char
 #define GLushort unsigned short
+
+#define GL_RED 0x1903
 
 struct format;
 typedef unsigned pix_t;
@@ -218,6 +221,42 @@ static void pack_4444(const struct format *fmt, const pix_t *src, void *dst,
 	}
 }
 
+static void unpack_R32(const struct format *fmt, const void *src, pix_t *dst,
+		     int count)
+{
+	const GLfloat *srcp = (GLfloat*)src;
+
+	while(count--)
+		*(dst+=4) = *srcp++; // TODO: not yet correct, maybe not possible to process float data here
+}
+
+static void pack_R32(const struct format *fmt, const pix_t *src, void *dst,
+		   int count)
+{
+	GLfloat *dstp = (GLfloat*)dst;
+
+	while(count--)
+		*dstp++ = *(src+=4); // TODO: not yet correct, maybe not possible to process float data here
+}
+
+static void unpack_R(const struct format *fmt, const void *src, pix_t *dst,
+		     int count)
+{
+	const GLubyte *srcp = (GLubyte*)src;
+
+	while(count--)
+		*dst++ = RGBA(*srcp++,0,0,255);
+}
+
+static void pack_R(const struct format *fmt, const pix_t *src, void *dst,
+		   int count)
+{
+	GLubyte *dstp = (GLubyte*)dst;
+
+	while(count--)
+		*dstp++ = R(*src++);
+}
+
 static void unpack_A(const struct format *fmt, const void *src, pix_t *dst,
 		     int count)
 {
@@ -286,6 +325,9 @@ const static struct format formats[] = {
 	{ GL_LUMINANCE,		GL_UNSIGNED_BYTE,	1, 1, unpack_L,  pack_L },
 	{ GL_LUMINANCE_ALPHA,	GL_UNSIGNED_BYTE,	1, 1, unpack_LA, pack_LA },
 	{ GL_ALPHA,		GL_UNSIGNED_BYTE,	1, 1, unpack_A,  pack_A },
+	{ GL_RED,		GL_UNSIGNED_BYTE,	1, 1, unpack_R,  pack_R },
+
+	{ GL_RED,		GL_FLOAT,	        1, 4, unpack_R32, pack_R32 },
 
 	{0,0}
 };
@@ -294,9 +336,10 @@ const struct format *__pspglu_getformat(GLenum format, GLenum type)
 {
 	const struct format *ret;
 
-	for(ret = formats; ret->format != 0; ret++)
+	for(ret = formats; ret->format != 0; ret++) {
 		if (ret->format == format && ret->type == type)
 			return ret;
+        }
 
 	return NULL;
 }
