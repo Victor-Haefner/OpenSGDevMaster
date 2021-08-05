@@ -45,6 +45,8 @@
 #include "OSGDistanceLODBase.h"
 #include "OSGAction.h"
 
+#define OSGDistanceLODHasUserCb 1
+
 OSG_BEGIN_NAMESPACE
 
 /*! \brief Distance-based Level Of Detail
@@ -58,6 +60,8 @@ class OSG_GROUP_DLLMAPPING DistanceLOD : public DistanceLODBase
     /*==========================  PUBLIC  =================================*/
 
   public:
+
+    void setUserCallback( std::shared_ptr< std::function<void(int,int)> > cb );
 
     /*---------------------------------------------------------------------*/
     /*! \name                       Sync                                   */
@@ -110,6 +114,9 @@ class OSG_GROUP_DLLMAPPING DistanceLOD : public DistanceLODBase
 
     friend class FieldContainer;
     friend class DistanceLODBase;
+
+    int lastIndex = -1;
+    std::weak_ptr< std::function<void(int,int)> > userCb;
 
     /*---------------------------------------------------------------------*/
     /*! \name                      Init                                    */

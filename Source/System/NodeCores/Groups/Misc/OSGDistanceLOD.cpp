@@ -100,6 +100,10 @@ DistanceLOD::~DistanceLOD(void)
 /*-------------------------------------------------------------------------*/
 /*                               Init                                      */
 
+void DistanceLOD::setUserCallback( std::shared_ptr< std::function<void(int,int)> > cb ) {
+    userCb = cb;
+}
+
 void DistanceLOD::initMethod(InitPhase ePhase)
 {
     Inherited::initMethod(ePhase);
@@ -159,6 +163,12 @@ Action::ResultE DistanceLOD::renderEnter(Action *action)
                     break;
             }
         }
+    }
+
+    if (index != lastIndex) {
+        auto cb = userCb.lock();
+        if (cb) (*cb)(index, lastIndex);
+        lastIndex = index;
     }
 
     Node *nodePtr = action->getNode(index);
