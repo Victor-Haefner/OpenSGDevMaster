@@ -647,7 +647,7 @@ void SimpleShadowMapEngine::doFinalPass(Light         *pLight,
         pTexChunk->setMagFilter     (GL_LINEAR);
         pTexChunk->setWrapS         (GL_CLAMP_TO_BORDER);
         pTexChunk->setWrapT         (GL_CLAMP_TO_BORDER);
-//        pTexChunk->setEnvMode       (GL_MODULATE);
+        pTexChunk->setBorderColor   (Color4f(1,0,0,0)); // set r border to 1, removes artifacts
         pTexChunk->setTarget        (GL_TEXTURE_2D);
         
         pTexChunk->setCompareMode(GL_COMPARE_R_TO_TEXTURE);
