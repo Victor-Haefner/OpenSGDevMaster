@@ -715,25 +715,25 @@ void FrameBufferObject::deactivate (DrawEnv *pEnv)
             if(_sfDepthAttachment.getValue() == _sfStencilAttachment.getValue())
             {
                 _sfDepthAttachment.getValue()->processPreDeactivate(
-                    pEnv, GL_NONE);
+                    pEnv, GL_DEPTH_ATTACHMENT);
             }
             else
             {
                 _sfDepthAttachment  .getValue()->processPreDeactivate(
-                    pEnv, GL_NONE);
+                    pEnv, GL_DEPTH_ATTACHMENT);
                 _sfStencilAttachment.getValue()->processPreDeactivate(
-                    pEnv, GL_NONE);
+                    pEnv, GL_STENCIL_ATTACHMENT);
             }
         }
         else if(_sfDepthAttachment.getValue() != NULL)
         {
             _sfDepthAttachment  .getValue()->processPreDeactivate(
-                pEnv, GL_NONE);
+                pEnv, GL_DEPTH_ATTACHMENT);
         }
         else if(_sfStencilAttachment.getValue() != NULL)
         {
             _sfStencilAttachment.getValue()->processPreDeactivate(
-                pEnv, GL_NONE);
+                pEnv, GL_STENCIL_ATTACHMENT);
         }
     }
 
