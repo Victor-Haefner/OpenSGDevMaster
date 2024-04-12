@@ -24,6 +24,16 @@
 #define HAVE_EXT_HASH_SET 1
 #endif
 
+
+/* the namespace of hash_map */
+#ifdef __APPLE__
+#define HASH_NAMESPACE std
+#define HAVE_EXT_HASH_FUN_H 0
+#define HAVE_EXT_HASH_MAP 0
+#define HAVE_EXT_HASH_SET 0
+#endif
+
+
 /* Define to 1 if you have the <ext/stl_hash_fun.h> header file. */
 /* #undef HAVE_EXT_STL_HASH_FUN_H */
 

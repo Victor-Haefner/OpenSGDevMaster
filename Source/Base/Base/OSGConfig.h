@@ -719,6 +719,10 @@
 
 # define BOOST_SP_USE_SPINLOCK
 
+# undef OSG_STL_HAS_HASH_MAP
+#undef OSG_STDEXTENSION_NAMESPACE
+# define OSG_STDEXTENSION_NAMESPACE  std
+
 # endif // if defined(__APPLE__)
 
 

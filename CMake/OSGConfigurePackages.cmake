@@ -96,6 +96,9 @@ MACRO(OSG_CONFIGURE_GLUT)
 
       IF(GLUT_FOUND)
         MESSAGE("-- Found GLUT: "${GLUT_LIBRARIES} )
+        IF(APPLE)
+          SET(GLUT_LIBRARIES ${GLUT_LIBRARIES} "-framework Cocoa -framework AGL" CACHE STRING "" FORCE)
+        ENDIF(APPLE)
         
       ELSE(GLUT_FOUND)
         

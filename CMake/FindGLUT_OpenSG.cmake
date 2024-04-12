@@ -37,7 +37,7 @@ ELSE (WIN32)
       ${OPENGL_LIBRARY_DIR}
       )
     SET(GLUT_glut_LIBRARY "-framework GLUT" CACHE STRING "GLUT library for OSX") 
-    SET(GLUT_cocoa_LIBRARY "-framework Cocoa" CACHE STRING "Cocoa framework for OSX")
+    SET(GLUT_cocoa_LIBRARY "-framework Cocoa -framework AGL" CACHE STRING "Cocoa and AGL framework for OSX")
   ELSE (APPLE)
     
     FIND_PATH( GLUT_INCLUDE_DIR GL/glut.h
