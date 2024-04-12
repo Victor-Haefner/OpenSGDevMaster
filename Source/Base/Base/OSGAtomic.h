@@ -44,8 +44,12 @@
 #if !defined(WIN32)
 #include <boost/version.hpp>
 
-#ifdef __EMSCRIPTEN__
-# define BOOST_SP_USE_SPINLOCK
+#if defined(__APPLE__) 
+#define BOOST_SP_USE_SPINLOCK
+#endif
+
+#if defined(__EMSCRIPTEN__)
+#define BOOST_SP_USE_SPINLOCK
 #endif
 
 #if BOOST_VERSION < 103900
@@ -61,6 +65,7 @@
 #pragma intrinsic( _InterlockedAnd )
 #pragma intrinsic( _InterlockedOr )
 #endif
+
 
 OSG_BEGIN_NAMESPACE
 

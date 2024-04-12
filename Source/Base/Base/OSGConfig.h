@@ -717,6 +717,8 @@
 # define OSG_APPLE_IOS 1
 #endif
 
+# define BOOST_SP_USE_SPINLOCK
+
 # endif // if defined(__APPLE__)
 
 
