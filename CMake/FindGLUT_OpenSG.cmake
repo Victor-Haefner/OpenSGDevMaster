@@ -36,7 +36,7 @@ ELSE (WIN32)
       /System/Library/Frameworks/GLUT.framework/Versions/A/Headers
       ${OPENGL_LIBRARY_DIR}
       )
-    SET(GLUT_glut_LIBRARY "-framework GLUT" CACHE STRING "GLUT library for OSX") 
+    SET(GLUT_glut_LIBRARY "-lglut" CACHE STRING "GLUT library for OSX") 
     SET(GLUT_cocoa_LIBRARY "-framework Cocoa -framework AGL" CACHE STRING "Cocoa and AGL framework for OSX")
   ELSE (APPLE)
     

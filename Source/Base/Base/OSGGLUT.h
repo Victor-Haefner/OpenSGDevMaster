@@ -49,7 +49,7 @@
 #ifdef OSG_NO_GLUT_GLSUBDIR
 #include <glut.h>
 #elif defined(__APPLE__)
-#include <GLUT/glut.h>
+#include <GL/glut.h>
 #else
 #include <GL/glut.h>
 #endif

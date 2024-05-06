@@ -146,45 +146,45 @@ class OSG_BASE_DLLMAPPING ExceptionBinaryDataHandler
     /*! \name                        Get                                   */
     /*! \{                                                                 */
 
-    void get        (void         *dst,   SizeT  size) throw (ReadError);
-    void getAndAlloc(MemoryHandle &src,   SizeT  size) throw (ReadError);
+    void get        (void         *dst,   SizeT  size)  ;
+    void getAndAlloc(MemoryHandle &src,   SizeT  size)  ;
 
-    void getValue   (bool         &value             ) throw (ReadError);
-    void getValue   (UInt8        &value             ) throw (ReadError);
-    void getValue   (UInt16       &value             ) throw (ReadError);
-    void getValue   (UInt32       &value             ) throw (ReadError);
-    void getValue   (UInt64       &value             ) throw (ReadError);
-    void getValue   (Int8         &value             ) throw (ReadError);
-    void getValue   (Int16        &value             ) throw (ReadError);
-    void getValue   (Int32        &value             ) throw (ReadError);
-    void getValue   (Int64        &value             ) throw (ReadError);
-    void getValue   (Real16       &value             ) throw (ReadError);
-    void getValue   (Fixed32      &value             ) throw (ReadError);
-    void getValue   (Real32       &value             ) throw (ReadError);
-    void getValue   (Real64       &value             ) throw (ReadError);
-    void getValue   (Real128      &value             ) throw (ReadError);
-    void getValue   (std::string  &value             ) throw (ReadError);
+    void getValue   (bool         &value             )  ;
+    void getValue   (UInt8        &value             )  ;
+    void getValue   (UInt16       &value             )  ;
+    void getValue   (UInt32       &value             )  ;
+    void getValue   (UInt64       &value             )  ;
+    void getValue   (Int8         &value             )  ;
+    void getValue   (Int16        &value             )  ;
+    void getValue   (Int32        &value             )  ;
+    void getValue   (Int64        &value             )  ;
+    void getValue   (Real16       &value             )  ;
+    void getValue   (Fixed32      &value             )  ;
+    void getValue   (Real32       &value             )  ;
+    void getValue   (Real64       &value             )  ;
+    void getValue   (Real128      &value             )  ;
+    void getValue   (std::string  &value             )  ;
 #ifdef OSG_GLENUM_NEQ_UINT32
-    void getValue   (GLenum       &value             ) throw (ReadError);
+    void getValue   (GLenum       &value             )  ;
 #endif
 
-    void getValues  (bool         *value, SizeT size ) throw (ReadError);
-    void getValues  (UInt8        *value, SizeT size ) throw (ReadError);
-    void getValues  (UInt16       *value, SizeT size ) throw (ReadError);
-    void getValues  (UInt32       *value, SizeT size ) throw (ReadError);
-    void getValues  (UInt64       *value, SizeT size ) throw (ReadError);
-    void getValues  (Int8         *value, SizeT size ) throw (ReadError);
-    void getValues  (Int16        *value, SizeT size ) throw (ReadError);
-    void getValues  (Int32        *value, SizeT size ) throw (ReadError);
-    void getValues  (Int64        *value, SizeT size ) throw (ReadError);
-    void getValues  (Real16       *value, SizeT size ) throw (ReadError);
-    void getValues  (Fixed32      *value, SizeT size ) throw (ReadError);
-    void getValues  (Real32       *value, SizeT size ) throw (ReadError);
-    void getValues  (Real64       *value, SizeT size ) throw (ReadError);
-    void getValues  (Real128      *value, SizeT size ) throw (ReadError);
-    void getValues  (std::string  *value, SizeT size ) throw (ReadError);
+    void getValues  (bool         *value, SizeT size )  ;
+    void getValues  (UInt8        *value, SizeT size )  ;
+    void getValues  (UInt16       *value, SizeT size )  ;
+    void getValues  (UInt32       *value, SizeT size )  ;
+    void getValues  (UInt64       *value, SizeT size )  ;
+    void getValues  (Int8         *value, SizeT size )  ;
+    void getValues  (Int16        *value, SizeT size )  ;
+    void getValues  (Int32        *value, SizeT size )  ;
+    void getValues  (Int64        *value, SizeT size )  ;
+    void getValues  (Real16       *value, SizeT size )  ;
+    void getValues  (Fixed32      *value, SizeT size )  ;
+    void getValues  (Real32       *value, SizeT size )  ;
+    void getValues  (Real64       *value, SizeT size )  ;
+    void getValues  (Real128      *value, SizeT size )  ;
+    void getValues  (std::string  *value, SizeT size )  ;
 #ifdef OSG_GLENUM_NEQ_UINT32
-    void getValues  (GLenum       *value, SizeT size ) throw (ReadError);
+    void getValues  (GLenum       *value, SizeT size )  ;
 #endif
 
     /*! \}                                                                 */
@@ -264,7 +264,7 @@ class OSG_BASE_DLLMAPPING ExceptionBinaryDataHandler
     virtual void               read        (MemoryHandle   src,
                                             UInt32         size       );
 
-    virtual void readBuffer  (void) throw (ReadError);
+    virtual void readBuffer  (void)  ;
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/
@@ -299,7 +299,7 @@ class OSG_BASE_DLLMAPPING ExceptionBinaryDataHandler
     /*! \{                                                                 */
 
     void pushBuffer(void);
-    void pullBuffer(void) throw (ReadError);
+    void pullBuffer(void)  ;
     void freeMem   (void);
 
     /*! \}                                                                 */
