@@ -277,14 +277,20 @@ IF(CMAKE_COMPILER_IS_GNUCC)
         SET(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} -std=c++11")
       ENDIF()
     ENDIF()
+    
+    IF(OSG_ENABLE_C++20)
+      SET(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} -std=c++20")
+    ENDIF()
 ENDIF(CMAKE_COMPILER_IS_GNUCC)
 
 
 IF(APPLE AND NOT IOS)
   IF(OSG_ENABLE_C++11)
-#    SET(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} -std=c++11 -stdlib=libstdc++")
     SET(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} -std=c++11 -stdlib=libc++ -Wno-deprecated-register")
-#    SET(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} -std=c++11")
+  ENDIF()
+  
+  IF(OSG_ENABLE_C++20)
+    SET(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} -std=c++20 -stdlib=libc++ -Wno-deprecated-register")
   ENDIF()
 ENDIF()
 
