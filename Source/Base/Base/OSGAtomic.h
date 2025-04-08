@@ -44,19 +44,9 @@
 #if !defined(WIN32)
 #include <boost/version.hpp>
 
-#if defined(__APPLE__) 
 #define BOOST_SP_USE_SPINLOCK
-#endif
 
-#if defined(__EMSCRIPTEN__)
-#define BOOST_SP_USE_SPINLOCK
-#endif
-
-#if BOOST_VERSION < 103900
-#include <boost/detail/sp_counted_base.hpp>
-#else
 #include <boost/smart_ptr/detail/sp_counted_base.hpp>
-#endif
 
 #else
 #pragma intrinsic( _InterlockedExchangeAdd )
