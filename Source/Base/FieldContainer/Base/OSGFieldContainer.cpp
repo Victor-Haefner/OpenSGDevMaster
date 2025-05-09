@@ -348,11 +348,13 @@ bool FieldContainer::deregister(UInt32 uiContainerId)
     else
     {
         // can not use logging here, it is shut down already
+#ifndef OSG_FIELDCONTAINER_SHUTDOWN_SILENT
         fprintf(stderr,
                 "WARNING: FieldContainer::deregister: Container [%d @ %p] "
                 "is alive past OpenSG shutdown!\n", 
                 uiContainerId, 
                 static_cast<void *>(this));
+#endif
     }
 
     return retVal;
