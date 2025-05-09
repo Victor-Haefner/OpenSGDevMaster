@@ -297,7 +297,8 @@ bool VTKPolyDataMapper::processPrimitive(
     pColorField ->resize(numIndices);
     
     int prim = 0, vert = 0;
-    vtkIdType i, npts, *pts;
+    vtkIdType i, npts;
+    const vtkIdType* pts;
 //    int transparentFlag = 0;
     
     unsigned char *aColor  = NULL;
