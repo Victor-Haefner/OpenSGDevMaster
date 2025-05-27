@@ -2014,7 +2014,13 @@ FILE(APPEND "${CMAKE_BINARY_DIR}/OpenSGExtDep.cmake"
 # Component install Setting
 ###########################
 
-GET_CMAKE_PROPERTY(OSG_COMPONENT_LIST COMPONENTS)
+#GET_CMAKE_PROPERTY(OSG_COMPONENT_LIST COMPONENTS) # TODO: why did this stop working??
+IF(WIN32)
+set(OSG_COMPONENT_LIST release_runtimes release_binaries)
+ELSE()
+set(OSG_COMPONENT_LIST libraries binaries)
+ENDIF()
+
 
 IF(NOT WIN32)
   ADD_CUSTOM_TARGET(OSG_preinstall
