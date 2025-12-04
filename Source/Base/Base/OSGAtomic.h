@@ -41,26 +41,9 @@
 
 #include "OSGBaseTypes.h"
 
-#if !defined(WIN32)
-#include <boost/version.hpp>
-
-#define BOOST_SP_USE_SPINLOCK
-
-#include <boost/smart_ptr/detail/sp_counted_base.hpp>
-
-#else
-#pragma intrinsic( _InterlockedExchangeAdd )
-#pragma intrinsic( _InterlockedIncrement )
-#pragma intrinsic( _InterlockedDecrement )
-#pragma intrinsic( _InterlockedAnd )
-#pragma intrinsic( _InterlockedOr )
-#endif
-
 
 OSG_BEGIN_NAMESPACE
 
-#if !defined(WIN32)
-
 /*! \ingroup GrpBaseBaseAtomicFn
  */
 
@@ -68,7 +51,8 @@ inline
 RefCountStore osgAtomicExchangeAndAdd(RefCountStore *pValue, 
                                       RefCountStore  rcDelta)
 {
-    return boost::detail::atomic_exchange_and_add(pValue, rcDelta);
+    auto* atomicPtr = reinterpret_cast<std::atomic<RefCountStore>*>(pValue);
+    return atomicPtr->fetch_add(rcDelta, std::memory_order_relaxed);
 }
 
 /*! \ingroup GrpBaseBaseAtomicFn
@@ -77,7 +61,8 @@ RefCountStore osgAtomicExchangeAndAdd(RefCountStore *pValue,
 inline 
 void osgAtomicIncrement(RefCountStore *pValue)
 {
-    boost::detail::atomic_increment(pValue);
+    auto* atomicPtr = reinterpret_cast<std::atomic<RefCountStore>*>(pValue);
+    atomicPtr->fetch_add(1, std::memory_order_relaxed);
 }
 
 /*! \ingroup GrpBaseBaseAtomicFn
@@ -86,14 +71,8 @@ void osgAtomicIncrement(RefCountStore *pValue)
 inline 
 void osgAtomicDecrement(RefCountStore *pValue)
 {
-    __asm__
-    (
-        "lock\n\t"
-        "decl %0":
-        "=m"( *pValue ): // output (%0)
-        "m"( *pValue ): // input (%1)
-        "cc" // clobbers
-    );
+    auto* atomicPtr = reinterpret_cast<std::atomic<RefCountStore>*>(pValue);
+    atomicPtr->fetch_sub(1, std::memory_order_relaxed);
 }
 
 /*! \ingroup GrpBaseBaseAtomicFn
@@ -102,11 +81,14 @@ void osgAtomicDecrement(RefCountStore *pValue)
 inline
 void osgSpinLock(UInt32 *pLock, UInt32 uiMask)
 {
-#if __GNUC__ >= 4 && __GNUC_MINOR__ >=2
-    for(UInt32 tmpVal = __sync_fetch_and_or(pLock, uiMask); 
-        (tmpVal & uiMask) != 0x0000; 
-        tmpVal = __sync_fetch_and_or(pLock, uiMask)) ;
-#endif
+    auto* atomicPtr = reinterpret_cast<std::atomic<UInt32>*>(pLock);
+
+    // spin until we can set the bits in uiMask
+    UInt32 old = atomicPtr->fetch_or(uiMask, std::memory_order_acquire);
+    while (old & uiMask)
+    {
+        old = atomicPtr->fetch_or(uiMask, std::memory_order_acquire);
+    }
 }
 
 /*! \ingroup GrpBaseBaseAtomicFn
@@ -115,62 +97,10 @@ void osgSpinLock(UInt32 *pLock, UInt32 uiMask)
 inline
 void osgSpinLockRelease(UInt32 *pLock, UInt32 uiInvMask)
 {
-#if __GNUC__ >= 4 && __GNUC_MINOR__ >=2
-    __sync_and_and_fetch(pLock, uiInvMask);
-#endif
+    auto* atomicPtr = reinterpret_cast<std::atomic<UInt32>*>(pLock);
+    atomicPtr->fetch_and(uiInvMask, std::memory_order_release);
 }
 
-#else // !defined(WIN32)
-
-/*! \ingroup GrpBaseBaseAtomicFn
- */
-
-inline 
-RefCountStore osgAtomicExchangeAndAdd(RefCountStore *pValue, 
-                                      RefCountStore  rcDelta)
-{
-    return _InterlockedExchangeAdd(pValue, rcDelta);
-}
-
-/*! \ingroup GrpBaseBaseAtomicFn
- */
-
-inline 
-void osgAtomicIncrement(RefCountStore *pValue)
-{
-    _InterlockedIncrement(pValue);
-}
-
-/*! \ingroup GrpBaseBaseAtomicFn
- */
-
-inline 
-void osgAtomicDecrement(RefCountStore *pValue)
-{
-    _InterlockedDecrement(pValue);
-}
-
-/*! \ingroup GrpBaseBaseAtomicFn
- */
-
-inline
-void osgSpinLock(UInt32 *pLock, UInt32 uiMask)
-{
-    for(UInt32 tmpVal = _InterlockedOr((long *) pLock, uiMask); 
-        (tmpVal & uiMask) != 0x0000; 
-        tmpVal = _InterlockedOr((long *) pLock, uiMask));
-}
-
-/*! \ingroup GrpBaseBaseAtomicFn
- */
-
-inline
-void osgSpinLockRelease(UInt32 *pLock, UInt32 uiInvMask)
-{
-    _InterlockedAnd((long *) pLock, uiInvMask);
-}
-
-#endif
 
 OSG_END_NAMESPACE
 

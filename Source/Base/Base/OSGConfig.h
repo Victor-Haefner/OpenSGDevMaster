@@ -344,8 +344,6 @@
 # define OSG_LINUX_GCC
 
 # define OSG_FOUND_OS
-
-# define BOOST_SP_USE_SPINLOCK
  
 # endif // defined(__EMSCRIPTEN__)
 
@@ -716,8 +714,6 @@
 #if TARGET_OS_IPHONE || TARGET_OS_IPHONE_SIMULATOR
 # define OSG_APPLE_IOS 1
 #endif
-
-# define BOOST_SP_USE_SPINLOCK
 
 # undef OSG_STL_HAS_HASH_MAP
 #undef OSG_STDEXTENSION_NAMESPACE
