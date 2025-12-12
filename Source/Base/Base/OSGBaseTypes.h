@@ -48,7 +48,6 @@
 
 #include <vector>
 #include <boost/mpl/if.hpp>
-#include <boost/filesystem/path.hpp>
 
 #if defined(OSG_SGI_TYPES) || defined (OSG_LINUX_TYPES) || \
     defined(OSG_SUNOS_TYPES)
@@ -56,6 +55,7 @@
 #endif
 
 #include <cstdlib>
+#include <filesystem>
 
 #include <utility>
 
@@ -828,7 +828,7 @@ typedef RenderPropBitVectorSize::BitVectorSize RenderPropBitVector;
 /*! \ingroup GrpBaseBaseBaseTypes
  */
 
-typedef boost::filesystem::path BoostPath;
+typedef std::filesystem::path BoostPath;
 
 #include "OSGFixed.h"
 

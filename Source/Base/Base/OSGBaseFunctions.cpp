@@ -44,11 +44,10 @@
 
 #include <string>
 #include <vector>
+#include <filesystem>
 
 #include "OSGBaseFunctions.h"
 #include "OSGGLU.h"
-
-#include <boost/filesystem/operations.hpp>
 
 // XXX: Hack for right now, just assume we have it
 #if defined(__linux) && defined(__GNUC__) 
@@ -191,13 +190,13 @@ std::string getCallStack()
 
 BoostPath makeRelative(const BoostPath &oRoot, const BoostPath &oToPath)
 {
-    BoostPath oRootComplete   = boost::filesystem::system_complete(oRoot  );
-    BoostPath oToPathComplete = boost::filesystem::system_complete(oToPath);
+    BoostPath oRootComplete   = std::filesystem::absolute(oRoot  );
+    BoostPath oToPathComplete = std::filesystem::absolute(oToPath);
 
     BoostPath oResult;
 
-    boost::filesystem::path::iterator rootIt   = oRootComplete  .begin();
-    boost::filesystem::path::iterator toPathIt = oToPathComplete.begin();
+    std::filesystem::path::iterator rootIt   = oRootComplete  .begin();
+    std::filesystem::path::iterator toPathIt = oToPathComplete.begin();
 
     while(rootIt   != oRootComplete  .end()                          &&
           toPathIt != oToPathComplete.end()                          &&

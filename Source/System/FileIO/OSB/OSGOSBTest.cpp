@@ -54,9 +54,9 @@
 #include "OSGTextureChunk.h"
 #endif
 
-#include <boost/filesystem/operations.hpp>
+#include <filesystem>
 
-namespace bf = boost::filesystem;
+namespace bf = std::filesystem;
 
 SUITE(OSBTests)
 {

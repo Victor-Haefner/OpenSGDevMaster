@@ -66,7 +66,6 @@
 #include "OSGBoostPathAttachmentBase.h"
 #include "OSGBoostPathAttachment.h"
 
-#include <boost/bind.hpp>
 
 OSG_BEGIN_NAMESPACE
 

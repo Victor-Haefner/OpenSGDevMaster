@@ -47,8 +47,6 @@
 
 #include "OSGBoostPathAttachment.h"
 
-#include <boost/filesystem/operations.hpp>
-
 OSG_BEGIN_NAMESPACE
 
 // Documentation for this class is emitted in the

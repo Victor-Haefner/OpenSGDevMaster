@@ -42,9 +42,9 @@
 #include "OSGPerfMonitor.h"
 #include "OSGPerfMonitorGuard.h"
 
-#include <boost/filesystem/operations.hpp>
+#include <filesystem>
 
-namespace bf = boost::filesystem;
+namespace bf = std::filesystem;
 
 SUITE(PerfMonitorTests)
 {
