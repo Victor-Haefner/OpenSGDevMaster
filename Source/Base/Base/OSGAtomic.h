@@ -40,6 +40,7 @@
 #define _OSGATOMIC_H_
 
 #include "OSGBaseTypes.h"
+#include <atomic>
 
 
 OSG_BEGIN_NAMESPACE
