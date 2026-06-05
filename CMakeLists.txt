@@ -16,10 +16,6 @@ ENDIF()
 
 INCLUDE(OpenSGVersion)
 
-# Disable boost cmake config, as it screws up OpenSG's boost config
-
-SET(Boost_NO_BOOST_CMAKE TRUE CACHE INTERNAL "" FORCE)
-
 IF(WIN32)
   SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 ENDIF()
@@ -536,12 +532,6 @@ ENDIF(WIN32)
 
 IF(NOT OSG_BUILD_DEPENDEND)
 
-    ##########
-    #### boost
-    ##########
-
-    OSG_CONFIGURE_BOOST()
-
     #########
     #### zlib
     #########
@@ -821,39 +811,12 @@ IF(NOT OSG_BUILD_DEPENDEND)
     OSG_ADD_OPT(PYTHON_LIBRARY)
     OSG_ADD_OPT(PYTHONLIBS_FOUND)
 
-    IF(Boost_FOUND AND PYTHONLIBS_FOUND)
-
-      FIND_PACKAGE(Boost COMPONENTS python)
-
-      IF(Boost_FOUND AND WIN32)
-
-        SET(OSG_BOOST_PYTHON_TARGETS )
-        OSG_ADD_IMPORT_LIB(OSG_BOOST_PYTHON_TARGETS Boost_PYTHON_LIBRARY)
-        SET(OSG_BOOST_PYTHON_LIBS ${OSG_BOOST_PYTHON_TARGETS})
-      
-      ELSE(Boost_FOUND AND WIN32)
-
-        IF(CMAKE_BUILD_TYPE STREQUAL "Debug" OR 
-           CMAKE_BUILD_TYPE STREQUAL "DebugOpt")
-
-          SET(OSG_BOOST_PYTHON_LIBS ${Boost_PYTHON_LIBRARY_DEBUG})
-
-        ELSE()
-          SET(OSG_BOOST_PYTHON_LIBS ${Boost_PYTHON_LIBRARY_RELEASE})
-        ENDIF()
-
-      ENDIF(Boost_FOUND AND WIN32)
-
-      # We ignore if boost python fails, we catch that somewhere else
-      # so if we get here Boost_FOUND was true in the first place
-      SET(Boost_FOUND TRUE)
-
+    IF(PYTHONLIBS_FOUND)
       FIND_PACKAGE(GCCXML)
 
       OSG_SET_CACHE(PYOSG_PYPLUSPLUS_DIR "" PATH "")
       OSG_SET_CACHE(PYOSG_PYPLUSPLUS_GOODIES_DIR "" PATH "")
       OSG_SET_CACHE(PYOSG_DIR "" PATH "")
-
     ENDIF()
 
 
@@ -974,9 +937,8 @@ IF(NOT WIN32)
     IF(OSG_BUILD_DEPENDEND)
         MESSAGE(STATUS "Load reference settings")
         INCLUDE(${OSG_REFERENCE_DIR}/CMake.settings)
-        # Needed to get the correct vtk/boost settings
+        # Needed to get the correct vtk settings
         FIND_PACKAGE(VTK)
-        OSG_BOOST_DEP_SETUP()
         OSG_CONFIGURE_QT()
 
         IF(OSG_ENABLE_GL_INCLUDE_GLEW AND GLEW_FOUND)
@@ -1815,7 +1777,6 @@ INSTALL(DIRECTORY "${CMAKE_SOURCE_DIR}/Examples/CSM"
 #    SET(CPACK_COMPONENT_GROUP_DEVELOPMENT_DESCRIPTION "Documentation.")
 #
 #    #Dependencies
-#    #Boost
 #    #Base
 #
 #    #NSIS specific configuration
@@ -1997,9 +1958,6 @@ IF(WIN32)
        "SET(OSG_DISABLE_MS_ITERATOR_DEBUGGING ${OSG_DISABLE_MS_ITERATOR_DEBUGGING} CACHE INTERNAL \"\" FORCE)\n\n")
 
 ENDIF(WIN32)
-
-FILE(APPEND "${CMAKE_BINARY_DIR}/OpenSGExtDep.cmake"
-     "SET(BOOST_ROOT \"${BOOST_ROOT}\" CACHE PATH \"\")\n\n")
 
 FILE(APPEND "${CMAKE_BINARY_DIR}/OpenSGExtDep.cmake"
      "SET(OSG_SUPPORT_ROOT \"${OSG_SUPPORT_ROOT}\" CACHE PATH \"\")\n\n")
