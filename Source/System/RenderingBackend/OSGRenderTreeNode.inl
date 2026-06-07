@@ -142,7 +142,7 @@ RenderTreeNode::getFunctor(void)
 inline
 bool RenderTreeNode::hasFunctor(void)
 {
-    return !_functor.empty();
+    return bool(_functor);
 }
 
 inline
@@ -228,7 +228,7 @@ void RenderTreeNode::reset(void)
     _pBrother       = NULL;
     _pState         = NULL;
     _pStateOverride = NULL;
-    _functor.clear();
+    _functor = nullptr;
 
     _oMatrixStore.first = 0;
     _oMatrixStore.second.setIdentity();

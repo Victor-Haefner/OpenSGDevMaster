@@ -157,7 +157,7 @@ DataSlotMixin<ParentT>::~DataSlotMixin(void)
         fprintf(stderr, "DF (%d) (%p)\n",
                 i, static_cast<void *>(this));
 
-        (_mfDestroyedFunctors[i].first)(this);
+        (_mfDestroyedFunctors[i].first)();
     }
 }
 

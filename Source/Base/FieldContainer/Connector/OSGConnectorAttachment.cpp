@@ -231,12 +231,7 @@ void ConnectorAttachment::removeConnections(      BitVector       bSrcMask,
     {
         if(ccIt->second == 0)
         {
-            ccIt->first->subChangedFunctor(
-                std::bind(&ConnectorAttachment::targetDestroyed, 
-                            this, 
-                            _1, 
-                            _2,
-                            _3));
+            ccIt->first->subChangedFunctor("ConnectorAttachment::targetDestroyed");
         }
 
         ++ccIt;
@@ -271,12 +266,7 @@ void ConnectorAttachment::countConnections(ConnectionCount &mCount)
 bool ConnectorAttachment::unlinkParent(FieldContainer * const pParent,
                                        UInt16           const parentFieldId)
 {
-    pParent->subChangedFunctor(
-        std::bind(&ConnectorAttachment::processChanged, 
-                    this, 
-                    _1, 
-                    _2,
-                    _3));
+    pParent->subChangedFunctor("ConnectorAttachment::processChanged");
     
     return Inherited::unlinkParent(pParent, parentFieldId);
 }
@@ -287,12 +277,7 @@ void ConnectorAttachment::resolveLinks(void)
     {
         FieldContainer *pDst = _vConnections[i]->getDst();
 
-        pDst->subChangedFunctor(
-            std::bind(&ConnectorAttachment::targetDestroyed, 
-                        this, 
-                        _1, 
-                        _2,
-                        _3));
+        pDst->subChangedFunctor("ConnectorAttachment::targetDestroyed");
 
         delete _vConnections[i];
     }
@@ -339,7 +324,7 @@ void addConnector(OSG::AttachmentContainer *pContainer,
                         _1, 
                         _2,
                         _3),
-            "");
+            "ConnectorAttachment::processChanged");
 
         pContainer->addAttachment(pCA);
     }
@@ -364,7 +349,7 @@ void addConnector(OSG::AttachmentContainer *pContainer,
                         _1, 
                         _2,
                         _3),
-            "");
+            "ConnectorAttachment::targetDestroyed");
     }
 
     pCA->addConnection(pConn);

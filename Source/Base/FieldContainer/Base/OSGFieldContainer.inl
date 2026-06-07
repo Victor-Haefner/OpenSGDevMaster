@@ -238,22 +238,6 @@ void FieldContainer::addChangedFunctor(ChangedFunctor     func,
     _mfChangedFunctors.push_back(oTmp);
 }
 
-template<class FunctorT> inline
-void FieldContainer::subChangedFunctor(FunctorT func)
-{
-    MFChangedFunctorCallback::iterator       cfIt  = _mfChangedFunctors.begin();
-    MFChangedFunctorCallback::const_iterator cfEnd = _mfChangedFunctors.end  ();
-
-    for(; cfIt != cfEnd; ++cfIt)
-    {
-        if(cfIt->_func == func)
-        {
-            _mfChangedFunctors.erase(cfIt);
-            break;
-        }
-    }
-}
-
 inline
 void FieldContainer::subChangedFunctor(const std::string &createSymbol)
 {
@@ -268,26 +252,6 @@ void FieldContainer::subChangedFunctor(const std::string &createSymbol)
             break;
         }
     }
-}
-
-template<class FunctorT> inline
-bool FieldContainer::hasChangedFunctor(FunctorT func)
-{
-    bool returnValue = false;
-
-    MFChangedFunctorCallback::iterator       cfIt  = _mfChangedFunctors.begin();
-    MFChangedFunctorCallback::const_iterator cfEnd = _mfChangedFunctors.end  ();
-
-    for(; cfIt != cfEnd; ++cfIt)
-    {
-        if(cfIt->_func == func)
-        {
-            returnValue = true;
-            break;
-        }
-    }
-    
-    return returnValue;
 }
 
 inline

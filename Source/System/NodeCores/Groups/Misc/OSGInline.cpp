@@ -214,7 +214,7 @@ void Inline::postOSGLoading(FileContextAttachment * const pContext)
         {
             pFile->addChangedFunctor(
                 std::bind(&Inline::rootChanged, this, _1, _2, _3),
-                "");
+                "Inline::rootChanged");
 
             setRoot(pFile);
 
@@ -234,8 +234,7 @@ void Inline::postOSGLoading(FileContextAttachment * const pContext)
 
     if(i == _mfUrl.size() && _sfRoot.getValue() != NULL)
     {
-        _sfRoot.getValue()->subChangedFunctor(
-            std::bind(&Inline::rootChanged, this, _1, _2, _3));
+        _sfRoot.getValue()->subChangedFunctor("Inline::rootChanged");
 
         setRoot(NULL);
     }
@@ -295,8 +294,7 @@ void Inline::resolveLinks(void)
 {
     if(_sfRoot.getValue() != NULL)
     {
-        _sfRoot.getValue()->subChangedFunctor(
-            std::bind(&Inline::rootChanged, this, _1, _2, _3));
+        _sfRoot.getValue()->subChangedFunctor("Inline::rootChanged");
     }
 
     Inherited::resolveLinks();

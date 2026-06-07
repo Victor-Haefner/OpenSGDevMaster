@@ -74,7 +74,7 @@ bool TypePredicates::typeDerivedFromAll(      InIteratorTypeT  begin,
                                         const OSG::TypeBase   &type  )
 {
     return (std::find_if(begin, end,
-                         std::not1(TypePredicates::IsBaseOf(type))) == end);
+                         std::not_fn(TypePredicates::IsBaseOf(type))) == end);
 }
 
 /*! Tests if \a type is a base type any of the types in the sequence
@@ -114,7 +114,7 @@ bool TypePredicates::typeBaseOfAll(      InIteratorTypeT  begin,
 {
     return (
         std::find_if(begin, end,
-                     std::not1(TypePredicates::IsDerivedFrom(type))) == end);
+                     std::not_fn(TypePredicates::IsDerivedFrom(type))) == end);
 }
 
 OSG_END_NAMESPACE

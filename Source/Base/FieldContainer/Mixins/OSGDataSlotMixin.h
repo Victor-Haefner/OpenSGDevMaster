@@ -74,7 +74,7 @@ class DataSlotMixin : public ParentT
 
     typedef          DataSlotMixin<ParentT>         Self;
 
-    typedef          std::function<void (Self *)> DestroyFunctor;
+    typedef          std::function<void (void)> DestroyFunctor;
 
     typedef typename Desc::DataSlotIdPool           DataSlotIdPool;
 

@@ -74,25 +74,17 @@ void TraversalDataHandlerMixin<ParentT>::setData(
 
     if(bCheckCallback == true)
     {
-        if(this->hasDestroyedFunctor(
-               std::bind(&DataSlotHandler::clearData,
-                           pAction,
-                           _1,
-                           _2,
-                           this->_iDataSlotId)) == false)
+        if(this->hasDestroyedFunctor("DataSlotHandler::clearData") == false)
         {
             this->addDestroyedFunctor(
                 std::bind(&DataSlotHandler::clearData,
                             static_cast<DataSlotHandler *>(pAction),
                             _1,
                             _2,
-                            this->_iDataSlotId), "");
+                            this->_iDataSlotId), "DataSlotHandler::clearData");
 
             pAction->addDestroyedFunctorFor(
-                std::bind(
-                    &Self::template clearDestroyedFunctorFor<DataSlotHandler>,
-                    this,
-                    _1),
+                [this]() { this->subDestroyedFunctor("DataSlotHandler::clearData"); },
                 this);
         }
 
@@ -104,7 +96,7 @@ void TraversalDataHandlerMixin<ParentT>::setData(
                             _1, 
                             _2,
                             _3),
-                "");
+                "TraversalData::updateData");
 
             pData->addChangedFunctor(
                 std::bind(&Self::dataDestroyed, 
@@ -112,23 +104,12 @@ void TraversalDataHandlerMixin<ParentT>::setData(
                             _1, 
                             _2,
                             _3),
-                "");
+                "Self::dataDestroyed");
         }
         if(pStoredData != NULL)
         {
-            this->subChangedFunctor(
-                std::bind(&TraversalData::updateData, 
-                            pStoredData, 
-                            _1, 
-                            _2,
-                            _3));
-            
-            pStoredData->subChangedFunctor(
-                std::bind(&Self::dataDestroyed, 
-                            this, 
-                            _1, 
-                            _2,
-                            _3));
+            this->subChangedFunctor("TraversalData::updateData");
+            pStoredData->subChangedFunctor("Self::dataDestroyed");
          }
     }
 }
@@ -174,12 +155,7 @@ void TraversalDataHandlerMixin<ParentT>::dataDestroyed(
 {
     if(whichField == 0x0000)
     {
-        this->subChangedFunctor(
-            std::bind(&TraversalData::updateData, 
-                        dynamic_cast<TraversalData *>(pCore), 
-                        _1, 
-                        _2,
-                        _3));
+        this->subChangedFunctor("TraversalData::updateData");
     }
 }
 

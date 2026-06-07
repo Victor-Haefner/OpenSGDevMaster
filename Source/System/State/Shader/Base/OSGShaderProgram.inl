@@ -231,8 +231,8 @@ void ShaderProgram::addDestroyedFunctor(ChangedFunctor func,
     _mfDestroyedFunctors.push_back(oTmp);
 }
 
-template<class FunctorT> inline
-void ShaderProgram::subDestroyedFunctor(FunctorT func)
+inline
+void ShaderProgram::subDestroyedFunctor(std::string createSymbol)
 {
     MFChangedFunctorCallback::iterator       cfIt = 
         _mfDestroyedFunctors.begin();
@@ -242,7 +242,7 @@ void ShaderProgram::subDestroyedFunctor(FunctorT func)
 
     for(; cfIt != cfEnd; ++cfIt)
     {
-        if(cfIt->_func == func)
+        if(cfIt->_createSymbol == createSymbol)
             break;
     }
 
@@ -250,8 +250,8 @@ void ShaderProgram::subDestroyedFunctor(FunctorT func)
         _mfDestroyedFunctors.erase(cfIt);
 }
 
-template<class FunctorT> inline
-bool ShaderProgram::hasDestroyedFunctor(FunctorT func)
+inline
+bool ShaderProgram::hasDestroyedFunctor(std::string createSymbol)
 {
     bool returnValue = false;
 
@@ -264,7 +264,7 @@ bool ShaderProgram::hasDestroyedFunctor(FunctorT func)
 
     for(; cfIt != cfEnd; ++cfIt)
     {
-        if(cfIt->_func == func)
+        if(cfIt->_createSymbol == createSymbol)
         {
             returnValue = true;
             break;

@@ -579,7 +579,7 @@ void ShaderProgram::resolveLinks(void)
 
     for(; dfIt != dfEnd; ++dfIt)
     {
-        if(dfIt->_func.empty() == false)
+        if(dfIt->_func)
             (dfIt->_func)(this, 0x0000, ChangedOrigin::External);
     }
 

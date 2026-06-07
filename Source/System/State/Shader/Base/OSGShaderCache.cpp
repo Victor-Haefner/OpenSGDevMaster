@@ -387,18 +387,14 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableChunk *pShader)
         if(*fIt == NULL)
             continue;
 
-        if((*fIt)->hasDestroyedFunctor(
-               std::bind(&ShaderCache::removeShaderProgram,
-                           this,
-                           _1,
-                           _2)) == false)
+        if((*fIt)->hasDestroyedFunctor("ShaderCache::removeShaderProgram") == false)
         {
             (*fIt)->addDestroyedFunctor(
                 std::bind(&ShaderCache::removeShaderProgram,
                             this,
                             _1,
                             _2),
-                "");
+                "ShaderCache::removeShaderProgram");
         }
     }
 
@@ -412,18 +408,14 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableChunk *pShader)
         if(*gIt == NULL)
             continue;
 
-        if((*gIt)->hasDestroyedFunctor(
-               std::bind(&ShaderCache::removeShaderProgram,
-                           this,
-                           _1,
-                           _2)) == false)
+        if((*gIt)->hasDestroyedFunctor("ShaderCache::removeShaderProgram") == false)
         {
             (*gIt)->addDestroyedFunctor(
                 std::bind(&ShaderCache::removeShaderProgram,
                             this,
                             _1,
                             _2),
-                "");
+                "ShaderCache::removeShaderProgram");
         }
     }
 
@@ -438,18 +430,14 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableChunk *pShader)
         if(*vIt == NULL)
             continue;
 
-        if((*vIt)->hasDestroyedFunctor(
-               std::bind(&ShaderCache::removeShaderProgram,
-                           this,
-                           _1,
-                           _2)) == false)
+        if((*vIt)->hasDestroyedFunctor("ShaderCache::removeShaderProgram") == false)
         {
             (*vIt)->addDestroyedFunctor(
                 std::bind(&ShaderCache::removeShaderProgram,
                             this,
                             _1,
                             _2),
-                "");
+                "ShaderCache::removeShaderProgram");
         }
     }
 }
@@ -469,11 +457,7 @@ void ShaderCache::clearShRemoveCallback(ShaderExecutableChunk *pShader)
         if(*fIt == NULL)
             continue;
 
-        (*fIt)->subDestroyedFunctor(
-            std::bind(&ShaderCache::removeShaderProgram,
-                        this,
-                        _1,
-                        _2));
+        (*fIt)->subDestroyedFunctor("ShaderCache::removeShaderProgram");
     }
 
     ShaderExecutableChunk::GeometryShaderIt gIt  = 
@@ -486,11 +470,7 @@ void ShaderCache::clearShRemoveCallback(ShaderExecutableChunk *pShader)
         if(*gIt == NULL)
             continue;
 
-        (*gIt)->subDestroyedFunctor(
-            std::bind(&ShaderCache::removeShaderProgram,
-                        this,
-                        _1,
-                        _2));
+        (*gIt)->subDestroyedFunctor("ShaderCache::removeShaderProgram");
     }
 
 
@@ -504,11 +484,7 @@ void ShaderCache::clearShRemoveCallback(ShaderExecutableChunk *pShader)
         if(*vIt == NULL)
             continue;
 
-        (*vIt)->subDestroyedFunctor(
-            std::bind(&ShaderCache::removeShaderProgram,
-                        this,
-                        _1,
-                        _2));
+        (*vIt)->subDestroyedFunctor("ShaderCache::removeShaderProgram");
     }
 }
 
@@ -529,18 +505,14 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableVarChunk *pVar)
         if(*vIt == NULL)
             continue;
 
-        if((*vIt)->hasDestroyedFunctor(
-               std::bind(&ShaderCache::removeShaderVar,
-                           this,
-                           _1,
-                           _2)) == false)
+        if((*vIt)->hasDestroyedFunctor("ShaderCache::removeShaderVar") == false)
         {
             (*vIt)->addDestroyedFunctor(
                 std::bind(&ShaderCache::removeShaderVar,
                             this,
                             _1,
                             _2),
-                "");
+                "ShaderCache::removeShaderVar");
         }
     }
 }
@@ -560,11 +532,7 @@ void ShaderCache::clearVaRemoveCallback(ShaderExecutableVarChunk *pVar)
         if(*vIt == NULL)
             continue;
 
-        (*vIt)->subDestroyedFunctor(
-            std::bind(&ShaderCache::removeShaderVar,
-                        this,
-                        _1,
-                        _2));
+        (*vIt)->subDestroyedFunctor("ShaderCache::removeShaderVar");
     }
 }
 

@@ -506,7 +506,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsAdd(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fAddMethod.empty()                                 )   );
+          _fAddMethod                                 )   );
 }
 
 /*! Returns whether the edited field supports removal of values by index.
@@ -520,7 +520,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsRemove(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fRemoveMethod.empty()                                 )   );
+          _fRemoveMethod                                 )   );
 }
 
 /*! Returns whether the edited field supports removal of values by object.
@@ -534,7 +534,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsRemoveObject(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fRemoveObjMethod.empty()                              )   );
+          _fRemoveObjMethod                              )   );
 }
 
 /*! Returns whether the edited field supports insertion of values.
@@ -548,7 +548,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsInsert(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fInsertMethod.empty()                                 )   );
+          _fInsertMethod                                 )   );
 }
 
 /*! Returns whether the edited field supports replacement of values by index.
@@ -562,7 +562,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsReplace(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fReplaceMethod.empty()                                )   );
+          _fReplaceMethod                                )   );
 }
 
 /*! Returns whether the edited field supports replacement of values by object.
@@ -576,7 +576,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsReplaceObject(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fReplaceObjMethod.empty()                                )   );
+          _fReplaceObjMethod                                )   );
 }
 
 /*! Returns whether the edited field supports clearing of values.
@@ -590,7 +590,7 @@ bool EditFCPtrMFieldHandle<FieldT>::supportsClear(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fClearMethod.empty()                                  )   );
+          _fClearMethod                                  )   );
 }
 
 /*---------------------------------------------------------------------------*/
@@ -664,7 +664,7 @@ bool EditFCPtrMFieldHandle<FieldT>::add(FieldContainer *newFC) const
     {
         if(typedNewFC != NULL || newFC == NULL)
         {
-            if(!_fAddMethod.empty())
+            if(_fAddMethod)
             {
                 _fAddMethod(typedNewFC);
                 retVal = true;
@@ -715,7 +715,7 @@ bool EditFCPtrMFieldHandle<FieldT>::remove(UInt32 index) const
     
     if(0x0000 != (accessFlags & Field::FCustomAccess))
     {
-        if(!_fRemoveMethod.empty())
+        if(_fRemoveMethod)
         {
             _fRemoveMethod(index);
             retVal = true;
@@ -766,7 +766,7 @@ bool EditFCPtrMFieldHandle<FieldT>::removeObject(
     {
         if(typedExistingFC != NULL || existingFC == NULL)
         {
-            if(!_fRemoveObjMethod.empty())
+            if(_fRemoveObjMethod)
             {
                 _fRemoveObjMethod(typedExistingFC);
                 retVal = true;
@@ -834,7 +834,7 @@ bool EditFCPtrMFieldHandle<FieldT>::insert(
     {
         if(typedNewFC != NULL || newFC == NULL)
         {
-            if(!_fInsertMethod.empty())
+            if(_fInsertMethod)
             {
                 _fInsertMethod(index, typedNewFC);
                 retVal = true;
@@ -891,7 +891,7 @@ bool EditFCPtrMFieldHandle<FieldT>::replace(
     {
         if(typedNewFC != NULL || newFC == NULL)
         {
-            if(!_fReplaceMethod.empty())
+            if(_fReplaceMethod)
             {
                 _fReplaceMethod(index, typedNewFC);
                 retVal = true;
@@ -953,7 +953,7 @@ bool EditFCPtrMFieldHandle<FieldT>::replaceObject(
         if((typedExistingFC != NULL || existingFC == NULL) &&
            (typedNewFC      != NULL || newFC      == NULL)   )
         {
-            if(!_fReplaceObjMethod.empty())
+            if(_fReplaceObjMethod)
             {
                 _fReplaceObjMethod(typedExistingFC, typedNewFC);
                 retVal = true;
@@ -1015,7 +1015,7 @@ bool EditFCPtrMFieldHandle<FieldT>::clear(void) const
     
     if(0x0000 != (accessFlags & Field::FCustomAccess))
     {
-        if(!_fClearMethod.empty())
+        if(_fClearMethod)
         {
             _fClearMethod();
             retVal = true;

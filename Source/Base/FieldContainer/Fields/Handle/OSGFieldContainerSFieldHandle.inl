@@ -474,7 +474,7 @@ bool EditFCPtrSFieldHandle<FieldT>::supportsSet(void) const
         ((0x0000 != (accessFlags & Field::FStdAccess      ) ||
           0x0000 != (accessFlags & Field::FNullCheckAccess)    ) ||
          (0x0000 != (accessFlags & Field::FCustomAccess   ) &&
-          !_fSetMethod.empty()                                 )   );
+          _fSetMethod                                 )   );
 }
 
 /*---------------------------------------------------------------------------*/
@@ -499,7 +499,7 @@ bool EditFCPtrSFieldHandle<FieldT>::set(FieldContainer *newFC) const
     {
         if(typedNewFC != NULL || newFC == NULL)
         {
-            if(!_fSetMethod.empty())
+            if(_fSetMethod)
             {
                 _fSetMethod(typedNewFC);
                 retVal = true;

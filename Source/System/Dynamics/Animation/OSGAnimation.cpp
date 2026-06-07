@@ -134,8 +134,7 @@ void Animation::setTimeSensor(AnimTimeSensor *value)
 
     if(_sfTimeSensor.getValue() != NULL)
     {
-        _sfTimeSensor.getValue()->subChangedFunctor(
-            std::bind(&Animation::timeSensorChanged, this, _1, _2, _3));
+        _sfTimeSensor.getValue()->subChangedFunctor("Animation::timeSensorChanged");
     }
 
     Inherited::setTimeSensor(value);
@@ -144,7 +143,7 @@ void Animation::setTimeSensor(AnimTimeSensor *value)
     {
         _sfTimeSensor.getValue()->setEnabled       (false               );
         _sfTimeSensor.getValue()->addChangedFunctor(
-            std::bind(&Animation::timeSensorChanged, this, _1, _2, _3), "");
+            std::bind(&Animation::timeSensorChanged, this, _1, _2, _3), "Animation::timeSensorChanged");
     }
 }
 

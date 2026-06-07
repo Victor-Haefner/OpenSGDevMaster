@@ -173,7 +173,7 @@ void DrawableStatsAttachment::attachTo(AttachmentContainer *obj)
             AttachmentContainer *p =
                 dynamic_cast<AttachmentContainer *>(this->getParents(0));
 
-            p->subChangedFunctor(&DrawableStatsAttachment::invalidateFunctor);
+            p->subChangedFunctor("DrawableStatsAttachment::invalidateFunctor");
             p->subAttachment    (this                                       );
         }
     }
@@ -183,7 +183,7 @@ void DrawableStatsAttachment::attachTo(AttachmentContainer *obj)
     reset();
 
     obj->addChangedFunctor(&DrawableStatsAttachment::invalidateFunctor,
-                           "DrawableStats invalidator");
+                           "DrawableStatsAttachment::invalidateFunctor");
 }
 
 void DrawableStatsAttachment::validate(void)

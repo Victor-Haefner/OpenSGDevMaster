@@ -186,7 +186,7 @@ ColladaElementFactorySingleton::create(daeElement        *daeElem,
     {
         CreateFunctor createFunc = getCreateFunc(lookupName, profile);
 
-        if(createFunc.empty() == false)
+        if(createFunc)
         {
             retVal = createFunc(daeElem, global);
         }

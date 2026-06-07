@@ -784,7 +784,7 @@ void OSGLoader::endNode(void)
         UInt32 uiFunctorIndex = _pCurrentFC->getType().getId();
 
         if(uiFunctorIndex < _endNodeFunctors.size() && 
-           ! _endNodeFunctors[uiFunctorIndex].empty())
+           _endNodeFunctors[uiFunctorIndex])
         {
             (_endNodeFunctors[uiFunctorIndex])(_pCurrentFC, _pFileContext);
         }

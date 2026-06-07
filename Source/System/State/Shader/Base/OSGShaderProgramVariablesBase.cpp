@@ -651,9 +651,10 @@ EditFieldHandlePtr ShaderProgramVariablesBase::editHandleProceduralVariables(voi
              &_mfProceduralVariables,
              this->getType().getFieldDesc(ProceduralVariablesFieldId),
              this));
-
+             
+    using Fn = void (ShaderProgramVariables::*)(ShaderVariable*const);
     returnValue->setAddMethod(
-        std::bind(&ShaderProgramVariables::addProceduralVariable,
+        std::bind(static_cast<Fn>(&ShaderProgramVariables::addProceduralVariable),
                     static_cast<ShaderProgramVariables *>(this), _1));
     returnValue->setRemoveMethod(
         std::bind(&ShaderProgramVariables::subProceduralVariable,

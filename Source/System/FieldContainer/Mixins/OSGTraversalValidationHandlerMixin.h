@@ -117,16 +117,10 @@ class TraversalValidationHandlerMixin  : public ParentT
     void   addDestroyedFunctor     (ChangedFunctor    func,
                                     std::string       createSymbol);
 
-    template<class FunctorT>
-    void   subDestroyedFunctor     (FunctorT          func        );
-
-    template<class FunctorT>
-    bool   hasDestroyedFunctor     (FunctorT          func        );
-
+    void   subDestroyedFunctor     (std::string       createSymbol);
+    bool   hasDestroyedFunctor     (std::string       createSymbol);
     void   clearDestroyedFunctors  (void                          );
 
-    template<class DataSlotHandlerT>
-    void   clearDestroyedFunctorFor(DataSlotHandlerT  *pHandler    );
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/

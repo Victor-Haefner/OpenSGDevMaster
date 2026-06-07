@@ -158,10 +158,8 @@ void TraversalValidationHandlerMixin<ParentT>::addDestroyedFunctor(
     _mfDestroyedFunctors.push_back(oTmp);
 }
 
-template <class ParentT> 
-template<class FunctorT> inline
-void TraversalValidationHandlerMixin<ParentT>::subDestroyedFunctor(
-    FunctorT func)
+template <class ParentT> inline
+void TraversalValidationHandlerMixin<ParentT>::subDestroyedFunctor(std::string createSymbol)
 {
     MFChangedFunctorCallback::iterator       cfIt = 
         _mfDestroyedFunctors.begin();
@@ -171,7 +169,7 @@ void TraversalValidationHandlerMixin<ParentT>::subDestroyedFunctor(
 
     for(; cfIt != cfEnd; ++cfIt)
     {
-        if(cfIt->_func == func)
+        if(cfIt->_createSymbol == createSymbol)
             break;
     }
 
@@ -179,10 +177,8 @@ void TraversalValidationHandlerMixin<ParentT>::subDestroyedFunctor(
         _mfDestroyedFunctors.erase(cfIt);
 }
 
-template <class ParentT> 
-template<class FunctorT> inline
-bool TraversalValidationHandlerMixin<ParentT>::hasDestroyedFunctor(
-    FunctorT func)
+template <class ParentT> inline
+bool TraversalValidationHandlerMixin<ParentT>::hasDestroyedFunctor(std::string createSymbol)
 {
     bool returnValue = false;
 
@@ -195,7 +191,7 @@ bool TraversalValidationHandlerMixin<ParentT>::hasDestroyedFunctor(
 
     for(; cfIt != cfEnd; ++cfIt)
     {
-        if(cfIt->_func == func)
+        if(cfIt->_createSymbol == createSymbol)
         {
             returnValue = true;
             break;
@@ -208,18 +204,6 @@ template <class ParentT> inline
 void TraversalValidationHandlerMixin<ParentT>::clearDestroyedFunctors(void)
 {
     _mfDestroyedFunctors.clear();
-}
-
-template <class ParentT> 
-template<class DataSlotHandlerT> inline
-void TraversalValidationHandlerMixin<ParentT>::clearDestroyedFunctorFor(
-    DataSlotHandlerT *pHandler)
-{
-    this->subDestroyedFunctor(std::bind(&DataSlotHandlerT::clearData,
-                                            pHandler,
-                                           _1,
-                                           _2,
-                                           _iDataSlotId));
 }
 
 /*-------------------------------------------------------------------------*/

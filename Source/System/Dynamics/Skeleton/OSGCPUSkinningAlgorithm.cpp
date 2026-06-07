@@ -402,9 +402,7 @@ void CPUSkinningAlgorithm::changed(ConstFieldMaskArg whichField,
     if((SkeletonFieldMask & whichField) != 0    &&
        _sfSkeleton.getValue()           != NULL   )
     {
-        if(_sfSkeleton.getValue()->hasChangedFunctor(std::bind(
-               &CPUSkinningAlgorithm::skeletonChanged,
-               this, _1, _2                                )) == false)
+        if(_sfSkeleton.getValue()->hasChangedFunctor("CPUSkinningAlgorithm::skeletonChanged") == false)
         {
             _sfSkeleton.getValue()->addChangedFunctor(std::bind(
                 &CPUSkinningAlgorithm::skeletonChanged,
@@ -915,9 +913,7 @@ void CPUSkinningAlgorithm::resolveLinks(void)
 {
     if(_sfSkeleton.getValue() != NULL)
     {
-        _sfSkeleton.getValue()->subChangedFunctor(std::bind(
-            &CPUSkinningAlgorithm::skeletonChanged,
-            this, _1, _2                           ));
+        _sfSkeleton.getValue()->subChangedFunctor("CPUSkinningAlgorithm::skeletonChanged");
     }
 
     Inherited::resolveLinks();

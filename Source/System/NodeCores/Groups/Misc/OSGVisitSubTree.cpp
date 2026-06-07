@@ -84,15 +84,14 @@ void VisitSubTree::setSubTreeRoot(Node * const value)
 
     if(_sfSubTreeRoot.getValue() != NULL)
     {
-        _sfSubTreeRoot.getValue()->subChangedFunctor(
-            std::bind(&VisitSubTree::rootChanged, this, _1, _2, _3));
+        _sfSubTreeRoot.getValue()->subChangedFunctor("VisitSubTree::rootChanged");
     }
 
     if(value != NULL)
     {
         value->addChangedFunctor(
             std::bind(&VisitSubTree::rootChanged, this, _1, _2, _3),
-            "");
+            "VisitSubTree::rootChanged");
     }
 
     _sfSubTreeRoot.setValue(value);
