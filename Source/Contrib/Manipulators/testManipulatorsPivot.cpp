@@ -13,7 +13,6 @@
 #include <OSGTypedGeoIntegralProperty.h>
 #include <OSGSceneGraphUtils.h>
 #include <functional>
-#include <boost/noncopyable.hpp>
 #include <cstdlib>
 #include <iostream>
 
@@ -55,12 +54,13 @@ namespace
 
     namespace matrix
     {
-        class wrap : private boost::noncopyable
+        class wrap
         {
           public:
+            wrap(const wrap&) = delete;
+            wrap& operator=(const wrap&) = delete;
 
-            wrap(OSG::Node* a)
-                : boost::noncopyable(),
+            wrap(OSG::Node* a) :
                   xform_()
             {
                 assert(0 != a);
@@ -70,8 +70,7 @@ namespace
                 assert(0 != xform_);
             }
 
-            wrap(OSG::Transform* a)
-                : boost::noncopyable(),
+            wrap(OSG::Transform* a) :
                   xform_(a)
             {
                 assert(0 != xform_);

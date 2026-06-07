@@ -4,7 +4,6 @@
 #include "OSGBaseInitFunctions.h"
 
 #include "OSGChangeList.h"
-#include <boost/format.hpp>
 
 #include "OSGSingletonHolder.ins"
 
@@ -167,9 +166,9 @@ BackgroundLoaderBase::desc_list_t
                                   i != mPendingRequests.end  (); 
                                 ++i                            )
    {
-       std::string desc = boost::str(boost::format("[%4.2f]: %s") % 
-                                     (*i)->getPriority() % 
-                                     (*i)->getDescription());
+      std::ostringstream oss;
+      oss << '[' << std::fixed << std::setprecision(2) << (*i)->getPriority() << "]: " << (*i)->getDescription();
+      std::string desc = oss.str();
 
       ret_list.push_back(desc);
    }

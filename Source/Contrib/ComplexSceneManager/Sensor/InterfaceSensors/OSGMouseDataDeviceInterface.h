@@ -45,7 +45,42 @@
 #include "OSGMouseData.h"
 #include "OSGDeviceInterface.h"
 
-#include <boost/circular_buffer.hpp>
+#include <deque>
+
+template<class T>
+class CircularBuffer {
+    public:
+        explicit CircularBuffer(size_t capacity = 0) : _capacity(capacity) {}
+
+        void set_capacity(size_t capacity) {
+            _capacity = capacity;
+            while(_data.size() > _capacity) _data.pop_front();
+        }
+
+        void push_back(const T& value) {
+            if(_capacity == 0) return;
+            if(_data.size() >= _capacity) _data.pop_front();
+            _data.push_back(value);
+        }
+
+        void clear() { _data.clear(); }
+        size_t size() const { return _data.size(); }
+        bool empty() const { return _data.empty(); }
+
+        auto begin() { return _data.begin(); }
+        auto end()   { return _data.end(); }
+        auto begin() const { return _data.begin(); }
+        auto end()   const { return _data.end(); }
+        
+        using iterator = typename std::deque<T>::iterator;
+        using const_iterator = typename std::deque<T>::const_iterator;
+        using reverse_iterator = typename std::deque<T>::reverse_iterator;
+        using const_reverse_iterator = typename std::deque<T>::const_reverse_iterator;
+
+    private:
+        std::deque<T> _data;
+        size_t        _capacity;
+};
 
 OSG_BEGIN_NAMESPACE
 
@@ -57,7 +92,7 @@ class OSG_CONTRIBCSM_DLLMAPPING MouseDataDeviceInterface :
 
   public:
 
-    typedef boost::circular_buffer<MouseData> MouseDataBuffer;
+    typedef CircularBuffer<MouseData> MouseDataBuffer;
 
     /*---------------------------------------------------------------------*/
     /*! \name                 Reference Counting                           */

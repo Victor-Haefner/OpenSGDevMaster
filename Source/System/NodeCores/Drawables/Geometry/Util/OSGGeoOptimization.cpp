@@ -33,7 +33,6 @@
 
 #include <set>
 
-// #include <boost/functional/hash/hash.hpp>
 // #include <tr1/unordered_set>
 
 #define OSG_GEOOPT_VERBOSE 1
@@ -195,7 +194,7 @@ namespace
             UInt32 val;
             (*isIt)->getValue(val, idx);
 
-            boost::hash_combine(retVal, val);
+            std::hash_combine(retVal, val);
         }
 
         return retVal;
