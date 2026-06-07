@@ -79,7 +79,7 @@
 #include <link.h>
 #endif
 
-#include <boost/algorithm/string.hpp>    
+    
 
 #include "OSGBaseFunctions.h"
 
@@ -1974,7 +1974,7 @@ void OSG::Window::setupGL( void )
     std::string szVendor = 
         reinterpret_cast<const char *>(glGetString(GL_VENDOR));
 
-    boost::to_lower(szVendor);
+    std::transform(szVendor.begin(), szVendor.end(), szVendor.begin(), ::tolower);
 
     std::string::size_type rc = szVendor.find("nvidia", 0);
 

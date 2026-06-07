@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include <boost/scoped_ptr.hpp>
+
 #include <set>
 
 #include "OSGConfig.h"
@@ -332,7 +332,7 @@ class OSG_UTIL_DLLMAPPING DotFileGeneratorGraphOp : public GraphOp
     // arbitrary graph attribute entry
     std::string                         _graph_attributes;
 
-    boost::scoped_ptr<std::ofstream>    _spStream;
+    std::unique_ptr<std::ofstream>    _spStream;
     MapInfoT                            _mapInfo;
     UInt32                              _node_cnt;
     UInt32                              _core_cnt;

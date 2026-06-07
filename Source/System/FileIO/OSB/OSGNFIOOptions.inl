@@ -48,9 +48,10 @@ inline ValueTypeT
     {
         try
         {
-            retVal = boost::lexical_cast<ValueTypeT>(option.optValue);
+            std::istringstream iss(option.optValue);
+            iss >> retVal;
         }
-        catch(boost::bad_lexical_cast &)
+        catch(const std::exception &e)
         {
             FWARNING(("NFIOOptions::getValue: "
                       "Extraction of option value failed, using default.\n"));

@@ -47,7 +47,7 @@
 
 #include "OSGUnskinnedSkinningAlgorithm.h"
 
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 

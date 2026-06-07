@@ -49,7 +49,7 @@
 #include "OSGAnimBindAction.h"
 #include "OSGRenderAction.h"
 
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -233,7 +233,7 @@ SkeletonOgreJoint::animBindEnter(Action *action)
 {
     Action::ResultE  res     = Action::Continue;
     AnimBindAction  *bindAct =
-        boost::polymorphic_downcast<AnimBindAction *>(action);
+        static_cast<AnimBindAction *>(action);
 
     bindAct->bindFields(this);
 

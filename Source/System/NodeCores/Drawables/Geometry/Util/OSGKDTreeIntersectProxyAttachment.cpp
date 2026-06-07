@@ -42,7 +42,7 @@
 
 #include <cstdlib>
 #include <cstdio>
-#include <boost/cast.hpp>
+
 
 #include "OSGConfig.h"
 #include "OSGKDTreeIntersectProxyAttachment.h"
@@ -107,7 +107,7 @@ KDTreeIntersectProxyAttachment::intersectEnter(Node *node, Action *action)
 {
     Action::ResultE  res  = Inherited::intersectEnter(node, action);
     IntersectAction *iact =
-        boost::polymorphic_downcast<IntersectAction *>(action);
+        static_cast<IntersectAction *>(action);
 
     Real32 closestHitT = iact->didHit() ? iact->getHitT() : iact->getMaxDist();
     Vec3f  hitNormal;

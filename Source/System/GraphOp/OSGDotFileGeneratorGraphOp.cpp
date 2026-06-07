@@ -37,7 +37,7 @@
 \*---------------------------------------------------------------------------*/
 
 #include <sstream>
-#include <boost/foreach.hpp>
+
 
 #include "OSGDotFileGeneratorGraphOp.h"
 #include "OSGContainerCollection.h"
@@ -1331,7 +1331,7 @@ std::ofstream &DotFileGeneratorGraphOp::initialize()
 
 void DotFileGeneratorGraphOp::deinitialize(void)
 {
-    BOOST_FOREACH(const PairInfoT& edge, _dotted_edges)
+    for(const PairInfoT& edge : _dotted_edges)
     {
         DefineDottedEdge(edge.first, edge.second, false);
     }

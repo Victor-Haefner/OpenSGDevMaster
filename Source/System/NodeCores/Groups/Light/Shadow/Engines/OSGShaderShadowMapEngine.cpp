@@ -72,7 +72,7 @@
 
 #include "OSGGL.h"
 
-#include <boost/cast.hpp>
+
 
 #include <strstream>
 
@@ -330,7 +330,7 @@ void ShaderShadowMapEngine::handleEnter(
     case Point:
     {
         PointLight *pointL =
-            boost::polymorphic_downcast<PointLight *>(light);
+            static_cast<PointLight *>(light);
 
         handlePointLightEnter(pointL, ract, data);
     }
@@ -339,7 +339,7 @@ void ShaderShadowMapEngine::handleEnter(
     case Directional:
     {
         DirectionalLight *dirL =
-            boost::polymorphic_downcast<DirectionalLight *>(light);
+            static_cast<DirectionalLight *>(light);
 
         handleDirectionalLightEnter(dirL, ract, data);
     }
@@ -348,7 +348,7 @@ void ShaderShadowMapEngine::handleEnter(
     case Spot:
     {
         SpotLight *spotL =
-            boost::polymorphic_downcast<SpotLight *>(light);
+            static_cast<SpotLight *>(light);
 
         handleSpotLightEnter(spotL, ract, data);
     }

@@ -62,7 +62,7 @@
 #include "OSGChunkMaterial.h"
 #include "OSGShaderShadowMapEngineData.h"
 
-#include <boost/cast.hpp>
+
 
 #define OSG_TSME_LIGHTPASS_EXACT 1
 
@@ -473,7 +473,7 @@ void TrapezoidalShadowMapEngine::handleEnter(
     case Point:
     {
         PointLight *pointL =
-            boost::polymorphic_downcast<PointLight *>(light);
+            static_cast<PointLight *>(light);
 
         handlePointLightEnter(pointL, ract, data);
     }
@@ -482,7 +482,7 @@ void TrapezoidalShadowMapEngine::handleEnter(
     case Directional:
     {
         DirectionalLight *dirL =
-            boost::polymorphic_downcast<DirectionalLight *>(light);
+            static_cast<DirectionalLight *>(light);
         
         handleDirectionalLightEnter(dirL, ract, data);
     }
@@ -491,7 +491,7 @@ void TrapezoidalShadowMapEngine::handleEnter(
     case Spot:
     {
         SpotLight *spotL =
-            boost::polymorphic_downcast<SpotLight *>(light);
+            static_cast<SpotLight *>(light);
 
         handleSpotLightEnter(spotL, ract, data);
     }

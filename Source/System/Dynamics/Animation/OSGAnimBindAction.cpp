@@ -47,7 +47,7 @@
 #include "OSGTransform.h"
 #include "OSGAnimTargetAttachment.h"
 
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -373,7 +373,7 @@ Action::ResultE
 bindEnterDefault(NodeCore *core, Action *action)
 {
     AnimBindAction *bindAct =
-        boost::polymorphic_downcast<AnimBindAction *>(action);
+        static_cast<AnimBindAction *>(action);
 
     return bindAct->bindFields(core);
 }

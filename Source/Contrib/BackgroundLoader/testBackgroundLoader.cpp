@@ -15,10 +15,9 @@
 #include "OSGFieldContainerFactory.h"
 
 #include <functional>
-#include <boost/filesystem/operations.hpp>
-#include <boost/filesystem/fstream.hpp>
-#include <boost/filesystem/convenience.hpp>
-namespace fs = boost::filesystem;
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 #include "OSGBackgroundLoader.h"
 #include "OSGModelRequest.h"
@@ -34,37 +33,37 @@ int setupGLUT( int *argc, char *argv[] );
 
 void findModels(std::string dirname)
 {
-   fs::path dir_path(dirname);
+    fs::path dir_path(dirname);
 
-   if (!fs::exists(dir_path))
-   { 
-      std::cerr << "ERROR: path does not exist: " << dirname << std::endl; 
-      gScene = static_cast<OSG::Node *>(NULL);
-      OSG::osgExit();
-      exit(-1);
-   }
+    if(!fs::exists(dir_path))
+    {
+        std::cerr << "ERROR: path does not exist: " << dirname << std::endl;
+        gScene = static_cast<OSG::Node *>(NULL);
+        OSG::osgExit();
+        exit(-1);
+    }
 
-   fs::directory_iterator end_itr;
-   for(fs::directory_iterator itr(dir_path); itr != end_itr; ++itr)
-   {
-      if(!fs::is_directory(*itr))
-      {
-         if (fs::extension(*itr) == std::string(".osb") ||
-             fs::extension(*itr) == std::string(".wrl"))
-         {
-#if BOOST_FILESYSTEM_VERSION == 3
-            fs::path complete_file = fs::absolute(*itr);
-#else
-            fs::path complete_file = fs::complete(*itr);
-#endif
-            std::string filename(complete_file.string());
-            std::cout << "Found file: " << filename << std::endl;
-            OSG::ModelRequestPtr req = OSG::ModelRequest::create()->init(OSG::NodeRefPtr(gScene.node()), filename);
-            OSG::BackgroundLoader::the()->addRequest(req);
-         }
-      }
-   }
+    for(fs::directory_iterator itr(dir_path), end_itr; itr != end_itr; ++itr)
+    {
+        if(!fs::is_directory(*itr))
+        {
+            auto ext = fs::path(*itr).extension();
 
+            if(ext == ".osb" || ext == ".wrl")
+            {
+                fs::path complete_file = fs::absolute(*itr);
+
+                std::string filename = complete_file.string();
+                std::cout << "Found file: " << filename << std::endl;
+
+                OSG::ModelRequestPtr req =
+                    OSG::ModelRequest::create()
+                        ->init(OSG::NodeRefPtr(gScene.node()), filename);
+
+                OSG::BackgroundLoader::the()->addRequest(req);
+            }
+        }
+    }
 }
 
 // Initialize GLUT & OpenSG and set up the scene

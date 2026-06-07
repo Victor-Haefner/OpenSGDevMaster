@@ -62,7 +62,7 @@ inline
 std::string PostShaderStage::RenderPassData::getOutputTextureName(void) const
 {
     return (PostShaderStage::PrePassXName              +
-            boost::lexical_cast<std::string>(_uiIndex) +
+            std::to_string(_uiIndex) +
             PostShaderStage::PostPassXColorTexName     ); 
 }
 
@@ -70,7 +70,7 @@ inline
 std::string PostShaderStage::RenderPassData::getWidthName(void) const
 {
     return (PostShaderStage::PrePassXName              +
-            boost::lexical_cast<std::string>(_uiIndex) +
+            std::to_string(_uiIndex) +
             PostShaderStage::PostPassXColorWidthName   );
 }
 
@@ -78,7 +78,7 @@ inline
 std::string PostShaderStage::RenderPassData::getHeightName(void) const
 {
     return (PostShaderStage::PrePassXName              +
-            boost::lexical_cast<std::string>(_uiIndex) +
+            std::to_string(_uiIndex) +
             PostShaderStage::PostPassXColorHeightName);
 }
 

@@ -46,7 +46,7 @@
 #include "OSGIOFileTypeBase.h"
 
 #include <string>
-#include <boost/lexical_cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 

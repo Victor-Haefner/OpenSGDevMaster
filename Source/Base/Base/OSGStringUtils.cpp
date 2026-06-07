@@ -253,117 +253,123 @@ void getLine(const std::string &szText,
 }
 
 
-std::string lexical_cast(const boost::any &oSource)
+template<typename T> inline
+std::string TOSTR(const T& v) {
+	std::ostringstream oss;
+	oss << v;
+	return oss.str();
+}
+
+std::string lexical_cast(const std::any &oSource)
 {
     if(oSource.type() == typeid(std::string))              // String
     {
-        return boost::any_cast<std::string>(oSource);
+        return std::any_cast<std::string>(oSource);
     }
     else if(oSource.type() == typeid(Char8*))              // Char8 *
     {
-        return std::string(boost::any_cast<Char8 *>(oSource));
+        return std::string(std::any_cast<Char8 *>(oSource));
     }
     //Numbers
     else if(oSource.type() == typeid(UInt8))               // UInt8
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<UInt8>(oSource));
+        return std::to_string(
+            std::any_cast<UInt8>(oSource));
     }
     else if(oSource.type() == typeid(UInt16))              // UInt16
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<UInt16>(oSource));
+        return std::to_string(
+            std::any_cast<UInt16>(oSource));
     }
     else if(oSource.type() == typeid(UInt32))              // UInt32
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<UInt32>(oSource));
+        return std::to_string(
+            std::any_cast<UInt32>(oSource));
     }
     else if(oSource.type() == typeid(UInt64))              // UInt64
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<UInt64>(oSource));
+        return std::to_string(
+            std::any_cast<UInt64>(oSource));
     }
     else if(oSource.type() == typeid(Int8))                // Int8
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Int8>(oSource));
+        return std::to_string(
+            std::any_cast<Int8>(oSource));
     }
     else if(oSource.type() == typeid(Int16))               // Int16
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Int16>(oSource));
+        return std::to_string(
+            std::any_cast<Int16>(oSource));
     }
     else if(oSource.type() == typeid(Int32))               // Int32
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Int32>(oSource));
+        return std::to_string(
+            std::any_cast<Int32>(oSource));
     }
     else if(oSource.type() == typeid(Int64))               // Int64
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Int64>(oSource));
+        return std::to_string(
+            std::any_cast<Int64>(oSource));
     }
     else if(oSource.type() == typeid(Real16))              // Real16
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Real16>(oSource));
+        return std::to_string(
+            std::any_cast<Real16>(oSource));
     }
     else if(oSource.type() == typeid(Real32))              // Real32
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Real32>(oSource));
+        return std::to_string(
+            std::any_cast<Real32>(oSource));
     }
     else if(oSource.type() == typeid(Real64))              // Real64
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Real64>(oSource));
+        return std::to_string(
+            std::any_cast<Real64>(oSource));
     }
     else if(oSource.type() == typeid(Real128))             // Real128
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Real128>(oSource));
+        return std::to_string(
+            std::any_cast<Real128>(oSource));
     }
     else if(oSource.type() == typeid(Fixed32))             // Fixed32
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Fixed32>(oSource));
+        return TOSTR(
+            std::any_cast<Fixed32>(oSource));
     }
     else if(oSource.type() == typeid(Char8))               // Char8
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<Char8>(oSource));
+        return std::to_string(
+            std::any_cast<Char8>(oSource));
     }
     else if(oSource.type() == typeid(UChar8))              // UChar8
     {
-        return boost::lexical_cast<
-                  std::string>(boost::any_cast<UChar8>(oSource));
+        return std::to_string(std::any_cast<UChar8>(oSource));
     }
     else if(oSource.type() == typeid(SChar8))              // SChar8
     {
-        return boost::lexical_cast<std::string>(
-            boost::any_cast<SChar8>(oSource));
+        return std::to_string(
+            std::any_cast<SChar8>(oSource));
     }
     else if(oSource.type() == typeid(GLenum))              // GLenum
     {
         return GLDefineMapper::the()->toString(
-            boost::any_cast<GLenum>(oSource));
+            std::any_cast<GLenum>(oSource));
     }
     else if(oSource.type() == typeid(BoostPath))           // File Path
     {
-        return OSGBP2STR(boost::any_cast<BoostPath>(oSource).filename());
+        return OSGBP2STR(std::any_cast<BoostPath>(oSource).filename());
     }
     else if(oSource.type() == typeid(FieldContainerType *)) // FCType
     {
         return std::string(
-            boost::any_cast<FieldContainerType *>(oSource)->getCName());
+            std::any_cast<FieldContainerType *>(oSource)->getCName());
     }
     else
     {
         try
         {
             AttachmentContainer *pContainer = 
-                boost::any_cast<Node *>(oSource);
+                std::any_cast<Node *>(oSource);
 
             if(pContainer != NULL)
             {
@@ -379,10 +385,10 @@ std::string lexical_cast(const boost::any &oSource)
                 }
             }
         }
-        catch(boost::bad_any_cast &)
+        catch(std::bad_any_cast &)
         {
         }
-        throw boost::bad_lexical_cast(oSource.type(), typeid(std::string));
+        throw std::runtime_error("bad lexical cast");
     }
 
     return std::string("");

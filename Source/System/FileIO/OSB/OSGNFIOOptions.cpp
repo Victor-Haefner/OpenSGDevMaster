@@ -301,9 +301,10 @@ bool NFIOOptions::getBoolOption(const IOOption &option)
     {
         try
         {
-            retVal = boost::lexical_cast<bool>(option.optValue);
+            std::istringstream iss(option.optValue);
+            iss >> retVal;
         }
-        catch(boost::bad_lexical_cast &)
+        catch(const std::exception &e)
         {
             retVal = false;
         }
@@ -322,9 +323,10 @@ UInt8 NFIOOptions::getQuantizeOption(const IOOption &option)
     
         try
         {
-            quanRes = boost::lexical_cast<UInt8>(option.optValue);
+            std::istringstream iss(option.optValue);
+            iss >> quanRes;
         }
-        catch(boost::bad_lexical_cast &)
+        catch(const std::exception &e)
         {
             quanRes = Quantizer::QRES_OFF;
         }

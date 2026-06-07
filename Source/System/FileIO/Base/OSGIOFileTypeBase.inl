@@ -70,14 +70,14 @@ IOFileTypeBase::setOptionAs(
 
     try
     {
-        setOption(optSet, name, boost::lexical_cast<std::string>(value));
+        setOption(optSet, name, std::to_string(value));
         retVal = true;
     }
-    catch(boost::bad_lexical_cast &blc)
+    catch(const std::exception &e)
     {
         SWARNING << "IOFileTypeBase::setOptionAs: Failed to store value "
                  << "for option [" << name << "] : "
-                 << blc.what() << std::endl;
+                 << e.what() << std::endl;
     }
 
     return retVal;
@@ -108,15 +108,16 @@ IOFileTypeBase::getOptionAs(
     {
         try
         {
-            value  = boost::lexical_cast<ValueTypeT>(valueStr);
-            retVal = true;
+            std::istringstream iss(valueStr);
+            iss >> value;
+            if(!iss.fail()) retVal = true;
         }
-        catch(boost::bad_lexical_cast &blc)
+        catch(const std::exception &e)
         {
             SWARNING << "IOFileTypeBase::getOptionAs: Failed to extract "
                      << "value of option [" << name << "] from string ["
                      << valueStr << "] : "
-                     << blc.what() << std::endl;
+                     << e.what() << std::endl;
         }
     }
 

@@ -55,7 +55,7 @@
 #include "OSGTriangleIterator.h"
 #include "OSGTypedGeoIntegralProperty.h"
 
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -79,9 +79,9 @@ namespace
               GeoVectorProperty   *prop      )
     {
         const PropertyTypeT                 *typedOrigProp =
-            boost::polymorphic_downcast<const PropertyTypeT *>(origProp);
+            static_cast<const PropertyTypeT *>(origProp);
         PropertyTypeT                       *typedProp     =
-            boost::polymorphic_downcast<PropertyTypeT *>(prop);
+            static_cast<PropertyTypeT *>(prop);
 
         const typename PropertyTypeT::StoredFieldType *origPnt  =
             typedOrigProp->getFieldPtr();
@@ -125,11 +125,11 @@ namespace
               GeoVectorProperty   *prop      )
     {
         const PropertyTypeT                 *typedOrigProp    =
-            boost::polymorphic_downcast<const PropertyTypeT *>(origProp);
+            static_cast<const PropertyTypeT *>(origProp);
         const PropIndexTypeT                *typedOrigPropIdx =
-            boost::polymorphic_downcast<const PropIndexTypeT *>(origPropIdx);
+            static_cast<const PropIndexTypeT *>(origPropIdx);
         PropertyTypeT                       *typedProp        =
-            boost::polymorphic_downcast<PropertyTypeT *>(prop);
+            static_cast<PropertyTypeT *>(prop);
 
         const typename PropertyTypeT::StoredFieldType  *origPnt  =
             typedOrigProp->getFieldPtr();
@@ -175,9 +175,9 @@ namespace
               GeoVectorProperty   *prop      )
     {
         const PropertyTypeT *typedOrigProp =
-            boost::polymorphic_downcast<const PropertyTypeT *>(origProp);
+            static_cast<const PropertyTypeT *>(origProp);
         PropertyTypeT       *typedProp     =
-            boost::polymorphic_downcast<PropertyTypeT *>(prop);
+            static_cast<PropertyTypeT *>(prop);
 
         const typename PropertyTypeT::StoredFieldType *origVec  =
             typedOrigProp->getFieldPtr();
@@ -223,11 +223,11 @@ namespace
               GeoVectorProperty   *prop      )
     {
         const PropertyTypeT  *typedOrigProp    =
-            boost::polymorphic_downcast<const PropertyTypeT *>(origProp);
+            static_cast<const PropertyTypeT *>(origProp);
         const PropIndexTypeT *typedOrigPropIdx =
-            boost::polymorphic_downcast<const PropIndexTypeT *>(origPropIdx);
+            static_cast<const PropIndexTypeT *>(origPropIdx);
         PropertyTypeT        *typedProp        =
-            boost::polymorphic_downcast<PropertyTypeT *>(prop);
+            static_cast<PropertyTypeT *>(prop);
 
         const typename PropertyTypeT::StoredFieldType  *origVec  =
             typedOrigProp->getFieldPtr();
@@ -324,7 +324,7 @@ CPUSkinningAlgorithm::renderEnter(Action *action)
     SkinnedGeometry *skinGeo = getSkin    ();
     Skeleton        *skel    = getSkeleton();
     RenderAction    *ract    =
-        boost::polymorphic_downcast<RenderAction *>(action); 
+        static_cast<RenderAction *>(action); 
 
     OSG_ASSERT(skinGeo != NULL);
     OSG_ASSERT(skel    != NULL);
@@ -365,7 +365,7 @@ CPUSkinningAlgorithm::intersectEnter(Action *action)
     SkinnedGeometry *skinGeo = getSkin    ();
     Skeleton        *skel    = getSkeleton();
     IntersectAction *iact    =
-        boost::polymorphic_downcast<IntersectAction *>(action);
+        static_cast<IntersectAction *>(action);
 
     CPUSkinningDataAttachmentUnrecPtr data = getCPUSkinningData(skinGeo);
 

@@ -41,8 +41,8 @@
 
 #include "OSGBaseFunctions.h"
 
-#include <boost/any.hpp>
-#include <boost/lexical_cast.hpp>
+#include <any>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -127,7 +127,7 @@ std::string addStringBetweenUpperCaseChange(const std::string &szSource,
                                             const std::string &szPad        );
 
 OSG_BASE_DLLMAPPING
-std::string lexical_cast                   (const boost::any  &oSource      );
+std::string lexical_cast                   (const std::any  &oSource      );
 
 OSG_BASE_DLLMAPPING 
 void        getLine                        (const std::string &szText, 

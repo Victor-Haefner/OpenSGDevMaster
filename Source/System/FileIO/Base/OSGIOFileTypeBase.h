@@ -47,7 +47,7 @@
 #include "OSGBaseTypes.h"
 #include "OSGLog.h"
 
-#include <boost/lexical_cast.hpp>
+
 #include <map>
 #include <stack>
 #include <string>

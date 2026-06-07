@@ -54,7 +54,7 @@
 #include "OSGFieldContainerUtils.h"
 
 #include <functional>
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 

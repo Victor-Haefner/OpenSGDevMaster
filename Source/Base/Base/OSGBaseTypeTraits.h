@@ -51,7 +51,7 @@
 #include "OSGIOStream.h"
 
 #include <limits>
-#include <boost/lexical_cast.hpp>
+
 
 // The undef's are needed otherwise the numeric_limits won't work (GV)
 
@@ -113,7 +113,7 @@ struct TypeTraitsTemplateBase : public TypeTraitsBase
     static void putToStream(const LookupTypeT &val,
                                   OutStream   &str)
     {
-        str << boost::lexical_cast<std::string>(val);
+        str << val;
     }
 
 #ifdef OSG_1_COMPAT
@@ -1140,7 +1140,7 @@ struct TypeTraits<Real32> : public TypeTraitsTemplateBase<Real32>
     static void putToString(const Real32       val,
                                   std::string &out)
     {
-        out.append(boost::lexical_cast<std::string>(val));
+        out.append(std::to_string(val));
     }
 };
 
@@ -1292,7 +1292,7 @@ struct TypeTraits<Real64> : public TypeTraitsTemplateBase<Real64>
     static void putToString(const Real64       val,
                                   std::string &out)
     {
-        out.append(boost::lexical_cast<std::string>(val));
+        out.append(std::to_string(val));
     }
 };
 
@@ -1367,7 +1367,7 @@ struct TypeTraits<Real128> : public TypeTraitsTemplateBase<Real128>
     static void putToString(const Real128      val,
                                   std::string &out)
     {
-        out.append(boost::lexical_cast<std::string>(val));
+        out.append(std::to_string(val));
     }
 };
 

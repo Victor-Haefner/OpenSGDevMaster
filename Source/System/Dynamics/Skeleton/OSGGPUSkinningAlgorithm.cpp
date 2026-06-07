@@ -50,7 +50,7 @@
 #include "OSGSkeleton.h"
 #include "OSGShaderProgram.h"
 
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -213,7 +213,7 @@ GPUSkinningAlgorithm::renderEnter(Action *action)
     SkinnedGeometry *skinGeo = getSkin    ();
     Skeleton        *skel    = getSkeleton();
     RenderAction    *ract    =
-        boost::polymorphic_downcast<RenderAction *>(action); 
+        static_cast<RenderAction *>(action); 
 
     OSG_ASSERT(skinGeo != NULL);
     OSG_ASSERT(skel    != NULL);

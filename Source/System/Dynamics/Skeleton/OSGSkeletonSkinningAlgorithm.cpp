@@ -51,7 +51,7 @@
 
 #include "OSGPrimeMaterial.h"
 
-#include <boost/cast.hpp>
+
 
 // #define OSG_SKELETON_SKINNING_ALGO_DRAW_AXIS
 
@@ -118,7 +118,7 @@ SkeletonSkinningAlgorithm::renderEnter(Action *action)
 {
     Action::ResultE  res  = Action::Continue;
     RenderAction    *ract =
-        boost::polymorphic_downcast<RenderAction *>(action);
+        static_cast<RenderAction *>(action);
 
     SkinnedGeometry *skinGeo = getSkin();
     Skeleton        *skel    = skinGeo->getSkeleton();

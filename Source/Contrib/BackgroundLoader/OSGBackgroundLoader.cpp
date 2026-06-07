@@ -2,7 +2,7 @@
 
 #include "OSGThreadManager.h"
 #include "OSGBaseInitFunctions.h"
-#include <boost/lexical_cast.hpp>
+
 #include "OSGChangeList.h"
 #include <boost/format.hpp>
 

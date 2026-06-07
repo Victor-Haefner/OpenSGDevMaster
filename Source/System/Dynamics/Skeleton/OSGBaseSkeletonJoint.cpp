@@ -48,7 +48,7 @@
 #include "OSGBaseSkeletonJoint.h"
 #include "OSGTransform.h"
 
-#include <boost/cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -92,14 +92,14 @@ Action::ResultE BaseSkeletonJoint::JointTraverser::enter(Node * const node)
 
     if(core->getType().isDerivedFrom(Transform::getClassType()))
     {
-        Transform *xform = boost::polymorphic_downcast<Transform *>(core);
+        Transform *xform = static_cast<Transform *>(core);
 
         pushMatrix(xform->getMatrix());
     }
     else if(core->getType().isDerivedFrom(BaseSkeletonJoint::getClassType()))
     {
         BaseSkeletonJoint *joint =
-            boost::polymorphic_downcast<BaseSkeletonJoint *>(core);
+            static_cast<BaseSkeletonJoint *>(core);
 
         retVal = joint->jointUpdateEnter(this);
     }
@@ -120,7 +120,7 @@ Action::ResultE BaseSkeletonJoint::JointTraverser::leave(Node * const    node,
     else if(core->getType().isDerivedFrom(BaseSkeletonJoint::getClassType()))
     {
         BaseSkeletonJoint *joint =
-            boost::polymorphic_downcast<BaseSkeletonJoint *>(core);
+            static_cast<BaseSkeletonJoint *>(core);
 
         retVal = joint->jointUpdateLeave(this);
     }

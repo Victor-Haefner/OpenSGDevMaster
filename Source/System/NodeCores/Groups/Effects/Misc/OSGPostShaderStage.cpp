@@ -64,7 +64,7 @@
 
 #include "OSGMatrixUtility.h"
 
-#include <boost/lexical_cast.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
