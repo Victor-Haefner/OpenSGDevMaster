@@ -140,10 +140,10 @@ class OSG_BASE_DLLMAPPING
     typedef EditMapFieldHandle Inherited;
     typedef EditFieldHandle    Base;
 
-    typedef boost::function<void(Attachment * const,
+    typedef std::function<void(Attachment * const,
                                  UInt32            )> AddMethod;
     
-    typedef boost::function<void(Attachment * const,
+    typedef std::function<void(Attachment * const,
                                  Attachment * const)> ReplaceMethod;
     
     /*==========================  PUBLIC  =================================*/

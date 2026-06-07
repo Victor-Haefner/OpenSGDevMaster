@@ -67,7 +67,7 @@
 #include "OSGStateBase.h"
 #include "OSGState.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

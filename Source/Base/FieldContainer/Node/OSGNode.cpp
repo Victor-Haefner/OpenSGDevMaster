@@ -52,7 +52,7 @@
 #include "OSGTypeBasePredicates.h"
 #include "OSGReflexiveContainerTypePredicates.h"
 
-#include "boost/bind.hpp"
+#include <functional>
 
 #ifdef WIN32 // turn of 'this' : used in base member initializer lits warning
 #pragma warning(disable:4355)
@@ -957,7 +957,7 @@ EditFieldHandlePtr Node::editHandleCore(void)
     
     SetCoreF fFunc = &Node::setCore;
 
-    returnValue->setSetMethod(boost::bind(fFunc, this, _1));
+    returnValue->setSetMethod(std::bind(fFunc, this, _1));
 
     editSField(CoreFieldMask);
 
@@ -987,7 +987,7 @@ EditFieldHandlePtr Node::editHandleChildren(void)
 
     AddChildF fFunc = &Node::addChild;
 
-    returnValue->setAddMethod(boost::bind(fFunc, this, _1));
+    returnValue->setAddMethod(std::bind(fFunc, this, _1));
 
     editMField(ChildrenFieldMask, _mfChildren);
 

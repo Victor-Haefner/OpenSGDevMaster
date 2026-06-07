@@ -51,7 +51,7 @@
 #include "OSGShaderVariables.h"
 #include "OSGConceptPropertyChecks.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -323,7 +323,7 @@ void ComputeShaderChunk::onCreate(const ComputeShaderChunk *source)
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&ComputeShaderChunk::handleGL, 
+            std::bind(&ComputeShaderChunk::handleGL, 
                         ComputeShaderChunkMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &ComputeShaderChunk::handleDestroyGL));

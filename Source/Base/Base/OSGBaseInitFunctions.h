@@ -47,7 +47,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <boost/function.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -75,7 +75,7 @@ extern OSG_BASE_DLLMAPPING SystemState GlobalSystemState;
 // * Factories       internal call
 // * PostFactories
 
-typedef boost::function<bool (void)> InitFuncF;
+typedef std::function<bool (void)> InitFuncF;
 
 // Shutdown sequence:
 //
@@ -85,7 +85,7 @@ typedef boost::function<bool (void)> InitFuncF;
 // * MP              internal call
 // * PostMP
 
-typedef boost::function<bool (void)> ExitFuncF;
+typedef std::function<bool (void)> ExitFuncF;
 
 /*! \ingroup GrpBaseBaseInitExit
     \ingroup GrpBaseBase

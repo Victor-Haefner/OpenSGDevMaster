@@ -68,7 +68,7 @@
 #include "OSGTiledQuadTreeTerrainBase.h"
 #include "OSGTiledQuadTreeTerrain.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1251,16 +1251,16 @@ EditFieldHandlePtr TiledQuadTreeTerrainBase::editHandleHeightTiles    (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&TiledQuadTreeTerrain::pushToHeightTiles,
+        std::bind(&TiledQuadTreeTerrain::pushToHeightTiles,
                     static_cast<TiledQuadTreeTerrain *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&TiledQuadTreeTerrain::removeFromHeightTiles,
+        std::bind(&TiledQuadTreeTerrain::removeFromHeightTiles,
                     static_cast<TiledQuadTreeTerrain *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&TiledQuadTreeTerrain::removeObjFromHeightTiles,
+        std::bind(&TiledQuadTreeTerrain::removeObjFromHeightTiles,
                     static_cast<TiledQuadTreeTerrain *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&TiledQuadTreeTerrain::clearHeightTiles,
+        std::bind(&TiledQuadTreeTerrain::clearHeightTiles,
                     static_cast<TiledQuadTreeTerrain *>(this)));
 
     editMField(HeightTilesFieldMask, _mfHeightTiles);
@@ -1288,16 +1288,16 @@ EditFieldHandlePtr TiledQuadTreeTerrainBase::editHandleHeightTextures (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&TiledQuadTreeTerrain::pushToHeightTextures,
+        std::bind(&TiledQuadTreeTerrain::pushToHeightTextures,
                     static_cast<TiledQuadTreeTerrain *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&TiledQuadTreeTerrain::removeFromHeightTextures,
+        std::bind(&TiledQuadTreeTerrain::removeFromHeightTextures,
                     static_cast<TiledQuadTreeTerrain *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&TiledQuadTreeTerrain::removeObjFromHeightTextures,
+        std::bind(&TiledQuadTreeTerrain::removeObjFromHeightTextures,
                     static_cast<TiledQuadTreeTerrain *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&TiledQuadTreeTerrain::clearHeightTextures,
+        std::bind(&TiledQuadTreeTerrain::clearHeightTextures,
                     static_cast<TiledQuadTreeTerrain *>(this)));
 
     editMField(HeightTexturesFieldMask, _mfHeightTextures);

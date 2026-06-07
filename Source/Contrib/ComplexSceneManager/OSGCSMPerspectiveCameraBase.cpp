@@ -67,7 +67,7 @@
 #include "OSGCSMPerspectiveCameraBase.h"
 #include "OSGCSMPerspectiveCamera.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -588,7 +588,7 @@ EditFieldHandlePtr CSMPerspectiveCameraBase::editHandleHeadBeacon     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMPerspectiveCamera::setHeadBeacon,
+        std::bind(&CSMPerspectiveCamera::setHeadBeacon,
                     static_cast<CSMPerspectiveCamera *>(this), _1));
 
     editSField(HeadBeaconFieldMask);

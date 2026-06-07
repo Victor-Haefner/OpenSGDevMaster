@@ -46,20 +46,20 @@ bool invokeCallback(bp::object obj, const OSG::FieldContainer* fc,
 void wrapRegisterCreated(OSG::RemoteAspect* self,
                          const OSG::FieldContainerType& type, bp::object func)
 {
-   self->registerCreated(type, boost::bind(invokeCallback, func, _1, _2));
+   self->registerCreated(type, std::bind(invokeCallback, func, _1, _2));
 }
 
 void wrapRegisterDestroyed(OSG::RemoteAspect* self,
                            const OSG::FieldContainerType& type,
                            bp::object func)
 {
-   self->registerDestroyed(type, boost::bind(invokeCallback, func, _1, _2));
+   self->registerDestroyed(type, std::bind(invokeCallback, func, _1, _2));
 }
 
 void wrapRegisterChanged(OSG::RemoteAspect* self,
                          const OSG::FieldContainerType& type, bp::object func)
 {
-   self->registerChanged(type, boost::bind(invokeCallback, func, _1, _2));
+   self->registerChanged(type, std::bind(invokeCallback, func, _1, _2));
 }
 
 }

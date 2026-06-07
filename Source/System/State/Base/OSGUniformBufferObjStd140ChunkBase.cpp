@@ -66,7 +66,7 @@
 #include "OSGUniformBufferObjStd140ChunkBase.h"
 #include "OSGUniformBufferObjStd140Chunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

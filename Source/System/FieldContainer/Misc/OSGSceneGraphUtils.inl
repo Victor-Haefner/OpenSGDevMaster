@@ -90,7 +90,7 @@ void collectCoresByType(Node                 *pRoot,
 {
     CoreCollector<CoreT> oCoreColl(result);
 
-    traverse(pRoot, boost::bind(&CoreCollector<CoreT>::travEnter,
+    traverse(pRoot, std::bind(&CoreCollector<CoreT>::travEnter,
                                 &oCoreColl,
                                 _1                              ));
 }

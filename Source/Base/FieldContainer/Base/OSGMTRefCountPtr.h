@@ -230,7 +230,7 @@ template <class TargetT, class SourceT, class RCPolicyT> inline
 OSG::MTRefCountPtr<TargetT, RCPolicyT> static_pointer_cast(
     OSG::MTRefCountPtr<SourceT, RCPolicyT> const &source);
 
-/*! The same as refPtr.get(), for interoperability with boost::bind.
+/*! The same as refPtr.get(), for interoperability with std::bind.
 
     \ingroup GrpBaseBaseRefCounting
     \relatesalso MTRefCountPtr

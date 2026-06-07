@@ -69,7 +69,7 @@
 #include "OSGShaderProgramChunkBase.h"
 #include "OSGShaderProgramChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1159,16 +1159,16 @@ EditFieldHandlePtr ShaderProgramChunkBase::editHandleVertexShader   (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderProgramChunk::addVertexShader,
+        std::bind(&ShaderProgramChunk::addVertexShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderProgramChunk::subVertexShader,
+        std::bind(&ShaderProgramChunk::subVertexShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderProgramChunk::removeObjFromVertexShader,
+        std::bind(&ShaderProgramChunk::removeObjFromVertexShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderProgramChunk::clearVertexShaders,
+        std::bind(&ShaderProgramChunk::clearVertexShaders,
                     static_cast<ShaderProgramChunk *>(this)));
 
     editMField(VertexShaderFieldMask, _mfVertexShader);
@@ -1196,16 +1196,16 @@ EditFieldHandlePtr ShaderProgramChunkBase::editHandleTessControlShader(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderProgramChunk::addTessControlShader,
+        std::bind(&ShaderProgramChunk::addTessControlShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderProgramChunk::subTessControlShader,
+        std::bind(&ShaderProgramChunk::subTessControlShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderProgramChunk::removeObjFromTessControlShader,
+        std::bind(&ShaderProgramChunk::removeObjFromTessControlShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderProgramChunk::clearTessControlShaders,
+        std::bind(&ShaderProgramChunk::clearTessControlShaders,
                     static_cast<ShaderProgramChunk *>(this)));
 
     editMField(TessControlShaderFieldMask, _mfTessControlShader);
@@ -1233,16 +1233,16 @@ EditFieldHandlePtr ShaderProgramChunkBase::editHandleTessEvaluationShader(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderProgramChunk::addTessEvaluationShader,
+        std::bind(&ShaderProgramChunk::addTessEvaluationShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderProgramChunk::subTessEvaluationShader,
+        std::bind(&ShaderProgramChunk::subTessEvaluationShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderProgramChunk::removeObjFromTessEvaluationShader,
+        std::bind(&ShaderProgramChunk::removeObjFromTessEvaluationShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderProgramChunk::clearTessEvaluationShaders,
+        std::bind(&ShaderProgramChunk::clearTessEvaluationShaders,
                     static_cast<ShaderProgramChunk *>(this)));
 
     editMField(TessEvaluationShaderFieldMask, _mfTessEvaluationShader);
@@ -1270,16 +1270,16 @@ EditFieldHandlePtr ShaderProgramChunkBase::editHandleGeometryShader (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderProgramChunk::addGeometryShader,
+        std::bind(&ShaderProgramChunk::addGeometryShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderProgramChunk::subGeometryShader,
+        std::bind(&ShaderProgramChunk::subGeometryShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderProgramChunk::removeObjFromGeometryShader,
+        std::bind(&ShaderProgramChunk::removeObjFromGeometryShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderProgramChunk::clearGeometryShaders,
+        std::bind(&ShaderProgramChunk::clearGeometryShaders,
                     static_cast<ShaderProgramChunk *>(this)));
 
     editMField(GeometryShaderFieldMask, _mfGeometryShader);
@@ -1307,16 +1307,16 @@ EditFieldHandlePtr ShaderProgramChunkBase::editHandleFragmentShader (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderProgramChunk::addFragmentShader,
+        std::bind(&ShaderProgramChunk::addFragmentShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderProgramChunk::subFragmentShader,
+        std::bind(&ShaderProgramChunk::subFragmentShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderProgramChunk::removeObjFromFragmentShader,
+        std::bind(&ShaderProgramChunk::removeObjFromFragmentShader,
                     static_cast<ShaderProgramChunk *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderProgramChunk::clearFragmentShaders,
+        std::bind(&ShaderProgramChunk::clearFragmentShaders,
                     static_cast<ShaderProgramChunk *>(this)));
 
     editMField(FragmentShaderFieldMask, _mfFragmentShader);

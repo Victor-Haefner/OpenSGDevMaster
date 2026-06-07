@@ -67,7 +67,7 @@
 #include "OSGCubeTextureObjChunkBase.h"
 #include "OSGCubeTextureObjChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -742,7 +742,7 @@ EditFieldHandlePtr CubeTextureObjChunkBase::editHandlePosZImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureObjChunk::setPosZImage,
+        std::bind(&CubeTextureObjChunk::setPosZImage,
                     static_cast<CubeTextureObjChunk *>(this), _1));
 
     editSField(PosZImageFieldMask);
@@ -770,7 +770,7 @@ EditFieldHandlePtr CubeTextureObjChunkBase::editHandlePosXImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureObjChunk::setPosXImage,
+        std::bind(&CubeTextureObjChunk::setPosXImage,
                     static_cast<CubeTextureObjChunk *>(this), _1));
 
     editSField(PosXImageFieldMask);
@@ -798,7 +798,7 @@ EditFieldHandlePtr CubeTextureObjChunkBase::editHandleNegXImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureObjChunk::setNegXImage,
+        std::bind(&CubeTextureObjChunk::setNegXImage,
                     static_cast<CubeTextureObjChunk *>(this), _1));
 
     editSField(NegXImageFieldMask);
@@ -826,7 +826,7 @@ EditFieldHandlePtr CubeTextureObjChunkBase::editHandlePosYImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureObjChunk::setPosYImage,
+        std::bind(&CubeTextureObjChunk::setPosYImage,
                     static_cast<CubeTextureObjChunk *>(this), _1));
 
     editSField(PosYImageFieldMask);
@@ -854,7 +854,7 @@ EditFieldHandlePtr CubeTextureObjChunkBase::editHandleNegYImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureObjChunk::setNegYImage,
+        std::bind(&CubeTextureObjChunk::setNegYImage,
                     static_cast<CubeTextureObjChunk *>(this), _1));
 
     editSField(NegYImageFieldMask);

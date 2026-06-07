@@ -557,7 +557,7 @@ void TypedGeoIntegralProperty<GeoPropertyDesc>::onCreate(
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&Self::handleGL, 
+            std::bind(&Self::handleGL, 
                         GeoPropertyMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &GeoProperty::handleDestroyGL));

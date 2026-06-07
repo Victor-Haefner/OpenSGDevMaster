@@ -66,7 +66,7 @@
 #include "OSGResolutionDisplayFilterBase.h"
 #include "OSGResolutionDisplayFilter.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

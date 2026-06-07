@@ -71,7 +71,7 @@
 #include "OSGDepthPeelingStageDataBase.h"
 #include "OSGDepthPeelingStageData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1287,7 +1287,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleBackground     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setBackground,
+        std::bind(&DepthPeelingStageData::setBackground,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(BackgroundFieldMask);
@@ -1315,7 +1315,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandlePeelPingFBO    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setPeelPingFBO,
+        std::bind(&DepthPeelingStageData::setPeelPingFBO,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(PeelPingFBOFieldMask);
@@ -1343,7 +1343,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandlePeelPongFBO    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setPeelPongFBO,
+        std::bind(&DepthPeelingStageData::setPeelPongFBO,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(PeelPongFBOFieldMask);
@@ -1371,7 +1371,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleBlendFBO       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setBlendFBO,
+        std::bind(&DepthPeelingStageData::setBlendFBO,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(BlendFBOFieldMask);
@@ -1399,7 +1399,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleBlendMaterial  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setBlendMaterial,
+        std::bind(&DepthPeelingStageData::setBlendMaterial,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(BlendMaterialFieldMask);
@@ -1427,7 +1427,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleBlendFinalMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setBlendFinalMaterial,
+        std::bind(&DepthPeelingStageData::setBlendFinalMaterial,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(BlendFinalMaterialFieldMask);
@@ -1455,7 +1455,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandlePeelPingMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setPeelPingMaterial,
+        std::bind(&DepthPeelingStageData::setPeelPingMaterial,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(PeelPingMaterialFieldMask);
@@ -1483,7 +1483,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandlePeelPongMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setPeelPongMaterial,
+        std::bind(&DepthPeelingStageData::setPeelPongMaterial,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(PeelPongMaterialFieldMask);
@@ -1511,7 +1511,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleDepthChunk     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setDepthChunk,
+        std::bind(&DepthPeelingStageData::setDepthChunk,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(DepthChunkFieldMask);
@@ -1539,7 +1539,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleSpvIsPeelChunk (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setSpvIsPeelChunk,
+        std::bind(&DepthPeelingStageData::setSpvIsPeelChunk,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(SpvIsPeelChunkFieldMask);
@@ -1567,7 +1567,7 @@ EditFieldHandlePtr DepthPeelingStageDataBase::editHandleSpvIsInitialChunk(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DepthPeelingStageData::setSpvIsInitialChunk,
+        std::bind(&DepthPeelingStageData::setSpvIsInitialChunk,
                     static_cast<DepthPeelingStageData *>(this), _1));
 
     editSField(SpvIsInitialChunkFieldMask);

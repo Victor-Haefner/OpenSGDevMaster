@@ -67,7 +67,7 @@
 #include "OSGMaterialDrawableBase.h"
 #include "OSGMaterialDrawable.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -316,7 +316,7 @@ EditFieldHandlePtr MaterialDrawableBase::editHandleMaterial       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&MaterialDrawable::setMaterial,
+        std::bind(&MaterialDrawable::setMaterial,
                     static_cast<MaterialDrawable *>(this), _1));
 
     editSField(MaterialFieldMask);

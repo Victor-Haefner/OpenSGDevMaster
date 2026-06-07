@@ -68,7 +68,7 @@
 #include "OSGSkinnedGeometryBase.h"
 #include "OSGSkinnedGeometry.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -874,7 +874,7 @@ EditFieldHandlePtr SkinnedGeometryBase::editHandleSkeleton       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&SkinnedGeometry::setSkeleton,
+        std::bind(&SkinnedGeometry::setSkeleton,
                     static_cast<SkinnedGeometry *>(this), _1));
 
     editSField(SkeletonFieldMask);
@@ -1027,7 +1027,7 @@ EditFieldHandlePtr SkinnedGeometryBase::editHandleSkinningAlgorithm(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&SkinnedGeometry::setSkinningAlgorithm,
+        std::bind(&SkinnedGeometry::setSkinningAlgorithm,
                     static_cast<SkinnedGeometry *>(this), _1));
 
     editSField(SkinningAlgorithmFieldMask);

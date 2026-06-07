@@ -66,7 +66,7 @@
 #include "OSGRotationTransformationElementBase.h"
 #include "OSGRotationTransformationElement.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

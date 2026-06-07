@@ -41,7 +41,7 @@
 #include "OSGAction.h"
 #include "OSGMaterialDrawable.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 /*! \class OSG::MaterialGroupPushGraphOp
     \ingroup GrpSystemNodeCoresDrawablesGeometry
@@ -144,7 +144,7 @@ Action::ResultE MaterialGroupPushGraphOp::traverseLeave(
         
         OSG::traverse(
             *(node->getMFChildren()),
-            boost::bind(
+            std::bind(
                 &MaterialGroupPushGraphOp::traverseTargetsEnter, this, _1));
         
         if(_pushPossible == true)

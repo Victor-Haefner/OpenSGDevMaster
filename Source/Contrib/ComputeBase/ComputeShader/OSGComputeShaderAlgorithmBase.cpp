@@ -68,7 +68,7 @@
 #include "OSGComputeShaderAlgorithmBase.h"
 #include "OSGComputeShaderAlgorithm.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -609,16 +609,16 @@ EditFieldHandlePtr ComputeShaderAlgorithmBase::editHandleTextureImages  (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ComputeShaderAlgorithm::pushToTextureImages,
+        std::bind(&ComputeShaderAlgorithm::pushToTextureImages,
                     static_cast<ComputeShaderAlgorithm *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ComputeShaderAlgorithm::removeFromTextureImages,
+        std::bind(&ComputeShaderAlgorithm::removeFromTextureImages,
                     static_cast<ComputeShaderAlgorithm *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ComputeShaderAlgorithm::removeObjFromTextureImages,
+        std::bind(&ComputeShaderAlgorithm::removeObjFromTextureImages,
                     static_cast<ComputeShaderAlgorithm *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ComputeShaderAlgorithm::clearTextureImages,
+        std::bind(&ComputeShaderAlgorithm::clearTextureImages,
                     static_cast<ComputeShaderAlgorithm *>(this)));
 
     editMField(TextureImagesFieldMask, _mfTextureImages);
@@ -646,7 +646,7 @@ EditFieldHandlePtr ComputeShaderAlgorithmBase::editHandleComputeShader  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ComputeShaderAlgorithm::setComputeShader,
+        std::bind(&ComputeShaderAlgorithm::setComputeShader,
                     static_cast<ComputeShaderAlgorithm *>(this), _1));
 
     editSField(ComputeShaderFieldMask);

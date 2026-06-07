@@ -68,7 +68,7 @@
 #include "OSGComplexSceneManagerBase.h"
 #include "OSGComplexSceneManager.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1069,16 +1069,16 @@ EditFieldHandlePtr ComplexSceneManagerBase::editHandleGlobals        (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ComplexSceneManager::pushToGlobals,
+        std::bind(&ComplexSceneManager::pushToGlobals,
                     static_cast<ComplexSceneManager *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ComplexSceneManager::removeFromGlobals,
+        std::bind(&ComplexSceneManager::removeFromGlobals,
                     static_cast<ComplexSceneManager *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ComplexSceneManager::removeObjFromGlobals,
+        std::bind(&ComplexSceneManager::removeObjFromGlobals,
                     static_cast<ComplexSceneManager *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ComplexSceneManager::clearGlobals,
+        std::bind(&ComplexSceneManager::clearGlobals,
                     static_cast<ComplexSceneManager *>(this)));
 
     editMField(GlobalsFieldMask, _mfGlobals);
@@ -1106,7 +1106,7 @@ EditFieldHandlePtr ComplexSceneManagerBase::editHandleDrawManager    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ComplexSceneManager::setDrawManager,
+        std::bind(&ComplexSceneManager::setDrawManager,
                     static_cast<ComplexSceneManager *>(this), _1));
 
     editSField(DrawManagerFieldMask);

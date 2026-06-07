@@ -66,7 +66,7 @@
 #include "OSGShaderVariableVec2fBase.h"
 #include "OSGShaderVariableVec2f.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

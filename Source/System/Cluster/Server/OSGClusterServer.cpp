@@ -38,7 +38,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 #include "OSGThread.h"
@@ -261,7 +261,7 @@ void ClusterServer::start(void)
         {
             _aspect->registerChanged(
                 *fct,
-                boost::bind(&ClusterServer::windowChanged, this, _1, _2));
+                std::bind(&ClusterServer::windowChanged, this, _1, _2));
         }
     }
 

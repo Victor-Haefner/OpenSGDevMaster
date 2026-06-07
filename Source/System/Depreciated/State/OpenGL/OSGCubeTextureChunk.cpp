@@ -42,7 +42,7 @@
 
 #include <cstdlib>
 #include <cstdio>
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -123,7 +123,7 @@ void CubeTextureChunk::onCreate(const CubeTextureChunk *source)
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&CubeTextureChunk::handleGL, 
+            std::bind(&CubeTextureChunk::handleGL, 
                         CubeTextureChunkMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &CubeTextureChunk::handleDestroyGL));

@@ -66,7 +66,7 @@
 #include "OSGStereoBufferViewportBase.h"
 #include "OSGStereoBufferViewport.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

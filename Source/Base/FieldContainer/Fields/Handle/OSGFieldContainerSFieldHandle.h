@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include <boost/function.hpp>  
+#include <functional>  
 #include <boost/type_traits.hpp>
 
 OSG_BEGIN_NAMESPACE
@@ -323,7 +323,7 @@ class EditFCPtrSFieldHandle :
     typedef          RefCountPtr<StoredType,
                                  UnrecordedRefCountPolicy>       StoredUnrecPtr;
 
-    typedef boost::function<void (typename FieldT::const_value)> SetMethod;
+    typedef std::function<void (typename FieldT::const_value)> SetMethod;
 
     SetMethod _fSetMethod;
 

@@ -66,7 +66,7 @@
 #include "OSGShaderVariableShaderStorageBlockBase.h"
 #include "OSGShaderVariableShaderStorageBlock.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

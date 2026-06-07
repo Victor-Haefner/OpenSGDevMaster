@@ -69,7 +69,7 @@
 #include "OSGDeferredShadingStageBase.h"
 #include "OSGDeferredShadingStage.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1025,7 +1025,7 @@ EditFieldHandlePtr DeferredShadingStageBase::editHandleGBufferProgram (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DeferredShadingStage::setGBufferProgram,
+        std::bind(&DeferredShadingStage::setGBufferProgram,
                     static_cast<DeferredShadingStage *>(this), _1));
 
     editSField(GBufferProgramFieldMask);
@@ -1053,7 +1053,7 @@ EditFieldHandlePtr DeferredShadingStageBase::editHandleAmbientProgram (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DeferredShadingStage::setAmbientProgram,
+        std::bind(&DeferredShadingStage::setAmbientProgram,
                     static_cast<DeferredShadingStage *>(this), _1));
 
     editSField(AmbientProgramFieldMask);
@@ -1081,16 +1081,16 @@ EditFieldHandlePtr DeferredShadingStageBase::editHandleLightPrograms  (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&DeferredShadingStage::pushToLightPrograms,
+        std::bind(&DeferredShadingStage::pushToLightPrograms,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&DeferredShadingStage::removeFromLightPrograms,
+        std::bind(&DeferredShadingStage::removeFromLightPrograms,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&DeferredShadingStage::removeObjFromLightPrograms,
+        std::bind(&DeferredShadingStage::removeObjFromLightPrograms,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&DeferredShadingStage::clearLightPrograms,
+        std::bind(&DeferredShadingStage::clearLightPrograms,
                     static_cast<DeferredShadingStage *>(this)));
 
     editMField(LightProgramsFieldMask, _mfLightPrograms);
@@ -1118,16 +1118,16 @@ EditFieldHandlePtr DeferredShadingStageBase::editHandlePhotometricMaps  (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&DeferredShadingStage::pushToPhotometricMaps,
+        std::bind(&DeferredShadingStage::pushToPhotometricMaps,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&DeferredShadingStage::removeFromPhotometricMaps,
+        std::bind(&DeferredShadingStage::removeFromPhotometricMaps,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&DeferredShadingStage::removeObjFromPhotometricMaps,
+        std::bind(&DeferredShadingStage::removeObjFromPhotometricMaps,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&DeferredShadingStage::clearPhotometricMaps,
+        std::bind(&DeferredShadingStage::clearPhotometricMaps,
                     static_cast<DeferredShadingStage *>(this)));
 
     editMField(PhotometricMapsFieldMask, _mfPhotometricMaps);
@@ -1155,16 +1155,16 @@ EditFieldHandlePtr DeferredShadingStageBase::editHandleLights         (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&DeferredShadingStage::pushToLights,
+        std::bind(&DeferredShadingStage::pushToLights,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&DeferredShadingStage::removeFromLights,
+        std::bind(&DeferredShadingStage::removeFromLights,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&DeferredShadingStage::removeObjFromLights,
+        std::bind(&DeferredShadingStage::removeObjFromLights,
                     static_cast<DeferredShadingStage *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&DeferredShadingStage::clearLights,
+        std::bind(&DeferredShadingStage::clearLights,
                     static_cast<DeferredShadingStage *>(this)));
 
     editMField(LightsFieldMask, _mfLights);

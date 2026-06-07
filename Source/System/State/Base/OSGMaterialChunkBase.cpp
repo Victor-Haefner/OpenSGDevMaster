@@ -68,7 +68,7 @@
 #include "OSGMaterialChunkBase.h"
 #include "OSGMaterialChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

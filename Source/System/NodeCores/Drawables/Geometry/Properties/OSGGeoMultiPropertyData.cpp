@@ -42,7 +42,7 @@
 
 #include <cstdlib>
 #include <cstdio>
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -134,7 +134,7 @@ void GeoMultiPropertyData::onCreate(const GeoMultiPropertyData *)
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&GeoMultiPropertyData::handleGL, 
+            std::bind(&GeoMultiPropertyData::handleGL, 
                         GeoMultiPropertyDataMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &GeoMultiPropertyData::handleDestroyGL));

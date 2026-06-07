@@ -67,7 +67,7 @@
 #include "OSGMapHelperBase.h"
 #include "OSGMapHelper.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -506,7 +506,7 @@ EditFieldHandlePtr MapHelperBase::editHandleContainer      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&MapHelper::setContainer,
+        std::bind(&MapHelper::setContainer,
                     static_cast<MapHelper *>(this), _1));
 
     editSField(ContainerFieldMask);

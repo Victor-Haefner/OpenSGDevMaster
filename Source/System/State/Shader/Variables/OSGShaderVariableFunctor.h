@@ -45,7 +45,7 @@
 #include "OSGShaderVariableFunctorBase.h"
 #include "OSGDrawEnv.h"
 
-#include "boost/function.hpp"
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -70,15 +70,15 @@ class OSG_SYSTEM_DLLMAPPING ShaderVariableFunctor :
     typedef GLint (OSG_APIENTRY *GetUniformLocProc)(      GLuint  programObj,
                                                     const Char8  *name      );
 
-    typedef boost::function<void (DrawEnv *, Int32        )> ProcVarFunctor;
-    typedef boost::function<void (DrawEnv *, Int32, Node *)> ProcVarNodeFunctor;
+    typedef std::function<void (DrawEnv *, Int32        )> ProcVarFunctor;
+    typedef std::function<void (DrawEnv *, Int32, Node *)> ProcVarNodeFunctor;
 
 #ifdef OSG_1_COMPAT
-    typedef boost::function<void (GetUniformLocProc  ,
+    typedef std::function<void (GetUniformLocProc  ,
                                   DrawEnv           *,
                                   GLuint                 )> ParamFunctor;
 
-    typedef boost::function<void (ShaderVariable  * const,
+    typedef std::function<void (ShaderVariable  * const,
                                   DrawEnv         *      ,
                                   GLuint                 )> OSGParamFunctor;
 #endif

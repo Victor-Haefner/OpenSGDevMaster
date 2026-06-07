@@ -918,7 +918,7 @@ void OSGLoader::addRoute(const Char8  *szOutNodename,
     if(pSrcNode == NULL)
     {
         pSrcNode = resolveFieldPath(szOutNodename, 
-                                    boost::bind(&OSGLoader::getReference,
+                                    std::bind(&OSGLoader::getReference,
                                                 this,
                                                 _1));
     }
@@ -934,7 +934,7 @@ void OSGLoader::addRoute(const Char8  *szOutNodename,
     if(pDstNode == NULL)
     {
         pDstNode = resolveFieldPath(szInNodename, 
-                                    boost::bind(&OSGLoader::getReference,
+                                    std::bind(&OSGLoader::getReference,
                                                 this,
                                                 _1));
     }

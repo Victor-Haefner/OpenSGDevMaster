@@ -67,7 +67,7 @@
 #include "OSGProxyGroupBase.h"
 #include "OSGProxyGroup.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1068,7 +1068,7 @@ EditFieldHandlePtr ProxyGroupBase::editHandleRoot           (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ProxyGroup::setRoot,
+        std::bind(&ProxyGroup::setRoot,
                     static_cast<ProxyGroup *>(this), _1));
 
     editSField(RootFieldMask);

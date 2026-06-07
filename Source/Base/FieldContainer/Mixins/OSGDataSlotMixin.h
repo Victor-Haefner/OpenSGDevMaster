@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include "boost/function.hpp"
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -74,7 +74,7 @@ class DataSlotMixin : public ParentT
 
     typedef          DataSlotMixin<ParentT>         Self;
 
-    typedef          boost::function<void (Self *)> DestroyFunctor;
+    typedef          std::function<void (Self *)> DestroyFunctor;
 
     typedef typename Desc::DataSlotIdPool           DataSlotIdPool;
 

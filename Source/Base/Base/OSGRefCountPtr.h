@@ -212,7 +212,7 @@ template <class TargetObjectT, class SourceObjectT, class RP> inline
 OSG::RefCountPtr<TargetObjectT, RP> static_pointer_cast(
     OSG::RefCountPtr<SourceObjectT, RP> const &source);
 
-/*! The same as refPtr.get(), for interoperability with boost::bind.
+/*! The same as refPtr.get(), for interoperability with std::bind.
 
     \ingroup GrpBaseBaseRefCounting
     \relatesalso RefCountPtr

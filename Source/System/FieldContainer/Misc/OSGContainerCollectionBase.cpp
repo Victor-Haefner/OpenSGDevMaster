@@ -67,7 +67,7 @@
 #include "OSGContainerCollectionBase.h"
 #include "OSGContainerCollection.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -560,16 +560,16 @@ EditFieldHandlePtr ContainerCollectionBase::editHandleContainers     (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ContainerCollection::pushToContainers,
+        std::bind(&ContainerCollection::pushToContainers,
                     static_cast<ContainerCollection *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ContainerCollection::removeFromContainers,
+        std::bind(&ContainerCollection::removeFromContainers,
                     static_cast<ContainerCollection *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ContainerCollection::removeObjFromContainers,
+        std::bind(&ContainerCollection::removeObjFromContainers,
                     static_cast<ContainerCollection *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ContainerCollection::clearContainers,
+        std::bind(&ContainerCollection::clearContainers,
                     static_cast<ContainerCollection *>(this)));
 
     editMField(ContainersFieldMask, _mfContainers);

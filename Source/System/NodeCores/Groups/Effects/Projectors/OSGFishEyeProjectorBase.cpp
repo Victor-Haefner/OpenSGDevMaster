@@ -68,7 +68,7 @@
 #include "OSGFishEyeProjectorBase.h"
 #include "OSGFishEyeProjector.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1142,16 +1142,16 @@ EditFieldHandlePtr FishEyeProjectorBase::editHandleGeometries     (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FishEyeProjector::pushToGeometries,
+        std::bind(&FishEyeProjector::pushToGeometries,
                     static_cast<FishEyeProjector *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&FishEyeProjector::removeFromGeometries,
+        std::bind(&FishEyeProjector::removeFromGeometries,
                     static_cast<FishEyeProjector *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FishEyeProjector::removeObjFromGeometries,
+        std::bind(&FishEyeProjector::removeObjFromGeometries,
                     static_cast<FishEyeProjector *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FishEyeProjector::clearGeometries,
+        std::bind(&FishEyeProjector::clearGeometries,
                     static_cast<FishEyeProjector *>(this)));
 
     editMField(GeometriesFieldMask, _mfGeometries);

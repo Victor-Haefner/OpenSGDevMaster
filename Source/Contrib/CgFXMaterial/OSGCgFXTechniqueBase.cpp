@@ -67,7 +67,7 @@
 #include "OSGCgFXTechniqueBase.h"
 #include "OSGCgFXTechnique.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -532,25 +532,25 @@ EditFieldHandlePtr CgFXTechniqueBase::editHandleRenderPassStates(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CgFXTechnique::addPassState,
+        std::bind(&CgFXTechnique::addPassState,
                     static_cast<CgFXTechnique *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&CgFXTechnique::insertPassState,
+        std::bind(&CgFXTechnique::insertPassState,
                     static_cast<CgFXTechnique *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&CgFXTechnique::replacePassState,
+        std::bind(&CgFXTechnique::replacePassState,
                     static_cast<CgFXTechnique *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&CgFXTechnique::replacePassStateByObj,
+        std::bind(&CgFXTechnique::replacePassStateByObj,
                     static_cast<CgFXTechnique *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&CgFXTechnique::subPassState,
+        std::bind(&CgFXTechnique::subPassState,
                     static_cast<CgFXTechnique *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CgFXTechnique::subPassStateByObj,
+        std::bind(&CgFXTechnique::subPassStateByObj,
                     static_cast<CgFXTechnique *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CgFXTechnique::clearPassStates,
+        std::bind(&CgFXTechnique::clearPassStates,
                     static_cast<CgFXTechnique *>(this)));
 
     editMField(RenderPassStatesFieldMask, _mfRenderPassStates);

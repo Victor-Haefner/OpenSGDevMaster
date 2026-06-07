@@ -67,7 +67,7 @@
 #include "OSGParticlesBase.h"
 #include "OSGParticles.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1357,7 +1357,7 @@ EditFieldHandlePtr ParticlesBase::editHandlePositions      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Particles::setPositions,
+        std::bind(&Particles::setPositions,
                     static_cast<Particles *>(this), _1));
 
     editSField(PositionsFieldMask);
@@ -1410,7 +1410,7 @@ EditFieldHandlePtr ParticlesBase::editHandleSecPositions   (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Particles::setSecPositions,
+        std::bind(&Particles::setSecPositions,
                     static_cast<Particles *>(this), _1));
 
     editSField(SecPositionsFieldMask);
@@ -1438,7 +1438,7 @@ EditFieldHandlePtr ParticlesBase::editHandleColors         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Particles::setColors,
+        std::bind(&Particles::setColors,
                     static_cast<Particles *>(this), _1));
 
     editSField(ColorsFieldMask);
@@ -1466,7 +1466,7 @@ EditFieldHandlePtr ParticlesBase::editHandleNormals        (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Particles::setNormals,
+        std::bind(&Particles::setNormals,
                     static_cast<Particles *>(this), _1));
 
     editSField(NormalsFieldMask);

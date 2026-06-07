@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include "boost/function.hpp"
+#include <functional>
 
 #include "OSGBaseTypes.h"
 #include "OSGSceneFileType.h"
@@ -64,7 +64,7 @@ class OSG_SYSTEM_DLLMAPPING OSGSceneFileType : public SceneFileType
 
   public:
 
-    typedef boost::function<void(FieldContainer        * const,
+    typedef std::function<void(FieldContainer        * const,
                                  FileContextAttachment * const)> Functor;
 
     typedef void (FieldContainer::*Callback)(FileContextAttachment * const);

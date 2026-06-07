@@ -39,7 +39,7 @@
 #ifndef _OSGOFRECORDS_H_
 #define _OSGOFRECORDS_H_
 
-#include "boost/function.hpp"
+#include <functional>
 
 #include "OSGFileIODef.h"
 #include "OSGBaseTypes.h"
@@ -106,7 +106,7 @@ class OSG_FILEIO_DLLMAPPING OFRecordFactoryBase
 
   public :
 
-    typedef boost::function<
+    typedef std::function<
         OFRecordTransitPtr (const OFRecordHeader &,
                                   OFDatabase     & )> CreateRecord;
 

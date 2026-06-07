@@ -66,7 +66,7 @@
 #include "OSGShaderVariablePnt2fBase.h"
 #include "OSGShaderVariablePnt2f.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

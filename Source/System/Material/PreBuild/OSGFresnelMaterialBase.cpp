@@ -68,7 +68,7 @@
 #include "OSGFresnelMaterialBase.h"
 #include "OSGFresnelMaterial.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1290,7 +1290,7 @@ EditFieldHandlePtr FresnelMaterialBase::editHandleImage          (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FresnelMaterial::setImage,
+        std::bind(&FresnelMaterial::setImage,
                     static_cast<FresnelMaterial *>(this), _1));
 
     editSField(ImageFieldMask);

@@ -63,7 +63,7 @@
 #include "OSGFCDPtrTestFCCustomAccessBase.h"
 #include "OSGFCDPtrTestFCCustomAccess.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef WIN32 // turn off 'this' : used in base member initializer list warning
 #pragma warning(disable:4355)
@@ -2125,7 +2125,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPub_ptr (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_ptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_ptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPub_ptrFieldMask);
@@ -2153,7 +2153,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPub_weakptr(vo
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_weakptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_weakptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPub_weakptrFieldMask);
@@ -2181,7 +2181,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPub_mpchildptr
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_mpchildptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPub_mpchildptrFieldMask);
@@ -2209,7 +2209,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPro_ptr (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_ptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_ptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPro_ptrFieldMask);
@@ -2237,7 +2237,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPro_weakptr(vo
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_weakptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_weakptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPro_weakptrFieldMask);
@@ -2265,7 +2265,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPro_mpchildptr
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_mpchildptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPro_mpchildptrFieldMask);
@@ -2527,7 +2527,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPub_spchildptr
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_spchildptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPub_spchildptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPub_spchildptrFieldMask);
@@ -2555,7 +2555,7 @@ EditFieldHandlePtr FCDPtrTestFCCustomAccessBase::editHandleFieldSFPro_spchildptr
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_spchildptr,
+        std::bind(&FCDPtrTestFCCustomAccess::setFieldSFPro_spchildptr,
                     static_cast<FCDPtrTestFCCustomAccess *>(this), _1));
 
     editSField(FieldSFPro_spchildptrFieldMask);

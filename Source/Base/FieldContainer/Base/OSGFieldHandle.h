@@ -295,7 +295,7 @@ class GetMapFieldHandle : public GetFieldHandle
 
   public:
 
-    typedef boost::function<void (FieldContainer *)> TraverseCallback;
+    typedef std::function<void (FieldContainer *)> TraverseCallback;
 
     typedef boost::shared_ptr<GetMapFieldHandle    > Ptr;
 
@@ -358,7 +358,7 @@ class EditMapFieldHandle : public EditFieldHandle
 
   public:
 
-    typedef boost::function<void (FieldContainer *)> TraverseCallback;
+    typedef std::function<void (FieldContainer *)> TraverseCallback;
 
     typedef boost::shared_ptr<EditMapFieldHandle>    Ptr;
 

@@ -67,7 +67,7 @@
 #include "OSGCSMDrawManagerBase.h"
 #include "OSGCSMDrawManager.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -686,7 +686,7 @@ EditFieldHandlePtr CSMDrawManagerBase::editHandleAppDrawer      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMDrawManager::setAppDrawer,
+        std::bind(&CSMDrawManager::setAppDrawer,
                     static_cast<CSMDrawManager *>(this), _1));
 
     editSField(AppDrawerFieldMask);
@@ -714,16 +714,16 @@ EditFieldHandlePtr CSMDrawManagerBase::editHandleDrawer         (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CSMDrawManager::pushToDrawer,
+        std::bind(&CSMDrawManager::pushToDrawer,
                     static_cast<CSMDrawManager *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CSMDrawManager::removeFromDrawer,
+        std::bind(&CSMDrawManager::removeFromDrawer,
                     static_cast<CSMDrawManager *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CSMDrawManager::removeObjFromDrawer,
+        std::bind(&CSMDrawManager::removeObjFromDrawer,
                     static_cast<CSMDrawManager *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CSMDrawManager::clearDrawer,
+        std::bind(&CSMDrawManager::clearDrawer,
                     static_cast<CSMDrawManager *>(this)));
 
     editMField(DrawerFieldMask, _mfDrawer);

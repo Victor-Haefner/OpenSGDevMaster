@@ -56,6 +56,11 @@
 #endif
 
 /*-------------------------------------------------------------------------*/
+/*                                Boost migration                          */
+#include <functional>
+using namespace std::placeholders;
+
+/*-------------------------------------------------------------------------*/
 /*                                Versioning                               */
 
 /*! @name Version Defines

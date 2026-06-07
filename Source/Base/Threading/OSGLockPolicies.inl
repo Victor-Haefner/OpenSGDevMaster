@@ -121,10 +121,10 @@ SingleStaticInitLockPolicy::SingleStaticInitLockPolicy(void) :
     _pLock(NULL)
 {
     addPreFactoryInitFunction(
-        boost::bind(&SingleStaticInitLockPolicy::init, this));
+        std::bind(&SingleStaticInitLockPolicy::init, this));
 
     addPreMPExitFunction(
-        boost::bind(&SingleStaticInitLockPolicy::shutdown, this));
+        std::bind(&SingleStaticInitLockPolicy::shutdown, this));
 }
 
 

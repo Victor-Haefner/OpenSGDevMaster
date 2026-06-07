@@ -66,7 +66,7 @@
 #include "OSGSkeletonJointBase.h"
 #include "OSGSkeletonJoint.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

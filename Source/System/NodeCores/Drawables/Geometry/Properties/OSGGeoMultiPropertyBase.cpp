@@ -67,7 +67,7 @@
 #include "OSGGeoMultiPropertyBase.h"
 #include "OSGGeoMultiProperty.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -772,7 +772,7 @@ EditFieldHandlePtr GeoMultiPropertyBase::editHandleContainer      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&GeoMultiProperty::setContainer,
+        std::bind(&GeoMultiProperty::setContainer,
                     static_cast<GeoMultiProperty *>(this), _1));
 
     editSField(ContainerFieldMask);

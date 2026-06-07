@@ -67,7 +67,7 @@ class OSG_CONTRIBWEBINTERFACE_DLLMAPPING WebInterface : public MemoryObject
 
     OSG_GEN_INTERNAL_MEMOBJPTR(WebInterface);
 
-    typedef boost::function<ObjTransitPtr (UInt32)> CreateFunc;
+    typedef std::function<ObjTransitPtr (UInt32)> CreateFunc;
 
     /*---------------------------------------------------------------------*/
     /*! \name                  request handling                            */

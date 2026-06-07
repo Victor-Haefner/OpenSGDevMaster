@@ -402,11 +402,11 @@ void CPUSkinningAlgorithm::changed(ConstFieldMaskArg whichField,
     if((SkeletonFieldMask & whichField) != 0    &&
        _sfSkeleton.getValue()           != NULL   )
     {
-        if(_sfSkeleton.getValue()->hasChangedFunctor(boost::bind(
+        if(_sfSkeleton.getValue()->hasChangedFunctor(std::bind(
                &CPUSkinningAlgorithm::skeletonChanged,
                this, _1, _2                                )) == false)
         {
-            _sfSkeleton.getValue()->addChangedFunctor(boost::bind(
+            _sfSkeleton.getValue()->addChangedFunctor(std::bind(
                 &CPUSkinningAlgorithm::skeletonChanged,
                 this, _1, _2                                ),
                 "CPUSkinningAlgorithm::skeletonChanged"  );
@@ -809,7 +809,7 @@ void CPUSkinningAlgorithm::renderGeometry(
         pPrimeMat = getDefaultMaterial();
     }
 
-    DrawEnv::DrawFunctor drawFunc  = boost::bind(
+    DrawEnv::DrawFunctor drawFunc  = std::bind(
         &CPUSkinningAlgorithm::drawPrimitives, this, skinGeo, data, _1);
     UInt32               uiNPasses = pPrimeMat->getNPasses();
     
@@ -915,7 +915,7 @@ void CPUSkinningAlgorithm::resolveLinks(void)
 {
     if(_sfSkeleton.getValue() != NULL)
     {
-        _sfSkeleton.getValue()->subChangedFunctor(boost::bind(
+        _sfSkeleton.getValue()->subChangedFunctor(std::bind(
             &CPUSkinningAlgorithm::skeletonChanged,
             this, _1, _2                           ));
     }

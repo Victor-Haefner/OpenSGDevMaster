@@ -68,7 +68,7 @@
 #include "OSGImageBase.h"
 #include "OSGImage.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

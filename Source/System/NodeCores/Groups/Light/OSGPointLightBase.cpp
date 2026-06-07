@@ -66,7 +66,7 @@
 #include "OSGPointLightBase.h"
 #include "OSGPointLight.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

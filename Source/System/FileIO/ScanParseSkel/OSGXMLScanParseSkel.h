@@ -55,7 +55,7 @@
 #include <stack>
 #include <map>
 
-#include <boost/function.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -97,9 +97,9 @@ class OSG_SYSTEM_DLLMAPPING XMLScanParseSkel
         Error   = 0x0001
     };
 
-    typedef boost::function<CBResult (      XMLScanParseSkel *,
+    typedef std::function<CBResult (      XMLScanParseSkel *,
                                       const std::string      &)> XMLCallback1;
-    typedef boost::function<CBResult (      XMLScanParseSkel *,
+    typedef std::function<CBResult (      XMLScanParseSkel *,
                                       const std::string      &,
                                       const std::string      &)> XMLCallback2;
 

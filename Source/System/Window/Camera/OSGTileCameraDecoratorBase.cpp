@@ -66,7 +66,7 @@
 #include "OSGTileCameraDecoratorBase.h"
 #include "OSGTileCameraDecorator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

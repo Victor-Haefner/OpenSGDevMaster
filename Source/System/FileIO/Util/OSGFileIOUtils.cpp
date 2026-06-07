@@ -1,7 +1,7 @@
 #include "OSGFileIOUtils.h"
 #include "OSGAction.h"
 #include "OSGNameAttachment.h"
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -18,7 +18,7 @@ void FileIONodeFinder::traverse(NodeUnrecPtr root)
     _FoundNamedNodes .clear();
     _FoundNodes      .clear();
 
-    OSG::traverse(root, boost::bind(&FileIONodeFinder::check,
+    OSG::traverse(root, std::bind(&FileIONodeFinder::check,
                                     this, _1));
 }
 

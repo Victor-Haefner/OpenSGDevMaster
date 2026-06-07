@@ -69,7 +69,7 @@
 #include "OSGCSMClusterWindowBase.h"
 #include "OSGCSMClusterWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -970,7 +970,7 @@ EditFieldHandlePtr CSMClusterWindowBase::editHandleClientWindow   (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMClusterWindow::setClientWindow,
+        std::bind(&CSMClusterWindow::setClientWindow,
                     static_cast<CSMClusterWindow *>(this), _1));
 
     editSField(ClientWindowFieldMask);
@@ -1148,7 +1148,7 @@ EditFieldHandlePtr CSMClusterWindowBase::editHandleComposer       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMClusterWindow::setComposer,
+        std::bind(&CSMClusterWindow::setComposer,
                     static_cast<CSMClusterWindow *>(this), _1));
 
     editSField(ComposerFieldMask);
@@ -1176,7 +1176,7 @@ EditFieldHandlePtr CSMClusterWindowBase::editHandleOptions        (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMClusterWindow::setOptions,
+        std::bind(&CSMClusterWindow::setOptions,
                     static_cast<CSMClusterWindow *>(this), _1));
 
     editSField(OptionsFieldMask);

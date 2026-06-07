@@ -68,7 +68,7 @@
 #include "OSGShaderExecutableVarChunkBase.h"
 #include "OSGShaderExecutableVarChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -654,7 +654,7 @@ EditFieldHandlePtr ShaderExecutableVarChunkBase::editHandleVariables      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderExecutableVarChunk::setVariables,
+        std::bind(&ShaderExecutableVarChunk::setVariables,
                     static_cast<ShaderExecutableVarChunk *>(this), _1));
 
     editSField(VariablesFieldMask);

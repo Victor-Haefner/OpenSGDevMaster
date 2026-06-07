@@ -67,7 +67,7 @@
 #include "OSGCSMLoggerBase.h"
 #include "OSGCSMLogger.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -580,16 +580,16 @@ EditFieldHandlePtr CSMLoggerBase::editHandleContainers     (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CSMLogger::pushToContainers,
+        std::bind(&CSMLogger::pushToContainers,
                     static_cast<CSMLogger *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CSMLogger::removeFromContainers,
+        std::bind(&CSMLogger::removeFromContainers,
                     static_cast<CSMLogger *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CSMLogger::removeObjFromContainers,
+        std::bind(&CSMLogger::removeObjFromContainers,
                     static_cast<CSMLogger *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CSMLogger::clearContainers,
+        std::bind(&CSMLogger::clearContainers,
                     static_cast<CSMLogger *>(this)));
 
     editMField(ContainersFieldMask, _mfContainers);

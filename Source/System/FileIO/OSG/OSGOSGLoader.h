@@ -111,13 +111,13 @@ class OSG_SYSTEM_DLLMAPPING OSGLoader :
                                      FieldContainerUnrecPtr> NamedFCMap;
     typedef OSGLoader                                        Self;
 
-    typedef boost::function<FieldContainer *(const Char8 *,
+    typedef std::function<FieldContainer *(const Char8 *,
                                                    FieldContainer *,
                                                    Int32           )> Resolver; 
 
   public :
 
-    typedef boost::function<void(FieldContainer        * const,
+    typedef std::function<void(FieldContainer        * const,
                                  FileContextAttachment * const)> Functor;
 
     /*---------------------------------------------------------------------*/

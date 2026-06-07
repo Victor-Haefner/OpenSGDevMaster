@@ -69,7 +69,7 @@ class OSG_SYSTEM_DLLMAPPING WindowDrawTask : public DrawTask
     static const UInt32 DeactivateAndWait = Inherited::LastType + 7;
     static const UInt32 LastType          = DeactivateAndWait;
 
-    typedef boost::function<void (void)> GLInitFunctor;
+    typedef std::function<void (void)> GLInitFunctor;
     typedef DrawTask                     Inherited;
 
     /*---------------------------------------------------------------------*/
@@ -253,7 +253,7 @@ class OSG_SYSTEM_DLLMAPPING CallbackDrawTask : public BlockingDrawTask
 
     typedef BlockingDrawTask Inherited;
 
-    typedef boost::function<void (HardwareContext *, 
+    typedef std::function<void (HardwareContext *, 
                                   DrawEnv         *)> CallbackFunctor;
 
     /*---------------------------------------------------------------------*/

@@ -66,7 +66,7 @@
 #include "OSGShaderVariableMatrixBase.h"
 #include "OSGShaderVariableMatrix.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

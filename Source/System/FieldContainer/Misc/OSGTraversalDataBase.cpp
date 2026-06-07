@@ -66,7 +66,7 @@
 #include "OSGTraversalDataBase.h"
 #include "OSGTraversalData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

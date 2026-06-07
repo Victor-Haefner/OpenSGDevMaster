@@ -71,7 +71,7 @@
 #include "OSGViewportBase.h"
 #include "OSGViewport.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -910,7 +910,7 @@ EditFieldHandlePtr ViewportBase::editHandleCamera         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Viewport::setCamera,
+        std::bind(&Viewport::setCamera,
                     static_cast<Viewport *>(this), _1));
 
     editSField(CameraFieldMask);
@@ -938,7 +938,7 @@ EditFieldHandlePtr ViewportBase::editHandleRoot           (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Viewport::setRoot,
+        std::bind(&Viewport::setRoot,
                     static_cast<Viewport *>(this), _1));
 
     editSField(RootFieldMask);
@@ -966,7 +966,7 @@ EditFieldHandlePtr ViewportBase::editHandleBackground     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Viewport::setBackground,
+        std::bind(&Viewport::setBackground,
                     static_cast<Viewport *>(this), _1));
 
     editSField(BackgroundFieldMask);
@@ -994,16 +994,16 @@ EditFieldHandlePtr ViewportBase::editHandleForegrounds    (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&Viewport::addForeground,
+        std::bind(&Viewport::addForeground,
                     static_cast<Viewport *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&Viewport::removeFromForegrounds,
+        std::bind(&Viewport::removeFromForegrounds,
                     static_cast<Viewport *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&Viewport::removeObjFromForegrounds,
+        std::bind(&Viewport::removeObjFromForegrounds,
                     static_cast<Viewport *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&Viewport::clearForegrounds,
+        std::bind(&Viewport::clearForegrounds,
                     static_cast<Viewport *>(this)));
 
     editMField(ForegroundsFieldMask, _mfForegrounds);

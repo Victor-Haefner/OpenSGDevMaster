@@ -66,7 +66,7 @@
 #include "OSGRegisterCombinersChunkBase.h"
 #include "OSGRegisterCombinersChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

@@ -67,7 +67,7 @@
 #include "OSGNodeCoreBase.h"
 #include "OSGNodeCore.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

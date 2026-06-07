@@ -69,7 +69,7 @@
 #include "OSGPostShaderStageDataBase.h"
 #include "OSGPostShaderStageData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -780,16 +780,16 @@ EditFieldHandlePtr PostShaderStageDataBase::editHandleShaderMaterials(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&PostShaderStageData::pushToShaderMaterials,
+        std::bind(&PostShaderStageData::pushToShaderMaterials,
                     static_cast<PostShaderStageData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&PostShaderStageData::removeFromShaderMaterials,
+        std::bind(&PostShaderStageData::removeFromShaderMaterials,
                     static_cast<PostShaderStageData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&PostShaderStageData::removeObjFromShaderMaterials,
+        std::bind(&PostShaderStageData::removeObjFromShaderMaterials,
                     static_cast<PostShaderStageData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&PostShaderStageData::clearShaderMaterials,
+        std::bind(&PostShaderStageData::clearShaderMaterials,
                     static_cast<PostShaderStageData *>(this)));
 
     editMField(ShaderMaterialsFieldMask, _mfShaderMaterials);
@@ -867,16 +867,16 @@ EditFieldHandlePtr PostShaderStageDataBase::editHandleRenderTargets  (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&PostShaderStageData::pushToRenderTargets,
+        std::bind(&PostShaderStageData::pushToRenderTargets,
                     static_cast<PostShaderStageData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&PostShaderStageData::removeFromRenderTargets,
+        std::bind(&PostShaderStageData::removeFromRenderTargets,
                     static_cast<PostShaderStageData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&PostShaderStageData::removeObjFromRenderTargets,
+        std::bind(&PostShaderStageData::removeObjFromRenderTargets,
                     static_cast<PostShaderStageData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&PostShaderStageData::clearRenderTargets,
+        std::bind(&PostShaderStageData::clearRenderTargets,
                     static_cast<PostShaderStageData *>(this)));
 
     editMField(RenderTargetsFieldMask, _mfRenderTargets);
@@ -904,7 +904,7 @@ EditFieldHandlePtr PostShaderStageDataBase::editHandleCamera         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&PostShaderStageData::setCamera,
+        std::bind(&PostShaderStageData::setCamera,
                     static_cast<PostShaderStageData *>(this), _1));
 
     editSField(CameraFieldMask);

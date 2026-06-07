@@ -70,7 +70,7 @@
 #include "OSGBlendChunkBase.h"
 #include "OSGBlendChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

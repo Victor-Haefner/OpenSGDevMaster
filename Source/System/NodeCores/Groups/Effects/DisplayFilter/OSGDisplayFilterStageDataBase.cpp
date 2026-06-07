@@ -70,7 +70,7 @@
 #include "OSGDisplayFilterStageDataBase.h"
 #include "OSGDisplayFilterStageData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -797,7 +797,7 @@ EditFieldHandlePtr DisplayFilterStageDataBase::editHandleTarget         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterStageData::setTarget,
+        std::bind(&DisplayFilterStageData::setTarget,
                     static_cast<DisplayFilterStageData *>(this), _1));
 
     editSField(TargetFieldMask);
@@ -825,7 +825,7 @@ EditFieldHandlePtr DisplayFilterStageDataBase::editHandleBaseMaterial   (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterStageData::setBaseMaterial,
+        std::bind(&DisplayFilterStageData::setBaseMaterial,
                     static_cast<DisplayFilterStageData *>(this), _1));
 
     editSField(BaseMaterialFieldMask);
@@ -853,7 +853,7 @@ EditFieldHandlePtr DisplayFilterStageDataBase::editHandleColorFilterShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterStageData::setColorFilterShader,
+        std::bind(&DisplayFilterStageData::setColorFilterShader,
                     static_cast<DisplayFilterStageData *>(this), _1));
 
     editSField(ColorFilterShaderFieldMask);
@@ -881,7 +881,7 @@ EditFieldHandlePtr DisplayFilterStageDataBase::editHandleColorFilterTexture(void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterStageData::setColorFilterTexture,
+        std::bind(&DisplayFilterStageData::setColorFilterTexture,
                     static_cast<DisplayFilterStageData *>(this), _1));
 
     editSField(ColorFilterTextureFieldMask);

@@ -66,7 +66,7 @@
 #include "OSGSkewTransformationElementBase.h"
 #include "OSGSkewTransformationElement.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

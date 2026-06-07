@@ -70,7 +70,7 @@
 #include "OSGFishEyeProjectorDataBase.h"
 #include "OSGFishEyeProjectorData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -729,7 +729,7 @@ EditFieldHandlePtr FishEyeProjectorDataBase::editHandleRenderTarget   (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FishEyeProjectorData::setRenderTarget,
+        std::bind(&FishEyeProjectorData::setRenderTarget,
                     static_cast<FishEyeProjectorData *>(this), _1));
 
     editSField(RenderTargetFieldMask);
@@ -757,16 +757,16 @@ EditFieldHandlePtr FishEyeProjectorDataBase::editHandleTextures       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FishEyeProjectorData::pushToTextures,
+        std::bind(&FishEyeProjectorData::pushToTextures,
                     static_cast<FishEyeProjectorData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&FishEyeProjectorData::removeFromTextures,
+        std::bind(&FishEyeProjectorData::removeFromTextures,
                     static_cast<FishEyeProjectorData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FishEyeProjectorData::removeObjFromTextures,
+        std::bind(&FishEyeProjectorData::removeObjFromTextures,
                     static_cast<FishEyeProjectorData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FishEyeProjectorData::clearTextures,
+        std::bind(&FishEyeProjectorData::clearTextures,
                     static_cast<FishEyeProjectorData *>(this)));
 
     editMField(TexturesFieldMask, _mfTextures);
@@ -844,7 +844,7 @@ EditFieldHandlePtr FishEyeProjectorDataBase::editHandleCamera         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FishEyeProjectorData::setCamera,
+        std::bind(&FishEyeProjectorData::setCamera,
                     static_cast<FishEyeProjectorData *>(this), _1));
 
     editSField(CameraFieldMask);

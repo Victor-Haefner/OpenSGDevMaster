@@ -66,7 +66,7 @@
 #include "OSGComputeElementBase.h"
 #include "OSGComputeElement.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

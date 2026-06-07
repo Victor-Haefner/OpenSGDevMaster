@@ -66,7 +66,7 @@
 #include "OSGComponentTransformBase.h"
 #include "OSGComponentTransform.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

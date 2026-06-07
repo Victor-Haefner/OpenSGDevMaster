@@ -63,7 +63,7 @@
 #include "OSGFCDPtrTestFCNullCheckAccessBase.h"
 #include "OSGFCDPtrTestFCNullCheckAccess.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef WIN32 // turn off 'this' : used in base member initializer list warning
 #pragma warning(disable:4355)
@@ -2981,7 +2981,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPub_ptr (vo
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPub_ptrFieldMask);
@@ -3009,7 +3009,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPub_weakptr
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPub_weakptrFieldMask);
@@ -3037,7 +3037,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPub_mpchild
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPub_mpchildptrFieldMask);
@@ -3065,7 +3065,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPro_ptr (vo
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPro_ptrFieldMask);
@@ -3093,7 +3093,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPro_weakptr
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPro_weakptrFieldMask);
@@ -3121,7 +3121,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPro_mpchild
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPro_mpchildptrFieldMask);
@@ -3191,25 +3191,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPub_ptr (vo
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPub_ptrFieldMask, _mfFieldMFPub_ptr);
@@ -3237,25 +3237,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPub_weakptr
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPub_weakptrFieldMask, _mfFieldMFPub_weakptr);
@@ -3283,25 +3283,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPub_mpchild
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPub_mpchildptrFieldMask, _mfFieldMFPub_mpchildptr);
@@ -3329,25 +3329,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPro_ptr (vo
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_ptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_ptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPro_ptrFieldMask, _mfFieldMFPro_ptr);
@@ -3375,25 +3375,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPro_weakptr
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_weakptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_weakptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPro_weakptrFieldMask, _mfFieldMFPro_weakptr);
@@ -3421,25 +3421,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPro_mpchild
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_mpchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_mpchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPro_mpchildptrFieldMask, _mfFieldMFPro_mpchildptr);
@@ -3509,7 +3509,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPub_spchild
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPub_spchildptrFieldMask);
@@ -3537,7 +3537,7 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldSFPro_spchild
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::setFieldSFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
 
     editSField(FieldSFPro_spchildptrFieldMask);
@@ -3579,25 +3579,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPub_spchild
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPub_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPub_spchildptrFieldMask, _mfFieldMFPub_spchildptr);
@@ -3625,25 +3625,25 @@ EditFieldHandlePtr FCDPtrTestFCNullCheckAccessBase::editHandleFieldMFPro_spchild
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::pushToFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::insertIntoFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceInFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::replaceObjInFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeFromFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::removeObjFromFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_spchildptr,
+        std::bind(&FCDPtrTestFCNullCheckAccess::clearFieldMFPro_spchildptr,
                     static_cast<FCDPtrTestFCNullCheckAccess *>(this)));
 
     editMField(FieldMFPro_spchildptrFieldMask, _mfFieldMFPro_spchildptr);

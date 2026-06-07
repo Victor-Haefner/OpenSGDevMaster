@@ -66,7 +66,7 @@
 #include "OSGDepthClearBackgroundBase.h"
 #include "OSGDepthClearBackground.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

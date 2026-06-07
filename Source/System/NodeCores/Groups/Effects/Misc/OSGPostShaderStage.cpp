@@ -497,7 +497,7 @@ Action::ResultE PostShaderStage::renderEnter(Action *action)
                 
             RenderPartition::SimpleDrawCallback f;
                 
-            f = boost::bind(&PostShaderStage::postProcess, this, _1);
+            f = std::bind(&PostShaderStage::postProcess, this, _1);
                 
             pPart->dropFunctor(f);
         }

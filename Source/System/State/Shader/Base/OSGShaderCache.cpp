@@ -40,7 +40,7 @@
 #include "OSGShaderCache.h"
 #include "OSGShaderProgramVariableChunk.h"
 
-#include "boost/bind.hpp"
+#include <functional>
 
 
 OSG_BEGIN_NAMESPACE
@@ -302,7 +302,7 @@ void ShaderCache::clear(void)
 #endif
 #endif
 
-    _oExeTree.destroy(boost::bind(&ShaderCache::clearShRemoveCallback,
+    _oExeTree.destroy(std::bind(&ShaderCache::clearShRemoveCallback,
                                    this,
                                   _1));
 
@@ -318,7 +318,7 @@ void ShaderCache::clear(void)
 #endif
 #endif
 
-    _oVarTree.destroy(boost::bind(&ShaderCache::clearVaRemoveCallback,
+    _oVarTree.destroy(std::bind(&ShaderCache::clearVaRemoveCallback,
                                    this,
                                   _1));
 }
@@ -388,13 +388,13 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableChunk *pShader)
             continue;
 
         if((*fIt)->hasDestroyedFunctor(
-               boost::bind(&ShaderCache::removeShaderProgram,
+               std::bind(&ShaderCache::removeShaderProgram,
                            this,
                            _1,
                            _2)) == false)
         {
             (*fIt)->addDestroyedFunctor(
-                boost::bind(&ShaderCache::removeShaderProgram,
+                std::bind(&ShaderCache::removeShaderProgram,
                             this,
                             _1,
                             _2),
@@ -413,13 +413,13 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableChunk *pShader)
             continue;
 
         if((*gIt)->hasDestroyedFunctor(
-               boost::bind(&ShaderCache::removeShaderProgram,
+               std::bind(&ShaderCache::removeShaderProgram,
                            this,
                            _1,
                            _2)) == false)
         {
             (*gIt)->addDestroyedFunctor(
-                boost::bind(&ShaderCache::removeShaderProgram,
+                std::bind(&ShaderCache::removeShaderProgram,
                             this,
                             _1,
                             _2),
@@ -439,13 +439,13 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableChunk *pShader)
             continue;
 
         if((*vIt)->hasDestroyedFunctor(
-               boost::bind(&ShaderCache::removeShaderProgram,
+               std::bind(&ShaderCache::removeShaderProgram,
                            this,
                            _1,
                            _2)) == false)
         {
             (*vIt)->addDestroyedFunctor(
-                boost::bind(&ShaderCache::removeShaderProgram,
+                std::bind(&ShaderCache::removeShaderProgram,
                             this,
                             _1,
                             _2),
@@ -470,7 +470,7 @@ void ShaderCache::clearShRemoveCallback(ShaderExecutableChunk *pShader)
             continue;
 
         (*fIt)->subDestroyedFunctor(
-            boost::bind(&ShaderCache::removeShaderProgram,
+            std::bind(&ShaderCache::removeShaderProgram,
                         this,
                         _1,
                         _2));
@@ -487,7 +487,7 @@ void ShaderCache::clearShRemoveCallback(ShaderExecutableChunk *pShader)
             continue;
 
         (*gIt)->subDestroyedFunctor(
-            boost::bind(&ShaderCache::removeShaderProgram,
+            std::bind(&ShaderCache::removeShaderProgram,
                         this,
                         _1,
                         _2));
@@ -505,7 +505,7 @@ void ShaderCache::clearShRemoveCallback(ShaderExecutableChunk *pShader)
             continue;
 
         (*vIt)->subDestroyedFunctor(
-            boost::bind(&ShaderCache::removeShaderProgram,
+            std::bind(&ShaderCache::removeShaderProgram,
                         this,
                         _1,
                         _2));
@@ -530,13 +530,13 @@ void ShaderCache::updateRemoveCallback(ShaderExecutableVarChunk *pVar)
             continue;
 
         if((*vIt)->hasDestroyedFunctor(
-               boost::bind(&ShaderCache::removeShaderVar,
+               std::bind(&ShaderCache::removeShaderVar,
                            this,
                            _1,
                            _2)) == false)
         {
             (*vIt)->addDestroyedFunctor(
-                boost::bind(&ShaderCache::removeShaderVar,
+                std::bind(&ShaderCache::removeShaderVar,
                             this,
                             _1,
                             _2),
@@ -561,7 +561,7 @@ void ShaderCache::clearVaRemoveCallback(ShaderExecutableVarChunk *pVar)
             continue;
 
         (*vIt)->subDestroyedFunctor(
-            boost::bind(&ShaderCache::removeShaderVar,
+            std::bind(&ShaderCache::removeShaderVar,
                         this,
                         _1,
                         _2));

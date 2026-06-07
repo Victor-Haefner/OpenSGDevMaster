@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -116,7 +116,7 @@ void VertexProgramChunk::onCreate(const VertexProgramChunk *chunk)
         return;
 
     setGLId(Window::registerGLObject(
-                    boost::bind(&VertexProgramChunk::handleGL, 
+                    std::bind(&VertexProgramChunk::handleGL, 
                                 VertexProgramChunkMTUncountedPtr(this), 
                                 _1, _2, _3, _4),
                     &VertexProgramChunk::handleDestroyGL));

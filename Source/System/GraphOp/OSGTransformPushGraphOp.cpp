@@ -42,7 +42,7 @@
 
 #include <set>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 /*! \class OSG::TransformPushGraphOp
     \ingroup GrpSystemNodeCoresDrawablesGeometry
@@ -153,7 +153,7 @@ Action::ResultE TransformPushGraphOp::traverseLeave(
         
         OSG::traverse(
                       *(node->getMFChildren()),
-                        boost::bind(&TransformPushGraphOp::traverseTargetsEnter, this, _1));
+                        std::bind(&TransformPushGraphOp::traverseTargetsEnter, this, _1));
         
         if(_pushPossible == true)
         {

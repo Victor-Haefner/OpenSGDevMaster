@@ -66,7 +66,7 @@
 #include "OSGMatrixCameraBase.h"
 #include "OSGMatrixCamera.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

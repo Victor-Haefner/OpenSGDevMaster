@@ -78,7 +78,7 @@
 #include "OSGHDR2StageBase.h"
 #include "OSGHDR2Stage.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

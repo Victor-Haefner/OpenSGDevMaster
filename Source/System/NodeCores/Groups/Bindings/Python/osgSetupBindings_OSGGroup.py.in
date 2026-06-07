@@ -81,7 +81,7 @@ void destroyedCallback(bp::object callable, OSG::FieldContainer* fc,
 void wrapAddDestroyedFunctor(alias_StageParentBase* spb, bp::object func,
                              const std::string& createSymbol)
 {
-   spb->addDestroyedFunctor(boost::bind(destroyedCallback, func, _1, _2),
+   spb->addDestroyedFunctor(std::bind(destroyedCallback, func, _1, _2),
                             createSymbol);
 }
 
@@ -127,7 +127,7 @@ void wrapAddPreRenderFunctor(OSG::RenderCallbackStage* self,
                              bp::object callable,
                              const std::string& createSymbol)
 {
-   self->addPreRenderFunctor(boost::bind(renderCallback, callable, _1),
+   self->addPreRenderFunctor(std::bind(renderCallback, callable, _1),
                              createSymbol);
 }
 
@@ -135,7 +135,7 @@ void wrapAddPostRenderFunctor(OSG::RenderCallbackStage* self,
                               bp::object callable,
                               const std::string& createSymbol)
 {
-   self->addPostRenderFunctor(boost::bind(renderCallback, callable, _1),
+   self->addPostRenderFunctor(std::bind(renderCallback, callable, _1),
                               createSymbol);
 }
 
@@ -148,7 +148,7 @@ fillFunctorStore(const bp::list& callables,
 
    for ( int i = 0; i < length; ++i )
    {
-      store[i] = boost::bind(renderCallback, callables[i], _1);
+      store[i] = std::bind(renderCallback, callables[i], _1);
    }
 }
 

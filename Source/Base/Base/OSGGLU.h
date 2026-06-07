@@ -46,7 +46,7 @@
 #include "OSGBaseDef.h"
 
 #include "OSGGL.h"
-#include <boost/function.hpp>
+#include <functional>
 
 #if defined(OSG_OGL_ES2)
 
@@ -98,7 +98,7 @@ typedef void (*OSGGLUfuncptr)();
 
 OSG_BEGIN_NAMESPACE
 
-typedef boost::function<void (GLenum, const GLubyte*)> GLErrorFunctor;
+typedef std::function<void (GLenum, const GLubyte*)> GLErrorFunctor;
 
 extern OSG_BASE_DLLMAPPING GLErrorFunctor GLErrorCallback;
 

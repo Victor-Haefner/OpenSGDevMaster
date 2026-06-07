@@ -66,7 +66,7 @@
 #include "OSGVRMLScalarInterpolatorBase.h"
 #include "OSGVRMLScalarInterpolator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

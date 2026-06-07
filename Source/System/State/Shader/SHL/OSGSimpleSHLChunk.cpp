@@ -51,7 +51,7 @@
 #include "OSGShaderVariables.h"
 #include "OSGConceptPropertyChecks.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -378,7 +378,7 @@ void SimpleSHLChunk::onCreate(const SimpleSHLChunk *source)
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&SimpleSHLChunk::handleGL, 
+            std::bind(&SimpleSHLChunk::handleGL, 
                         SimpleSHLChunkMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &SimpleSHLChunk::handleDestroyGL));

@@ -106,7 +106,7 @@ EditFieldHandlePtr
     pThis->editSField(SimpleAttachment::SimpleFieldMask);
 
     returnValue->setSetMethod(
-        boost::bind(&SimpleAttachment::setPointerValue, pThis, _1));
+        std::bind(&SimpleAttachment::setPointerValue, pThis, _1));
 
     return returnValue;
 }
@@ -189,7 +189,7 @@ EditFieldHandlePtr
     pThis->editMField(*pField, SimpleAttachment::SimpleFieldMask);
 
     returnValue->setSetMethod(
-        boost::bind(&SimpleAttachment::addPointerValue, pThis, _1));
+        std::bind(&SimpleAttachment::addPointerValue, pThis, _1));
 
     return returnValue;
 }

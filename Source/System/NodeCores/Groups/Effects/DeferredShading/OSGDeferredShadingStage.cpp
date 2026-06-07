@@ -791,7 +791,7 @@ void DeferredShadingStage::scheduleShadingPass(RenderAction *ract)
         setupShadingPartition(part, ract, data);
 
         RenderPartition::DrawFunctor f =
-            boost::bind(&DeferredShadingStage::executeShadingPass, this, _1);
+            std::bind(&DeferredShadingStage::executeShadingPass, this, _1);
 
         DSStageData::MFShadingStatesType::const_iterator sIt  =
             data->getMFShadingStates()->begin();

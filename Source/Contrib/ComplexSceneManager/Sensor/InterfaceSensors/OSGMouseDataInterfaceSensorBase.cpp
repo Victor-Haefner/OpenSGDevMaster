@@ -66,7 +66,7 @@
 #include "OSGMouseDataInterfaceSensorBase.h"
 #include "OSGMouseDataInterfaceSensor.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

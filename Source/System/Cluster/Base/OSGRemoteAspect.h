@@ -44,7 +44,7 @@
 
 #include <map>
 #include <set>
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGClusterDef.h"
 #include "OSGStatElemTypes.h"
@@ -81,7 +81,7 @@ class OSG_CLUSTER_DLLMAPPING RemoteAspect
     };
 
     /** functor called for changed containers **/
-    typedef boost::function<bool (FieldContainer * const, 
+    typedef std::function<bool (FieldContainer * const, 
                                   RemoteAspect   *      )> Functor;
 
 

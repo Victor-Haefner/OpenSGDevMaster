@@ -66,7 +66,7 @@
 #include "OSGStageDrawableBase.h"
 #include "OSGStageDrawable.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

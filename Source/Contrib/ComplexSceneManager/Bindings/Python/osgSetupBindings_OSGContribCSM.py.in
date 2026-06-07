@@ -94,7 +94,7 @@ bool wrapInit(OSG::ComplexSceneManager* csm, bp::list pythonArgv)
 
 void wrapSetMainloop(OSG::ComplexSceneManager* csm, bp::object fMainLoop)
 {
-   csm->setMainloop(boost::bind(mainLoopCallback, fMainLoop));
+   csm->setMainloop(std::bind(mainLoopCallback, fMainLoop));
 }
 
 }

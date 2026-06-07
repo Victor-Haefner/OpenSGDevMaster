@@ -618,7 +618,7 @@ void TrapezoidalShadowMapEngine::handlePointLightEnter(
                 part->setBackground(back);
 
                 RenderPartition::SimpleDrawCallback emptyCubeFaceDraw =
-                    boost::bind(
+                    std::bind(
                         &TrapezoidalShadowMapEngine::emptyCubeFaceDrawFunc,
                         this, _1);
 

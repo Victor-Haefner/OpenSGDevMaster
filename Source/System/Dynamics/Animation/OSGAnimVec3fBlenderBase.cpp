@@ -67,7 +67,7 @@
 #include "OSGAnimVec3fBlenderBase.h"
 #include "OSGAnimVec3fBlender.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -541,16 +541,16 @@ EditFieldHandlePtr AnimVec3fBlenderBase::editHandleChannels       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&AnimVec3fBlender::pushToChannels,
+        std::bind(&AnimVec3fBlender::pushToChannels,
                     static_cast<AnimVec3fBlender *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&AnimVec3fBlender::removeFromChannels,
+        std::bind(&AnimVec3fBlender::removeFromChannels,
                     static_cast<AnimVec3fBlender *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&AnimVec3fBlender::removeObjFromChannels,
+        std::bind(&AnimVec3fBlender::removeObjFromChannels,
                     static_cast<AnimVec3fBlender *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&AnimVec3fBlender::clearChannels,
+        std::bind(&AnimVec3fBlender::clearChannels,
                     static_cast<AnimVec3fBlender *>(this)));
 
     editMField(ChannelsFieldMask, _mfChannels);

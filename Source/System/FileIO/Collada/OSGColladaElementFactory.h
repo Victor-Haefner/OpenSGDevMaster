@@ -53,7 +53,7 @@
 #include <map>
 #include <string>
 
-#include <boost/function.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -69,7 +69,7 @@ class OSG_FILEIO_DLLMAPPING ColladaElementFactorySingleton
     /*! \name Types                                                        */
     /*! \{                                                                 */
 
-    typedef boost::function<
+    typedef std::function<
         ColladaElementTransitPtr (daeElement *, 
                                   ColladaGlobal *)> CreateFunctor;
 

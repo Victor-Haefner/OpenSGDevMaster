@@ -67,7 +67,7 @@
 #include "OSGLightModelChunkBase.h"
 #include "OSGLightModelChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

@@ -67,7 +67,7 @@
 #include "OSGSwitchMaterialBase.h"
 #include "OSGSwitchMaterial.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -541,16 +541,16 @@ EditFieldHandlePtr SwitchMaterialBase::editHandleMaterials      (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&SwitchMaterial::pushToMaterials,
+        std::bind(&SwitchMaterial::pushToMaterials,
                     static_cast<SwitchMaterial *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&SwitchMaterial::removeFromMaterials,
+        std::bind(&SwitchMaterial::removeFromMaterials,
                     static_cast<SwitchMaterial *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&SwitchMaterial::removeObjFromMaterials,
+        std::bind(&SwitchMaterial::removeObjFromMaterials,
                     static_cast<SwitchMaterial *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&SwitchMaterial::clearMaterials,
+        std::bind(&SwitchMaterial::clearMaterials,
                     static_cast<SwitchMaterial *>(this)));
 
     editMField(MaterialsFieldMask, _mfMaterials);

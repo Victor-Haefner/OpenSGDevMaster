@@ -66,7 +66,7 @@
 #include "OSGCSMNativeWindowBase.h"
 #include "OSGCSMNativeWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

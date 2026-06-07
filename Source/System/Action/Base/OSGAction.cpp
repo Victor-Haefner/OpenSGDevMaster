@@ -42,7 +42,7 @@
 #include "OSGRootGroup.h"
 
 //#define BOOST_MEM_FN_ENABLE_CDECL
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_USING_NAMESPACE
 

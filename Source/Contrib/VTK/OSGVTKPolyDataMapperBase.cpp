@@ -70,7 +70,7 @@
 #include "OSGVTKPolyDataMapperBase.h"
 #include "OSGVTKPolyDataMapper.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef WIN32 // turn off 'this' : used in base member initializer list warning
 #pragma warning(disable:4355)
@@ -1534,7 +1534,7 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleRoot           (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&VTKPolyDataMapper::setRoot,
+        std::bind(&VTKPolyDataMapper::setRoot,
                     static_cast<VTKPolyDataMapper *>(this), _1));
 
     editSField(RootFieldMask);
@@ -1562,16 +1562,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleGeoRoots       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToGeoRoots,
+        std::bind(&VTKPolyDataMapper::pushToGeoRoots,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromGeoRoots,
+        std::bind(&VTKPolyDataMapper::removeFromGeoRoots,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromGeoRoots,
+        std::bind(&VTKPolyDataMapper::removeObjFromGeoRoots,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearGeoRoots,
+        std::bind(&VTKPolyDataMapper::clearGeoRoots,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(GeoRootsFieldMask, _mfGeoRoots);
@@ -1599,16 +1599,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleGeometries     (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToGeometries,
+        std::bind(&VTKPolyDataMapper::pushToGeometries,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromGeometries,
+        std::bind(&VTKPolyDataMapper::removeFromGeometries,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromGeometries,
+        std::bind(&VTKPolyDataMapper::removeObjFromGeometries,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearGeometries,
+        std::bind(&VTKPolyDataMapper::clearGeometries,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(GeometriesFieldMask, _mfGeometries);
@@ -1636,16 +1636,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleMaterials      (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToMaterials,
+        std::bind(&VTKPolyDataMapper::pushToMaterials,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromMaterials,
+        std::bind(&VTKPolyDataMapper::removeFromMaterials,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromMaterials,
+        std::bind(&VTKPolyDataMapper::removeObjFromMaterials,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearMaterials,
+        std::bind(&VTKPolyDataMapper::clearMaterials,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(MaterialsFieldMask, _mfMaterials);
@@ -1673,16 +1673,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleMaterialChunks (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToMaterialChunks,
+        std::bind(&VTKPolyDataMapper::pushToMaterialChunks,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromMaterialChunks,
+        std::bind(&VTKPolyDataMapper::removeFromMaterialChunks,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromMaterialChunks,
+        std::bind(&VTKPolyDataMapper::removeObjFromMaterialChunks,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearMaterialChunks,
+        std::bind(&VTKPolyDataMapper::clearMaterialChunks,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(MaterialChunksFieldMask, _mfMaterialChunks);
@@ -1710,16 +1710,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandlePositions      (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToPositions,
+        std::bind(&VTKPolyDataMapper::pushToPositions,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromPositions,
+        std::bind(&VTKPolyDataMapper::removeFromPositions,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromPositions,
+        std::bind(&VTKPolyDataMapper::removeObjFromPositions,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearPositions,
+        std::bind(&VTKPolyDataMapper::clearPositions,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(PositionsFieldMask, _mfPositions);
@@ -1747,16 +1747,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleLength         (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToLength,
+        std::bind(&VTKPolyDataMapper::pushToLength,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromLength,
+        std::bind(&VTKPolyDataMapper::removeFromLength,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromLength,
+        std::bind(&VTKPolyDataMapper::removeObjFromLength,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearLength,
+        std::bind(&VTKPolyDataMapper::clearLength,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(LengthFieldMask, _mfLength);
@@ -1784,16 +1784,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleTypes          (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToTypes,
+        std::bind(&VTKPolyDataMapper::pushToTypes,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromTypes,
+        std::bind(&VTKPolyDataMapper::removeFromTypes,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromTypes,
+        std::bind(&VTKPolyDataMapper::removeObjFromTypes,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearTypes,
+        std::bind(&VTKPolyDataMapper::clearTypes,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(TypesFieldMask, _mfTypes);
@@ -1821,16 +1821,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleColors         (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToColors,
+        std::bind(&VTKPolyDataMapper::pushToColors,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromColors,
+        std::bind(&VTKPolyDataMapper::removeFromColors,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromColors,
+        std::bind(&VTKPolyDataMapper::removeObjFromColors,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearColors,
+        std::bind(&VTKPolyDataMapper::clearColors,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(ColorsFieldMask, _mfColors);
@@ -1858,16 +1858,16 @@ EditFieldHandlePtr VTKPolyDataMapperBase::editHandleNormals        (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&VTKPolyDataMapper::pushToNormals,
+        std::bind(&VTKPolyDataMapper::pushToNormals,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&VTKPolyDataMapper::removeFromNormals,
+        std::bind(&VTKPolyDataMapper::removeFromNormals,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&VTKPolyDataMapper::removeObjFromNormals,
+        std::bind(&VTKPolyDataMapper::removeObjFromNormals,
                     static_cast<VTKPolyDataMapper *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&VTKPolyDataMapper::clearNormals,
+        std::bind(&VTKPolyDataMapper::clearNormals,
                     static_cast<VTKPolyDataMapper *>(this)));
 
     editMField(NormalsFieldMask, _mfNormals);

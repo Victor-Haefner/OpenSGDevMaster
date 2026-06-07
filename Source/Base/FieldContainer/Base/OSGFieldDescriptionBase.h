@@ -42,8 +42,8 @@
 #pragma once
 #endif
 
-#include <boost/function.hpp>
-#include <boost/functional.hpp>
+#include <functional>
+#include <functional>
 
 #include "OSGBaseTypes.h"
 #include "OSGFieldType.h"

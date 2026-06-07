@@ -46,7 +46,7 @@
 #include <iosfwd>
 #include <map>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -71,7 +71,7 @@ class OSG_SYSTEM_DLLMAPPING SceneGraphPrinter
 
     typedef SceneGraphPrinter Self;
 
-    typedef boost::function<void (SceneGraphPrinter *,
+    typedef std::function<void (SceneGraphPrinter *,
                                   NodeCore          * )>  CorePrintFunction;
 
     /*! \}                                                                 */

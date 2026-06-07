@@ -69,7 +69,7 @@
 #include "OSGWindowBase.h"
 #include "OSGWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1331,25 +1331,25 @@ EditFieldHandlePtr WindowBase::editHandlePort           (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&Window::addPort,
+        std::bind(&Window::addPort,
                     static_cast<Window *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&Window::insertPort,
+        std::bind(&Window::insertPort,
                     static_cast<Window *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&Window::replacePort,
+        std::bind(&Window::replacePort,
                     static_cast<Window *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&Window::replacePortByObj,
+        std::bind(&Window::replacePortByObj,
                     static_cast<Window *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&Window::subPort,
+        std::bind(&Window::subPort,
                     static_cast<Window *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&Window::subPortByObj,
+        std::bind(&Window::subPortByObj,
                     static_cast<Window *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&Window::clearPorts,
+        std::bind(&Window::clearPorts,
                     static_cast<Window *>(this)));
 
     editMField(PortFieldMask, _mfPort);
@@ -1552,7 +1552,7 @@ EditFieldHandlePtr WindowBase::editHandleRenderOptions  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Window::setRenderOptions,
+        std::bind(&Window::setRenderOptions,
                     static_cast<Window *>(this), _1));
 
     editSField(RenderOptionsFieldMask);

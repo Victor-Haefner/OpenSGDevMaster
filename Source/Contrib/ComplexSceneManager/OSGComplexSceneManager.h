@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGComplexSceneManagerBase.h"
 #include "OSGPathHandler.h"
@@ -75,7 +75,7 @@ class OSG_CONTRIBCSM_DLLMAPPING ComplexSceneManager :
     typedef ComplexSceneManagerBase Inherited;
     typedef ComplexSceneManager     Self;
 
-    typedef boost::function<void (void)> MainLoopFuncF;
+    typedef std::function<void (void)> MainLoopFuncF;
 
     /*---------------------------------------------------------------------*/
     /*! \name                     Output                                   */

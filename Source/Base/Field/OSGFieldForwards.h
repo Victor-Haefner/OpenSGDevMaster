@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include <boost/function.hpp>
+#include <functional>
 #include <boost/shared_ptr.hpp>
 
 #include "OSGConfig.h"
@@ -131,7 +131,7 @@ typedef GetFieldHandlePtr  (OSG::ReflexiveContainer::*FieldIndexGetMethodSig )(
 /*! \ingroup GrpBaseFieldContainerBase
  */
 #ifdef FDESC_USE_BOOST
-typedef boost::function<Field *(OSG::ReflexiveContainer *)> FieldEditMethod;
+typedef std::function<Field *(OSG::ReflexiveContainer *)> FieldEditMethod;
 #else
 typedef EditFieldHandlePtr (OSG::ReflexiveContainer::*FieldEditMethod)(void  );
 #endif
@@ -140,7 +140,7 @@ typedef EditFieldHandlePtr (OSG::ReflexiveContainer::*FieldEditMethod)(void  );
 /*! \ingroup GrpBaseFieldContainerBase
  */
 #ifdef FDESC_USE_BOOST
-typedef boost::function<
+typedef std::function<
           const Field *(const OSG::ReflexiveContainer *)> FieldGetMethod;
 #else
 typedef GetFieldHandlePtr(OSG::ReflexiveContainer::*FieldGetMethod)(void) const;
@@ -150,7 +150,7 @@ typedef GetFieldHandlePtr(OSG::ReflexiveContainer::*FieldGetMethod)(void) const;
 /*! \ingroup GrpBaseFieldContainerBase
  */
 #ifdef FDESC_USE_BOOST
-typedef boost::function<
+typedef std::function<
           Field *(OSG::ReflexiveContainer *, int)>        FieldIndexEditMethod;
 #else
 typedef EditFieldHandlePtr (OSG::ReflexiveContainer::*FieldIndexEditMethod)(
@@ -161,7 +161,7 @@ typedef EditFieldHandlePtr (OSG::ReflexiveContainer::*FieldIndexEditMethod)(
 /*! \ingroup GrpBaseFieldContainerBase
  */
 #ifdef FDESC_USE_BOOST
-typedef boost::function<
+typedef std::function<
           const Field *(const OSG::ReflexiveContainer *, 
                               int                      )> FieldIndexGetMethod;
 #else
@@ -169,14 +169,14 @@ typedef GetFieldHandlePtr (OSG::ReflexiveContainer::*FieldIndexGetMethod)(
     OSG::UInt32) const;
 #endif
 
-typedef boost::function<
+typedef std::function<
     FieldDescriptionBase * (
         const Char8           *szFieldname,
               UInt32           uiFieldFlags,
               FieldEditMethod  fEditMethod,
               FieldGetMethod   fGetMethod) > FieldDescCreator;
 
-typedef boost::function<
+typedef std::function<
     FieldDescriptionBase * (
         const Char8               *szFieldname,
               UInt32               uiFieldFlags,

@@ -66,7 +66,7 @@
 #include "OSGColorBufferViewportBase.h"
 #include "OSGColorBufferViewport.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

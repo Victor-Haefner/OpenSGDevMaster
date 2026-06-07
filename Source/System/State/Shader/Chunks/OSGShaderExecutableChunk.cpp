@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -172,7 +172,7 @@ void ShaderExecutableChunk::onCreate(const ShaderExecutableChunk *source)
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&ShaderExecutableChunk::handleGL, 
+            std::bind(&ShaderExecutableChunk::handleGL, 
                         ShaderExecutableChunkMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &ShaderExecutableChunk::handleDestroyGL));

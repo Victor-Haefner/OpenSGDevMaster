@@ -59,13 +59,13 @@ namespace
 void wrapRegisterEnterDefault(const OSG::FieldContainerType& type,
                               bp::object func)
 {
-   OSG::%(Action)s::registerEnterDefault(type, boost::bind(invokeCallback, func, _1, _2));
+   OSG::%(Action)s::registerEnterDefault(type, std::bind(invokeCallback, func, _1, _2));
 }
 
 void wrapRegisterLeaveDefault(const OSG::FieldContainerType& type,
                               bp::object func)
 {
-   OSG::%(Action)s::registerLeaveDefault(type, boost::bind(invokeCallback, func, _1, _2));
+   OSG::%(Action)s::registerLeaveDefault(type, std::bind(invokeCallback, func, _1, _2));
 }
 
 }
@@ -80,7 +80,7 @@ void wrapRegisterEnterFunction(OSG::Action* self,
                                bp::object func)
 {
    self->registerEnterFunction(type,
-                               boost::bind(invokeCallback, func, _1, _2));
+                               std::bind(invokeCallback, func, _1, _2));
 }
 
 void wrapRegisterLeaveFunction(OSG::Action* self,
@@ -88,7 +88,7 @@ void wrapRegisterLeaveFunction(OSG::Action* self,
                                bp::object func)
 {
    self->registerLeaveFunction(type,
-                               boost::bind(invokeCallback, func, _1, _2));
+                               std::bind(invokeCallback, func, _1, _2));
 }
 
 }
@@ -479,7 +479,7 @@ bp::object wrapGetGlobalResolver(const OSG::SceneFileHandlerBase& sfh)
 void wrapSetGlobalResolver(OSG::SceneFileHandlerBase* sfh,
                            bp::object callable)
 {
-   sfh->setGlobalResolver(boost::bind(globalResolverCallback, callable, _1));
+   sfh->setGlobalResolver(std::bind(globalResolverCallback, callable, _1));
 }
 
 }
@@ -625,7 +625,7 @@ void destroyedCallback(bp::object callable, OSG::FieldContainer* fc,
 void wrapAddDestroyedFunctor(OSG::%s* self, bp::object func,
                              const std::string& createSymbol)
 {
-   self->addDestroyedFunctor(boost::bind(destroyedCallback, func, _1, _2),
+   self->addDestroyedFunctor(std::bind(destroyedCallback, func, _1, _2),
                              createSymbol);
 }
 
@@ -781,7 +781,7 @@ wrapAddProceduralVariable(
 )
 {
    return self->addProceduralVariable(name,
-                                      boost::bind(proceduralCallback, pFunc,
+                                      std::bind(proceduralCallback, pFunc,
                                                   _1, _2),
                                       uiDependency);
 }
@@ -793,7 +793,7 @@ wrapUpdateProceduralVariable(
 )
 {
    return self->updateProceduralVariable(name,
-                                         boost::bind(proceduralCallback, pFunc,
+                                         std::bind(proceduralCallback, pFunc,
                                                      _1, _2),
                                          uiDependency);
 }
@@ -805,7 +805,7 @@ wrapAddNodeProceduralVariable(
 )
 {
    return self->addNodeProceduralVariable(name,
-                                          boost::bind(proceduralNodeCallback, 
+                                          std::bind(proceduralNodeCallback, 
                                                       pFunc,
                                                       _1, _2, _3),
                                       uiDependency);
@@ -818,7 +818,7 @@ wrapUpdateNodeProceduralVariable(
 )
 {
    return self->updateNodeProceduralVariable(name,
-                                         boost::bind(proceduralNodeCallback, 
+                                         std::bind(proceduralNodeCallback, 
                                                      pFunc,
                                                      _1, _2, _3),
                                          uiDependency);
@@ -903,7 +903,7 @@ bool wrapAddProceduralVariable(OSG::ShaderProgramVariables* self,
                                OSG::MFInt32* pProcVarLoc)
 {
    return self->addProceduralVariable(name,
-                                      boost::bind(proceduralCallback, pFunc,
+                                      std::bind(proceduralCallback, pFunc,
                                                   _1, _2),
                                       uiDependency, pProcVarLoc);
 }
@@ -913,7 +913,7 @@ bool wrapUpdateProceduralVariable(OSG::ShaderProgramVariables* self,
                                   OSG::UInt32 uiDependency)
 {
    return self->updateProceduralVariable(name,
-                                         boost::bind(proceduralCallback, pFunc,
+                                         std::bind(proceduralCallback, pFunc,
                                                      _1, _2),
                                          uiDependency);
 }
@@ -924,7 +924,7 @@ bool wrapAddNodeProceduralVariable(OSG::ShaderProgramVariables* self,
                                    OSG::MFInt32* pProcVarLoc)
 {
    return self->addNodeProceduralVariable(name,
-                                      boost::bind(proceduralNodeCallback, 
+                                      std::bind(proceduralNodeCallback, 
                                                   pFunc,
                                                   _1, _2, _3),
                                       uiDependency, pProcVarLoc);
@@ -935,7 +935,7 @@ bool wrapUpdateNodeProceduralVariable(OSG::ShaderProgramVariables* self,
                                       OSG::UInt32 uiDependency)
 {
    return self->updateNodeProceduralVariable(name,
-                                             boost::bind(proceduralNodeCallback, 
+                                             std::bind(proceduralNodeCallback, 
                                                          pFunc,
                                                          _1, _2, _3),
                                              uiDependency);
@@ -976,7 +976,7 @@ void functorCallback(bp::object callable, OSG::DrawEnv* env, int i)
 
 void wrapSetFunctor(OSG::ShaderVariableFunctor* svf, bp::object pFunc)
 {
-    OSG::ShaderVariableFunctor::ProcVarFunctor pvf = boost::bind(functorCallback, pFunc, _1, _2);
+    OSG::ShaderVariableFunctor::ProcVarFunctor pvf = std::bind(functorCallback, pFunc, _1, _2);
 
     svf->setFunctor(pvf);
 }

@@ -46,7 +46,7 @@
 //  Includes
 //---------------------------------------------------------------------------
 
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGRenderPartitionBase.h"
 #include "OSGRenderActionFwd.h"
@@ -131,7 +131,7 @@ class OSG_SYSTEM_DLLMAPPING RenderPartition : public RenderPartitionBase
         partitions (i.e. the ones that only call one function and do not draw
         Nodes
     */
-    typedef boost::function<void (DrawEnv *)>       SimpleDrawCallback;
+    typedef std::function<void (DrawEnv *)>       SimpleDrawCallback;
 
     /*! BuildKeyMap is used to index from the material's sortKey to the 
         StateSorter that keeps the tree for that sort key

@@ -784,7 +784,7 @@ void OSBCommonElement::preWriteAttachmentMapField(const UInt32 fieldId)
         return;
 
     sfMapField->traverse(
-        boost::bind(&OSBCommonElement::handleAttachmentMapElementPreWrite,
+        std::bind(&OSBCommonElement::handleAttachmentMapElementPreWrite,
                     this,
                     _1));
 }
@@ -810,7 +810,7 @@ void OSBCommonElement::preWriteMapField(const UInt32 fieldId)
         return;
 
     sfMapField->traverse(
-        boost::bind(&OSBCommonElement::handleMapElementPreWrite,
+        std::bind(&OSBCommonElement::handleMapElementPreWrite,
                     this,
                     _1));
 }

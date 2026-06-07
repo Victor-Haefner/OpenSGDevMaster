@@ -70,7 +70,7 @@
 #include "OSGShaderProgramBase.h"
 #include "OSGShaderProgram.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1226,7 +1226,7 @@ EditFieldHandlePtr ShaderProgramBase::editHandleVariables      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderProgram::setVariables,
+        std::bind(&ShaderProgram::setVariables,
                     static_cast<ShaderProgram *>(this), _1));
 
     editSField(VariablesFieldMask);

@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -216,7 +216,7 @@ FieldContainer *ComplexSceneManager::resolveStatic(
 
             oFinder._szRefName = szName;
 
-            traverse(pNode, boost::bind(&ElementFinder::enter, &oFinder, _1));
+            traverse(pNode, std::bind(&ElementFinder::enter, &oFinder, _1));
 
             if(oFinder._pResult != NULL)
             {
@@ -276,7 +276,7 @@ void ComplexSceneManager::addStaticGlobals(const Char8 *szFilename)
 
     FieldContainerUnrecPtr pRes = 
         readOSGFile(szFilenameResolved,
-                    boost::bind(&ComplexSceneManager::resolveStatic, 
+                    std::bind(&ComplexSceneManager::resolveStatic, 
                                 _1, _2, _3));
     
     if(pRes == NULL)
@@ -508,7 +508,7 @@ void ComplexSceneManager::addGlobals(const std::string &filename)
 
     FieldContainerUnrecPtr pRes = 
         readOSGFile(szFilenameResolved,
-                    boost::bind(&ComplexSceneManager::resolve, this, 
+                    std::bind(&ComplexSceneManager::resolve, this, 
                                 _1, _2, _3));
 
     fprintf(stderr, "addGlobals::pres %p\n", static_cast<void *>(pRes.get()));
@@ -571,7 +571,7 @@ void ComplexSceneManager::addData(const std::string &filename)
         OSG::SceneFileHandler::the()->read(
             szFilenameResolved.c_str(), 
             NULL,
-            boost::bind(&ComplexSceneManager::resolve, this, _1, _2, _3),
+            std::bind(&ComplexSceneManager::resolve, this, _1, _2, _3),
             true);
 
     _oPathHandler.popState();
@@ -609,7 +609,7 @@ Node *ComplexSceneManager::findNode(const std::string &filename) const
 
             oFinder._szRefName = filename;
 
-            traverse(pNode, boost::bind(&NodeFinder::enter, &oFinder, _1));
+            traverse(pNode, std::bind(&NodeFinder::enter, &oFinder, _1));
 
             if(oFinder._pResult != NULL)
             {
@@ -738,7 +738,7 @@ FieldContainer *ComplexSceneManager::findNamedComponent(
 
             oFinder._szRefName = szName;
 
-            traverse(pNode, boost::bind(&ElementFinder::enter, &oFinder, _1));
+            traverse(pNode, std::bind(&ElementFinder::enter, &oFinder, _1));
 
             if(oFinder._pResult != NULL)
             {
@@ -881,7 +881,7 @@ bool ComplexSceneManager::startUp(std::vector<std::string> &vParams)
     }
 
     readOSGFile(szSystemFileResolved,
-                boost::bind(&ComplexSceneManager::resolveStatic, 
+                std::bind(&ComplexSceneManager::resolveStatic, 
                             _1, _2, _3));
 
     _vStaticGlobals.clear();
@@ -893,7 +893,7 @@ bool ComplexSceneManager::startUp(std::vector<std::string> &vParams)
     }
 
     OSG::SceneFileHandler::the()->setGlobalResolver(
-        boost::bind(&ComplexSceneManager::resolve, _the.get(), _1, _2, _3));
+        std::bind(&ComplexSceneManager::resolve, _the.get(), _1, _2, _3));
 
     OSG::ComplexSceneManager::the()->init(vParams);
     

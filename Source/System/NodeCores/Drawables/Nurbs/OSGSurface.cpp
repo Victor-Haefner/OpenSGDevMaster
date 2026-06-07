@@ -73,7 +73,7 @@
 #endif
 */
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGBSplineTrimmedSurface.h"
 #include "OSGNurbsPatchSurface.h"
@@ -1849,7 +1849,7 @@ void Surface::onCreate(const Surface *source)
 
     setSurfaceGLId(
         Window::registerGLObject(
-            boost::bind(&Surface::handleGL,
+            std::bind(&Surface::handleGL,
                         SurfaceMTUncountedPtr(this), _1, _2, _3, _4),
             &Surface::handleDestroyGL));
 

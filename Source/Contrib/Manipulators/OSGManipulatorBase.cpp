@@ -69,7 +69,7 @@
 #include "OSGManipulatorBase.h"
 #include "OSGManipulator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1634,7 +1634,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleTarget         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setTarget,
+        std::bind(&Manipulator::setTarget,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(TargetFieldMask);
@@ -1687,7 +1687,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleActiveSubHandle(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setActiveSubHandle,
+        std::bind(&Manipulator::setActiveSubHandle,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(ActiveSubHandleFieldMask);
@@ -1740,7 +1740,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleViewport       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setViewport,
+        std::bind(&Manipulator::setViewport,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(ViewportFieldMask);
@@ -1843,7 +1843,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleHandleXNode    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setHandleXNode,
+        std::bind(&Manipulator::setHandleXNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(HandleXNodeFieldMask);
@@ -1871,7 +1871,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleHandleYNode    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setHandleYNode,
+        std::bind(&Manipulator::setHandleYNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(HandleYNodeFieldMask);
@@ -1899,7 +1899,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleHandleZNode    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setHandleZNode,
+        std::bind(&Manipulator::setHandleZNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(HandleZNodeFieldMask);
@@ -1927,7 +1927,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleHandlePNode    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setHandlePNode,
+        std::bind(&Manipulator::setHandlePNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(HandlePNodeFieldMask);
@@ -1955,7 +1955,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleTransXNode     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setTransXNode,
+        std::bind(&Manipulator::setTransXNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(TransXNodeFieldMask);
@@ -1983,7 +1983,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleTransYNode     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setTransYNode,
+        std::bind(&Manipulator::setTransYNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(TransYNodeFieldMask);
@@ -2011,7 +2011,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleTransZNode     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setTransZNode,
+        std::bind(&Manipulator::setTransZNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(TransZNodeFieldMask);
@@ -2039,7 +2039,7 @@ EditFieldHandlePtr ManipulatorBase::editHandlePivotNode      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setPivotNode,
+        std::bind(&Manipulator::setPivotNode,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(PivotNodeFieldMask);
@@ -2067,7 +2067,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleMaterialX      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setMaterialX,
+        std::bind(&Manipulator::setMaterialX,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(MaterialXFieldMask);
@@ -2095,7 +2095,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleMaterialY      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setMaterialY,
+        std::bind(&Manipulator::setMaterialY,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(MaterialYFieldMask);
@@ -2123,7 +2123,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleMaterialZ      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setMaterialZ,
+        std::bind(&Manipulator::setMaterialZ,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(MaterialZFieldMask);
@@ -2151,7 +2151,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleMaterialPivot  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setMaterialPivot,
+        std::bind(&Manipulator::setMaterialPivot,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(MaterialPivotFieldMask);
@@ -2179,7 +2179,7 @@ EditFieldHandlePtr ManipulatorBase::editHandleAxisLinesN     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Manipulator::setAxisLinesN,
+        std::bind(&Manipulator::setAxisLinesN,
                     static_cast<Manipulator *>(this), _1));
 
     editSField(AxisLinesNFieldMask);

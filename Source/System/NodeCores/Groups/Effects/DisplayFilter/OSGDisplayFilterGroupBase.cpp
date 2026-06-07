@@ -70,7 +70,7 @@
 #include "OSGDisplayFilterGroupBase.h"
 #include "OSGDisplayFilterGroup.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -755,7 +755,7 @@ EditFieldHandlePtr DisplayFilterGroupBase::editHandleCalibrationPatternFilter(vo
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterGroup::setCalibrationPatternFilter,
+        std::bind(&DisplayFilterGroup::setCalibrationPatternFilter,
                     static_cast<DisplayFilterGroup *>(this), _1));
 
     editSField(CalibrationPatternFilterFieldMask);
@@ -783,7 +783,7 @@ EditFieldHandlePtr DisplayFilterGroupBase::editHandleResolutionFilter(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterGroup::setResolutionFilter,
+        std::bind(&DisplayFilterGroup::setResolutionFilter,
                     static_cast<DisplayFilterGroup *>(this), _1));
 
     editSField(ResolutionFilterFieldMask);
@@ -811,7 +811,7 @@ EditFieldHandlePtr DisplayFilterGroupBase::editHandleColorFilter    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterGroup::setColorFilter,
+        std::bind(&DisplayFilterGroup::setColorFilter,
                     static_cast<DisplayFilterGroup *>(this), _1));
 
     editSField(ColorFilterFieldMask);
@@ -839,7 +839,7 @@ EditFieldHandlePtr DisplayFilterGroupBase::editHandleDistortionFilter(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DisplayFilterGroup::setDistortionFilter,
+        std::bind(&DisplayFilterGroup::setDistortionFilter,
                     static_cast<DisplayFilterGroup *>(this), _1));
 
     editSField(DistortionFilterFieldMask);

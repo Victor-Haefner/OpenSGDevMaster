@@ -68,7 +68,7 @@
 #include "OSGClipPlaneChunkBase.h"
 #include "OSGClipPlaneChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -612,7 +612,7 @@ EditFieldHandlePtr ClipPlaneChunkBase::editHandleBeacon         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ClipPlaneChunk::setBeacon,
+        std::bind(&ClipPlaneChunk::setBeacon,
                     static_cast<ClipPlaneChunk *>(this), _1));
 
     editSField(BeaconFieldMask);

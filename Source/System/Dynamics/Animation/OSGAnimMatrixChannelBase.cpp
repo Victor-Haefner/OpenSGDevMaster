@@ -67,7 +67,7 @@
 #include "OSGAnimMatrixChannelBase.h"
 #include "OSGAnimMatrixChannel.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -491,7 +491,7 @@ EditFieldHandlePtr AnimMatrixChannelBase::editHandleData           (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&AnimMatrixChannel::setData,
+        std::bind(&AnimMatrixChannel::setData,
                     static_cast<AnimMatrixChannel *>(this), _1));
 
     editSField(DataFieldMask);

@@ -67,7 +67,7 @@
 #include "OSGStackedTransformBase.h"
 #include "OSGStackedTransform.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -575,25 +575,25 @@ EditFieldHandlePtr StackedTransformBase::editHandleTransformElements(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&StackedTransform::pushToTransformElements,
+        std::bind(&StackedTransform::pushToTransformElements,
                     static_cast<StackedTransform *>(this), _1));
     returnValue->setInsertMethod(
-        boost::bind(&StackedTransform::insertIntoTransformElements,
+        std::bind(&StackedTransform::insertIntoTransformElements,
                     static_cast<StackedTransform *>(this), _1, _2));
     returnValue->setReplaceMethod(
-        boost::bind(&StackedTransform::replaceInTransformElements,
+        std::bind(&StackedTransform::replaceInTransformElements,
                     static_cast<StackedTransform *>(this), _1, _2));
     returnValue->setReplaceObjMethod(
-        boost::bind(&StackedTransform::replaceObjInTransformElements,
+        std::bind(&StackedTransform::replaceObjInTransformElements,
                     static_cast<StackedTransform *>(this), _1, _2));
     returnValue->setRemoveMethod(
-        boost::bind(&StackedTransform::removeFromTransformElements,
+        std::bind(&StackedTransform::removeFromTransformElements,
                     static_cast<StackedTransform *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&StackedTransform::removeObjFromTransformElements,
+        std::bind(&StackedTransform::removeObjFromTransformElements,
                     static_cast<StackedTransform *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&StackedTransform::clearTransformElements,
+        std::bind(&StackedTransform::clearTransformElements,
                     static_cast<StackedTransform *>(this)));
 
     editMField(TransformElementsFieldMask, _mfTransformElements);

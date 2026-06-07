@@ -67,7 +67,7 @@
 #include "OSGCPUSkinningDataAttachmentBase.h"
 #include "OSGCPUSkinningDataAttachment.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -699,16 +699,16 @@ EditFieldHandlePtr CPUSkinningDataAttachmentBase::editHandleProperties     (void
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CPUSkinningDataAttachment::pushToProperties,
+        std::bind(&CPUSkinningDataAttachment::pushToProperties,
                     static_cast<CPUSkinningDataAttachment *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CPUSkinningDataAttachment::removeFromProperties,
+        std::bind(&CPUSkinningDataAttachment::removeFromProperties,
                     static_cast<CPUSkinningDataAttachment *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CPUSkinningDataAttachment::removeObjFromProperties,
+        std::bind(&CPUSkinningDataAttachment::removeObjFromProperties,
                     static_cast<CPUSkinningDataAttachment *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CPUSkinningDataAttachment::clearProperties,
+        std::bind(&CPUSkinningDataAttachment::clearProperties,
                     static_cast<CPUSkinningDataAttachment *>(this)));
 
     editMField(PropertiesFieldMask, _mfProperties);

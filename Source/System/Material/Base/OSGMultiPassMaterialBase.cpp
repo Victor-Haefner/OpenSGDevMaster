@@ -67,7 +67,7 @@
 #include "OSGMultiPassMaterialBase.h"
 #include "OSGMultiPassMaterial.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -491,16 +491,16 @@ EditFieldHandlePtr MultiPassMaterialBase::editHandleMaterials      (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&MultiPassMaterial::addMaterial,
+        std::bind(&MultiPassMaterial::addMaterial,
                     static_cast<MultiPassMaterial *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&MultiPassMaterial::subMaterial,
+        std::bind(&MultiPassMaterial::subMaterial,
                     static_cast<MultiPassMaterial *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&MultiPassMaterial::subMaterialByObj,
+        std::bind(&MultiPassMaterial::subMaterialByObj,
                     static_cast<MultiPassMaterial *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&MultiPassMaterial::clearMaterials,
+        std::bind(&MultiPassMaterial::clearMaterials,
                     static_cast<MultiPassMaterial *>(this)));
 
     editMField(MaterialsFieldMask, _mfMaterials);

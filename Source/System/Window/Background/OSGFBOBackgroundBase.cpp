@@ -67,7 +67,7 @@
 #include "OSGFBOBackgroundBase.h"
 #include "OSGFBOBackground.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -427,7 +427,7 @@ EditFieldHandlePtr FBOBackgroundBase::editHandleFrameBufferObject(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FBOBackground::setFrameBufferObject,
+        std::bind(&FBOBackground::setFrameBufferObject,
                     static_cast<FBOBackground *>(this), _1));
 
     editSField(FrameBufferObjectFieldMask);

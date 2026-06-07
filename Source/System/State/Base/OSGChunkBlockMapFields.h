@@ -247,7 +247,7 @@ class OSG_SYSTEM_DLLMAPPING
     typedef EditMapFieldHandle Inherited;
     typedef EditFieldHandle    Base;
 
-    typedef boost::function<void(ChunkBlock       * const,
+    typedef std::function<void(ChunkBlock       * const,
                                  ChunkBlockMapKey        )> AddMethod;
 
     /*==========================  PUBLIC  =================================*/

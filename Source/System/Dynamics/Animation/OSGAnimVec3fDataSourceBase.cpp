@@ -66,7 +66,7 @@
 #include "OSGAnimVec3fDataSourceBase.h"
 #include "OSGAnimVec3fDataSource.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

@@ -66,7 +66,7 @@
 #include "OSGCSMGLUTWindowBase.h"
 #include "OSGCSMGLUTWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

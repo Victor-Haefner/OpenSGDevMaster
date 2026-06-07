@@ -52,7 +52,7 @@
 #include <map>
 #include <string>
 
-#include <boost/function.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -76,10 +76,10 @@ class OSG_FILEIO_DLLMAPPING ColladaHandlerFactoryBase
     /*! \name Types                                                        */
     /*! \{                                                                 */
 
-    typedef boost::function<
+    typedef std::function<
         ColladaExtraHandlerTransitPtr     (void)>  ExtraHandlerCreator;
 
-    typedef boost::function<
+    typedef std::function<
         ColladaDomProfileHandlerTransitPtr(void)>  DomProfileHandlerCreator;
 
 

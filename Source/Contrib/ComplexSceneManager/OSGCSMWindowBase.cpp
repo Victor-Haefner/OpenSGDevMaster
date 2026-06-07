@@ -69,7 +69,7 @@
 #include "OSGCSMWindowBase.h"
 #include "OSGCSMWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1716,16 +1716,16 @@ EditFieldHandlePtr CSMWindowBase::editHandleViewports      (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CSMWindow::pushToViewports,
+        std::bind(&CSMWindow::pushToViewports,
                     static_cast<CSMWindow *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CSMWindow::removeFromViewports,
+        std::bind(&CSMWindow::removeFromViewports,
                     static_cast<CSMWindow *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CSMWindow::removeObjFromViewports,
+        std::bind(&CSMWindow::removeObjFromViewports,
                     static_cast<CSMWindow *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CSMWindow::clearViewports,
+        std::bind(&CSMWindow::clearViewports,
                     static_cast<CSMWindow *>(this)));
 
     editMField(ViewportsFieldMask, _mfViewports);
@@ -2178,7 +2178,7 @@ EditFieldHandlePtr CSMWindowBase::editHandleRenderOptions  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMWindow::setRenderOptions,
+        std::bind(&CSMWindow::setRenderOptions,
                     static_cast<CSMWindow *>(this), _1));
 
     editSField(RenderOptionsFieldMask);

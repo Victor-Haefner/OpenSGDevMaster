@@ -49,7 +49,7 @@
 #include <vector>
 #include <stack>
 
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGSystemDef.h"
 #include "OSGBaseTypes.h"
@@ -95,9 +95,9 @@ class OSG_SYSTEM_DLLMAPPING Action : public ActionBase
     //   enums                                                               
     //-----------------------------------------------------------------------
 
-    typedef boost::function<ResultE(NodeCore * const, 
+    typedef std::function<ResultE(NodeCore * const, 
                                     Action   *      )> Functor;
-    typedef boost::function<ResultE(Node     * const,   
+    typedef std::function<ResultE(Node     * const,   
                                     Action   *      )> NodeFunctor; 
 
     typedef std::vector<Functor>                       FunctorStore;
@@ -376,20 +376,20 @@ OSG_GEN_MEMOBJPTR(Action);
 /*! \ingroup GrpSystemActionFuncs
  */
 
-typedef boost::function<
+typedef std::function<
           Action::ResultE (Node * const   )> TraverseEnterFunctor;
 
 /*! \ingroup GrpSystemActionFuncs
  */
 
-typedef boost::function<
+typedef std::function<
           Action::ResultE (Node * const, 
                            Action::ResultE)> TraverseLeaveFunctor;
 
 /*! \ingroup GrpSystemActionFuncs
  */
 
-typedef boost::function<Action::ResultE (Action *)> RenderActionFunctor;
+typedef std::function<Action::ResultE (Action *)> RenderActionFunctor;
 
 /*! \ingroup GrpSystemActionFuncs
  */

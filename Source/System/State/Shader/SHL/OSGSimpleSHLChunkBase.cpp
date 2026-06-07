@@ -67,7 +67,7 @@
 #include "OSGSimpleSHLChunkBase.h"
 #include "OSGSimpleSHLChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1169,7 +1169,7 @@ EditFieldHandlePtr SimpleSHLChunkBase::editHandleVariables      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&SimpleSHLChunk::setVariables,
+        std::bind(&SimpleSHLChunk::setVariables,
                     static_cast<SimpleSHLChunk *>(this), _1));
 
     editSField(VariablesFieldMask);

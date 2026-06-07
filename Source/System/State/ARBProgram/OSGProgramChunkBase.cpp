@@ -66,7 +66,7 @@
 #include "OSGProgramChunkBase.h"
 #include "OSGProgramChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

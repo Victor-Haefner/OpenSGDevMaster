@@ -67,7 +67,7 @@
 #include "OSGCameraDecoratorBase.h"
 #include "OSGCameraDecorator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -390,7 +390,7 @@ EditFieldHandlePtr CameraDecoratorBase::editHandleDecoratee(void)
             this->getType().getFieldDesc(DecorateeFieldId),
             this));
 
-    returnValue->setSetMethod(boost::bind(&CameraDecorator::setDecoratee,
+    returnValue->setSetMethod(std::bind(&CameraDecorator::setDecoratee,
                               static_cast<CameraDecorator *>(this), _1));
 
     editSField(DecorateeFieldMask);
@@ -418,7 +418,7 @@ EditFieldHandlePtr CameraDecoratorBase::editHandleBeacon         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CameraDecorator::setBeacon,
+        std::bind(&CameraDecorator::setBeacon,
                     static_cast<CameraDecorator *>(this), _1));
 
     editSField(BeaconFieldMask);

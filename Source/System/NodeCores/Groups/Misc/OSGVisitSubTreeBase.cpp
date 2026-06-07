@@ -67,7 +67,7 @@
 #include "OSGVisitSubTreeBase.h"
 #include "OSGVisitSubTree.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -541,7 +541,7 @@ EditFieldHandlePtr VisitSubTreeBase::editHandleSubTreeRoot    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&VisitSubTree::setSubTreeRoot,
+        std::bind(&VisitSubTree::setSubTreeRoot,
                     static_cast<VisitSubTree *>(this), _1));
 
     editSField(SubTreeRootFieldMask);

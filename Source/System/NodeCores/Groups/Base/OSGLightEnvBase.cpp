@@ -66,7 +66,7 @@
 #include "OSGLightEnvBase.h"
 #include "OSGLightEnv.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

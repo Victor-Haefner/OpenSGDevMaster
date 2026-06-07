@@ -66,7 +66,7 @@
 #include "OSGHardwareContextBase.h"
 #include "OSGHardwareContext.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

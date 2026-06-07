@@ -47,7 +47,7 @@
 #include <map>
 #include <iostream>
 
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGSystemDef.h"
 #include "OSGBaseTypes.h"

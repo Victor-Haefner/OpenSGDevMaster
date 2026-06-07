@@ -66,7 +66,7 @@
 #include "OSGRotateManipulatorBase.h"
 #include "OSGRotateManipulator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

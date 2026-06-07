@@ -41,7 +41,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -298,7 +298,7 @@ class VolumeDrawWrapper
 
         DrawEnv::DrawFunctor func;
 
-        func = boost::bind(&VolumeDrawWrapper::draw, vdw, _1);
+        func = std::bind(&VolumeDrawWrapper::draw, vdw, _1);
     
         RenderActionT *ra = dynamic_cast<RenderActionT *>(action);
         
@@ -327,7 +327,7 @@ class VolumeDrawWrapper
 
         DrawEnv::DrawFunctor func;
 
-        func = boost::bind(&VolumeDrawWrapper::draw, vdw, _1);
+        func = std::bind(&VolumeDrawWrapper::draw, vdw, _1);
     
         part->dropFunctor(func, 
                           getDefaultUnlitMaterial()->getState(),

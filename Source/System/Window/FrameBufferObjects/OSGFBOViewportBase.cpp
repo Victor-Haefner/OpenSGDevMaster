@@ -67,7 +67,7 @@
 #include "OSGFBOViewportBase.h"
 #include "OSGFBOViewport.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -438,7 +438,7 @@ EditFieldHandlePtr FBOViewportBase::editHandleFrameBufferObject(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&FBOViewport::setFrameBufferObject,
+        std::bind(&FBOViewport::setFrameBufferObject,
                     static_cast<FBOViewport *>(this), _1));
 
     editSField(FrameBufferObjectFieldMask);

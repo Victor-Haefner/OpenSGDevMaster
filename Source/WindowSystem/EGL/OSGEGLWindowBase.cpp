@@ -61,7 +61,7 @@
 #include "OSGEGLWindowBase.h"
 #include "OSGEGLWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef WIN32 // turn off 'this' : used in base member initializer list warning
 #pragma warning(disable:4355)

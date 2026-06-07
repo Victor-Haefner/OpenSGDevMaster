@@ -306,11 +306,11 @@ void GPUSkinningAlgorithm::changed(ConstFieldMaskArg whichField,
     if((SkeletonFieldMask & whichField) != 0    &&
        _sfSkeleton.getValue()           != NULL   )
     {
-        if(_sfSkeleton.getValue()->hasChangedFunctor(boost::bind(
+        if(_sfSkeleton.getValue()->hasChangedFunctor(std::bind(
                &GPUSkinningAlgorithm::skeletonChanged,
                this, _1, _2, _3                            )) == false)
         {
-            _sfSkeleton.getValue()->addChangedFunctor(boost::bind(
+            _sfSkeleton.getValue()->addChangedFunctor(std::bind(
                 &GPUSkinningAlgorithm::skeletonChanged,
                 this, _1, _2, _3                           ),
                 "GPUSkinningAlgorithm::skeletonChanged");
@@ -355,7 +355,7 @@ GPUSkinningAlgorithm::resolveLinks(void)
 {
     if(_sfSkeleton.getValue() != NULL)
     {
-        _sfSkeleton.getValue()->subChangedFunctor(boost::bind(
+        _sfSkeleton.getValue()->subChangedFunctor(std::bind(
             &GPUSkinningAlgorithm::skeletonChanged,
             this, _1, _2, _3                       ));
     }

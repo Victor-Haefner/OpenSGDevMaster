@@ -43,7 +43,7 @@
 #include "OSGAttachmentMapSFields.h"
 #include "OSGNameAttachment.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 #include <boost/format.hpp>
 
 #include <ostream>
@@ -71,8 +71,8 @@ void SceneGraphPrinter::printDownTree(std::ostream &os)
     _indent  = 0;
 
     traverse(_pRoot,
-             boost::bind(&Self::traverseEnter, this, _1    ),
-             boost::bind(&Self::traverseLeave, this, _1, _2) );
+             std::bind(&Self::traverseEnter, this, _1    ),
+             std::bind(&Self::traverseLeave, this, _1, _2) );
 
     os << std::flush;
 }

@@ -67,7 +67,7 @@
 #include "OSGPolygonBackgroundBase.h"
 #include "OSGPolygonBackground.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -863,7 +863,7 @@ EditFieldHandlePtr PolygonBackgroundBase::editHandleMaterial       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&PolygonBackground::setMaterial,
+        std::bind(&PolygonBackground::setMaterial,
                     static_cast<PolygonBackground *>(this), _1));
 
     editSField(MaterialFieldMask);

@@ -67,7 +67,7 @@
 #include "OSGAnimQuaternionBlenderBase.h"
 #include "OSGAnimQuaternionBlender.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -541,16 +541,16 @@ EditFieldHandlePtr AnimQuaternionBlenderBase::editHandleChannels       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&AnimQuaternionBlender::pushToChannels,
+        std::bind(&AnimQuaternionBlender::pushToChannels,
                     static_cast<AnimQuaternionBlender *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&AnimQuaternionBlender::removeFromChannels,
+        std::bind(&AnimQuaternionBlender::removeFromChannels,
                     static_cast<AnimQuaternionBlender *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&AnimQuaternionBlender::removeObjFromChannels,
+        std::bind(&AnimQuaternionBlender::removeObjFromChannels,
                     static_cast<AnimQuaternionBlender *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&AnimQuaternionBlender::clearChannels,
+        std::bind(&AnimQuaternionBlender::clearChannels,
                     static_cast<AnimQuaternionBlender *>(this)));
 
     editMField(ChannelsFieldMask, _mfChannels);

@@ -69,7 +69,7 @@
 #include "OSGCgFXMaterialBase.h"
 #include "OSGCgFXMaterial.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1299,7 +1299,7 @@ EditFieldHandlePtr CgFXMaterialBase::editHandleVariables      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CgFXMaterial::setVariables,
+        std::bind(&CgFXMaterial::setVariables,
                     static_cast<CgFXMaterial *>(this), _1));
 
     editSField(VariablesFieldMask);
@@ -1377,16 +1377,16 @@ EditFieldHandlePtr CgFXMaterialBase::editHandleTechniques     (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CgFXMaterial::pushToTechniques,
+        std::bind(&CgFXMaterial::pushToTechniques,
                     static_cast<CgFXMaterial *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CgFXMaterial::removeFromTechniques,
+        std::bind(&CgFXMaterial::removeFromTechniques,
                     static_cast<CgFXMaterial *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CgFXMaterial::removeObjFromTechniques,
+        std::bind(&CgFXMaterial::removeObjFromTechniques,
                     static_cast<CgFXMaterial *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CgFXMaterial::clearTechniques,
+        std::bind(&CgFXMaterial::clearTechniques,
                     static_cast<CgFXMaterial *>(this)));
 
     editMField(TechniquesFieldMask, _mfTechniques);
@@ -1414,16 +1414,16 @@ EditFieldHandlePtr CgFXMaterialBase::editHandleTextures       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CgFXMaterial::pushToTextures,
+        std::bind(&CgFXMaterial::pushToTextures,
                     static_cast<CgFXMaterial *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CgFXMaterial::removeFromTextures,
+        std::bind(&CgFXMaterial::removeFromTextures,
                     static_cast<CgFXMaterial *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CgFXMaterial::removeObjFromTextures,
+        std::bind(&CgFXMaterial::removeObjFromTextures,
                     static_cast<CgFXMaterial *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CgFXMaterial::clearTextures,
+        std::bind(&CgFXMaterial::clearTextures,
                     static_cast<CgFXMaterial *>(this)));
 
     editMField(TexturesFieldMask, _mfTextures);

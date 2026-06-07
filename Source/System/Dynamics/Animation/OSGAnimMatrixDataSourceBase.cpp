@@ -66,7 +66,7 @@
 #include "OSGAnimMatrixDataSourceBase.h"
 #include "OSGAnimMatrixDataSource.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

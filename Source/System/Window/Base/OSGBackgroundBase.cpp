@@ -66,7 +66,7 @@
 #include "OSGBackgroundBase.h"
 #include "OSGBackground.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

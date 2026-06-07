@@ -19,7 +19,7 @@
 #include <OSGLine.h>
 #include <OSGContainerPtrFuncs.h>
 #include <OSGViewport.h>
-#include <boost/bind.hpp>
+#include <functional>
 #include <boost/python.hpp>
 #include "SystemWrappers.h"
 
@@ -84,7 +84,7 @@ OSG::ActionBase::ResultE wrapExitCallback(bp::object obj, OSG::Node* node,
 OSG::ActionBase::ResultE traverseWrapper1(OSG::Node::ObjRecPtr root,
                                           bp::object func)
 {
-   return OSG::traverse(root, boost::bind(wrapEnterCallback, func, _1));
+   return OSG::traverse(root, std::bind(wrapEnterCallback, func, _1));
 }
 
 OSG::ActionBase::ResultE traverseWrapper2(bp::list nodeList, bp::object func)
@@ -101,15 +101,15 @@ OSG::ActionBase::ResultE traverseWrapper2(bp::list nodeList, bp::object func)
       node_vec[i] = cur_node.get();
    }
 
-   return OSG::traverse(node_vec, boost::bind(wrapEnterCallback, func, _1));
+   return OSG::traverse(node_vec, std::bind(wrapEnterCallback, func, _1));
 }
 
 OSG::ActionBase::ResultE traverseWrapper3(OSG::Node::ObjRecPtr root,
                                           bp::object enterFunc,
                                           bp::object exitFunc)
 {
-   return OSG::traverse(root, boost::bind(wrapEnterCallback, enterFunc, _1),
-                        boost::bind(wrapExitCallback, exitFunc, _1, _2));
+   return OSG::traverse(root, std::bind(wrapEnterCallback, enterFunc, _1),
+                        std::bind(wrapExitCallback, exitFunc, _1, _2));
 }
 
 OSG::ActionBase::ResultE traverseWrapper4(bp::list nodeList,
@@ -129,8 +129,8 @@ OSG::ActionBase::ResultE traverseWrapper4(bp::list nodeList,
    }
 
    return OSG::traverse(node_vec,
-                        boost::bind(wrapEnterCallback, enterFunc, _1),
-                        boost::bind(wrapExitCallback, exitFunc, _1, _2));
+                        std::bind(wrapEnterCallback, enterFunc, _1),
+                        std::bind(wrapExitCallback, exitFunc, _1, _2));
 }
 
 

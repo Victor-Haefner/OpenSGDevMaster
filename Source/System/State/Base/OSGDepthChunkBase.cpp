@@ -67,7 +67,7 @@
 #include "OSGDepthChunkBase.h"
 #include "OSGDepthChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

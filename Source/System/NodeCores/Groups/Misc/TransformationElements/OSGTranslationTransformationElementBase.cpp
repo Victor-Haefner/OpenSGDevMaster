@@ -66,7 +66,7 @@
 #include "OSGTranslationTransformationElementBase.h"
 #include "OSGTranslationTransformationElement.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

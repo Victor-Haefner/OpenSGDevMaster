@@ -136,7 +136,7 @@ void CSMLogger::postOSGLoading(FileContextAttachment * const pContext)
             if(pDesc != NULL)
             {
                 ChangedFunctor logCB = 
-                    boost::bind(&CSMLogger::doLog, 
+                    std::bind(&CSMLogger::doLog, 
                                 this,
                                 _1, 
                                 _2, 

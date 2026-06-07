@@ -67,7 +67,7 @@
 #include "OSGDeviceInterfaceSensorBase.h"
 #include "OSGDeviceInterfaceSensor.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -458,7 +458,7 @@ EditFieldHandlePtr DeviceInterfaceSensorBase::editHandleOptions        (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&DeviceInterfaceSensor::setOptions,
+        std::bind(&DeviceInterfaceSensor::setOptions,
                     static_cast<DeviceInterfaceSensor *>(this), _1));
 
     editSField(OptionsFieldMask);

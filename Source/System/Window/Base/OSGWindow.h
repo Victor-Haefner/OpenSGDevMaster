@@ -46,7 +46,7 @@
 
 #include <list>
 #include <utility>
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGDeprecatedCPP.h"
 
@@ -125,11 +125,11 @@ class OSG_SYSTEM_DLLMAPPING Window : public WindowBase
 
     typedef UIntPointer                               GLObjectId;
 
-    typedef boost::function<UInt32 (DrawEnv *, 
+    typedef std::function<UInt32 (DrawEnv *, 
                                     UInt32,
                                     GLObjectStatusE,
                                     UInt64         )> GLObjectFunctor;
-    typedef boost::function<void   (DrawEnv *, 
+    typedef std::function<void   (DrawEnv *, 
                                     UInt32, 
                                     GLObjectStatusE)> GLObjectDestroyFunctor;
 

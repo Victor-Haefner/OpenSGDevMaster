@@ -67,7 +67,7 @@
 #include "OSGProjectionCameraDecoratorBase.h"
 #include "OSGProjectionCameraDecorator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -786,7 +786,7 @@ EditFieldHandlePtr ProjectionCameraDecoratorBase::editHandleUser           (void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ProjectionCameraDecorator::setUser,
+        std::bind(&ProjectionCameraDecorator::setUser,
                     static_cast<ProjectionCameraDecorator *>(this), _1));
 
     editSField(UserFieldMask);

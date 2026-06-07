@@ -254,7 +254,7 @@ class OSG_SYSTEM_DLLMAPPING
     typedef EditMapFieldHandle Inherited;
     typedef EditFieldHandle    Base;
 
-    typedef boost::function<void(PrimeMaterial  * const,
+    typedef std::function<void(PrimeMaterial  * const,
                                  MaterialMapKey        )> AddMethod;
 
     /*==========================  PUBLIC  =================================*/

@@ -42,7 +42,7 @@
 
 #include <cstdlib>
 #include <cstdio>
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -239,7 +239,7 @@ void Geometry::onCreate(const Geometry *source)
 #if !defined(OSG_OGL_COREONLY)
     setClassicGLId(               
         Window::registerGLObject(
-            boost::bind(&Geometry::handleClassicGL,
+            std::bind(&Geometry::handleClassicGL,
                         GeometryMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &Geometry::handleClassicDestroyGL));
@@ -247,20 +247,20 @@ void Geometry::onCreate(const Geometry *source)
 
     setAttGLId(               
         Window::registerGLObject(
-            boost::bind(&Geometry::handleAttGL,
+            std::bind(&Geometry::handleAttGL,
                         GeometryMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &Geometry::handleAttDestroyGL));
 
     setClassicVaoGLId(               
         Window::registerGLObject(
-            boost::bind(&Geometry::handleVAOGL,
+            std::bind(&Geometry::handleVAOGL,
                         GeometryMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &Geometry::handleVAODestroyGL));
     setAttribVaoGLId(               
         Window::registerGLObject(
-            boost::bind(&Geometry::handleVAOGL,
+            std::bind(&Geometry::handleVAOGL,
                         GeometryMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &Geometry::handleVAODestroyGL));
@@ -1133,7 +1133,7 @@ void Geometry::changed(ConstFieldMaskArg whichField,
             {
                 setClassicGLId(               
                     Window::registerGLObject(
-                        boost::bind(&Geometry::handleClassicGL, 
+                        std::bind(&Geometry::handleClassicGL, 
                                     GeometryMTUncountedPtr(this), 
                                     _1, _2, _3, _4),
                         &Geometry::handleClassicDestroyGL));
@@ -1142,7 +1142,7 @@ void Geometry::changed(ConstFieldMaskArg whichField,
             {
                 setAttGLId(               
                     Window::registerGLObject(
-                        boost::bind(&Geometry::handleAttGL, 
+                        std::bind(&Geometry::handleAttGL, 
                                     GeometryMTUncountedPtr(this), 
                                     _1, _2, _3, _4),
                         &Geometry::handleAttDestroyGL));

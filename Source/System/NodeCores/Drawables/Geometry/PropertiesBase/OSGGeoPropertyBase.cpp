@@ -67,7 +67,7 @@
 #include "OSGGeoPropertyBase.h"
 #include "OSGGeoProperty.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

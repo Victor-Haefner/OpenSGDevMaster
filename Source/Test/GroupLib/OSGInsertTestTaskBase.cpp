@@ -62,7 +62,7 @@
 #include "OSGInsertTestTaskBase.h"
 #include "OSGInsertTestTask.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef WIN32 // turn off 'this' : used in base member initializer list warning
 #pragma warning(disable:4355)
@@ -540,7 +540,7 @@ EditFieldHandlePtr InsertTestTaskBase::editHandleWindow         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&InsertTestTask::setWindow,
+        std::bind(&InsertTestTask::setWindow,
                     static_cast<InsertTestTask *>(this), _1));
 
     editSField(WindowFieldMask);

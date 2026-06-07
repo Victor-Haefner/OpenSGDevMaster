@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -121,7 +121,7 @@ void FragmentProgramChunk::onCreate(const FragmentProgramChunk *chunk)
         return;
 
     setGLId(Window::registerGLObject(
-                    boost::bind(&FragmentProgramChunk::handleGL, 
+                    std::bind(&FragmentProgramChunk::handleGL, 
                                 FragmentProgramChunkMTUncountedPtr(this), 
                                 _1, _2, _3, _4),
                     &FragmentProgramChunk::handleDestroyGL));

@@ -52,7 +52,7 @@ OSG_BEGIN_NAMESPACE
 
 class HardwareContext;
 
-typedef boost::function<void (HardwareContext *, DrawEnv *)> ComputeFunctor;
+typedef std::function<void (HardwareContext *, DrawEnv *)> ComputeFunctor;
 
 struct ComputeFunctorCallback
 {

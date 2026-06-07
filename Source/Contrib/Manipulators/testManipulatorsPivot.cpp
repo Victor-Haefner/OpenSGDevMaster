@@ -12,7 +12,7 @@
 #include <OSGTransform.h>
 #include <OSGTypedGeoIntegralProperty.h>
 #include <OSGSceneGraphUtils.h>
-#include <boost/bind.hpp>
+#include <functional>
 #include <boost/noncopyable.hpp>
 #include <cstdlib>
 #include <iostream>
@@ -334,13 +334,13 @@ namespace
         {
             if (!use_changed_functor_) {
                 xformTranslationN->getCore()->
-                    addChangedFunctor(boost::bind(&object_type::changed_cb, this, xformTranslationN, _1, _2, _3),
+                    addChangedFunctor(std::bind(&object_type::changed_cb, this, xformTranslationN, _1, _2, _3),
                                       "xform_translation_changed_cb");
                 xformRotationN->getCore()->
-                    addChangedFunctor(boost::bind(&object_type::changed_cb, this, xformRotationN,    _1, _2, _3),
+                    addChangedFunctor(std::bind(&object_type::changed_cb, this, xformRotationN,    _1, _2, _3),
                                       "xform_rotation_changed_cb");
                 xformScaleN->getCore()->
-                    addChangedFunctor(boost::bind(&object_type::changed_cb, this, xformScaleN,       _1, _2, _3),
+                    addChangedFunctor(std::bind(&object_type::changed_cb, this, xformScaleN,       _1, _2, _3),
                                       "xform_scale_changed_cb");
             } else {
                 xformTranslationN->getCore()->clearChangedFunctors();

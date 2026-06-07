@@ -67,7 +67,7 @@
 #include "OSGChunkBlockBase.h"
 #include "OSGChunkBlock.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -425,10 +425,10 @@ EditFieldHandlePtr ChunkBlockBase::editHandleChunks         (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ChunkBlock::pushToChunks,
+        std::bind(&ChunkBlock::pushToChunks,
                     static_cast<ChunkBlock *>(this), _1));
     returnValue->setReplaceMethod(
-        boost::bind(&ChunkBlock::replaceChunk,
+        std::bind(&ChunkBlock::replaceChunk,
                     static_cast<ChunkBlock *>(this), _1, _2));
 
     editMField(ChunksFieldMask, _mfChunks);

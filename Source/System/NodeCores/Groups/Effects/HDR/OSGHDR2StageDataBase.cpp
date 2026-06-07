@@ -72,7 +72,7 @@
 #include "OSGHDR2StageDataBase.h"
 #include "OSGHDR2StageData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -2955,7 +2955,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleLuminanceMapShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setLuminanceMapShader,
+        std::bind(&HDR2StageData::setLuminanceMapShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(LuminanceMapShaderFieldMask);
@@ -2983,7 +2983,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleAdaptLuminanceShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setAdaptLuminanceShader,
+        std::bind(&HDR2StageData::setAdaptLuminanceShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(AdaptLuminanceShaderFieldMask);
@@ -3011,7 +3011,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleThresholdShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setThresholdShader,
+        std::bind(&HDR2StageData::setThresholdShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(ThresholdShaderFieldMask);
@@ -3039,7 +3039,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleScaleShader    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setScaleShader,
+        std::bind(&HDR2StageData::setScaleShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(ScaleShaderFieldMask);
@@ -3067,7 +3067,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleBlurHorizShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setBlurHorizShader,
+        std::bind(&HDR2StageData::setBlurHorizShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(BlurHorizShaderFieldMask);
@@ -3095,7 +3095,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleBlurVertShader (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setBlurVertShader,
+        std::bind(&HDR2StageData::setBlurVertShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(BlurVertShaderFieldMask);
@@ -3123,7 +3123,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleCompositeShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setCompositeShader,
+        std::bind(&HDR2StageData::setCompositeShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(CompositeShaderFieldMask);
@@ -3151,7 +3151,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleFinalScreenShader(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setFinalScreenShader,
+        std::bind(&HDR2StageData::setFinalScreenShader,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(FinalScreenShaderFieldMask);
@@ -3179,7 +3179,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleSharedTextureEnvChunk(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setSharedTextureEnvChunk,
+        std::bind(&HDR2StageData::setSharedTextureEnvChunk,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(SharedTextureEnvChunkFieldMask);
@@ -3207,7 +3207,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleSharedMaterialChunk(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setSharedMaterialChunk,
+        std::bind(&HDR2StageData::setSharedMaterialChunk,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(SharedMaterialChunkFieldMask);
@@ -3235,7 +3235,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleSceneMaterial  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setSceneMaterial,
+        std::bind(&HDR2StageData::setSceneMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(SceneMaterialFieldMask);
@@ -3263,7 +3263,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleLuminanceMapMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setLuminanceMapMaterial,
+        std::bind(&HDR2StageData::setLuminanceMapMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(LuminanceMapMaterialFieldMask);
@@ -3291,7 +3291,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleAdaptLuminanceMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setAdaptLuminanceMaterial,
+        std::bind(&HDR2StageData::setAdaptLuminanceMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(AdaptLuminanceMaterialFieldMask);
@@ -3319,7 +3319,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleThresholdMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setThresholdMaterial,
+        std::bind(&HDR2StageData::setThresholdMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(ThresholdMaterialFieldMask);
@@ -3347,16 +3347,16 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleScaleMaterial  (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&HDR2StageData::pushToScaleMaterial,
+        std::bind(&HDR2StageData::pushToScaleMaterial,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&HDR2StageData::removeFromScaleMaterial,
+        std::bind(&HDR2StageData::removeFromScaleMaterial,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&HDR2StageData::removeObjFromScaleMaterial,
+        std::bind(&HDR2StageData::removeObjFromScaleMaterial,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&HDR2StageData::clearScaleMaterial,
+        std::bind(&HDR2StageData::clearScaleMaterial,
                     static_cast<HDR2StageData *>(this)));
 
     editMField(ScaleMaterialFieldMask, _mfScaleMaterial);
@@ -3384,7 +3384,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleBlurHorizMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setBlurHorizMaterial,
+        std::bind(&HDR2StageData::setBlurHorizMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(BlurHorizMaterialFieldMask);
@@ -3412,7 +3412,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleBlurVertMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setBlurVertMaterial,
+        std::bind(&HDR2StageData::setBlurVertMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(BlurVertMaterialFieldMask);
@@ -3440,7 +3440,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleCompositeMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setCompositeMaterial,
+        std::bind(&HDR2StageData::setCompositeMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(CompositeMaterialFieldMask);
@@ -3468,7 +3468,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleFinalScreenMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setFinalScreenMaterial,
+        std::bind(&HDR2StageData::setFinalScreenMaterial,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(FinalScreenMaterialFieldMask);
@@ -3571,7 +3571,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleSceneRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setSceneRenderTarget,
+        std::bind(&HDR2StageData::setSceneRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(SceneRenderTargetFieldMask);
@@ -3599,7 +3599,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleLuminanceRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setLuminanceRenderTarget,
+        std::bind(&HDR2StageData::setLuminanceRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(LuminanceRenderTargetFieldMask);
@@ -3627,16 +3627,16 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleAdaptLuminanceRenderTarget(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&HDR2StageData::pushToAdaptLuminanceRenderTarget,
+        std::bind(&HDR2StageData::pushToAdaptLuminanceRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&HDR2StageData::removeFromAdaptLuminanceRenderTarget,
+        std::bind(&HDR2StageData::removeFromAdaptLuminanceRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&HDR2StageData::removeObjFromAdaptLuminanceRenderTarget,
+        std::bind(&HDR2StageData::removeObjFromAdaptLuminanceRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&HDR2StageData::clearAdaptLuminanceRenderTarget,
+        std::bind(&HDR2StageData::clearAdaptLuminanceRenderTarget,
                     static_cast<HDR2StageData *>(this)));
 
     editMField(AdaptLuminanceRenderTargetFieldMask, _mfAdaptLuminanceRenderTarget);
@@ -3664,7 +3664,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleThresholdRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setThresholdRenderTarget,
+        std::bind(&HDR2StageData::setThresholdRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(ThresholdRenderTargetFieldMask);
@@ -3692,7 +3692,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleBlurHorizRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setBlurHorizRenderTarget,
+        std::bind(&HDR2StageData::setBlurHorizRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(BlurHorizRenderTargetFieldMask);
@@ -3720,7 +3720,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleBlurVertRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setBlurVertRenderTarget,
+        std::bind(&HDR2StageData::setBlurVertRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(BlurVertRenderTargetFieldMask);
@@ -3748,16 +3748,16 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleScaleRenderTarget(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&HDR2StageData::pushToScaleRenderTarget,
+        std::bind(&HDR2StageData::pushToScaleRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&HDR2StageData::removeFromScaleRenderTarget,
+        std::bind(&HDR2StageData::removeFromScaleRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&HDR2StageData::removeObjFromScaleRenderTarget,
+        std::bind(&HDR2StageData::removeObjFromScaleRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&HDR2StageData::clearScaleRenderTarget,
+        std::bind(&HDR2StageData::clearScaleRenderTarget,
                     static_cast<HDR2StageData *>(this)));
 
     editMField(ScaleRenderTargetFieldMask, _mfScaleRenderTarget);
@@ -3785,7 +3785,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleCompositeRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setCompositeRenderTarget,
+        std::bind(&HDR2StageData::setCompositeRenderTarget,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(CompositeRenderTargetFieldMask);
@@ -3813,7 +3813,7 @@ EditFieldHandlePtr HDR2StageDataBase::editHandleHdrShaderData  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDR2StageData::setHdrShaderData,
+        std::bind(&HDR2StageData::setHdrShaderData,
                     static_cast<HDR2StageData *>(this), _1));
 
     editSField(HdrShaderDataFieldMask);

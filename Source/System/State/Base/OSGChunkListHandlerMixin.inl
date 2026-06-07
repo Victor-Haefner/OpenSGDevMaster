@@ -136,11 +136,11 @@ EditFieldHandlePtr ChunkListHandlerMixin<Desc>::editHandleChunks(void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&FinalContainer::pushToChunks,
+        std::bind(&FinalContainer::pushToChunks,
                     static_cast<FinalContainer *>(this), _1));
 
     returnValue->setReplaceMethod(
-        boost::bind(&FinalContainer::replaceChunk,
+        std::bind(&FinalContainer::replaceChunk,
                     static_cast<FinalContainer *>(this), _1, _2));
 
     this->editMField(Self::ChunksFieldMask, this->_mfChunks);

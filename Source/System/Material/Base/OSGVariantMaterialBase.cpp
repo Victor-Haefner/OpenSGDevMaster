@@ -67,7 +67,7 @@
 #include "OSGVariantMaterialBase.h"
 #include "OSGVariantMaterial.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -429,7 +429,7 @@ EditFieldHandlePtr VariantMaterialBase::editHandleFallbackMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&VariantMaterial::setFallbackMaterial,
+        std::bind(&VariantMaterial::setFallbackMaterial,
                     static_cast<VariantMaterial *>(this), _1));
 
     editSField(FallbackMaterialFieldMask);

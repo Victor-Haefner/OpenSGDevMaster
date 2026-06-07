@@ -68,7 +68,7 @@
 #include "OSGComputeShaderChunkBase.h"
 #include "OSGComputeShaderChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -827,16 +827,16 @@ EditFieldHandlePtr ComputeShaderChunkBase::editHandleComputeShader  (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ComputeShaderChunk::addComputeShader,
+        std::bind(&ComputeShaderChunk::addComputeShader,
                     static_cast<ComputeShaderChunk *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ComputeShaderChunk::subComputeShader,
+        std::bind(&ComputeShaderChunk::subComputeShader,
                     static_cast<ComputeShaderChunk *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ComputeShaderChunk::removeObjFromComputeShader,
+        std::bind(&ComputeShaderChunk::removeObjFromComputeShader,
                     static_cast<ComputeShaderChunk *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ComputeShaderChunk::clearComputeShaders,
+        std::bind(&ComputeShaderChunk::clearComputeShaders,
                     static_cast<ComputeShaderChunk *>(this)));
 
     editMField(ComputeShaderFieldMask, _mfComputeShader);
@@ -889,7 +889,7 @@ EditFieldHandlePtr ComputeShaderChunkBase::editHandleVariables      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ComputeShaderChunk::setVariables,
+        std::bind(&ComputeShaderChunk::setVariables,
                     static_cast<ComputeShaderChunk *>(this), _1));
 
     editSField(VariablesFieldMask);

@@ -42,7 +42,7 @@
 #pragma once
 #endif
 
-#include <boost/function.hpp>  
+#include <functional>  
 #include <boost/type_traits.hpp>
 
 OSG_BEGIN_NAMESPACE
@@ -358,22 +358,22 @@ class EditFCPtrMFieldHandle :
 
 
     typedef 
-        boost::function<void (typename FieldT::const_value)>   AddMethod;
+        std::function<void (typename FieldT::const_value)>   AddMethod;
     typedef 
-        boost::function<void (UInt32)                      >   RemoveMethod;
+        std::function<void (UInt32)                      >   RemoveMethod;
     typedef 
-        boost::function<void (typename FieldT::const_value)>   RemoveObjMethod;
+        std::function<void (typename FieldT::const_value)>   RemoveObjMethod;
     typedef 
-        boost::function<void (UInt32,
+        std::function<void (UInt32,
                               typename FieldT::const_value)>   InsertMethod;
     typedef 
-        boost::function<void (UInt32,
+        std::function<void (UInt32,
                               typename FieldT::const_value)>   ReplaceMethod;
     typedef 
-        boost::function<void (typename FieldT::const_value, 
+        std::function<void (typename FieldT::const_value, 
                               typename FieldT::const_value)>   ReplaceObjMethod;
     typedef 
-        boost::function<void (void)                        >   ClearMethod;
+        std::function<void (void)                        >   ClearMethod;
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/

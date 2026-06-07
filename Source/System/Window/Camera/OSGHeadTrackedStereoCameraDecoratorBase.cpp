@@ -67,7 +67,7 @@
 #include "OSGHeadTrackedStereoCameraDecoratorBase.h"
 #include "OSGHeadTrackedStereoCameraDecorator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -442,7 +442,7 @@ EditFieldHandlePtr HeadTrackedStereoCameraDecoratorBase::editHandleUser         
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HeadTrackedStereoCameraDecorator::setUser,
+        std::bind(&HeadTrackedStereoCameraDecorator::setUser,
                     static_cast<HeadTrackedStereoCameraDecorator *>(this), _1));
 
     editSField(UserFieldMask);

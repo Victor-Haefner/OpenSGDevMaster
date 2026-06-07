@@ -3,7 +3,7 @@
 #include "OSGNode.h"
 #include "OSGNodeCore.h"
 
-#include "boost/bind.hpp"
+#include <functional>
 
 class Foo
 {
@@ -31,7 +31,7 @@ int main (int argc, char **argv)
 
     OSG::NodeRecPtr pNode = OSG::Node::create();
 
-    OSG::ChangedFunctor objCB = boost::bind(&Foo::testCB, &foo, _1, _2, _3);
+    OSG::ChangedFunctor objCB = std::bind(&Foo::testCB, &foo, _1, _2, _3);
 
     pNode->addChangedFunctor(testCB, "");
     pNode->addChangedFunctor(objCB, "");

@@ -67,7 +67,7 @@
 #include "OSGCSMPassiveWindowBase.h"
 #include "OSGCSMPassiveWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -485,7 +485,7 @@ EditFieldHandlePtr CSMPassiveWindowBase::editHandleClearOp        (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CSMPassiveWindow::setClearOp,
+        std::bind(&CSMPassiveWindow::setClearOp,
                     static_cast<CSMPassiveWindow *>(this), _1));
 
     editSField(ClearOpFieldMask);

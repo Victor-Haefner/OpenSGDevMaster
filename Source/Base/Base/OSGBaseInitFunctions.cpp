@@ -239,7 +239,7 @@ SystemState GlobalSystemState = Startup;
 /*! \name add init functions                                           */
 /*! \{                                                                 */
 
-/*! \typedef boost::function<bool (void)> InitFuncF
+/*! \typedef std::function<bool (void)> InitFuncF
 
     Prototype for the initialization callbacks. The system initialization and
     the points that allow customization through callbacks are as follows:
@@ -323,7 +323,7 @@ void addPostFactoryInitFunction(OSG::InitFuncF initFunc)
 /*! \name add exit function                                            */
 /*! \{                                                                 */
 
-/*! \typedef boost::function<bool (void)> ExitFuncF
+/*! \typedef std::function<bool (void)> ExitFuncF
 
     Prototype for the shutdown callbacks. The system shutdown steps and the
     points that allow customization through callbacks are as follows:

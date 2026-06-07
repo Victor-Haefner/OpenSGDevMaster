@@ -66,7 +66,7 @@
 #include "OSGConnectorAttachmentBase.h"
 #include "OSGConnectorAttachment.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

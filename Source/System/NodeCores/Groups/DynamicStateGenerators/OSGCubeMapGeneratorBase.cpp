@@ -70,7 +70,7 @@
 #include "OSGCubeMapGeneratorBase.h"
 #include "OSGCubeMapGenerator.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1149,7 +1149,7 @@ EditFieldHandlePtr CubeMapGeneratorBase::editHandleRoot           (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeMapGenerator::setRoot,
+        std::bind(&CubeMapGenerator::setRoot,
                     static_cast<CubeMapGenerator *>(this), _1));
 
     editSField(RootFieldMask);
@@ -1177,16 +1177,16 @@ EditFieldHandlePtr CubeMapGeneratorBase::editHandleExclude        (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&CubeMapGenerator::pushToExclude,
+        std::bind(&CubeMapGenerator::pushToExclude,
                     static_cast<CubeMapGenerator *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&CubeMapGenerator::removeFromExclude,
+        std::bind(&CubeMapGenerator::removeFromExclude,
                     static_cast<CubeMapGenerator *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&CubeMapGenerator::removeObjFromExclude,
+        std::bind(&CubeMapGenerator::removeObjFromExclude,
                     static_cast<CubeMapGenerator *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&CubeMapGenerator::clearExclude,
+        std::bind(&CubeMapGenerator::clearExclude,
                     static_cast<CubeMapGenerator *>(this)));
 
     editMField(ExcludeFieldMask, _mfExclude);
@@ -1214,7 +1214,7 @@ EditFieldHandlePtr CubeMapGeneratorBase::editHandleTexture        (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeMapGenerator::setTexture,
+        std::bind(&CubeMapGenerator::setTexture,
                     static_cast<CubeMapGenerator *>(this), _1));
 
     editSField(TextureFieldMask);
@@ -1292,7 +1292,7 @@ EditFieldHandlePtr CubeMapGeneratorBase::editHandleBeacon         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeMapGenerator::setBeacon,
+        std::bind(&CubeMapGenerator::setBeacon,
                     static_cast<CubeMapGenerator *>(this), _1));
 
     editSField(BeaconFieldMask);
@@ -1420,7 +1420,7 @@ EditFieldHandlePtr CubeMapGeneratorBase::editHandleBackground     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeMapGenerator::setBackground,
+        std::bind(&CubeMapGenerator::setBackground,
                     static_cast<CubeMapGenerator *>(this), _1));
 
     editSField(BackgroundFieldMask);
@@ -1448,7 +1448,7 @@ EditFieldHandlePtr CubeMapGeneratorBase::editHandleCamera         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeMapGenerator::setCamera,
+        std::bind(&CubeMapGenerator::setCamera,
                     static_cast<CubeMapGenerator *>(this), _1));
 
     editSField(CameraFieldMask);

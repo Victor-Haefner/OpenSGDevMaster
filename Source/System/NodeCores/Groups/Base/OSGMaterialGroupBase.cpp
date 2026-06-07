@@ -67,7 +67,7 @@
 #include "OSGMaterialGroupBase.h"
 #include "OSGMaterialGroup.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -442,7 +442,7 @@ EditFieldHandlePtr MaterialGroupBase::editHandleMaterial       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&MaterialGroup::setMaterial,
+        std::bind(&MaterialGroup::setMaterial,
                     static_cast<MaterialGroup *>(this), _1));
 
     editSField(MaterialFieldMask);

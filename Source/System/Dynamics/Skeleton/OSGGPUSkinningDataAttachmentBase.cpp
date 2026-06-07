@@ -67,7 +67,7 @@
 #include "OSGGPUSkinningDataAttachmentBase.h"
 #include "OSGGPUSkinningDataAttachment.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -489,7 +489,7 @@ EditFieldHandlePtr GPUSkinningDataAttachmentBase::editHandleShaderCode     (void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&GPUSkinningDataAttachment::setShaderCode,
+        std::bind(&GPUSkinningDataAttachment::setShaderCode,
                     static_cast<GPUSkinningDataAttachment *>(this), _1));
 
     editSField(ShaderCodeFieldMask);

@@ -72,7 +72,7 @@
 #include "OSGShaderShadowMapEngineDataBase.h"
 #include "OSGShaderShadowMapEngineData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -918,16 +918,16 @@ EditFieldHandlePtr ShaderShadowMapEngineDataBase::editHandleRenderTargets  (void
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderShadowMapEngineData::pushToRenderTargets,
+        std::bind(&ShaderShadowMapEngineData::pushToRenderTargets,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderShadowMapEngineData::removeFromRenderTargets,
+        std::bind(&ShaderShadowMapEngineData::removeFromRenderTargets,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderShadowMapEngineData::removeObjFromRenderTargets,
+        std::bind(&ShaderShadowMapEngineData::removeObjFromRenderTargets,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderShadowMapEngineData::clearRenderTargets,
+        std::bind(&ShaderShadowMapEngineData::clearRenderTargets,
                     static_cast<ShaderShadowMapEngineData *>(this)));
 
     editMField(RenderTargetsFieldMask, _mfRenderTargets);
@@ -955,16 +955,16 @@ EditFieldHandlePtr ShaderShadowMapEngineDataBase::editHandleShadowTexBuffers(voi
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderShadowMapEngineData::pushToShadowTexBuffers,
+        std::bind(&ShaderShadowMapEngineData::pushToShadowTexBuffers,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderShadowMapEngineData::removeFromShadowTexBuffers,
+        std::bind(&ShaderShadowMapEngineData::removeFromShadowTexBuffers,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderShadowMapEngineData::removeObjFromShadowTexBuffers,
+        std::bind(&ShaderShadowMapEngineData::removeObjFromShadowTexBuffers,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderShadowMapEngineData::clearShadowTexBuffers,
+        std::bind(&ShaderShadowMapEngineData::clearShadowTexBuffers,
                     static_cast<ShaderShadowMapEngineData *>(this)));
 
     editMField(ShadowTexBuffersFieldMask, _mfShadowTexBuffers);
@@ -992,7 +992,7 @@ EditFieldHandlePtr ShaderShadowMapEngineDataBase::editHandleShadowTexChunk (void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderShadowMapEngineData::setShadowTexChunk,
+        std::bind(&ShaderShadowMapEngineData::setShadowTexChunk,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
 
     editSField(ShadowTexChunkFieldMask);
@@ -1020,7 +1020,7 @@ EditFieldHandlePtr ShaderShadowMapEngineDataBase::editHandleShadowTexImage (void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderShadowMapEngineData::setShadowTexImage,
+        std::bind(&ShaderShadowMapEngineData::setShadowTexImage,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
 
     editSField(ShadowTexImageFieldMask);
@@ -1048,16 +1048,16 @@ EditFieldHandlePtr ShaderShadowMapEngineDataBase::editHandleLightPassMaterials(v
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShaderShadowMapEngineData::pushToLightPassMaterials,
+        std::bind(&ShaderShadowMapEngineData::pushToLightPassMaterials,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShaderShadowMapEngineData::removeFromLightPassMaterials,
+        std::bind(&ShaderShadowMapEngineData::removeFromLightPassMaterials,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShaderShadowMapEngineData::removeObjFromLightPassMaterials,
+        std::bind(&ShaderShadowMapEngineData::removeObjFromLightPassMaterials,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShaderShadowMapEngineData::clearLightPassMaterials,
+        std::bind(&ShaderShadowMapEngineData::clearLightPassMaterials,
                     static_cast<ShaderShadowMapEngineData *>(this)));
 
     editMField(LightPassMaterialsFieldMask, _mfLightPassMaterials);
@@ -1085,7 +1085,7 @@ EditFieldHandlePtr ShaderShadowMapEngineDataBase::editHandleBackground     (void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderShadowMapEngineData::setBackground,
+        std::bind(&ShaderShadowMapEngineData::setBackground,
                     static_cast<ShaderShadowMapEngineData *>(this), _1));
 
     editSField(BackgroundFieldMask);

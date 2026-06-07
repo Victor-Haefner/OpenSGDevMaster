@@ -66,7 +66,7 @@
 #include "OSGShaderVariableMRealBase.h"
 #include "OSGShaderVariableMReal.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

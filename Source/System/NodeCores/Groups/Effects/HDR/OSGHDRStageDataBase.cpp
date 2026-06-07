@@ -69,7 +69,7 @@
 #include "OSGHDRStageDataBase.h"
 #include "OSGHDRStageData.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -954,7 +954,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleToneMappingMaterial(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setToneMappingMaterial,
+        std::bind(&HDRStageData::setToneMappingMaterial,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(ToneMappingMaterialFieldMask);
@@ -982,7 +982,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleBlurRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setBlurRenderTarget,
+        std::bind(&HDRStageData::setBlurRenderTarget,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(BlurRenderTargetFieldMask);
@@ -1010,7 +1010,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleBlurMaterial   (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setBlurMaterial,
+        std::bind(&HDRStageData::setBlurMaterial,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(BlurMaterialFieldMask);
@@ -1038,7 +1038,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleHBlurShader    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setHBlurShader,
+        std::bind(&HDRStageData::setHBlurShader,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(HBlurShaderFieldMask);
@@ -1066,7 +1066,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleVBlurShader    (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setVBlurShader,
+        std::bind(&HDRStageData::setVBlurShader,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(VBlurShaderFieldMask);
@@ -1144,7 +1144,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleShrinkRenderTarget(void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setShrinkRenderTarget,
+        std::bind(&HDRStageData::setShrinkRenderTarget,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(ShrinkRenderTargetFieldMask);
@@ -1172,7 +1172,7 @@ EditFieldHandlePtr HDRStageDataBase::editHandleShrinkMaterial (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&HDRStageData::setShrinkMaterial,
+        std::bind(&HDRStageData::setShrinkMaterial,
                     static_cast<HDRStageData *>(this), _1));
 
     editSField(ShrinkMaterialFieldMask);

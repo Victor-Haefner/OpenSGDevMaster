@@ -68,7 +68,7 @@
 #include "OSGQuadTreeTerrainBase.h"
 #include "OSGQuadTreeTerrain.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1692,7 +1692,7 @@ EditFieldHandlePtr QuadTreeTerrainBase::editHandleHeightData     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&QuadTreeTerrain::setHeightData,
+        std::bind(&QuadTreeTerrain::setHeightData,
                     static_cast<QuadTreeTerrain *>(this), _1));
 
     editSField(HeightDataFieldMask);
@@ -1920,7 +1920,7 @@ EditFieldHandlePtr QuadTreeTerrainBase::editHandleHeightVertices (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&QuadTreeTerrain::setHeightVertices,
+        std::bind(&QuadTreeTerrain::setHeightVertices,
                     static_cast<QuadTreeTerrain *>(this), _1));
 
     editSField(HeightVerticesFieldMask);

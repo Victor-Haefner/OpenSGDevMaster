@@ -72,7 +72,7 @@
 #include "OSGShadowStageBase.h"
 #include "OSGShadowStage.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -2017,16 +2017,16 @@ EditFieldHandlePtr ShadowStageBase::editHandleLightNodes     (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShadowStage::pushToLightNodes,
+        std::bind(&ShadowStage::pushToLightNodes,
                     static_cast<ShadowStage *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShadowStage::removeFromLightNodes,
+        std::bind(&ShadowStage::removeFromLightNodes,
                     static_cast<ShadowStage *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShadowStage::removeObjFromLightNodes,
+        std::bind(&ShadowStage::removeObjFromLightNodes,
                     static_cast<ShadowStage *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShadowStage::clearLightNodes,
+        std::bind(&ShadowStage::clearLightNodes,
                     static_cast<ShadowStage *>(this)));
 
     editMField(LightNodesFieldMask, _mfLightNodes);
@@ -2054,16 +2054,16 @@ EditFieldHandlePtr ShadowStageBase::editHandleExcludeNodes   (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&ShadowStage::pushToExcludeNodes,
+        std::bind(&ShadowStage::pushToExcludeNodes,
                     static_cast<ShadowStage *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&ShadowStage::removeFromExcludeNodes,
+        std::bind(&ShadowStage::removeFromExcludeNodes,
                     static_cast<ShadowStage *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&ShadowStage::removeObjFromExcludeNodes,
+        std::bind(&ShadowStage::removeObjFromExcludeNodes,
                     static_cast<ShadowStage *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&ShadowStage::clearExcludeNodes,
+        std::bind(&ShadowStage::clearExcludeNodes,
                     static_cast<ShadowStage *>(this)));
 
     editMField(ExcludeNodesFieldMask, _mfExcludeNodes);

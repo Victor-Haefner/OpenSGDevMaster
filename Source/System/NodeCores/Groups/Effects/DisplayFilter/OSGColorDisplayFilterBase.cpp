@@ -68,7 +68,7 @@
 #include "OSGColorDisplayFilterBase.h"
 #include "OSGColorDisplayFilter.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -975,7 +975,7 @@ EditFieldHandlePtr ColorDisplayFilterBase::editHandleTableImage     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ColorDisplayFilter::setTableImage,
+        std::bind(&ColorDisplayFilter::setTableImage,
                     static_cast<ColorDisplayFilter *>(this), _1));
 
     editSField(TableImageFieldMask);
@@ -1003,7 +1003,7 @@ EditFieldHandlePtr ColorDisplayFilterBase::editHandleFilterShader   (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ColorDisplayFilter::setFilterShader,
+        std::bind(&ColorDisplayFilter::setFilterShader,
                     static_cast<ColorDisplayFilter *>(this), _1));
 
     editSField(FilterShaderFieldMask);

@@ -67,7 +67,7 @@
 #include "OSGAnimMatrixBlenderBase.h"
 #include "OSGAnimMatrixBlender.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -541,16 +541,16 @@ EditFieldHandlePtr AnimMatrixBlenderBase::editHandleChannels       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&AnimMatrixBlender::pushToChannels,
+        std::bind(&AnimMatrixBlender::pushToChannels,
                     static_cast<AnimMatrixBlender *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&AnimMatrixBlender::removeFromChannels,
+        std::bind(&AnimMatrixBlender::removeFromChannels,
                     static_cast<AnimMatrixBlender *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&AnimMatrixBlender::removeObjFromChannels,
+        std::bind(&AnimMatrixBlender::removeObjFromChannels,
                     static_cast<AnimMatrixBlender *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&AnimMatrixBlender::clearChannels,
+        std::bind(&AnimMatrixBlender::clearChannels,
                     static_cast<AnimMatrixBlender *>(this)));
 
     editMField(ChannelsFieldMask, _mfChannels);

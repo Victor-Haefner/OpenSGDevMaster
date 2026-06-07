@@ -66,7 +66,7 @@
 #include "OSGParallelComposerBase.h"
 #include "OSGParallelComposer.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

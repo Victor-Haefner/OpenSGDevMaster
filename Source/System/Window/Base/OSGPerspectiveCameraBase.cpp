@@ -66,7 +66,7 @@
 #include "OSGPerspectiveCameraBase.h"
 #include "OSGPerspectiveCamera.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

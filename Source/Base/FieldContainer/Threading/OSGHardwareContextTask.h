@@ -295,7 +295,7 @@ class OSG_BASE_DLLMAPPING CallbackTask : public BlockingTask
 
     typedef BlockingTask Inherited;
 
-    typedef boost::function<void (HardwareContext *, 
+    typedef std::function<void (HardwareContext *, 
                                   DrawEnv         *)> CallbackFunctor;
 
     /*---------------------------------------------------------------------*/

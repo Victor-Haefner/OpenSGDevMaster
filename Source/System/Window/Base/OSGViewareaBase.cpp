@@ -68,7 +68,7 @@
 #include "OSGViewareaBase.h"
 #include "OSGViewarea.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -1166,7 +1166,7 @@ EditFieldHandlePtr ViewareaBase::editHandleRenderOptions  (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Viewarea::setRenderOptions,
+        std::bind(&Viewarea::setRenderOptions,
                     static_cast<Viewarea *>(this), _1));
 
     editSField(RenderOptionsFieldMask);

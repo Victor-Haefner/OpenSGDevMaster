@@ -69,7 +69,7 @@
 #include "OSGAnimationBase.h"
 #include "OSGAnimation.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -819,7 +819,7 @@ EditFieldHandlePtr AnimationBase::editHandleTimeSensor     (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Animation::setTimeSensor,
+        std::bind(&Animation::setTimeSensor,
                     static_cast<Animation *>(this), _1));
 
     editSField(TimeSensorFieldMask);
@@ -847,7 +847,7 @@ EditFieldHandlePtr AnimationBase::editHandleTemplate       (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&Animation::setTemplate,
+        std::bind(&Animation::setTemplate,
                     static_cast<Animation *>(this), _1));
 
     editSField(TemplateFieldMask);
@@ -875,16 +875,16 @@ EditFieldHandlePtr AnimationBase::editHandleChannels       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&Animation::pushToChannels,
+        std::bind(&Animation::pushToChannels,
                     static_cast<Animation *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&Animation::removeFromChannels,
+        std::bind(&Animation::removeFromChannels,
                     static_cast<Animation *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&Animation::removeObjFromChannels,
+        std::bind(&Animation::removeObjFromChannels,
                     static_cast<Animation *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&Animation::clearChannels,
+        std::bind(&Animation::clearChannels,
                     static_cast<Animation *>(this)));
 
     editMField(ChannelsFieldMask, _mfChannels);

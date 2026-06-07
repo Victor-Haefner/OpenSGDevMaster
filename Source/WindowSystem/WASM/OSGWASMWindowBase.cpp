@@ -66,7 +66,7 @@
 #include "OSGWASMWindowBase.h"
 #include "OSGWASMWindow.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

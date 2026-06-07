@@ -44,7 +44,7 @@
 #include "OSGNameAttachment.h"
 #include "OSGNode.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 #include <boost/format.hpp>
 
 #include <ostream>

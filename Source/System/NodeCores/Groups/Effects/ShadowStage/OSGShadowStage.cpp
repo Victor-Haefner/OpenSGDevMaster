@@ -90,7 +90,7 @@
 #endif
 
 #include "OSGRenderAction.h"
-#include <boost/bind.hpp>
+#include <functional>
 #include "OSGTextureBuffer.h"
 
 //--------------------------------------------------------------------
@@ -538,7 +538,7 @@ Action::ResultE ShadowStage::renderEnter(Action *action)
         if(getAutoExcludeTransparentNodes())
         {
             traverse(action->getActNode(), 
-                     boost::bind(&ShadowStage::findTransparent,
+                     std::bind(&ShadowStage::findTransparent,
                                   this, 
                                   pData,
                                  _1) );
@@ -747,7 +747,7 @@ void ShadowStage::checkLights(RenderActionBase *action,
         vLights.clear();
 
         traverse(action->getActNode(), 
-                 boost::bind(&ShadowStage::findLight,
+                 std::bind(&ShadowStage::findLight,
                              this, 
                              pData,
                              _1));

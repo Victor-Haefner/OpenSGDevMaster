@@ -66,7 +66,7 @@
 #include "OSGCPUSkinningAlgorithmBase.h"
 #include "OSGCPUSkinningAlgorithm.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

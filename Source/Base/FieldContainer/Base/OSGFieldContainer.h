@@ -43,7 +43,7 @@
 #endif
 
 #include <vector>
-#include <boost/function.hpp>
+#include <functional>
 
 #include "OSGReflexiveContainer.h"
 #include "OSGFieldContainerType.h"

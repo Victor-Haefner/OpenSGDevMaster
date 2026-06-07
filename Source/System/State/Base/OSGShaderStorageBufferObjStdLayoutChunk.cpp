@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -216,7 +216,7 @@ void ShaderStorageBufferObjStdLayoutChunk::onCreate(const ShaderStorageBufferObj
     _uiChunkId = _uiChunkCounter++;
 
     setGLId(Window::registerGLObject(
-                boost::bind(&ShaderStorageBufferObjStdLayoutChunk::handleGL, 
+                std::bind(&ShaderStorageBufferObjStdLayoutChunk::handleGL, 
                             ShaderStorageBufferObjStdLayoutChunkMTUncountedPtr(this), 
                             _1, _2, _3, _4),
                 &ShaderStorageBufferObjStdLayoutChunk::handleDestroyGL));

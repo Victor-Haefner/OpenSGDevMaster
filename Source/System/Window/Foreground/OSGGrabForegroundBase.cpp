@@ -67,7 +67,7 @@
 #include "OSGGrabForegroundBase.h"
 #include "OSGGrabForeground.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -490,7 +490,7 @@ EditFieldHandlePtr GrabForegroundBase::editHandleImage          (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&GrabForeground::setImage,
+        std::bind(&GrabForeground::setImage,
                     static_cast<GrabForeground *>(this), _1));
 
     editSField(ImageFieldMask);

@@ -111,7 +111,7 @@ struct FieldPathEntry;
 /*! \ingroup GrpSystemFieldContainerUtils
  */
 
-typedef boost::function<
+typedef std::function<
           FieldContainer * (const Char8 *szName)> ContainerResolver;
 
 #if 0

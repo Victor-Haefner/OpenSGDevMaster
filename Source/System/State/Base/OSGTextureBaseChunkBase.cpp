@@ -67,7 +67,7 @@
 #include "OSGTextureBaseChunkBase.h"
 #include "OSGTextureBaseChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

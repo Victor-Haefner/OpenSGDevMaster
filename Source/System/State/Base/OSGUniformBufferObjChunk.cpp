@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -238,7 +238,7 @@ void UniformBufferObjChunk::onCreate(const UniformBufferObjChunk *source)
     _uiChunkId = _uiChunkCounter++;
 
     setGLId(Window::registerGLObject(
-                boost::bind(&UniformBufferObjChunk::handleGL, 
+                std::bind(&UniformBufferObjChunk::handleGL, 
                             UniformBufferObjChunkMTUncountedPtr(this), 
                             _1, _2, _3, _4),
                 &UniformBufferObjChunk::handleDestroyGL));

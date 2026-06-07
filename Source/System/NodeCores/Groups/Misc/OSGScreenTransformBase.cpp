@@ -67,7 +67,7 @@
 #include "OSGScreenTransformBase.h"
 #include "OSGScreenTransform.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -700,7 +700,7 @@ EditFieldHandlePtr ScreenTransformBase::editHandleBeacon         (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ScreenTransform::setBeacon,
+        std::bind(&ScreenTransform::setBeacon,
                     static_cast<ScreenTransform *>(this), _1));
 
     editSField(BeaconFieldMask);

@@ -66,7 +66,7 @@
 #include "OSGCSMSortFirstWinOptionsBase.h"
 #include "OSGCSMSortFirstWinOptions.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

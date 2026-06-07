@@ -66,7 +66,7 @@
 #include "OSGGroupingStageBase.h"
 #include "OSGGroupingStage.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

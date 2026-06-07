@@ -45,7 +45,7 @@
 #include "OSGClusterWindowBase.h"
 #include "OSGStatElemTypes.h"
 
-#include <boost/function.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -122,7 +122,7 @@ class OSG_CLUSTER_DLLMAPPING ClusterWindow : public ClusterWindowBase
     /*! \name            asynchronous initialization                       */
     /*! \{                                                                 */
 
-    typedef boost::function<bool (const std::string &msg, 
+    typedef std::function<bool (const std::string &msg, 
                                   const std::string &server, 
                                         Real32       progress)> ConnectionCB;
 

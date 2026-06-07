@@ -67,7 +67,7 @@
 #include "OSGShadowMapEngineBase.h"
 #include "OSGShadowMapEngine.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -589,7 +589,7 @@ EditFieldHandlePtr ShadowMapEngineBase::editHandleShadowTexChunk (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShadowMapEngine::setShadowTexChunk,
+        std::bind(&ShadowMapEngine::setShadowTexChunk,
                     static_cast<ShadowMapEngine *>(this), _1));
 
     editSField(ShadowTexChunkFieldMask);

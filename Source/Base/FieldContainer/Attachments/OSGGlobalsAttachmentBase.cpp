@@ -67,7 +67,7 @@
 #include "OSGGlobalsAttachmentBase.h"
 #include "OSGGlobalsAttachment.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -536,16 +536,16 @@ EditFieldHandlePtr GlobalsAttachmentBase::editHandleElements       (void)
              this));
 
     returnValue->setAddMethod(
-        boost::bind(&GlobalsAttachment::pushToElements,
+        std::bind(&GlobalsAttachment::pushToElements,
                     static_cast<GlobalsAttachment *>(this), _1));
     returnValue->setRemoveMethod(
-        boost::bind(&GlobalsAttachment::removeFromElements,
+        std::bind(&GlobalsAttachment::removeFromElements,
                     static_cast<GlobalsAttachment *>(this), _1));
     returnValue->setRemoveObjMethod(
-        boost::bind(&GlobalsAttachment::removeObjFromElements,
+        std::bind(&GlobalsAttachment::removeObjFromElements,
                     static_cast<GlobalsAttachment *>(this), _1));
     returnValue->setClearMethod(
-        boost::bind(&GlobalsAttachment::clearElements,
+        std::bind(&GlobalsAttachment::clearElements,
                     static_cast<GlobalsAttachment *>(this)));
 
     editMField(ElementsFieldMask, _mfElements);

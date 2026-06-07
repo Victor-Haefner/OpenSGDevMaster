@@ -50,7 +50,7 @@
 #include "OSGStatCollector.h"
 #include "OSGContainerForwards.h"
 
-#include <boost/function.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

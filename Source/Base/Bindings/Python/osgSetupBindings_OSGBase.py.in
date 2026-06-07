@@ -82,7 +82,7 @@ def preScanSetup(gen_classes, fc_infos, core_mods, free_funcs, free_func_mods, e
   # programmers be able to do this, then some further special consideration will probably be needed
   # for this class. In particular, OGS::Thread::runFunction() would need to handle accepting a
   # Python callable. This may not be so easy, however, as OSG::Thread does not use an instance of
-  # boost::function<T> as the thread callback type.
+  # std::function<T> as the thread callback type.
   gen_classes.append(
     osggen.ClassInfo(
           "Thread",

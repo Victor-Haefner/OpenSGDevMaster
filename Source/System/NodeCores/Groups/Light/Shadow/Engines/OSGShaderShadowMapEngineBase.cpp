@@ -67,7 +67,7 @@
 #include "OSGShaderShadowMapEngineBase.h"
 #include "OSGShaderShadowMapEngine.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 
@@ -733,7 +733,7 @@ EditFieldHandlePtr ShaderShadowMapEngineBase::editHandleShadowVertexProgram(void
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderShadowMapEngine::setShadowVertexProgram,
+        std::bind(&ShaderShadowMapEngine::setShadowVertexProgram,
                     static_cast<ShaderShadowMapEngine *>(this), _1));
 
     editSField(ShadowVertexProgramFieldMask);
@@ -761,7 +761,7 @@ EditFieldHandlePtr ShaderShadowMapEngineBase::editHandleShadowFragmentProgram(vo
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&ShaderShadowMapEngine::setShadowFragmentProgram,
+        std::bind(&ShaderShadowMapEngine::setShadowFragmentProgram,
                     static_cast<ShaderShadowMapEngine *>(this), _1));
 
     editSField(ShadowFragmentProgramFieldMask);

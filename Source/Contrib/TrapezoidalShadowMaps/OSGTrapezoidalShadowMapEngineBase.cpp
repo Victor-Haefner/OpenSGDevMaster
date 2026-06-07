@@ -66,7 +66,7 @@
 #include "OSGTrapezoidalShadowMapEngineBase.h"
 #include "OSGTrapezoidalShadowMapEngine.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 OSG_BEGIN_NAMESPACE
 

@@ -43,7 +43,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 
@@ -232,7 +232,7 @@ void ConnectorAttachment::removeConnections(      BitVector       bSrcMask,
         if(ccIt->second == 0)
         {
             ccIt->first->subChangedFunctor(
-                boost::bind(&ConnectorAttachment::targetDestroyed, 
+                std::bind(&ConnectorAttachment::targetDestroyed, 
                             this, 
                             _1, 
                             _2,
@@ -272,7 +272,7 @@ bool ConnectorAttachment::unlinkParent(FieldContainer * const pParent,
                                        UInt16           const parentFieldId)
 {
     pParent->subChangedFunctor(
-        boost::bind(&ConnectorAttachment::processChanged, 
+        std::bind(&ConnectorAttachment::processChanged, 
                     this, 
                     _1, 
                     _2,
@@ -288,7 +288,7 @@ void ConnectorAttachment::resolveLinks(void)
         FieldContainer *pDst = _vConnections[i]->getDst();
 
         pDst->subChangedFunctor(
-            boost::bind(&ConnectorAttachment::targetDestroyed, 
+            std::bind(&ConnectorAttachment::targetDestroyed, 
                         this, 
                         _1, 
                         _2,
@@ -334,7 +334,7 @@ void addConnector(OSG::AttachmentContainer *pContainer,
             pContainer->getFieldFlags()->_bNamespaceMask);
 
         pContainer->addChangedFunctor(
-            boost::bind(&ConnectorAttachment::processChanged, 
+            std::bind(&ConnectorAttachment::processChanged, 
                         pCA.get(), 
                         _1, 
                         _2,
@@ -359,7 +359,7 @@ void addConnector(OSG::AttachmentContainer *pContainer,
         FieldContainer *pDst = pConn->getDst();
 
         pDst->addChangedFunctor(
-            boost::bind(&ConnectorAttachment::targetDestroyed, 
+            std::bind(&ConnectorAttachment::targetDestroyed, 
                         pCA.get(), 
                         _1, 
                         _2,

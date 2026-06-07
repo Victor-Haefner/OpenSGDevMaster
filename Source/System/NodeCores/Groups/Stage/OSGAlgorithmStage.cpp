@@ -219,7 +219,7 @@ Action::ResultE AlgorithmStage::renderEnter(Action *action)
          
         RenderPartition::SimpleDrawCallback f;
         
-        f = boost::bind(&AlgorithmStage::execute, this, _1);
+        f = std::bind(&AlgorithmStage::execute, this, _1);
         
         pPart->dropFunctor(f);
 

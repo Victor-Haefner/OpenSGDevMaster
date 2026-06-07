@@ -142,7 +142,7 @@ void CgFXMaterial::onCreate (const CgFXMaterial *source)
         return;
 
     setGLId(Window::registerGLObject(
-                boost::bind(&CgFXMaterial::handleGL, 
+                std::bind(&CgFXMaterial::handleGL, 
                             CgFXMaterialMTUncountedPtr(this), 
                             _1, _2, _3, _4),
                 &CgFXMaterial::handleDestroyGL));

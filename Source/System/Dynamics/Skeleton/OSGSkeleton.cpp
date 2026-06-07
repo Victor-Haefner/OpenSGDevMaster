@@ -53,7 +53,7 @@
 // debug only
 #include "OSGFieldContainerUtils.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 #include <boost/cast.hpp>
 
 OSG_BEGIN_NAMESPACE
@@ -136,9 +136,9 @@ Skeleton::renderEnter(Action *action, NodeCore *parent)
         BaseSkeletonJoint::JointTraverser jt(this);
 
         TraverseEnterFunctor enterFunc =
-            boost::bind(&BaseSkeletonJoint::JointTraverser::enter, &jt, _1);
+            std::bind(&BaseSkeletonJoint::JointTraverser::enter, &jt, _1);
         TraverseLeaveFunctor leaveFunc =
-            boost::bind(&BaseSkeletonJoint::JointTraverser::leave, &jt, _1, _2);
+            std::bind(&BaseSkeletonJoint::JointTraverser::leave, &jt, _1, _2);
 
         MFRootsType::const_iterator rIt  = _mfRoots.begin();
         MFRootsType::const_iterator rEnd = _mfRoots.end  ();
@@ -166,9 +166,9 @@ Skeleton::intersectEnter(Action *action, NodeCore *parent)
         BaseSkeletonJoint::JointTraverser jt(this);
 
         TraverseEnterFunctor enterFunc =
-            boost::bind(&BaseSkeletonJoint::JointTraverser::enter, &jt, _1);
+            std::bind(&BaseSkeletonJoint::JointTraverser::enter, &jt, _1);
         TraverseLeaveFunctor leaveFunc =
-            boost::bind(&BaseSkeletonJoint::JointTraverser::leave, &jt, _1, _2);
+            std::bind(&BaseSkeletonJoint::JointTraverser::leave, &jt, _1, _2);
 
         MFRootsType::const_iterator rIt  = _mfRoots.begin();
         MFRootsType::const_iterator rEnd = _mfRoots.end  ();
@@ -228,9 +228,9 @@ Skeleton::updateJoints(void)
     JointStack jointStack;
 
     TraverseEnterFunctor enterFunc =
-        boost::bind(&Skeleton::findJointsEnter, this, &jointStack, _1);
+        std::bind(&Skeleton::findJointsEnter, this, &jointStack, _1);
     TraverseLeaveFunctor leaveFunc =
-        boost::bind(&Skeleton::findJointsLeave, this, &jointStack, _1);
+        std::bind(&Skeleton::findJointsLeave, this, &jointStack, _1);
 
     MFRootsType::const_iterator rIt  = _mfRoots.begin();
     MFRootsType::const_iterator rEnd = _mfRoots.end  ();

@@ -42,7 +42,7 @@
 
 #include <cstdlib>
 #include <cstdio>
-#include <boost/bind.hpp>
+#include <functional>
 
 #include "OSGConfig.h"
 #include "OSGGL.h"
@@ -198,7 +198,7 @@ void RenderBuffer::onCreate(const RenderBuffer *source)
 
     setGLId(               
         Window::registerGLObject(
-            boost::bind(&RenderBuffer::handleGL, 
+            std::bind(&RenderBuffer::handleGL, 
                         RenderBufferMTUncountedPtr(this), 
                         _1, _2, _3, _4),
             &RenderBuffer::handleDestroyGL));

@@ -62,7 +62,7 @@
 #include "OSGCubeTextureChunkBase.h"
 #include "OSGCubeTextureChunk.h"
 
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef WIN32 // turn off 'this' : used in base member initializer list warning
 #pragma warning(disable:4355)
@@ -743,7 +743,7 @@ EditFieldHandlePtr CubeTextureChunkBase::editHandlePosZImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureChunk::setPosZImage,
+        std::bind(&CubeTextureChunk::setPosZImage,
                     static_cast<CubeTextureChunk *>(this), _1));
 
     editSField(PosZImageFieldMask);
@@ -771,7 +771,7 @@ EditFieldHandlePtr CubeTextureChunkBase::editHandlePosXImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureChunk::setPosXImage,
+        std::bind(&CubeTextureChunk::setPosXImage,
                     static_cast<CubeTextureChunk *>(this), _1));
 
     editSField(PosXImageFieldMask);
@@ -799,7 +799,7 @@ EditFieldHandlePtr CubeTextureChunkBase::editHandleNegXImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureChunk::setNegXImage,
+        std::bind(&CubeTextureChunk::setNegXImage,
                     static_cast<CubeTextureChunk *>(this), _1));
 
     editSField(NegXImageFieldMask);
@@ -827,7 +827,7 @@ EditFieldHandlePtr CubeTextureChunkBase::editHandlePosYImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureChunk::setPosYImage,
+        std::bind(&CubeTextureChunk::setPosYImage,
                     static_cast<CubeTextureChunk *>(this), _1));
 
     editSField(PosYImageFieldMask);
@@ -855,7 +855,7 @@ EditFieldHandlePtr CubeTextureChunkBase::editHandleNegYImage      (void)
              this));
 
     returnValue->setSetMethod(
-        boost::bind(&CubeTextureChunk::setNegYImage,
+        std::bind(&CubeTextureChunk::setNegYImage,
                     static_cast<CubeTextureChunk *>(this), _1));
 
     editSField(NegYImageFieldMask);
