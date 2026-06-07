@@ -50,7 +50,7 @@
 #include "OSGImageFileType.h"
 #include "OSGSingletonHolder.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 
 OSG_BEGIN_NAMESPACE
 
@@ -76,7 +76,7 @@ class OSG_SYSTEM_DLLMAPPING ImageFileHandlerBase
     typedef ImageTransitPtr (*ReadCB) (const Char8 *fileName, 
                                        const Char8 *mimeType);
 
-    typedef boost::shared_ptr<ImageBlockAccessor> ImageBlockAccessorPtr;
+    typedef std::shared_ptr<ImageBlockAccessor> ImageBlockAccessorPtr;
 
     /*---------------------------------------------------------------------*/
     /*! \name                   Read/Write                                 */

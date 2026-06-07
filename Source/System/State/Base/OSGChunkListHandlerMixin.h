@@ -94,7 +94,7 @@ class ChunkListHandlerMixin  : public Desc::ParentT
         virtual bool add(FieldContainer *newFC) const;
     };
 
-    typedef boost::shared_ptr<ListEditHandle> ListEditHandlePtr;
+    typedef std::shared_ptr<ListEditHandle> ListEditHandlePtr;
 
     /*---------------------------------------------------------------------*/
     /*! \name                      dcast                                   */

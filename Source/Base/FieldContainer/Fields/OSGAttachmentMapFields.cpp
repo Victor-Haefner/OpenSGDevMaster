@@ -328,7 +328,7 @@ void EditSFieldHandle<SFAttachmentPtrMap>::cloneValues(
     const TypeIdVector      &ignoreGroupIds) const
 {
     SFAttachmentPtrMap::GetHandlePtr pGetHandle = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             SFAttachmentPtrMap::GetHandle>(pSrc);
 
     if(pGetHandle == NULL || pGetHandle->isValid() == false)

@@ -218,7 +218,7 @@ OSBGeometryElement::preWrite(FieldContainer * const fc)
         {
             // "properties" might be quantized
             FieldContainerPtrMFieldBase::GetHandlePtr fP =
-                boost::dynamic_pointer_cast<
+                std::dynamic_pointer_cast<
                     FieldContainerPtrMFieldBase::GetHandle>(
                         getContainer()->getField(fieldId));
 
@@ -274,7 +274,7 @@ OSBGeometryElement::preWrite(FieldContainer * const fc)
         {
             // "propIndices" might be packed
             FieldContainerPtrMFieldBase::GetHandlePtr fP =
-                boost::dynamic_pointer_cast<
+                std::dynamic_pointer_cast<
                     FieldContainerPtrMFieldBase::GetHandle>(
                         getContainer()->getField(fieldId));
 

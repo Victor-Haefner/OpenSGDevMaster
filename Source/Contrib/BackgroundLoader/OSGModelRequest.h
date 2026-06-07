@@ -3,9 +3,9 @@
 
 #include "OSGContribBackgroundLoaderDef.h"
 
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-#include <boost/enable_shared_from_this.hpp>
+#include <memory>
+
+
 
 #include "OSGNode.h"
 
@@ -17,8 +17,8 @@ OSG_BEGIN_NAMESPACE
 OSG_GEN_MEMOBJPTR(ChangeList);
 
 class ModelRequest;
-typedef boost::shared_ptr<ModelRequest> ModelRequestPtr;
-typedef boost::weak_ptr<ModelRequest> ModelRequestWeakPtr;   
+typedef std::shared_ptr<ModelRequest> ModelRequestPtr;
+typedef std::weak_ptr<ModelRequest> ModelRequestWeakPtr;   
 
 /** A request for loading a model.
  * 
@@ -27,7 +27,7 @@ typedef boost::weak_ptr<ModelRequest> ModelRequestWeakPtr;
  */
 
 class OSG_CONTRIBBACKGROUNDLOADER_DLLMAPPING ModelRequest : 
-    public boost::enable_shared_from_this<ModelRequest>, public Request
+    public std::enable_shared_from_this<ModelRequest>, public Request
 {
   protected:
 

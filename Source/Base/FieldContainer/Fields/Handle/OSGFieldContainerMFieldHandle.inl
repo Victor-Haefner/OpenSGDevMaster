@@ -111,7 +111,7 @@ inline
 bool GetMFieldHandle<FieldContainerPtrMFieldBase>::equal(
     Inherited::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<GetMFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<GetMFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -267,7 +267,7 @@ inline
 bool EditMFieldHandle<FieldContainerPtrMFieldBase>::equal(
     Inherited::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<EditMFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<EditMFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -1134,7 +1134,7 @@ template <class FieldT> inline
 void EditFCPtrMFieldHandle<FieldT>::shareValues(GetFieldHandlePtr source) const
 {
     typename Self::GetMFHandlePtr pSrcBase = 
-        boost::dynamic_pointer_cast<GetMFHandle>(source);
+        std::dynamic_pointer_cast<GetMFHandle>(source);
 
     FieldContainerUnrecPtr pDst = NULL;
 
@@ -1163,7 +1163,7 @@ void EditFCPtrMFieldHandle<FieldT>::cloneValues(
         const TypeIdVector      &ignoreGroupIds) const
 {
     typename Self::GetMFHandlePtr pSrcBase = 
-        boost::dynamic_pointer_cast<GetMFHandle>(pSrc);
+        std::dynamic_pointer_cast<GetMFHandle>(pSrc);
 
     FieldContainerUnrecPtr pDst = NULL;
 

@@ -87,10 +87,10 @@ class OSG_BASE_DLLMAPPING MemObjPointerMFieldBase : public Field
 
     // handles
     typedef EditMFieldHandle <Self      >               EditHandle;
-    typedef boost::shared_ptr<EditHandle>               EditHandlePtr;
+    typedef std::shared_ptr<EditHandle>               EditHandlePtr;
 
     typedef GetMFieldHandle  <Self     >                GetHandle;
-    typedef boost::shared_ptr<GetHandle>                GetHandlePtr;
+    typedef std::shared_ptr<GetHandle>                GetHandlePtr;
     
     /*---------------------------------------------------------------------*/
 

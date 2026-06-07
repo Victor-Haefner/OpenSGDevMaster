@@ -2749,7 +2749,7 @@ void Image::setAttachmentField(const std::string &key,
     }
 
     SFString::EditHandlePtr strField = 
-        boost::static_pointer_cast<SFString::EditHandle>(field);
+        std::static_pointer_cast<SFString::EditHandle>(field);
 
     if(strField != NULL && strField->isValid() == true)
         (*strField)->setValue(data);
@@ -2773,7 +2773,7 @@ const std::string *Image::findAttachmentField(const std::string &key) const
         if(field != NULL)
         {
             SFString::GetHandlePtr strField = 
-                boost::static_pointer_cast<SFString::GetHandle>(field);
+                std::static_pointer_cast<SFString::GetHandle>(field);
 
             if(strField != NULL && strField->isValid() == true)
                 return &((*strField)->getValue());

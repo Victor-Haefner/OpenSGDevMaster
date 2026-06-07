@@ -619,7 +619,7 @@ OSBCommonElement::readAttachmentMapField(
                 "reading [%u] attachments with binding info.\n", numElements));
     
         EditMapFieldHandlePtr sfMapField =
-            boost::dynamic_pointer_cast<EditMapFieldHandle>(
+            std::dynamic_pointer_cast<EditMapFieldHandle>(
                 getContainer()->editField(fieldId));
 
         if(sfMapField == NULL || sfMapField->isValid() == false)
@@ -685,7 +685,7 @@ OSBCommonElement::preWritePtrSingleField(const UInt32 fieldId)
     OSBRootElement     *root       = editRoot();
 
     FieldContainerPtrSFieldBase::GetHandlePtr sfPtrField =
-        boost::dynamic_pointer_cast<FieldContainerPtrSFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<FieldContainerPtrSFieldBase::GetHandle>(
             getContainer()->getField(fieldId));
 
     if(sfPtrField == NULL || sfPtrField->isValid() == false)
@@ -728,7 +728,7 @@ OSBCommonElement::preWritePtrMultiField(const UInt32 fieldId)
     OSBRootElement           *root       = editRoot();
 
     FieldContainerPtrMFieldBase::GetHandlePtr mfPtrField =
-        boost::dynamic_pointer_cast<FieldContainerPtrMFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<FieldContainerPtrMFieldBase::GetHandle>(
             getContainer()->getField(fieldId));
 
     if(mfPtrField == NULL || mfPtrField->isValid() == false)
@@ -777,7 +777,7 @@ void OSBCommonElement::preWriteAttachmentMapField(const UInt32 fieldId)
                  "fieldId: [%u]\n", fieldId));
 
     GetMapFieldHandlePtr sfMapField =
-        boost::dynamic_pointer_cast<GetMapFieldHandle>(
+        std::dynamic_pointer_cast<GetMapFieldHandle>(
             getContainer()->getField(fieldId));
 
     if(sfMapField == NULL || sfMapField->isValid() == false)
@@ -803,7 +803,7 @@ void OSBCommonElement::preWriteMapField(const UInt32 fieldId)
                  "fieldId: [%u]\n", fieldId));
 
     GetMapFieldHandlePtr sfMapField =
-        boost::dynamic_pointer_cast<GetMapFieldHandle>(
+        std::dynamic_pointer_cast<GetMapFieldHandle>(
             getContainer()->getField(fieldId));
 
     if(sfMapField == NULL || sfMapField->isValid() == false)

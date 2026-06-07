@@ -47,7 +47,7 @@
 #include "OSGBaseRefCountPoliciesFwd.h"
 #include "OSGContainerRefCountPoliciesFwd.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 
 #include <map>
 

@@ -47,7 +47,7 @@
 #include "OSGSingletonHolder.h"
 #include "OSGLock.h"
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 #include <deque>
 #include <vector>
@@ -60,7 +60,7 @@
 OSG_BEGIN_NAMESPACE
 
 class NestedSampleInfo;
-typedef boost::shared_ptr<NestedSampleInfo> NestedSampleInfoPtr;
+typedef std::shared_ptr<NestedSampleInfo> NestedSampleInfoPtr;
 
 /*! \ingroup BaseGrpPerfMon
  *  \nohierarchy

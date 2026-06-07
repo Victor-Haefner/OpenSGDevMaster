@@ -592,10 +592,10 @@ class MemObjPointerMField :
 
     // handles
     typedef          EditFCPtrMFieldHandle  <Self          > EditHandle;
-    typedef          boost::shared_ptr      <EditHandle    > EditHandlePtr;
+    typedef          std::shared_ptr      <EditHandle    > EditHandlePtr;
 
     typedef          GetFCPtrMFieldHandle   <Self          > GetHandle;
-    typedef          boost::shared_ptr      <GetHandle     > GetHandlePtr;
+    typedef          std::shared_ptr      <GetHandle     > GetHandlePtr;
 
     // handles for dynamic fields -- XXX TODO
 //    typedef          EditPointerMFieldHandle<Self>      DynamicEditHandle;

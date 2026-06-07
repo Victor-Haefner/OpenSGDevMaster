@@ -833,12 +833,12 @@ void VRMLNodeHelper::setContainerFieldValue(
        (pFieldFC   != NULL)   )
     {
          FieldContainerPtrSFieldBase::EditHandlePtr pSFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::EditHandle>(
                     pFieldFC->editField(pFieldDesc->getFieldId()));
 
          FieldContainerPtrMFieldBase::EditHandlePtr pMFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::EditHandle>(
                     pFieldFC->editField(pFieldDesc->getFieldId()));
 
@@ -2166,7 +2166,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         MFInt32::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
+            std::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2183,7 +2183,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         MFInt32::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
+            std::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2200,7 +2200,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         MFInt32::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
+            std::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2217,7 +2217,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         MFInt32::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
+            std::dynamic_pointer_cast<MFInt32::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2236,7 +2236,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         SFBool::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+            std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2253,7 +2253,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         SFBool::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+            std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2270,7 +2270,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         SFBool::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+            std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2287,7 +2287,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         SFBool::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+            std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -2304,7 +2304,7 @@ void VRMLIndexedGeometryHelper::endNode(FieldContainer *pFC)
     if(pField != NULL)
     {
         SFReal32::EditHandlePtr pValField = 
-            boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+            std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
         if(pValField != NULL && pValField->isValid())
         {
@@ -3217,10 +3217,10 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFVec3f::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFVec3f::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFVec3f::EditHandle>(pField);
 
             SFBool::EditHandlePtr pValFieldInv =
-                boost::dynamic_pointer_cast<SFBool::EditHandle>(pFieldInv);
+                std::dynamic_pointer_cast<SFBool::EditHandle>(pFieldInv);
 
             bool bInv = pValFieldInv != NULL ? 
                 pValFieldInv->getField()->getValue() : false;
@@ -3257,7 +3257,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFReal32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3274,7 +3274,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFReal32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3291,7 +3291,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFBool::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3308,7 +3308,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFBool::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3353,7 +3353,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFBool::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3370,7 +3370,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFReal32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3387,7 +3387,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFReal32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3404,7 +3404,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFBool::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3421,7 +3421,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFBool::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFBool::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFBool::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3466,7 +3466,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFReal32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3483,7 +3483,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFInt32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFInt32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFInt32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3515,7 +3515,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFReal32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFReal32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3532,7 +3532,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFInt32::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFInt32::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFInt32::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3561,7 +3561,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFVec2s::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFVec2s::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFVec2s::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {
@@ -3578,7 +3578,7 @@ void VRMLGeometryObjectHelper::endNode(FieldContainer *pFC)
         if(pField != NULL)
         {
             SFVec2f::EditHandlePtr pValField = 
-                boost::dynamic_pointer_cast<SFVec2f::EditHandle>(pField);
+                std::dynamic_pointer_cast<SFVec2f::EditHandle>(pField);
 
             if(pValField != NULL && pValField->isValid())
             {

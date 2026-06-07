@@ -191,7 +191,7 @@ class OSG_SYSTEM_DLLMAPPING GetSFieldHandle<SFMaterialPtrMap> :
 
   public:
 
-    typedef boost::shared_ptr<GetSFieldHandle> Ptr;
+    typedef std::shared_ptr<GetSFieldHandle> Ptr;
     typedef FieldTraits<MaterialMap>           MapFieldTraits;
     typedef MapFieldTraits::KeyPool            KeyPool;
     typedef KeyPool::Singleton::ValueType      KeyType;
@@ -264,7 +264,7 @@ class OSG_SYSTEM_DLLMAPPING
 
   public:
 
-    typedef boost::shared_ptr<EditSFieldHandle> Ptr;
+    typedef std::shared_ptr<EditSFieldHandle> Ptr;
     typedef FieldTraits<MaterialMap>            MapFieldTraits;
     typedef MapFieldTraits::KeyPool             KeyPool;
     typedef KeyPool::Singleton::ValueType       KeyType;

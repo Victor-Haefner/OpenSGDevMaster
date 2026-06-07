@@ -92,10 +92,10 @@ class ChildPointerSField :
 
     // handles
     typedef EditFCPtrSFieldHandle<Self                  > EditHandle;
-    typedef boost::shared_ptr    <EditHandle            > EditHandlePtr;
+    typedef std::shared_ptr    <EditHandle            > EditHandlePtr;
 
     typedef GetFCPtrSFieldHandle <Self                  > GetHandle;
-    typedef boost::shared_ptr    <GetHandle             > GetHandlePtr;
+    typedef std::shared_ptr    <GetHandle             > GetHandlePtr;
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/

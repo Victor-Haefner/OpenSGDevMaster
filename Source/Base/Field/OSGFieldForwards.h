@@ -43,7 +43,7 @@
 #endif
 
 #include <functional>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 #include "OSGConfig.h"
 #include "OSGBaseTypes.h"
@@ -97,8 +97,8 @@ class ReflexiveContainer;
 class GetFieldHandle;
 class EditFieldHandle;
 
-typedef boost::shared_ptr<GetFieldHandle > GetFieldHandlePtr;
-typedef boost::shared_ptr<EditFieldHandle> EditFieldHandlePtr;
+typedef std::shared_ptr<GetFieldHandle > GetFieldHandlePtr;
+typedef std::shared_ptr<EditFieldHandle> EditFieldHandlePtr;
 
 typedef EditFieldHandlePtr(ReflexiveContainer::*FieldEditMethod)(void  );
 typedef GetFieldHandlePtr (ReflexiveContainer::*FieldGetMethod )(void) const;

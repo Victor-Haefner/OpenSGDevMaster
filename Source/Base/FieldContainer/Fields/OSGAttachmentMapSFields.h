@@ -80,7 +80,7 @@ class OSG_BASE_DLLMAPPING GetSFieldHandle<SFAttachmentPtrMap> :
 
   public:
 
-    typedef boost::shared_ptr<GetSFieldHandle> Ptr;
+    typedef std::shared_ptr<GetSFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 
@@ -154,7 +154,7 @@ class OSG_BASE_DLLMAPPING
 
   public:
 
-    typedef boost::shared_ptr<EditSFieldHandle> Ptr;
+    typedef std::shared_ptr<EditSFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 

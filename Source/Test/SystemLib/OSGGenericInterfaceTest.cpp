@@ -60,7 +60,7 @@ TEST(NodeBasic)
     OSG::NodeUnrecPtr n2 = OSG::Node::create();
     
     OSG::FieldContainerPtrMFieldBase::EditHandlePtr childEH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
             n0->editField(OSG::Node::ChildrenFieldId));
         
     CHECK(childEH != NULL);
@@ -82,7 +82,7 @@ TEST(NodeBasic)
     CHECK_EQUAL(n0, n2->getParent()           );
     
     OSG::FieldContainerPtrMFieldBase::GetHandlePtr childGH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::GetHandle>(
             n0->getField(OSG::Node::ChildrenFieldId));
             
     CHECK(childGH != NULL);
@@ -96,7 +96,7 @@ TEST(NodeBasic)
     OSG::GroupRefPtr g1 = OSG::Group::create();
     
     OSG::FieldContainerPtrSFieldBase::EditHandlePtr coreEH0 =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
             n0->editField(OSG::Node::CoreFieldId));
             
     CHECK(coreEH0 != NULL);
@@ -109,7 +109,7 @@ TEST(NodeBasic)
     CHECK_EQUAL(n0, g0->getParents()[0]);
     
     OSG::FieldContainerPtrSFieldBase::EditHandlePtr coreEH1 =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
             n1->editField(OSG::Node::CoreFieldId));
             
     CHECK(coreEH1 != NULL);
@@ -122,7 +122,7 @@ TEST(NodeBasic)
     CHECK_EQUAL(n1, g1->getParents()[0]);
     
     OSG::FieldContainerPtrSFieldBase::GetHandlePtr coreGH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
             n0->getField(OSG::Node::CoreFieldId));
             
     CHECK(coreGH != NULL);
@@ -130,7 +130,7 @@ TEST(NodeBasic)
     
     CHECK_EQUAL(g0, coreGH->get());
     
-    coreGH = boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
+    coreGH = std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
         n1->getField(OSG::Node::CoreFieldId));
         
     CHECK(coreGH != NULL);
@@ -148,7 +148,7 @@ TEST(NodeAdvanced)
     OSG::NodeUnrecPtr n3 = OSG::Node::create();
     
     OSG::FieldContainerPtrMFieldBase::EditHandlePtr childEH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
             n0->editField(OSG::Node::ChildrenFieldId));
     
     CHECK(childEH != NULL);
@@ -224,10 +224,10 @@ TEST(FCDPtrTestFCStdAccess)
     OSG::FCDTestFCUnrecPtr    fc3 = OSG::FCDTestFC::create();
     
     OSG::FieldContainerPtrSFieldBase::EditHandlePtr sfEH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
             fc1->editField(OSG::FCDPtrTestFC::FieldSFPub_ptrFieldId));
     OSG::FieldContainerPtrSFieldBase::GetHandlePtr sfGH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
             fc1->getField(OSG::FCDPtrTestFC::FieldSFPub_ptrFieldId));
     
     CHECK(sfEH != NULL   );
@@ -248,10 +248,10 @@ TEST(FCDPtrTestFCStdAccess)
     
     
     OSG::FieldContainerPtrMFieldBase::EditHandlePtr mfEH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
             fc1->editField(OSG::FCDPtrTestFC::FieldMFPub_ptrFieldId));
     OSG::FieldContainerPtrMFieldBase::GetHandlePtr mfGH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::GetHandle>(
             fc1->getField(OSG::FCDPtrTestFC::FieldMFPub_ptrFieldId));
 
     CHECK(mfEH != NULL   );
@@ -296,10 +296,10 @@ TEST(FCDPtrTestFCNullCheckAccess)
     OSG::FCDTestFCUnrecPtr    fc3 = OSG::FCDTestFC::create();
     
     OSG::FieldContainerPtrSFieldBase::EditHandlePtr sfEH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::EditHandle>(
             fc1->editField(OSG::FCDPtrTestFC::FieldSFPub_ptrFieldId));
     OSG::FieldContainerPtrSFieldBase::GetHandlePtr sfGH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrSFieldBase::GetHandle>(
             fc1->getField(OSG::FCDPtrTestFC::FieldSFPub_ptrFieldId));
     
     CHECK(sfEH != NULL   );
@@ -322,10 +322,10 @@ TEST(FCDPtrTestFCNullCheckAccess)
     
     
     OSG::FieldContainerPtrMFieldBase::EditHandlePtr mfEH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::EditHandle>(
             fc1->editField(OSG::FCDPtrTestFC::FieldMFPub_ptrFieldId));
     OSG::FieldContainerPtrMFieldBase::GetHandlePtr mfGH =
-        boost::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::GetHandle>(
+        std::dynamic_pointer_cast<OSG::FieldContainerPtrMFieldBase::GetHandle>(
             fc1->getField(OSG::FCDPtrTestFC::FieldMFPub_ptrFieldId));
 
     CHECK(mfEH != NULL   );

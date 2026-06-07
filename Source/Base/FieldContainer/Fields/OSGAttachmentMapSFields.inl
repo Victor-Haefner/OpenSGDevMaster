@@ -103,7 +103,7 @@ inline
 bool GetSFieldHandle<SFAttachmentPtrMap>::equal(
     Base::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<GetSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<GetSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -205,7 +205,7 @@ inline
 bool EditSFieldHandle<SFAttachmentPtrMap>::equal(
     Base::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<EditSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<EditSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -258,7 +258,7 @@ void EditSFieldHandle<SFAttachmentPtrMap>::shareValues(
     GetFieldHandlePtr source) const
 {
     SFAttachmentPtrMap::GetHandlePtr pGetHandle = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             SFAttachmentPtrMap::GetHandle>(source);
 
     if(pGetHandle == NULL || pGetHandle->isValid() == false)

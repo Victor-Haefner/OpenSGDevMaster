@@ -46,7 +46,7 @@
 #include "OSGFieldDescriptionBase.h"
 #include "OSGLog.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 
 OSG_BEGIN_NAMESPACE
 
@@ -150,7 +150,7 @@ class OSG_BASE_DLLMAPPING GetFieldHandle : public FieldHandle
 
   public:
 
-    typedef boost::shared_ptr<GetFieldHandle > Ptr;
+    typedef std::shared_ptr<GetFieldHandle > Ptr;
 
     /*---------------------------------------------------------------------*/
 
@@ -182,7 +182,7 @@ class OSG_BASE_DLLMAPPING GetFieldHandle : public FieldHandle
 /*! \ingroup GrpBaseFieldContainerHandle
  */
 
-typedef boost::shared_ptr<GetFieldHandle > GetFieldHandlePtr;
+typedef std::shared_ptr<GetFieldHandle > GetFieldHandlePtr;
 
 
 
@@ -215,7 +215,7 @@ class OSG_BASE_DLLMAPPING EditFieldHandle : public FieldHandle
 
   public:
 
-    typedef boost::shared_ptr<EditFieldHandle> Ptr;
+    typedef std::shared_ptr<EditFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 
@@ -270,7 +270,7 @@ class OSG_BASE_DLLMAPPING EditFieldHandle : public FieldHandle
 /*! \ingroup GrpBaseFieldContainerHandle
  */
 
-typedef boost::shared_ptr<EditFieldHandle> EditFieldHandlePtr;
+typedef std::shared_ptr<EditFieldHandle> EditFieldHandlePtr;
 
 
 /*! \ingroup GrpBaseFieldContainerHandle
@@ -297,7 +297,7 @@ class GetMapFieldHandle : public GetFieldHandle
 
     typedef std::function<void (FieldContainer *)> TraverseCallback;
 
-    typedef boost::shared_ptr<GetMapFieldHandle    > Ptr;
+    typedef std::shared_ptr<GetMapFieldHandle    > Ptr;
 
     typedef std::pair<std::vector<std::string>, 
                       FieldContainer *             > ListEntry;             
@@ -333,7 +333,7 @@ class GetMapFieldHandle : public GetFieldHandle
 /*! \ingroup GrpBaseFieldContainerHandle
  */
 
-typedef boost::shared_ptr<GetMapFieldHandle> GetMapFieldHandlePtr;
+typedef std::shared_ptr<GetMapFieldHandle> GetMapFieldHandlePtr;
 
 /*! \ingroup GrpBaseFieldContainerHandle
     \ingroup GrpLibOSGBase
@@ -360,7 +360,7 @@ class EditMapFieldHandle : public EditFieldHandle
 
     typedef std::function<void (FieldContainer *)> TraverseCallback;
 
-    typedef boost::shared_ptr<EditMapFieldHandle>    Ptr;
+    typedef std::shared_ptr<EditMapFieldHandle>    Ptr;
 
     typedef std::pair<std::vector<std::string>, 
                       FieldContainer *             > ListEntry;             
@@ -413,7 +413,7 @@ class EditMapFieldHandle : public EditFieldHandle
 /*! \ingroup GrpBaseFieldContainerHandle
  */
 
-typedef boost::shared_ptr<EditMapFieldHandle> EditMapFieldHandlePtr;
+typedef std::shared_ptr<EditMapFieldHandle> EditMapFieldHandlePtr;
 
 
 /*! \ingroup GrpBaseFieldContainerHandle
@@ -439,7 +439,7 @@ class EditSFieldHandle : public EditFieldHandle
 
   public:
 
-    typedef boost::shared_ptr<EditSFieldHandle> Ptr;
+    typedef std::shared_ptr<EditSFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 
@@ -520,7 +520,7 @@ class EditMFieldHandle : public EditFieldHandle
 
   public:
 
-    typedef boost::shared_ptr<EditMFieldHandle> Ptr;
+    typedef std::shared_ptr<EditMFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 
@@ -606,7 +606,7 @@ class GetSFieldHandle : public GetFieldHandle
 
   public:
 
-    typedef boost::shared_ptr<GetSFieldHandle> Ptr;
+    typedef std::shared_ptr<GetSFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 
@@ -665,7 +665,7 @@ class GetMFieldHandle : public GetFieldHandle
 
   public:
 
-    typedef boost::shared_ptr<GetMFieldHandle> Ptr;
+    typedef std::shared_ptr<GetMFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
 

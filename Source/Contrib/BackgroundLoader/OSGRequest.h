@@ -4,9 +4,9 @@
 #include "OSGConfig.h"
 #include "OSGContribBackgroundLoaderDef.h"
 
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-#include <boost/enable_shared_from_this.hpp>
+#include <memory>
+
+
 #include <string>
 #include <iostream>
 
@@ -14,8 +14,8 @@
 OSG_BEGIN_NAMESPACE
 
 class Request;
-typedef boost::shared_ptr<Request> RequestPtr;
-typedef boost::weak_ptr<Request> RequestWeakPtr;   
+typedef std::shared_ptr<Request> RequestPtr;
+typedef std::weak_ptr<Request> RequestWeakPtr;   
 
 /** A request to be processed by the background loader.
  */

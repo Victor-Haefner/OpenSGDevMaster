@@ -45,7 +45,7 @@
 #include "OSGImageFileIODef.h"
 #include "OSGImageFileType.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 #include "map"
 
 OSG_BEGIN_NAMESPACE
@@ -271,7 +271,7 @@ class OSG_IMGFILEIO_DLLMAPPING DBBlockAccessor : public ImageBlockAccessor
 /*! \ingroup GrpImageFileIODB
  */
 
-typedef boost::shared_ptr<DBBlockAccessor> DBBlockAccessorPtr;
+typedef std::shared_ptr<DBBlockAccessor> DBBlockAccessorPtr;
 
 /*! \brief GDAL File Handler. Used to read/write TIFF files.
     See \ref PageSystemImage for a detailed description.

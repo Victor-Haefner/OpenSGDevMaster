@@ -358,7 +358,7 @@ SizeT EditSFieldHandle<FieldT>::size(void) const
 template<class FieldT> inline
 bool EditSFieldHandle<FieldT>::equal(Inherited::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<EditSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<EditSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -393,7 +393,7 @@ template<class FieldT> inline
 void EditSFieldHandle<FieldT>::copyValues(GetFieldHandlePtr source) const
 {
     typename GetSFieldHandle<FieldT>::Ptr pSource = 
-        boost::dynamic_pointer_cast<GetSFieldHandle<FieldT> >(source);
+        std::dynamic_pointer_cast<GetSFieldHandle<FieldT> >(source);
 
     if(pSource != NULL)
     {
@@ -504,7 +504,7 @@ SizeT EditMFieldHandle<FieldT>::size(void) const
 template<class FieldT> inline
 bool EditMFieldHandle<FieldT>::equal(Inherited::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<EditMFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<EditMFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -558,7 +558,7 @@ template<class FieldT> inline
 void EditMFieldHandle<FieldT>::copyValues(GetFieldHandlePtr source) const
 {
     typename GetMFieldHandle<FieldT>::Ptr pSource = 
-        boost::dynamic_pointer_cast<GetMFieldHandle<FieldT> >(source);
+        std::dynamic_pointer_cast<GetMFieldHandle<FieldT> >(source);
 
     if(pSource != NULL)
     {
@@ -662,7 +662,7 @@ SizeT GetSFieldHandle<FieldT>::size(void) const
 template<class FieldT> inline
 bool GetSFieldHandle<FieldT>::equal(Inherited::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<GetSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<GetSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -757,7 +757,7 @@ SizeT GetMFieldHandle<FieldT>::size(void) const
 template<class FieldT> inline
 bool GetMFieldHandle<FieldT>::equal(Inherited::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<GetMFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<GetMFieldHandle>(rhs);
 
     if(pOther == NULL)
     {

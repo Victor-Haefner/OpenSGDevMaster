@@ -45,7 +45,7 @@
 #include "OSGImage.h"
 #include "OSGGeoReferenceAttachment.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 
 OSG_BEGIN_NAMESPACE
 
@@ -134,7 +134,7 @@ class OSG_SYSTEM_DLLMAPPING ImageBlockAccessor
 /*! \ingroup GrpSystemImageHelper
  */
 
-typedef boost::shared_ptr<ImageBlockAccessor> ImageBlockAccessorPtr;
+typedef std::shared_ptr<ImageBlockAccessor> ImageBlockAccessorPtr;
 
 /*! \ingroup GrpSystemImageHelper
     \ingroup GrpLibOSGSystem
@@ -217,7 +217,7 @@ class OSG_SYSTEM_DLLMAPPING BlockAccessWrapper : public ImageBlockAccessor
 /*! \ingroup GrpSystemImageHelper
  */
 
-typedef boost::shared_ptr<BlockAccessWrapper> BlockAccessWrapperPtr;
+typedef std::shared_ptr<BlockAccessWrapper> BlockAccessWrapperPtr;
 
 /*! \brief Abstract Base ImageFileType. Defines the Interface for
     all concrete ImageFileTypes. See \ref PageSystemImage for detailed

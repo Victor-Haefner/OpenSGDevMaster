@@ -124,7 +124,7 @@ bool compareContainerEqualImpl(
             continue;
 
         SFAttachmentPtrMap::GetHandlePtr  lhsAMHandle =
-            boost::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
+            std::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
                 lhsField);
 
         if(lhsAMHandle            != NULL && 
@@ -176,10 +176,10 @@ bool comparePointerFields(
     if(lhsField->getCardinality() == FieldType::SingleField)
     {
         FieldContainerPtrSFieldBase::GetHandlePtr lhsSFHandle =
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::GetHandle>(lhsField);
         FieldContainerPtrSFieldBase::GetHandlePtr rhsSFHandle =
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::GetHandle>(rhsField);
 
         if(lhsSFHandle != NULL && lhsSFHandle->isValid() &&
@@ -197,10 +197,10 @@ bool comparePointerFields(
         else
         {
             SFAttachmentPtrMap::GetHandlePtr  lhsAMHandle =
-                boost::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
+                std::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
                     lhsField);
             SFAttachmentPtrMap::GetHandlePtr  rhsAMHandle =
-                boost::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
+                std::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
                     rhsField);
 
             if(lhsAMHandle != NULL && lhsAMHandle->isValid() &&
@@ -244,10 +244,10 @@ bool comparePointerFields(
     else
     {
         FieldContainerPtrMFieldBase::GetHandlePtr lhsMFHandle =
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::GetHandle>(lhsField);
         FieldContainerPtrMFieldBase::GetHandlePtr rhsMFHandle =
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::GetHandle>(rhsField);
 
         if(lhsMFHandle != NULL && lhsMFHandle->isValid() &&
@@ -381,11 +381,11 @@ FieldContainer *resolveFieldPath(std::vector<FieldPathEntry> &vSplitPath,
         }
 
         OSG::FieldContainerPtrSFieldBase::GetHandlePtr sfFCPtr = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
               OSG::FieldContainerPtrSFieldBase::GetHandle>(fHandle);
             
         OSG::FieldContainerPtrMFieldBase::GetHandlePtr mfFCPtr = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 OSG::FieldContainerPtrMFieldBase::GetHandle>(fHandle);
 
         if(sfFCPtr != NULL && sfFCPtr->isValid() == true)
@@ -533,11 +533,11 @@ FieldContainer *findNamedComponentImpl(      ContainerVisitRecord &oVisited,
         GetFieldHandlePtr srcField = pCnt->getField(i);
 
         FieldContainerPtrSFieldBase::GetHandlePtr sfFCPtr = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                       FieldContainerPtrSFieldBase::GetHandle>(srcField);
 
         FieldContainerPtrMFieldBase::GetHandlePtr mfFCPtr = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                       FieldContainerPtrMFieldBase::GetHandle>(srcField);
 
         if(  sfFCPtr              != NULL && 

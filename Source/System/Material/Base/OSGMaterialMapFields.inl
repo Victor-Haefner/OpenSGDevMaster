@@ -101,7 +101,7 @@ inline
 bool GetSFieldHandle<SFMaterialPtrMap>::equal(
     Base::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<GetSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<GetSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -201,7 +201,7 @@ inline
 bool EditSFieldHandle<SFMaterialPtrMap>::equal(
     Base::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<EditSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<EditSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -247,7 +247,7 @@ void EditSFieldHandle<SFMaterialPtrMap>::shareValues(
     GetFieldHandlePtr source) const
 {
     SFMaterialPtrMap::GetHandlePtr pGetHandle = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             SFMaterialPtrMap::GetHandle>(source);
 
     if(pGetHandle == NULL || pGetHandle->isValid() == false)

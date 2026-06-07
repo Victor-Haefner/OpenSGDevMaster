@@ -480,17 +480,17 @@ void OSGLoader::setFieldContainerValue(FieldContainer *pNewNode)
     if(_pCurrentField != NULL)
     {
         FieldContainerPtrSFieldBase::EditHandlePtr pSFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::EditHandle>(
                     _pCurrentField);
 
         FieldContainerPtrMFieldBase::EditHandlePtr pMFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::EditHandle>(
                     _pCurrentField);
 
         EditMapFieldHandlePtr pMapHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 EditMapFieldHandle>(_pCurrentField);
 
         if(pSFHandle != NULL && pSFHandle->isValid())

@@ -645,17 +645,17 @@ void ComplexSceneManager::processUnresolved(void)
             uIt->_pDstCnt->editField(uIt->_uiDstFieldId);
 
         FieldContainerPtrSFieldBase::EditHandlePtr pSFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::EditHandle>(
                     pDstField);
 
         FieldContainerPtrMFieldBase::EditHandlePtr pMFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::EditHandle>(
                     pDstField);
 
         EditMapFieldHandlePtr pMapHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 EditMapFieldHandle>(pDstField);
 
         if(pSFHandle != NULL && pSFHandle->isValid())

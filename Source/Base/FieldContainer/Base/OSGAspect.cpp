@@ -83,11 +83,11 @@ namespace Aspect
                 GetFieldHandlePtr srcField = pSrc->getField(i);
 
                 FieldContainerPtrSFieldBase::GetHandlePtr sfFCPtr = 
-                    boost::dynamic_pointer_cast<
+                    std::dynamic_pointer_cast<
                               FieldContainerPtrSFieldBase::GetHandle>(srcField);
 
                 FieldContainerPtrMFieldBase::GetHandlePtr mfFCPtr = 
-                    boost::dynamic_pointer_cast<
+                    std::dynamic_pointer_cast<
                               FieldContainerPtrMFieldBase::GetHandle>(srcField);
 
                 if(sfFCPtr != NULL && sfFCPtr->isValid() == true)

@@ -46,7 +46,7 @@
 #include "OSGImageFileType.h"
 #include "OSGRectangle.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 
 
 OSG_BEGIN_NAMESPACE
@@ -158,7 +158,7 @@ class OSG_IMGFILEIO_DLLMAPPING TiledImageBlockAccessor :
 /*! \ingroup GrpImageFileIOITF
  */
 
-typedef boost::shared_ptr<TiledImageBlockAccessor> TiledImageBlockAccessorPtr;
+typedef std::shared_ptr<TiledImageBlockAccessor> TiledImageBlockAccessorPtr;
 
 /*! \ingroup GrpImageFileIOITF
     \ingroup GrpLibOSGImageFileIO
@@ -241,7 +241,7 @@ class OSG_IMGFILEIO_DLLMAPPING DefaultBlockAccessor : public ImageBlockAccessor
 /*! \ingroup GrpImageFileIOITF
  */
 
-typedef boost::shared_ptr<DefaultBlockAccessor> DefaultBlockAccessorPtr;
+typedef std::shared_ptr<DefaultBlockAccessor> DefaultBlockAccessorPtr;
 
 
 /*! \brief ITF File Handler. Used to read/write TIFF files.

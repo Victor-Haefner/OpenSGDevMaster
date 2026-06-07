@@ -227,7 +227,7 @@ void OSGWriter::visitField(GetFieldHandlePtr hF)
 //    const FieldType &fType       = hF->getType();
 
     GetMapFieldHandlePtr sfMap = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             GetMapFieldHandle>(hF);
 
     if(sfMap != NULL && sfMap->isValid() == true)
@@ -237,11 +237,11 @@ void OSGWriter::visitField(GetFieldHandlePtr hF)
     else
     {
         FieldContainerPtrSFieldBase::GetHandlePtr sfFCPtr = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::GetHandle>(hF);
 
         FieldContainerPtrMFieldBase::GetHandlePtr mfFCPtr = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::GetHandle>(hF);
 
         if(sfFCPtr != NULL && sfFCPtr->isValid() == true)
@@ -364,14 +364,14 @@ void OSGWriter::writeField(GetFieldHandlePtr hF)
 //    const FieldType& fType = hF->getType();
 
     GetMapFieldHandlePtr sfMap = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             GetMapFieldHandle>(hF);
 
     FieldContainerPtrSFieldBase::GetHandlePtr sfFCPtr = 
-        boost::dynamic_pointer_cast<FieldContainerPtrSFieldBase::GetHandle>(hF);
+        std::dynamic_pointer_cast<FieldContainerPtrSFieldBase::GetHandle>(hF);
     
     FieldContainerPtrMFieldBase::GetHandlePtr mfFCPtr = 
-        boost::dynamic_pointer_cast<FieldContainerPtrMFieldBase::GetHandle>(hF);
+        std::dynamic_pointer_cast<FieldContainerPtrMFieldBase::GetHandle>(hF);
 
     if(sfMap != NULL && sfMap->isValid() == true)
     {

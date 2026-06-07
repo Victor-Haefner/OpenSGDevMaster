@@ -51,7 +51,7 @@
 #include "OSGFieldHandle.h"
 #include "OSGFieldDescFactory.h"
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 #include <algorithm>
 #include <sstream>
@@ -111,10 +111,10 @@ class MField : public Field
                          FieldType::MultiField   >      Description;
 
     typedef          EditMFieldHandle <Self      >      EditHandle;
-    typedef          boost::shared_ptr<EditHandle>      EditHandlePtr;
+    typedef          std::shared_ptr<EditHandle>      EditHandlePtr;
 
     typedef          GetMFieldHandle  <Self     >       GetHandle;
-    typedef          boost::shared_ptr<GetHandle>       GetHandlePtr;
+    typedef          std::shared_ptr<GetHandle>       GetHandlePtr;
 
     /*---------------------------------------------------------------------*/
 

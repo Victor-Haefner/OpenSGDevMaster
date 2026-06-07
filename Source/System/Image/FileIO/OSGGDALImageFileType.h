@@ -45,7 +45,7 @@
 #include "OSGImageFileIODef.h"
 #include "OSGImageFileType.h"
 
-#include "boost/shared_ptr.hpp"
+#include <memory>
 
 #ifdef OSG_WITH_GDAL
 #include "gdal_priv.h"
@@ -141,7 +141,7 @@ class OSG_IMGFILEIO_DLLMAPPING GDALBlockAccessor : public ImageBlockAccessor
 /*! \ingroup GrpImageFileIOGDAL
  */
 
-typedef boost::shared_ptr<GDALBlockAccessor> GDALBlockAccessorPtr;
+typedef std::shared_ptr<GDALBlockAccessor> GDALBlockAccessorPtr;
 
 /*! \brief GDAL File Handler. Used to read/write TIFF files.
     See \ref PageSystemImage for a detailed description.

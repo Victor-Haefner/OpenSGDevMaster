@@ -407,7 +407,7 @@ OSBRootElement::mapPtrField(const PtrFieldInfo &ptrField)
             EditFieldHandlePtr fHandle  = fieldCon->editField(fieldId);
 
             EditMapFieldHandlePtr sfMapField =
-                boost::dynamic_pointer_cast<EditMapFieldHandle>(fHandle);
+                std::dynamic_pointer_cast<EditMapFieldHandle>(fHandle);
 
             if(sfMapField == NULL || sfMapField->isValid() == false)
                 return;
@@ -467,11 +467,11 @@ OSBRootElement::mapPtrField(const PtrFieldInfo &ptrField)
         EditFieldHandlePtr fHandle  = fieldCon->editField(fieldId);
         
         FieldContainerPtrSFieldBase::EditHandlePtr pSFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::EditHandle>(fHandle);
             
         FieldContainerPtrMFieldBase::EditHandlePtr pMFHandle = 
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::EditHandle>(fHandle);
         
         for(; idIt != idEnd; ++idIt)

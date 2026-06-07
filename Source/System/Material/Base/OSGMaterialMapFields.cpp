@@ -426,7 +426,7 @@ void EditSFieldHandle<SFMaterialPtrMap>::cloneValues(
     const TypeIdVector      &ignoreGroupIds) const
 {
     SFMaterialPtrMap::GetHandlePtr pGetHandle = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             SFMaterialPtrMap::GetHandle>(pSrc);
 
     if(pGetHandle == NULL || pGetHandle->isValid() == false)

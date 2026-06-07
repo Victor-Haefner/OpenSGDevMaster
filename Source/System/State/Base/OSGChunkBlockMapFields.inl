@@ -98,7 +98,7 @@ void GetSFieldHandle<SFChunkBlockPtrMap>::pushSizeToStream(OutStream &str) const
 inline
 bool GetSFieldHandle<SFChunkBlockPtrMap>::equal(Base::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<GetSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<GetSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -197,7 +197,7 @@ void EditSFieldHandle<SFChunkBlockPtrMap>::pushSizeToStream(
 inline
 bool EditSFieldHandle<SFChunkBlockPtrMap>::equal(Base::Ptr rhs) const
 {
-    Ptr pOther = boost::dynamic_pointer_cast<EditSFieldHandle>(rhs);
+    Ptr pOther = std::dynamic_pointer_cast<EditSFieldHandle>(rhs);
 
     if(pOther == NULL)
     {
@@ -243,7 +243,7 @@ void EditSFieldHandle<SFChunkBlockPtrMap>::shareValues(
     GetFieldHandlePtr source) const
 {
     SFChunkBlockPtrMap::GetHandlePtr pGetHandle = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             SFChunkBlockPtrMap::GetHandle>(source);
 
     if(pGetHandle == NULL || pGetHandle->isValid() == false)

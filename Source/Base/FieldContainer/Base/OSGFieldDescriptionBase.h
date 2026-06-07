@@ -345,26 +345,26 @@ class FieldDescription : public FieldDescriptionBase
     typedef FieldDescriptionBase                              Inherited;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldCard == FieldType::SingleField,
             SField<typename DescT::ValueType,
                             DescT::iNamespace>,
             MField<typename DescT::ValueType,
                             DescT::iNamespace,
-                   typename DescT::MFAlloc   >    >::type     HandledVField;
+                   typename DescT::MFAlloc   >    >     HandledVField;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldCard == FieldType::SingleField,
             PointerSField<typename DescT::ValueType,
                                    RefCountPolicy,
                                    DescT::iNamespace>,
             PointerMField<typename DescT::ValueType,
                                    RefCountPolicy,
-                                   DescT::iNamespace> >::type HandledPField;
+                                   DescT::iNamespace> > HandledPField;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldCard == FieldType::SingleField,
             ParentPointerSField<typename DescT::ValueType,
                                          RefCountPolicy,
@@ -372,10 +372,10 @@ class FieldDescription : public FieldDescriptionBase
             ParentPointerMField<typename DescT::ValueType,
                                          RefCountPolicy,
                                          DescT::iNamespace> 
-            >::type HandledPPField;
+            > HandledPPField;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldCard == FieldType::SingleField,
             ChildPointerSField<typename DescT::ValueType,
                                         RefCountPolicy,
@@ -383,25 +383,25 @@ class FieldDescription : public FieldDescriptionBase
             ChildPointerMField<typename DescT::ValueType,
                                         RefCountPolicy,
                                         DescT::iNamespace>
-            >::type HandledChField;
+            > HandledChField;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldClass == FieldType::ValueField,
             HandledVField,
-            HandledPField                           >::type HandledFieldA;
+            HandledPField                           > HandledFieldA;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldClass == FieldType::ParentPtrField,
             HandledPPField,
-            HandledFieldA                           >::type HandledFieldB;
+            HandledFieldA                           > HandledFieldB;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldClass == FieldType::ChildPtrField,
             HandledChField,
-            HandledFieldB                           >::type HandledField;
+            HandledFieldB                           > HandledField;
 
     typedef typename HandledField::GetHandle    GetHandle;
     typedef typename HandledField::GetHandlePtr GetHandlePtr;
@@ -507,23 +507,23 @@ class FieldDescription : public FieldDescriptionBase
     };
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             (eFieldClass == FieldType::ChildPtrField ||
              eFieldClass == FieldType::ParentPtrField  ),
             ChildFieldCreateHandler,
-            DefaultFieldCreateHandler               >::type FieldCreateHandler;
+            DefaultFieldCreateHandler               > FieldCreateHandler;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldClass == FieldType::ParentPtrField,
             ParentCreateEditHandler,
-            DefaultCreateEditHandler                >::type CreateEditHandler;
+            DefaultCreateEditHandler                > CreateEditHandler;
 
     typedef typename
-        boost::mpl::if_c<
+        std::conditional_t<
             eFieldCard == FieldType::SingleField,
             SFieldFunctions,
-            MFieldFunctions                         >::type FieldFunctions;
+            MFieldFunctions                         > FieldFunctions;
 
 
     virtual void beginEdit(Field              *pField,

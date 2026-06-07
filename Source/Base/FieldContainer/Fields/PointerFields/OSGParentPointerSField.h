@@ -95,10 +95,10 @@ class ParentPointerSField :
 
     // handles
     typedef void                                          EditHandle;
-    typedef boost::shared_ptr    <EditHandle            > EditHandlePtr;
+    typedef std::shared_ptr    <EditHandle            > EditHandlePtr;
 
     typedef GetFCPtrSFieldHandle <Self                  > GetHandle;
-    typedef boost::shared_ptr    <GetHandle             > GetHandlePtr;
+    typedef std::shared_ptr    <GetHandle             > GetHandlePtr;
     
     // handles for dynamic fields -- XXX TODO
 //    typedef          EditParentPointerSFieldHandle<Self> DynamicEditHandle;

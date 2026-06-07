@@ -46,7 +46,7 @@
 #include "OSGTextureObjChunkFields.h"
 #include "OSGSimpleSHLChunk.h"
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 OSG_BEGIN_NAMESPACE
 
@@ -192,7 +192,7 @@ class OSG_EFFECTGROUPS_DLLMAPPING PostShaderStage : public PostShaderStageBase
     
     class RenderPassData;
 
-    typedef boost::shared_ptr<RenderPassData   > RenderPassDataPtr;
+    typedef std::shared_ptr<RenderPassData   > RenderPassDataPtr;
     typedef std::vector      <RenderPassDataPtr> RenderPassVector;
 
     class RenderPassData

@@ -69,7 +69,7 @@ class OSG_BASE_DLLMAPPING GetMFieldHandle<FieldContainerPtrMFieldBase> :
 
   public:
 
-    typedef boost::shared_ptr<GetMFieldHandle> Ptr;
+    typedef std::shared_ptr<GetMFieldHandle> Ptr;
 
     /*---------------------------------------------------------------------*/
     /*! \name Constructors                                                 */
@@ -142,7 +142,7 @@ class OSG_BASE_DLLMAPPING EditMFieldHandle<FieldContainerPtrMFieldBase> :
     typedef EditFieldHandle                                Inherited;
 
     typedef GetMFieldHandle<FieldContainerPtrMFieldBase>   GetMFHandle;
-    typedef boost::shared_ptr<GetMFHandle>                 GetMFHandlePtr;
+    typedef std::shared_ptr<GetMFHandle>                 GetMFHandlePtr;
     
     bool    _bStoreless;
 
@@ -154,7 +154,7 @@ class OSG_BASE_DLLMAPPING EditMFieldHandle<FieldContainerPtrMFieldBase> :
     /*! \name Public Types                                                 */
     /*! \{                                                                 */
   
-    typedef boost::shared_ptr<EditMFieldHandle> Ptr;
+    typedef std::shared_ptr<EditMFieldHandle> Ptr;
 
     /*! \}                                                                 */
     /*---------------------------------------------------------------------*/

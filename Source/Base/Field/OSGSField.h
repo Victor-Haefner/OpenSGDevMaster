@@ -48,7 +48,7 @@
 #include "OSGFieldHandle.h"
 #include "OSGFieldDescFactory.h"
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 OSG_BEGIN_NAMESPACE
 
@@ -79,11 +79,11 @@ class SField : public Field
                          FieldType::SingleField  >          Description;
 
     typedef          EditSFieldHandle <Self      >          EditHandle;
-    typedef          boost::shared_ptr<EditHandle>          EditHandlePtr;
+    typedef          std::shared_ptr<EditHandle>          EditHandlePtr;
 
 
     typedef          GetSFieldHandle  <Self     >           GetHandle;
-    typedef          boost::shared_ptr<GetHandle>           GetHandlePtr;
+    typedef          std::shared_ptr<GetHandle>           GetHandlePtr;
 
     /*---------------------------------------------------------------------*/
 

@@ -106,11 +106,11 @@ void SField<ValueT, iNamespace>::setValue(const Self &obj)
 template <class ValueT, Int32 iNamespace> inline
 void SField<ValueT, iNamespace>::setValueFromCString(const Char8 *str)
 {
-    typedef typename boost::mpl::if_c<
+    typedef typename std::conditional_t<
       (SFieldTraits   ::Convertible &
        FieldTraitsBase::FromStringConvertible) != 0, 
       SFieldTraits, 
-      StringConversionError<ValueT, iNamespace> >::type Converter;
+      StringConversionError<ValueT, iNamespace> > Converter;
     
     Converter::getFromCString(_fieldValue, str);
 }
@@ -118,11 +118,11 @@ void SField<ValueT, iNamespace>::setValueFromCString(const Char8 *str)
 template <class ValueT, Int32 iNamespace> inline
 void SField<ValueT, iNamespace>::pushValueToString  (std::string  &str) const
 {
-    typedef typename boost::mpl::if_c<
+    typedef typename std::conditional_t<
       (SFieldTraits   ::Convertible &
        FieldTraitsBase::ToStringConvertible) != 0, 
       SFieldTraits, 
-      StringConversionError<ValueT, iNamespace> >::type Converter;
+      StringConversionError<ValueT, iNamespace> > Converter;
     
     Converter::putToString(_fieldValue, str);
 }
@@ -130,11 +130,11 @@ void SField<ValueT, iNamespace>::pushValueToString  (std::string  &str) const
 template <class ValueT, Int32 iNamespace> inline
 void SField<ValueT, iNamespace>::pushValueFromStream(std::istream &str)
 {
-    typedef typename boost::mpl::if_c<
+    typedef typename std::conditional_t<
       (SFieldTraits   ::Convertible &
        FieldTraitsBase::FromStreamConvertible) != 0, 
       SFieldTraits, 
-      StreamConversionError<ValueT, iNamespace> >::type Converter;
+      StreamConversionError<ValueT, iNamespace> > Converter;
     
     Converter::getFromStream(_fieldValue, str);
 }
@@ -142,11 +142,11 @@ void SField<ValueT, iNamespace>::pushValueFromStream(std::istream &str)
 template <class ValueT, Int32 iNamespace> inline
 void SField<ValueT, iNamespace>::pushValueToStream  (OutStream &str) const
 {
-    typedef typename boost::mpl::if_c<
+    typedef typename std::conditional_t<
       (SFieldTraits   ::Convertible &
        FieldTraitsBase::ToStreamConvertible) != 0, 
       SFieldTraits, 
-      StreamConversionError<ValueT, iNamespace> >::type Converter;
+      StreamConversionError<ValueT, iNamespace> > Converter;
     
     Converter::putToStream(_fieldValue, str);
 }

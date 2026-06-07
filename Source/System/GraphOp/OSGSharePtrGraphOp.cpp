@@ -357,11 +357,11 @@ FieldContainer *SharePtrGraphOp::shareFC(FieldContainer *fc)
             continue;
 
         FieldContainerPtrSFieldBase::EditHandlePtr sfPtrHandle =
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrSFieldBase::EditHandle>(fHandle);
 
         FieldContainerPtrMFieldBase::EditHandlePtr mfPtrHandle =
-            boost::dynamic_pointer_cast<
+            std::dynamic_pointer_cast<
                 FieldContainerPtrMFieldBase::EditHandle>(fHandle);
 
         if(sfPtrHandle != NULL && sfPtrHandle->isValid() == true)
@@ -391,11 +391,11 @@ FieldContainer *SharePtrGraphOp::shareFC(FieldContainer *fc)
         else
         {
             SFAttachmentPtrMap::EditHandlePtr  amEditHandle =
-                boost::dynamic_pointer_cast<SFAttachmentPtrMap::EditHandle>(
+                std::dynamic_pointer_cast<SFAttachmentPtrMap::EditHandle>(
                     fHandle);
 
             SFAttachmentPtrMap::GetHandlePtr  amGetHandle =
-                boost::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
+                std::dynamic_pointer_cast<SFAttachmentPtrMap::GetHandle>(
                     fc->getField(i));
 
             if(amEditHandle != NULL && amEditHandle->isValid() == true)

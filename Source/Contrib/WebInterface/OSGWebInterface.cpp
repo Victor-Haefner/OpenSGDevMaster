@@ -851,14 +851,14 @@ void WebInterface::fcViewHandler(      std::ostream &os,
                << "</td><td>";
 
             GetMapFieldHandlePtr sfMap = 
-                boost::dynamic_pointer_cast<GetMapFieldHandle>(fHandle);
+                std::dynamic_pointer_cast<GetMapFieldHandle>(fHandle);
 
             FieldContainerPtrSFieldBase::GetHandlePtr sfFCPtr = 
-                boost::dynamic_pointer_cast<
+                std::dynamic_pointer_cast<
                     FieldContainerPtrSFieldBase::GetHandle>(fHandle);
     
             FieldContainerPtrMFieldBase::GetHandlePtr mfFCPtr = 
-                boost::dynamic_pointer_cast<
+                std::dynamic_pointer_cast<
                     FieldContainerPtrMFieldBase::GetHandle>(fHandle);
 
             if(sfMap != NULL && sfMap->isValid() == true)

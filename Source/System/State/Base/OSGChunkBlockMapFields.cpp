@@ -428,7 +428,7 @@ void EditSFieldHandle<SFChunkBlockPtrMap>::cloneValues(
     const TypeIdVector      &ignoreGroupIds) const
 {
     SFChunkBlockPtrMap::GetHandlePtr pGetHandle = 
-        boost::dynamic_pointer_cast<
+        std::dynamic_pointer_cast<
             SFChunkBlockPtrMap::GetHandle>(pSrc);
 
     if(pGetHandle == NULL || pGetHandle->isValid() == false)
