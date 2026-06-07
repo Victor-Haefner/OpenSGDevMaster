@@ -42,7 +42,6 @@
 #pragma once
 #endif
 
-#include <boost/preprocessor/facilities/empty.hpp>
 
 /*---------------------------- get type decl --------------------------------*/
 

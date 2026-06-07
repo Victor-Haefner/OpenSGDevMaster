@@ -29,10 +29,9 @@
 #include "OSGVector.h"
 #include "OSGSingletonHolder.h"
 
- //Defines the rand48 Random generator
-#include <boost/random/linear_congruential.hpp>
 
 #include <vector>
+#include <random>
 
 OSG_BEGIN_NAMESPACE
 
@@ -48,7 +47,7 @@ class OSG_BASE_DLLMAPPING RandomPoolManagerBase
         NUM_DEFINED_POOLS
     };
 
-    typedef boost::rand48              GeneratorType;
+    using GeneratorType = std::minstd_rand0;
 
     typedef GeneratorType::result_type SeedType;
 

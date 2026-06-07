@@ -42,8 +42,8 @@
 #pragma once
 #endif
 
-#include <functional>  
-#include <boost/type_traits.hpp>
+#include <functional>
+#include <type_traits>
 
 OSG_BEGIN_NAMESPACE
 
@@ -318,7 +318,7 @@ class EditFCPtrSFieldHandle :
 
     typedef typename FieldT::value_type                          StoredPtrType;
 
-    typedef typename boost::remove_pointer<StoredPtrType>::type  StoredType;
+    using StoredType = std::remove_pointer_t<StoredPtrType>;
 
     typedef          RefCountPtr<StoredType,
                                  UnrecordedRefCountPolicy>       StoredUnrecPtr;

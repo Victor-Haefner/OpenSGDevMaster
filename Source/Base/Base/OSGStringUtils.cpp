@@ -50,8 +50,6 @@
 #include "OSGNode.h"
 #include "OSGNameAttachment.h"
 
-#include <boost/xpressive/xpressive.hpp>
-
 OSG_BEGIN_NAMESPACE
 
 /*! \class string_token_iterator
@@ -492,43 +490,70 @@ std::string doxygenToPlainFormatting(const std::string &szDoc)
 {
     std::string szResult = szDoc;
 
-    using boost::xpressive::_;
-    using boost::xpressive::_ln;
-    using boost::xpressive::s1;
-    using boost::xpressive::as_xpr;
-
-    //Remove all newlines that do not have another newline directly afterward
-    boost::xpressive::sregex srSingleNewlineRegex = _ln >> (s1 = ~_ln);
-    std::string              szSingleNewlineReplace(" $1");
-
-    szResult = regex_replace(szResult, 
-                             srSingleNewlineRegex, 
-                             szSingleNewlineReplace);
-
-    //Generate a vector of tags that define internal sections
-    typedef std::pair  <std::string, std::string> StringPair;
-    typedef std::vector<StringPair              > StringPairVector;
- 
-    StringPairVector spTagsToRemove;
-
-    spTagsToRemove.push_back(std::pair<std::string, std::string>("ext",
-                                                                 "endext"));
-    spTagsToRemove.push_back(std::pair<std::string, std::string>("dev",
-                                                                 "enddev"));
-
-    //Remove the tagged sections from the string
-    StringPairVector::const_iterator it = spTagsToRemove.begin();
-
-    for(; it != spTagsToRemove.end(); ++it)
+    // ------------------------------------------------------------
+    // 1. Collapse single newlines into spaces (keep double newlines)
+    // ------------------------------------------------------------
     {
-        boost::xpressive::sregex srRemoveRegex = 
-            as_xpr('\\') >> it->first >> -*_ >> '\\' >> it->second;
+        std::string out;
+        out.reserve(szResult.size());
 
-        szResult = regex_replace(szResult, srRemoveRegex, "");
+        for(std::size_t i = 0; i < szResult.size(); ++i)
+        {
+            if(szResult[i] == '\n')
+            {
+                if(i + 1 < szResult.size() && szResult[i + 1] == '\n')
+                {
+                    out.push_back('\n'); // preserve paragraph break
+                }
+                else
+                {
+                    out.push_back(' ');  // replace single newline
+                }
+            }
+            else
+            {
+                out.push_back(szResult[i]);
+            }
+        }
+
+        szResult.swap(out);
     }
 
-    /*!\todo Replace some of the embedded html tags, like <br>*/
-    /*!\todo Convert common doxygen tags*/
+    // ------------------------------------------------------------
+    // 2. Remove tagged sections (\ext ... \endext etc.)
+    // ------------------------------------------------------------
+    const std::vector<std::pair<std::string, std::string>> tagsToRemove =
+    {
+        {"ext", "endext"},
+        {"dev", "enddev"}
+    };
+
+    for(const auto &tag : tagsToRemove)
+    {
+        const std::string openTag  = "\\" + tag.first;
+        const std::string closeTag = "\\" + tag.second;
+
+        while(true)
+        {
+            std::size_t start = szResult.find(openTag);
+            if(start == std::string::npos)
+                break;
+
+            std::size_t end = szResult.find(closeTag, start + openTag.size());
+            if(end == std::string::npos)
+                break;
+
+            end += closeTag.size();
+
+            szResult.erase(start, end - start);
+        }
+    }
+
+    // ------------------------------------------------------------
+    // 3. TODO placeholders (unchanged intent)
+    // ------------------------------------------------------------
+    // - replace <br>
+    // - convert doxygen tags
 
     return szResult;
 }

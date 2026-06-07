@@ -42,6 +42,7 @@
 \***************************************************************************/
 
 #include <sstream>
+#include <iterator>
 
 #include "OSGMaterialMergeGraphOp.h"
 #include "OSGGraphOpFactory.h"
@@ -116,13 +117,13 @@ bool MaterialMergeGraphOp::traverse(Node *node)
     {
         Material                    *currentMat  = mmIt->first;
         MaterialObjectList          &currentList = mmIt->second;
-        MaterialObjectMap::iterator  mmWalker    = boost::next(mmIt);
+        MaterialObjectMap::iterator  mmWalker    = std::next(mmIt);
         
         while(mmWalker != _materialMap.end())
         {
             // Store the next iterator in case we have to delete
             // 'walker' from the map.
-            MaterialObjectMap::iterator nextStep = boost::next(mmWalker);
+            MaterialObjectMap::iterator nextStep = std::next(mmWalker);
 
             if(compareContainerEqual(currentMat, mmWalker->first))
             {

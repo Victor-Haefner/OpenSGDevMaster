@@ -66,7 +66,7 @@ class DataSlotMixin : public ParentT
     typedef typename Inherited::Desc                         Desc;
     typedef typename Desc     ::DataStore                    DataStore;
     typedef typename DataStore::value_type                   StoredType;
-    typedef typename boost::remove_pointer<StoredType>::type StoredBaseType;
+    using StoredBaseType = std::remove_pointer_t<StoredType>;
 
     /*==========================  PUBLIC  =================================*/
     

@@ -55,8 +55,6 @@
 #include "OSGNodeCoreFields.h"
 #include "OSGFieldContainerFactory.h"
 
-#include <boost/assign/list_of.hpp>
-
 OSG_BEGIN_NAMESPACE
 
 /*!

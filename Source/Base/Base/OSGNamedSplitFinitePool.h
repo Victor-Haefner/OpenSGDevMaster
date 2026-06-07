@@ -44,8 +44,7 @@
 
 #include "OSGBaseTypes.h"
 
-#include <boost/type_traits/is_pod.hpp>
-#include <boost/mpl/if.hpp>
+#include <type_traits>
 
 #include <vector>
 #include <deque>
@@ -70,9 +69,10 @@ class NamedSplitFinitePool
 
   public:
 
-    typedef typename boost::mpl::if_< boost::is_pod<ValueT>,
-                                      ValueT,
-                                      ValueT *>::type StoredType;
+    using StoredType =
+    std::conditional_t<std::is_trivially_copyable_v<ValueT>,
+                        ValueT,
+                        ValueT*>;
 
     typedef          ValueT                           ValueType;
 
