@@ -45,7 +45,7 @@
 #include "OSGNode.h"
 
 #include <functional>
-#include <boost/format.hpp>
+
 
 #include <ostream>
 #include <set>
@@ -648,7 +648,6 @@ void MemoryConsumption::print(std::ostream &os, bool ignoreProto) const
 
     SizeT         totalMem   = 0;
     UInt32        totalCount = 0;
-    boost::format formatter("%|1$-25| [%|2$8|] Byte [%|3$8.0f|] kByte [%|4$4|]\n");
 
     for(; tmIt != tmEnd; ++tmIt)
     {
@@ -661,20 +660,30 @@ void MemoryConsumption::print(std::ostream &os, bool ignoreProto) const
         if(ignoreProto && tmIt->second.second == 1)
             continue;
 
-        os << formatter % fcType->getCName()
-                        % tmIt->second.first
-                        % (tmIt->second.first / 1024.f)
-                        % tmIt->second.second;
+        os << std::left << std::setw(25) << fcType->getCName()
+       << " ["
+       << std::right << std::setw(8) << tmIt->second.first
+       << "] Byte ["
+       << std::setw(8) << std::fixed << std::setprecision(0)
+       << (tmIt->second.first / 1024.f)
+       << "] kByte ["
+       << std::setw(4) << tmIt->second.second
+       << "]\n";
 
         totalMem   += tmIt->second.first;
         totalCount += tmIt->second.second;
     }
 
     os << "--------------------------------------------\n";
-    os << formatter % "Total"
-                    % totalMem
-                    % (totalMem / 1024.f)
-                    % totalCount;
+    os << std::left << std::setw(25) << "Total"
+   << " ["
+   << std::right << std::setw(8) << totalMem
+   << "] Byte ["
+   << std::setw(8) << std::fixed << std::setprecision(0)
+   << (totalMem / 1024.f)
+   << "] kByte ["
+   << std::setw(4) << totalCount
+   << "]\n";
 }
 
 MemoryConsumption::TypeMemMapConstIt MemoryConsumption::beginMap(void) const

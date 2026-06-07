@@ -47,7 +47,7 @@
 
 #include "OSGStatStringElem.h"
 
-#include <boost/format.hpp>
+
 
 OSG_USING_NAMESPACE
 
@@ -94,11 +94,11 @@ void StatStringElem::putToString(
     }
     else
     {
-        boost::format fmt(format);
-        
-        fmt % _value;
-        
-        str = fmt.str();
+        std::ostringstream ss;
+        if(format.find(".2f") != std::string::npos) ss << std::fixed << std::setprecision(2);
+        else ss << std::fixed;
+        ss << _value;
+        str = ss.str();
     }
 }
 

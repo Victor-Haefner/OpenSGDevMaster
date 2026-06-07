@@ -47,8 +47,7 @@
 
 #include "OSGConfig.h"
 
-#include <boost/format.hpp>
-#include <boost/assign/list_of.hpp>
+
 
 #include "OSGViewport.h"
 
@@ -185,17 +184,7 @@ void PerfMonitorForeground::initText(const std::string &family, Real32 size)
     }
 
     // Increment reference counters
-    OSG::addRef(_face);    
-
-#if 0
-    // Init the text for the chart
-    mode_names = boost::assign::map_list_of
-                  (PerfMonitorForeground::Text,              "Text")
-                  (PerfMonitorForeground::PercentLines,      "PercentLines")
-                  (PerfMonitorForeground::PercentTotalLines, "PercentTotalLines")
-                  (PerfMonitorForeground::MaxLines,          "MaxLines")
-                  (PerfMonitorForeground::ThreadTiming,      "ThreadTiming");
-#endif
+    OSG::addRef(_face);
 }
 
 /** Draw the foreground on the viewport. */
@@ -233,8 +222,8 @@ void PerfMonitorForeground::draw(DrawEnv *pEnv)
    std::vector<std::string> output_lines;       // This will be the list of lines of text
 
    // Put some basic stats at the top of the output
-   boost::format stats_formatter("FPS: %s");
-   std::string stats_line = boost::str(stats_formatter % PerfMonitor::the()->getFrameRate(10));
+   std::format stats_formatter("FPS: %s");
+   std::string stats_line = std::str(stats_formatter % PerfMonitor::the()->getFrameRate(10));
    output_lines.push_back(stats_line);
    
    // compute the max length of the prefix strings ("   sample_name")
@@ -250,11 +239,11 @@ void PerfMonitorForeground::draw(DrawEnv *pEnv)
    // Now create the lines of text
    OSG_ASSERT(mode_names.count(render_mode) == 1);
    std::string mode_name = mode_names[render_mode];   
-   std::string header_string = boost::str(
-         boost::format("%s%s %=10s %=10s %=7s") % mode_name
+   std::string header_string = std::str(
+         std::format("%s%s %=10s %=10s %=7s") % mode_name
                                                 % std::string(max_len-mode_name.size(), ' ')
                                                 % "Avg" % "Max" % "%");
-   boost::format formatter("%s [%8.5f] [%8.5f] [%5.3f]");      // Formatter for each line
+   std::format formatter("%s [%8.5f] [%8.5f] [%5.3f]");      // Formatter for each line
 
    output_lines.push_back(header_string);
    for (unsigned i=0; i<num_samples; ++i)
@@ -267,7 +256,7 @@ void PerfMonitorForeground::draw(DrawEnv *pEnv)
       std::string name_string(indent_str + sample->mName);
       std::string filler_string(max_len - name_string.size(), ' ');
       name_string += filler_string;
-      std::string str_out = boost::str(formatter % name_string
+      std::string str_out = std::str(formatter % name_string
                                                  % sample->mAverage
                                                  % sample->mMax
                                                  % sample->mPercentage);

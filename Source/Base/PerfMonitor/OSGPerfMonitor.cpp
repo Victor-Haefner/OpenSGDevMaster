@@ -41,7 +41,7 @@
 #include <sstream>
 
 #include "OSGPerfMonitor.h"
-#include <boost/format.hpp>
+
 #include "OSGBaseInitFunctions.h"
 #include "OSGSingletonHolder.ins"
 #include "OSGBaseFunctions.h"
@@ -124,7 +124,7 @@ std::string NestedSampleInfo::outString(UInt32 indent, bool detailed)
     std::string indent_str("  ");
     ostring << indent_str << mName << "[" << mPercentage << "] [" << mAverage
             << "]\n";
-    // boost::format("[%.4f] [%.4f]\n")%mPercentage%mAverage;
+            
     if (detailed)
     {
         ostring << "     samples:[";

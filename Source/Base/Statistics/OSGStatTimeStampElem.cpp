@@ -48,7 +48,7 @@
 
 #include "OSGStatTimeStampElem.h"
 
-#include <boost/format.hpp>
+
 
 OSG_USING_NAMESPACE
 
@@ -121,11 +121,11 @@ void StatTimeStampElem::putToString(
             }
         }
         
-        boost::format fmt(formatCopy);
-        
-        fmt % time;
-        
-        str = fmt.str();
+        std::ostringstream ss;
+        if(formatCopy.find(".2f") != std::string::npos) ss << std::fixed << std::setprecision(2);
+        else ss << std::fixed;
+        ss << time;
+        str = ss.str();
     }
 }
 
