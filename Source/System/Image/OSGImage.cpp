@@ -54,7 +54,6 @@
 #include <cstdio>
 
 #include <algorithm>
-#include <boost/functional/hash/hash.hpp>
 
 #include "OSGConfig.h"
 #include "OSGLog.h"
@@ -4285,8 +4284,12 @@ void Image::calcMipmapOffsets(void)
 void Image::calcHash(void) const
 {
     _hash = 173;
-
-    boost::hash_range(_hash, _mfPixel.begin(), _mfPixel.end());
+    
+    for(const auto& v : _mfPixel) {
+        _hash ^= std::hash<std::decay_t<decltype(v)>>{}(v)
+             + 0x9e3779b97f4a7c15ULL + (_hash << 6) + (_hash >> 2);
+    }
+    
     _hashValid = true;
 }
 

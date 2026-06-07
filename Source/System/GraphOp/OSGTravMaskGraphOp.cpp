@@ -107,9 +107,7 @@ TravMaskGraphOp::TravMaskGraphOp(void) :
 
 	mNumChanged              (0        )
 {
-	mMatchRegex = boost::xpressive::cregex::compile(
-        ".*", 
-        boost::xpressive::regex_constants::icase);
+        mMatchRegex = std::regex(".*");
 }
 
 TravMaskGraphOp::~TravMaskGraphOp(void)
@@ -164,14 +162,7 @@ void TravMaskGraphOp::setApplyToNonMatching(bool ApplyToNonMatching)
 
 void TravMaskGraphOp::setMatchRegex(const std::string& MatchName)
 {
-	mMatchRegex = boost::xpressive::cregex::compile(
-        MatchName, 
-        boost::xpressive::regex_constants::icase);
-}
-
-void TravMaskGraphOp::setMatchRegex(const boost::xpressive::cregex &MatchRegex)
-{
-	mMatchRegex = MatchRegex;
+	mMatchRegex = std::regex(MatchName);
 }
 
 void TravMaskGraphOp::setNodeCoreType(const std::string &TypeName)
@@ -218,13 +209,9 @@ void TravMaskGraphOp::setParams(const std::string params)
     ps("matchname", mMatchName);
 
     std::string MatchRegex;
-
-	ps("matchregex",     MatchRegex     );
+    ps("matchregex",     MatchRegex    );
     ps("matchwholename", mMatchWholeName);
-
-	mMatchRegex = boost::xpressive::cregex::compile(
-        MatchRegex, 
-        boost::xpressive::regex_constants::icase);
+    mMatchRegex = std::regex(MatchRegex);
 
     //Type Matching
     ps("matchnodecoretype",     mMatchNodeCoreType    );
@@ -301,11 +288,11 @@ Action::ResultE TravMaskGraphOp::traverseEnter(Node * const node)
 
         if(mMatchWholeName)
         {
-            setMask = boost::xpressive::regex_match (namePtr, mMatchRegex);
+            setMask = std::regex_match (namePtr, mMatchRegex);
 		}
         else
         {
-            setMask = boost::xpressive::regex_search(namePtr, mMatchRegex);
+            setMask = std::regex_search(namePtr, mMatchRegex);
         }
 	}
 
@@ -377,7 +364,7 @@ Action::ResultE TravMaskGraphOp::traverseEnter(Node * const node)
         {
             TravMaskGraphOpRefPtr colMeshGrOp = TravMaskGraphOp::create();
 
-            colMeshGrOp->setMatchRegex(boost::xpressive::cregex::compile(".*"));
+            colMeshGrOp->setMatchRegex(".*");
 
             colMeshGrOp->setNewTravMask         (mNewTravMask          );
             colMeshGrOp->setNewTravMaskOperation(mApplyNewMaskOperation);

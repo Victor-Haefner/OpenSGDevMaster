@@ -48,7 +48,6 @@
 #include "OSGFieldContainerUtils.h"
 #include "OSGMaterial.h"
 
-#include <boost/next_prior.hpp>
 
 OSG_BEGIN_NAMESPACE
 

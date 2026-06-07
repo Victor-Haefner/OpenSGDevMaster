@@ -13,7 +13,6 @@
 
 #include "OSGTextureBaseChunk.h"
 #include "OSGMaterialChunk.h"
-#include <boost/assign/list_of.hpp>
 
 
 OSG::SimpleSceneManagerRefPtr mgr(NULL);

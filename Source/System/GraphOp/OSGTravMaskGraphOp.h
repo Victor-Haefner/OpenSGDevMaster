@@ -42,7 +42,8 @@
 #include "OSGGraphOp.h"
 #include "OSGUtilDef.h"
 #include "OSGAction.h"
-#include <boost/xpressive/xpressive_dynamic.hpp>
+
+#include <regex>
 
 OSG_BEGIN_NAMESPACE
 
@@ -108,7 +109,6 @@ class OSG_UTIL_DLLMAPPING TravMaskGraphOp : public GraphOp
     */
 
     void setMatchRegex    (const std::string              &MatchRegex);
-    void setMatchRegex    (const boost::xpressive::cregex &MatchRegex);
     void setMatchWholeName(      bool                      value);
 
     /*! Sets the type of node core to search for (based on a node core's
@@ -200,7 +200,7 @@ class OSG_UTIL_DLLMAPPING TravMaskGraphOp : public GraphOp
 
     //Name matching criteria
     bool                      mMatchName;
-    boost::xpressive::cregex  mMatchRegex;
+    std::regex                mMatchRegex;
     bool                      mMatchWholeName;
 
     //Type matching criteria

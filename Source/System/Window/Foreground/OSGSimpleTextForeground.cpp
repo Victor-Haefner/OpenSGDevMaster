@@ -59,10 +59,8 @@
 #include "OSGTextureObjChunk.h"
 #include "OSGTextureEnvChunk.h"
 
-#include <boost/xpressive/xpressive.hpp>
-#include <boost/xpressive/regex_actions.hpp>
 
-using namespace boost::xpressive;
+//using namespace boost::xpressive;
 
 OSG_BEGIN_NAMESPACE
 
@@ -410,143 +408,81 @@ Color4f SimpleTextForeground::getColorRange(UInt32 uiPosition) const
 
 void SimpleTextForeground::updateFormatting(void)
 {
-    //Clear the formatted lines
     _vPlainTextLines.clear();
-    _vColorRanges   .clear();
+    _vColorRanges.clear();
 
     UInt32 uiIndexOffset = 0;
 
-    for(UInt32 i = 0; i < getMFLines()->size() ; ++i)
+    for(UInt32 i = 0; i < getMFLines()->size(); ++i)
     {
         std::string szResult = getLines(i);
 
-        //Remove all newlines that do not have another newline directly
-        //afterward 
-
-        mark_tag redTag  (1),
-                 greenTag(2),
-                 blueTag (3),
-                 alphaTag(4),
-                 textTag (5);
-
-        //Matches a string similar to \color=AA00FF11
-        //sregex ColorRegex =
-            //"\\color"
-            //>> *space
-            //>> '='
-            //>> *space
-            //>> (redTag = repeat<2>(alnum))
-            //>> (greenTag = repeat<2>(alnum))
-            //>> (blueTag = repeat<2>(alnum))
-            //>> !(alphaTag = repeat<2>(alnum));
-
-        //Matches a string similar to \{\color=AA00FF11 Some text}
-        sregex srTaggedColorRegex =
-            as_xpr('\\') >> '{'
-                         >> *space
-                         >> "\\color"
-                         >> *space
-                         >> '='
-                         >> *space
-                         >> (redTag    = repeat<2>(alnum))
-                         >> (greenTag  = repeat<2>(alnum))
-                         >> (blueTag   = repeat<2>(alnum))
-                         >> !(alphaTag = repeat<2>(alnum))
-                         >> *space
-                         >> (textTag = -*_) >> '}';
-
-        //Get the color
-        smatch what;
-
-        while(regex_search(szResult, what, srTaggedColorRegex))
+        while(true)
         {
-            Real32 Red(0.0f), Green(0.0f), Blue(0.0f), Alpha(1.0f);
+            // Find start of tag: {\color=
+            std::size_t start = szResult.find("{\\color=");
+            if(start == std::string::npos)
+                break;
 
-            try
-            {
-                 Red = static_cast<Real32>(
-                     boost::lexical_cast< HexTo<UInt16> >(
-                         std::string("0x") + what[redTag])) /
-                             TypeTraits<UInt8>::getMax();
-            }
-            catch(boost::bad_lexical_cast &)
-            {
-                SWARNING << "Could not convert hex value "
-                         << what[redTag]
-                         << " into a 8-bit unsigned integer for the red "
-                         << "color component." 
-                         << std::endl;
-            }
+            // Find end of tag
+            std::size_t end = szResult.find('}', start);
+            if(end == std::string::npos)
+                break; // malformed input
 
-            try
-            {
-                 Green = static_cast<Real32>(
-                     boost::lexical_cast< HexTo<UInt16> >(
-                         std::string("0x") + what[greenTag])) /
-                             TypeTraits<UInt8>::getMax();
+            std::size_t cursor = start + 8; // after "{\color="
 
-            }
-            catch(boost::bad_lexical_cast &)
-            {
-                SWARNING << "Could not convert hex value "
-                         << what[greenTag]
-                         << " into a 8-bit unsigned integer for the "
-                         << "green color component."
-                         << std::endl;
-            }
+            // Extract hex color block (until whitespace or end brace)
+            std::size_t blockEnd = szResult.find_first_of(" }", cursor);
+            if(blockEnd == std::string::npos || blockEnd > end)
+                blockEnd = end;
 
-            try
-            {
-                 Blue = static_cast<Real32>(
-                     boost::lexical_cast< HexTo<UInt16> >(
-                         std::string("0x") + what[blueTag])) /
-                             TypeTraits<UInt8>::getMax();
+            std::string colorBlock =
+                szResult.substr(cursor, blockEnd - cursor);
 
-            }
-            catch(boost::bad_lexical_cast &)
+            auto parseHex2 = [&](std::size_t pos) -> UInt16
             {
-                SWARNING << "Could not convert hex value "
-                         << what[blueTag]
-                         << " into a 8-bit unsigned integer for the "
-                         << "blue color component."
-                         << std::endl;
-            }
-            
-            try
-            {
-                 Alpha = static_cast<Real32>(
-                     boost::lexical_cast<HexTo <UInt16> >(
-                         std::string("0x") + what[alphaTag])) /
-                             TypeTraits<UInt8>::getMax();
+                if(pos + 2 > colorBlock.size())
+                    return 0;
 
-            }
-            catch(boost::bad_lexical_cast &)
-            {
-                SWARNING << "Could not convert hex value "
-                         << what[alphaTag]
-                         << " into a 8-bit unsigned integer for the "
-                         << "alpha color component."
-                         << std::endl;
-            }
+                return static_cast<UInt16>(
+                    std::stoi(colorBlock.substr(pos, 2), nullptr, 16));
+            };
 
+            UInt16 r = parseHex2(0);
+            UInt16 g = parseHex2(2);
+            UInt16 b = parseHex2(4);
+            UInt16 a = 255;
+
+            if(colorBlock.size() >= 8)
+                a = parseHex2(6);
+
+            Real32 Red   = r / static_cast<Real32>(TypeTraits<UInt8>::getMax());
+            Real32 Green = g / static_cast<Real32>(TypeTraits<UInt8>::getMax());
+            Real32 Blue  = b / static_cast<Real32>(TypeTraits<UInt8>::getMax());
+            Real32 Alpha = a / static_cast<Real32>(TypeTraits<UInt8>::getMax());
+
+            // Extract text inside tag after color block
+            std::size_t textStart =
+                szResult.find_first_not_of(" \t", cursor + colorBlock.size());
+
+            if(textStart == std::string::npos || textStart > end)
+                textStart = cursor + colorBlock.size();
+
+            std::string text = szResult.substr(textStart, end - textStart);
+
+            // Register colored range
             TextColoredRange oColorRange(
-                uiIndexOffset + what.position(),
-                uiIndexOffset + what.position() + what[textTag].length() - 1,
+                uiIndexOffset + start,
+                uiIndexOffset + start + text.size() - 1,
                 Color4f(Red, Green, Blue, Alpha));
 
             _vColorRanges.push_back(oColorRange);
 
-            //Remove the tag from the plain text
-            szResult = regex_replace(szResult,
-                                     srTaggedColorRegex,
-                                     "" + textTag,
-                                     regex_constants::match_default | 
-                                     regex_constants::format_first_only);
+            // Replace full tag with plain text
+            szResult.replace(start, end - start + 1, text);
         }
 
-        //Push the plain text line to the lines vector
         _vPlainTextLines.push_back(szResult);
-
         uiIndexOffset += UInt32(szResult.size());
     }
 }
