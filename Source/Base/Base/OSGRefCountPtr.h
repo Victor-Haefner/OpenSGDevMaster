@@ -45,7 +45,7 @@
 #include "OSGBaseFunctions.h"
 #include "OSGContainerForwards.h"
 
-#include <boost/mpl/if.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 

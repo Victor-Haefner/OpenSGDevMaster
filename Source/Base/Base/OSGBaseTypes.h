@@ -47,7 +47,7 @@
 #include "OSGReal16.h"
 
 #include <vector>
-#include <boost/mpl/if.hpp>
+
 
 #if defined(OSG_SGI_TYPES) || defined (OSG_LINUX_TYPES) || \
     defined(OSG_SUNOS_TYPES)
@@ -63,6 +63,8 @@
 #include <string>
 #include <cstdio>
 #include <cmath>
+#include <type_traits>
+#include <cstdint>
 
 #if defined(OSG_LINUX_TYPES)
 #    include <inttypes.h>
@@ -716,23 +718,23 @@ static const Char8  DirSep OSG_UNUSED_ATTRIB = '/';
 
 namespace PointerSize
 {
-    struct UnknowSize {};
+    struct UnknownSize {};
 
-    typedef boost::mpl::if_<boost::mpl::bool_<(sizeof(void *) == 4)>,
-                            UInt32,
-                            UnknowSize>::type UITmp1;
+    using UITmp1 = std::conditional_t<(sizeof(void*) == 4),
+                                      UInt32,
+                                      UnknownSize>;
 
-    typedef boost::mpl::if_<boost::mpl::bool_<(sizeof(void *) == 4)>,
-                            Int32,
-                            UnknowSize>::type ITmp1;
+    using ITmp1  = std::conditional_t<(sizeof(void*) == 4),
+                                      Int32,
+                                      UnknownSize>;
 
-    typedef boost::mpl::if_<boost::mpl::bool_<(sizeof(void *) == 8)>,
-                            UInt64,
-                            UITmp1  >::type UIPtrSize;
+    using UIPtrSize = std::conditional_t<(sizeof(void*) == 8),
+                                         UInt64,
+                                         UITmp1>;
 
-    typedef boost::mpl::if_<boost::mpl::bool_<(sizeof(void *) == 8)>,
-                            Int64,
-                            ITmp1  >::type IPtrSize;
+    using IPtrSize  = std::conditional_t<(sizeof(void*) == 8),
+                                         Int64,
+                                         ITmp1>;
 }
 
 #endif
@@ -806,16 +808,17 @@ typedef std::vector<IntPointer> AspectOffsetStore;
 
 namespace RenderPropBitVectorSize
 {
-    struct UnknowSize {};
+    struct UnknownSize {};
 
-    typedef boost::mpl::if_<boost::mpl::bool_< (RenderPropertyBits <= 64 &&
-                                                RenderPropertyBits >  32   )>,
-                            UInt64,
-                            UnknowSize>::type Tmp1;
+    using Tmp1 = std::conditional_t<
+        (RenderPropertyBits <= 64 && RenderPropertyBits > 32),
+        UInt64,
+        UnknownSize>;
 
-    typedef boost::mpl::if_<boost::mpl::bool_< (RenderPropertyBits <= 32) >,
-                            UInt32,
-                            Tmp1  >::type BitVectorSize;
+    using BitVectorSize = std::conditional_t<
+        (RenderPropertyBits <= 32),
+        UInt32,
+        Tmp1>;
 }
 
 #endif

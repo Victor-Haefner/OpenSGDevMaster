@@ -152,22 +152,21 @@ class SimpleAttachment : public Attachment
     };
 
 
-    typedef typename
-        boost::mpl::if_<boost::mpl::bool_<
-                             (StoredFieldType::isPointerField == true)>,
-                         SFieldPtrFunctions,
-                         SFieldValFunctions>::type SFieldFunctions;
 
-    typedef typename
-        boost::mpl::if_<boost::mpl::bool_<
-                             (StoredFieldType::isPointerField == true)>,
-                         MFieldPtrFunctions,
-                         MFieldValFunctions>::type MFieldFunctions;
+    using SFieldFunctions =
+        std::conditional_t<StoredFieldType::isPointerField,
+                       SFieldPtrFunctions,
+                       SFieldValFunctions>;
 
-    typedef typename
-        boost::mpl::if_<boost::mpl::bool_<(StoredFieldType::isSField == true)>,
-                         SFieldFunctions,
-                         MFieldFunctions>::type FieldFunctions;
+    using MFieldFunctions =
+        std::conditional_t<StoredFieldType::isPointerField,
+                       MFieldPtrFunctions,
+                       MFieldValFunctions>;
+
+    using FieldFunctions =
+        std::conditional_t<StoredFieldType::isSField,
+                       SFieldFunctions,
+                       MFieldFunctions>;
 
 
     /*==========================  PUBLIC  =================================*/

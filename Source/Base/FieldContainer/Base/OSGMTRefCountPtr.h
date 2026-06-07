@@ -46,7 +46,7 @@
 #include "OSGContainerForwards.h"
 #include "OSGRefCountPtr.h"
 
-#include <boost/mpl/if.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 

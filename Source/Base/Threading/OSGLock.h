@@ -60,7 +60,7 @@
 #include <ulocks.h>
 #endif
 
-#include <boost/mpl/if.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -518,15 +518,15 @@ class OSG_BASE_DLLMAPPING LockPool : public LockCommonBase
 
     struct ErrorCouldNotMatchSize {};
 
-    typedef 
-        boost::mpl::if_<boost::mpl::bool_<(sizeof(void *) == sizeof(UInt32))>,
-                        UInt32,
-                        ErrorCouldNotMatchSize>::type NumericalKeyType32;
+    using NumericalKeyType32 =
+        std::conditional_t<(sizeof(void*) == sizeof(std::uint32_t)),
+                       std::uint32_t,
+                       ErrorCouldNotMatchSize>;
 
-    typedef 
-        boost::mpl::if_<boost::mpl::bool_<(sizeof(void *) == sizeof(UInt64))>,
-                        UInt64,
-                        NumericalKeyType32>::type NumericalKeyType;
+    using NumericalKeyType =
+        std::conditional_t<(sizeof(void*) == sizeof(std::uint64_t)),
+                       std::uint64_t,
+                       NumericalKeyType32>;
     
     /*---------------------------------------------------------------------*/
     /*! \name                      Create                                  */

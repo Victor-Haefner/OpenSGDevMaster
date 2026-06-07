@@ -50,7 +50,7 @@
 
 #include <iosfwd>
 
-#include <boost/mpl/if.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 
@@ -111,19 +111,12 @@ struct InvalidTrait
 template<class ValueT, Int32 NamespaceI = 0>
 struct FieldTraitsTemplateBase : public FieldTraitsBase
 {
-#ifndef __hpux
-    static const UInt32 uiTest = TypeTraits<ValueT>::IsPOD == true;
+    static const UInt32 uiTest = std::is_trivially_copyable_v<ValueT> == true;
 
-    typedef typename
-        boost::mpl::if_<boost::mpl::bool_<(uiTest == 1)>,
-                        const ValueT  ,
-                        const ValueT & >::type  ArgumentType;
-#else
-    typedef typename
-    boost::mpl::if_<boost::mpl::bool_<TypeTraits<ValueT>::IsPOD>,
-                    const ValueT  ,
-                    const ValueT & >::type  ArgumentType;
-#endif
+    using ArgumentType =
+        std::conditional_t<std::is_trivially_copyable_v<ValueT>,
+                       const ValueT,
+                       const ValueT&>;
 
 
     typedef      ValueT                            ValueType;

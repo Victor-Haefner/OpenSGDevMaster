@@ -60,7 +60,7 @@
 #include <semaphore.h>
 #endif
 
-#include <boost/mpl/if.hpp>
+
 
 OSG_BEGIN_NAMESPACE
 

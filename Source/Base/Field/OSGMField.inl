@@ -132,12 +132,12 @@ void MField<ValueT, iNamespace, AllocT>::addValueFromCString(const Char8 *str)
 {
     ValueT tmpVal;
 
-    typedef typename boost::mpl::if_<boost::mpl::bool_< 
-        static_cast<bool>(MFieldTraits    ::Convertible &
-                          FieldTraitsBase ::FromStringConvertible)>, 
-        MFieldTraits, 
-        StringConversionError<ValueT,
-                              iNamespace> >::type Converter;
+    using Converter =
+        std::conditional_t<
+            (MFieldTraits::Convertible & FieldTraitsBase::FromStringConvertible) != 0,
+            MFieldTraits,
+            StringConversionError<ValueT, iNamespace>
+        >;
     
     Converter::getFromCString(tmpVal, str);
     
@@ -149,13 +149,13 @@ template <class ValueT, Int32 iNamespace, class AllocT> inline
 void MField<ValueT, 
             iNamespace, 
             AllocT    >::pushValuesToString(std::string  &str) const
-{
-    typedef typename boost::mpl::if_<boost::mpl::bool_< 
-        static_cast<bool>(MFieldTraits    ::Convertible &
-                          FieldTraitsBase ::ToStringConvertible)>, 
-        MFieldTraits, 
-        StringConversionError<ValueT,
-                              iNamespace> >::type Converter;
+{                              
+    using Converter =
+        std::conditional_t<
+            (MFieldTraits::Convertible & FieldTraitsBase::ToStringConvertible) != 0,
+            MFieldTraits,
+            StringConversionError<ValueT, iNamespace>
+        >;
 
     for(SizeT i = 0; i < size(); ++i)
     {
@@ -174,14 +174,14 @@ void MField<ValueT,
             iNamespace, 
             AllocT    >::pushValuesFromStream(std::istream &str)
 {
-    ValueT tmpVal;
-
-    typedef typename boost::mpl::if_<boost::mpl::bool_<
-        static_cast<bool>(MFieldTraits    ::Convertible &
-                          FieldTraitsBase ::FromStreamConvertible)>, 
-        MFieldTraits, 
-        StreamConversionError<ValueT,
-                              iNamespace> >::type Converter;
+    ValueT tmpVal; 
+                                                       
+    using Converter =
+        std::conditional_t<
+            (MFieldTraits::Convertible & FieldTraitsBase::FromStreamConvertible) != 0,
+            MFieldTraits,
+            StringConversionError<ValueT, iNamespace>
+        >;
     
     Converter::getFromStream(tmpVal, str);
     
@@ -195,13 +195,13 @@ void MField<ValueT,
                                                      UInt32        index)
 {
     ValueT tmpVal;
-
-    typedef typename boost::mpl::if_<boost::mpl::bool_< 
-        static_cast<bool>(MFieldTraits    ::Convertible &
-                          FieldTraitsBase ::FromStringConvertible)>, 
-        MFieldTraits, 
-        StringConversionError<ValueT,
-                              iNamespace> >::type Converter;
+                                                       
+    using Converter =
+        std::conditional_t<
+            (MFieldTraits::Convertible & FieldTraitsBase::FromStringConvertible) != 0,
+            MFieldTraits,
+            StringConversionError<ValueT, iNamespace>
+        >;
     
     Converter::getFromCString(tmpVal, str);
     
@@ -213,39 +213,48 @@ void MField<ValueT,
             iNamespace, 
             AllocT    >::pushIndexedValueToStream(OutStream &str, 
                                                   UInt32     index) const
-{
-    typedef typename boost::mpl::if_<boost::mpl::bool_< 
-        static_cast<bool>(MFieldTraits    ::Convertible &
-                          FieldTraitsBase ::ToStreamConvertible)>, 
-        MFieldTraits, 
-        StreamConversionError<ValueT,
-                              iNamespace> >::type Converter;
-
-    Converter::putToStream(_values[index], str);
+{                                            
+    if constexpr ((MFieldTraits::Convertible &
+                   FieldTraitsBase::ToStreamConvertible) != 0)
+    {
+        MFieldTraits::putToStream(_values[index], str);
+    }
+    else
+    {
+        (void)_values[index];
+    }
 }
 
 template <class ValueT, Int32 iNamespace, class AllocT> inline
 void MField<ValueT, 
             iNamespace, 
             AllocT    >::pushValuesToStream(OutStream &str) const
-{
-    typedef typename boost::mpl::if_<boost::mpl::bool_< 
-        static_cast<bool>(MFieldTraits    ::Convertible &
-                          FieldTraitsBase ::ToStreamConvertible)>, 
-        MFieldTraits, 
-        StreamConversionError<ValueT,
-                              iNamespace> >::type Converter;
-
-    for(SizeT i = 0; i < size(); ++i)
+{                                      
+    if constexpr ((MFieldTraits::Convertible &
+                   FieldTraitsBase::ToStreamConvertible) != 0)
     {
-        Converter::putToStream(_values[i], str);
-
-        if(i < (size() - 1))
+        for(SizeT i = 0; i < size(); ++i)
         {
-            str << ", ";
+            MFieldTraits::putToStream(_values[i], str);
+
+            if(i < (size() - 1))
+            {
+                str << ", ";
+            }
         }
     }
+    else
+    {
+        for(SizeT i = 0; i < size(); ++i)
+        {
+            (void)_values[i];
 
+            if(i < (size() - 1))
+            {
+                str << ", ";
+            }
+        }
+    }
 }
 
 template <class ValueT, Int32 iNamespace, class AllocT> inline
