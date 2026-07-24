@@ -78,8 +78,8 @@ struct FieldTraits<HWND> :
     OSG_WINDOWWIN32_DLLMAPPING
     static DataType &getType (void);
 
-    static char     *getSName(void) { return "SFHWND"; }
-    static char     *getMName(void) { return "MFHWND"; }
+    static const char     *getSName(void) { return "SFHWND"; }
+    static const char     *getMName(void) { return "MFHWND"; }
 
     static bool      getFromCString(      HWND          &,
                                     const Char8         *)
@@ -110,8 +110,8 @@ struct FieldTraits<HDC> :
     OSG_WINDOWWIN32_DLLMAPPING
     static DataType &getType (void);
 
-    static char     *getSName(void) { return "SFHDC"; }
-    static char     *getMName(void) { return "MFHDC"; }
+    static const char     *getSName(void) { return "SFHDC"; }
+    static const char     *getMName(void) { return "MFHDC"; }
 
     static bool      getFromCString(      HDC           &,
                                     const Char8         *)
@@ -142,8 +142,8 @@ struct FieldTraits<HGLRC> :
     OSG_WINDOWWIN32_DLLMAPPING
     static DataType &getType (void);
 
-    static char     *getSName(void) { return "SFHGLRC"; }
-    static char     *getMName(void) { return "MFHGLRC"; }
+    static const char     *getSName(void) { return "SFHGLRC"; }
+    static const char     *getMName(void) { return "MFHGLRC"; }
 
     static bool      getFromCString(      HGLRC         &,
                                     const Char8         *)
@@ -174,8 +174,8 @@ struct FieldTraits<PAINTSTRUCT> :
     OSG_WINDOWWIN32_DLLMAPPING
     static DataType &getType (void);
 
-    static char     *getSName(void) { return "SFPAINTSTRUCT"; }
-    static char     *getMName(void) { return "MFPAINTSTRUCT"; }
+    static const char     *getSName(void) { return "SFPAINTSTRUCT"; }
+    static const char     *getMName(void) { return "MFPAINTSTRUCT"; }
 
     static bool      getFromCString(      PAINTSTRUCT   &,
                                     const Char8         *)

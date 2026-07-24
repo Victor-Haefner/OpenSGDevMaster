@@ -164,7 +164,7 @@ class OSG_BASE_DLLMAPPING OutStream
 # endif
 #else
     template <class Arg>
-    OutStream &operator<<(std::_Smanip<Arg> &__f);
+    OutStream &operator<<(std::_Smanip<Arg> __f);
 #endif
 
     OutStream &operator<<(std::ostream& (OSG_STREAM_API *__pf)(std::ostream&));

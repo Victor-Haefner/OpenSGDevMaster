@@ -247,6 +247,11 @@ IF(MSVC)
         "${CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO}"
         CACHE INTERNAL "OpenSG defaults" FORCE )
 
+    if(OSG_ENABLE_C++20)
+        set(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} /std:c++20")
+    elseif(OSG_ENABLE_C++11)
+        set(OSG_CXX_FLAGS "${OSG_CXX_FLAGS} /std:c++14")
+    endif()
 
 ENDIF(MSVC)
 
